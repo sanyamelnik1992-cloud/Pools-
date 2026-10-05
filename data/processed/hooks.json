@@ -1,0 +1,5547 @@
+{
+ "generated_at": 1791230018,
+ "hooks": [
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x06a889870c8f83640d6816319f72e2aa579b6080",
+   "pools": 1,
+   "tvl": 28268931.476164,
+   "vol_7d": 494339585.007079,
+   "fee_7d": 466074.95954,
+   "fee_apr_7d": 85.96886675270584,
+   "majors_tvl": 28268931.476164,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/USDG 0.07%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x72e09ebd9b24f47730b651889a4ed984cba53d90",
+   "pools": 33,
+   "tvl": 19287024.027246006,
+   "vol_7d": 118039856.357884,
+   "fee_7d": 7908.673057,
+   "fee_apr_7d": 2.1381256580494763,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/SENTIS 0.0099%",
+    "USDT/KITE 0.0099%",
+    "GWEI/USDT 0.0099%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0xb0baa371b899950b4ef6a27c21baf5ef7c434d0f",
+   "pools": 15,
+   "tvl": 15136469.355201,
+   "vol_7d": 586111104.7714999,
+   "fee_7d": 39269.438289,
+   "fee_apr_7d": 13.527730032234986,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/SHARE 0.0099%",
+    "USDT/CNPY 0.0099%",
+    "ZEST/USDT 0.0099%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xd53006d1e3110fd319a79aeec4c527a0d265e080",
+   "pools": 1,
+   "tvl": 14665961.890016,
+   "vol_7d": 9521810.817894,
+   "fee_7d": 4760.905398,
+   "fee_apr_7d": 1.6926759519780847,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/AZTEC 0.0625%"
+   ],
+   "name": "VirtualLBPStrategyBasic",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x00000010F37b6524617b17e66796058412bbC487"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf1ee073811b14359d850825e48d200483200edcd",
+   "pools": 1,
+   "tvl": 12614337.203574,
+   "vol_7d": 6407181.945787,
+   "fee_7d": 64071.819477,
+   "fee_apr_7d": 26.484845584479654,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/STANDARD 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb3ca29cf721380cee8b8e4755f3865ebc68fe8cc",
+   "pools": 1,
+   "tvl": 11764096.305173,
+   "vol_7d": 35281472.671275,
+   "fee_7d": 352814.726689,
+   "fee_apr_7d": 156.38062979432718,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/MOW 1%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0xb0bb171d333569cfd28a37f5c5dddaaa90ad46af",
+   "pools": 11,
+   "tvl": 10161487.477244997,
+   "vol_7d": 572915830.565756,
+   "fee_7d": 38385.361875999995,
+   "fee_apr_7d": 19.697140257853267,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/KII 0.0099%",
+    "USDT/APM 0.0099%",
+    "AEON/USDT 0.0099%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x4e3468951d49f2eea976ed0d6e75ffcb44a9a544",
+   "pools": 7,
+   "tvl": 10068846.885129,
+   "vol_7d": 4653710.0683929995,
+   "fee_7d": 37545.809367,
+   "fee_apr_7d": 19.44359464863733,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/STATICS 1.5%",
+    "WETH/AGENTOS 0.7%",
+    "WETH/NAUTILO 0.7%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x9a9b5331ce8d74b2b721291d57de696e878353fd",
+   "pools": 9,
+   "tvl": 8514793.817199,
+   "vol_7d": 78444732.846623,
+   "fee_7d": 5255.797098999999,
+   "fee_apr_7d": 3.21854272914328,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "BNB/COLLECT 0.0099%",
+    "PIEVERSE/USDT 0.0099%",
+    "USDT/ZAMA 0.0099%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x0000113dcf4add69999fad8f20f2b63f979bfcc0",
+   "pools": 2,
+   "tvl": 7710486.232768999,
+   "vol_7d": 685971884.642715,
+   "fee_7d": 9000.114377,
+   "fee_apr_7d": 6.0864083543114385,
+   "majors_tvl": 7710486.232768999,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDC/USDG 0.01%",
+    "USDC/USDT 0.0015%"
+   ],
+   "name": "StablePairHook",
+   "verified": true,
+   "proxy": true,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x08e52564bad99e05a694b4809f397edca417a080",
+   "pools": 22,
+   "tvl": 7049958.186268001,
+   "vol_7d": 103194702.87147498,
+   "fee_7d": 695817.4912540003,
+   "fee_apr_7d": 514.6401026126505,
+   "majors_tvl": 82816.72208,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "PONS/USDG 0.7499%",
+    "CASHCAT/USDG 0.3127%",
+    "USDG/UBIK 1.5%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x0000000aa232009084bd71a5797d089aa4edfad4",
+   "pools": 2,
+   "tvl": 5630058.7514929995,
+   "vol_7d": 116937049.783089,
+   "fee_7d": 4219.294388,
+   "fee_apr_7d": 3.9077045947131697,
+   "majors_tvl": 5630058.7514929995,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDC/WETH 0.025%",
+    "WETH/USDT 0%"
+   ],
+   "name": "Angstrom",
+   "verified": true,
+   "proxy": false,
+   "creator": "0xcd5E5C1e2421184Ad4CB15c6C4d36E1414541DF1"
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x128bedebaa9304db74726efba848a98e7fb53a80",
+   "pools": 1,
+   "tvl": 3749247.486323,
+   "vol_7d": 1177216.891752,
+   "fee_7d": 11772.16891,
+   "fee_apr_7d": 16.37220599533482,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "UMIA/USDC 1%"
+   ],
+   "name": "UmiaHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed"
+  },
+  {
+   "chain": "Arbitrum",
+   "protocol": "uniswapv4",
+   "hook": "0x6b70fef40d3925881251c018164dbcec6bc94040",
+   "pools": 1,
+   "tvl": 3385392.093816,
+   "vol_7d": 31447108.309304,
+   "fee_7d": 314471.083116,
+   "fee_apr_7d": 484.3580982075856,
+   "majors_tvl": 0,
+   "flags": [
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "DORY/USDC 1%"
+   ],
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "creator": "0xC5dc976095b67d0778f7BA5cd998949651A174c3"
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xbb7784a4d481184283ed89619a3e3ed143e1adc0",
+   "pools": 9,
+   "tvl": 2751683.1118160007,
+   "vol_7d": 5241165.9123100005,
+   "fee_7d": 62893.99095099999,
+   "fee_apr_7d": 119.18059791186573,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/SURPLUS 1.2%",
+    "WETH/AEON 1.2%",
+    "WETH/GITLAWB 1.2%"
+   ],
+   "name": "DecayMulticurveInitializerHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x3624c7278C741abdCE4D28E9CecF19df71FB4250"
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xbdf938149ac6a781f94faa0ed45e6a0e984c6544",
+   "pools": 17,
+   "tvl": 2185824.935818,
+   "vol_7d": 5236482.022736999,
+   "fee_7d": 37866.509431,
+   "fee_apr_7d": 90.33056396258841,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "LFI/WETH 1.02%",
+    "WETH/RATSPEAK 0.7%",
+    "WETH/WOON 0.7%"
+   ],
+   "name": "DopplerHookInitializer",
+   "verified": true,
+   "proxy": false,
+   "creator": null
+  },
+  {
+   "chain": "BSC",
+   "protocol": "uniswapv4",
+   "hook": "0x38358b924cb329dc428650f91309dfbddf974080",
+   "pools": 4,
+   "tvl": 2149874.995256,
+   "vol_7d": 2808078.890064,
+   "fee_7d": 8424.236664,
+   "fee_apr_7d": 20.432060928094348,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/PHOTON 0.3%",
+    "USDT/NEOCLOUD 0.3%",
+    "USDT/ROBOTS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb608a78761f179f7c56f15e7d13921b92f00a080",
+   "pools": 1,
+   "tvl": 2140032.51008,
+   "vol_7d": 2680507.34394,
+   "fee_7d": 6740.467912,
+   "fee_apr_7d": 16.423454024924595,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/GLD 0.25%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xd33398d46cb5749c7319ae1fabc498cdeb0f0fc0",
+   "pools": 1,
+   "tvl": 1989575.737202,
+   "vol_7d": 30725.372119,
+   "fee_7d": 92.176109,
+   "fee_apr_7d": 0.24157540694232169,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeRemoveLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "ELEVATE/USDT 0.3%"
+   ],
+   "name": "ERC1967Proxy",
+   "verified": true,
+   "proxy": true,
+   "creator": "0xFAB0692c06e6D30037c12F1577B301be8eD333Cb"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa0e8fbff13e24af2b5e61a72800e08a161bde080",
+   "pools": 1,
+   "tvl": 1871662.316339,
+   "vol_7d": 7287160.11005,
+   "fee_7d": 4122.197002,
+   "fee_apr_7d": 11.484076348260942,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "SPY/USDG 0.08%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xafa671b2b9d82bf252df677360cee47849310a80",
+   "pools": 1,
+   "tvl": 1783591.075681,
+   "vol_7d": 9776136.095099,
+   "fee_7d": 29328.408303,
+   "fee_apr_7d": 85.74089796826432,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "WETH/CFLCAT 0.3%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xb429d62f8f3bffb98cdb9569533ea23bf0ba28cc",
+   "pools": 13,
+   "tvl": 1755442.5344500002,
+   "vol_7d": 5819267.4583479995,
+   "fee_7d": 58636.771874,
+   "fee_apr_7d": 174.17196855733198,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "BOAR/WETH 1%",
+    "CLAWBANK/WETH 1%",
+    "WETH/CLAWD 1%"
+   ],
+   "name": "ClankerHookStaticFeeV2",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc6a08b0ea5a6197b4722f0571826ea843ce94a80",
+   "pools": 1,
+   "tvl": 1474010.054785,
+   "vol_7d": 16200147.550735,
+   "fee_7d": 48600.442659,
+   "fee_apr_7d": 171.9232464135051,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "WETH/SHDUTY 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc52fc52698479e42f0da9a8a75296ec3871454c0",
+   "pools": 3,
+   "tvl": 1432888.319565,
+   "vol_7d": 5211982.030155,
+   "fee_7d": 3959.155945,
+   "fee_apr_7d": 14.407382629031456,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "afterAddLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/WTH 0.05%",
+    "WETH/WTH 0.1%",
+    "USDG/SHROOM 0.9%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x80e2f7dc8c2c880bbc4bdf80a5fb0eb8b1db68cc",
+   "pools": 1,
+   "tvl": 1420886.851215,
+   "vol_7d": 22895.485478,
+   "fee_7d": 228.95486,
+   "fee_apr_7d": 0.8402048725367799,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "LIQ/WETH 1%"
+   ],
+   "name": "LiquidHookDynamicFeeV2",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x5eb87f69be00df39981622fd60a8de4b7837e080",
+   "pools": 8,
+   "tvl": 1336097.57263,
+   "vol_7d": 7473168.648146001,
+   "fee_7d": 35490.888231000004,
+   "fee_apr_7d": 138.50757256144055,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/CRCL 0.3101%",
+    "USDG/INTC 1.05%",
+    "SPCX/USDG 0.2%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x64e9ae1066c47ac4a3cc0a5bd7b135908590e088",
+   "pools": 8,
+   "tvl": 1289578.533842,
+   "vol_7d": 3589349.7931619994,
+   "fee_7d": 4242.349522,
+   "fee_apr_7d": 17.153528790268847,
+   "majors_tvl": 208727.72769300002,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "W0G/USDG 0.15%",
+    "WETH/USDG 0.01%",
+    "ETH/CBBTC 0.02%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0xdfdfb2c5a717ab00b370e883021f20c2fbaed277",
+   "pools": 1,
+   "tvl": 1283946.148037,
+   "vol_7d": 870850.499375,
+   "fee_7d": 2166.376589,
+   "fee_apr_7d": 8.797959725223762,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "BNB/CAKE 0.28%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "uniswapv4",
+   "hook": "0x0f23bc987361f0e0c8b6b46d1318db5468ecaac0",
+   "pools": 2,
+   "tvl": 1274482.77156,
+   "vol_7d": 9711918.517098,
+   "fee_7d": 3668.545595,
+   "fee_apr_7d": 15.009104332418776,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "BNB/USDT 0.0375%",
+    "BNB/BTCB 0.0375%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+   "pools": 1,
+   "tvl": 1215456.422005,
+   "vol_7d": 2796485.893038,
+   "fee_7d": 8389.457667,
+   "fee_apr_7d": 35.99061922062303,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/ETHFI 0.3%"
+   ],
+   "name": "ArrakisPrivateHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0xa43B5adFaa287ee7CDF9D8f7AF58816F70ad3FA7"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x594e8e6281edf2d363a0293a50004cf868e7a080",
+   "pools": 5,
+   "tvl": 1196427.4873999998,
+   "vol_7d": 41851939.804019,
+   "fee_7d": 166604.03886099998,
+   "fee_apr_7d": 726.095872022352,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/AI 0.297%",
+    "ETH/PONS 0.3%",
+    "ETH/CASHCAT 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x88e5d1cf9907acd48e7c81ff6ebc088ad358a5cc",
+   "pools": 1,
+   "tvl": 1105286.976649,
+   "vol_7d": 3835423.369861,
+   "fee_7d": 11506.27015,
+   "fee_apr_7d": 54.28181217673937,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/TIBBIR 0.3%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x1e9c64cad39ddd36fb808e004067cffc710eb71d",
+   "pools": 1,
+   "tvl": 1036981.116352,
+   "vol_7d": 513725.21601,
+   "fee_7d": 50.636798,
+   "fee_apr_7d": 0.2546186504894325,
+   "majors_tvl": 1036981.116352,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/USDC 0.04%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x1a3dfbcac585e22f993cc8e09bcc0db388cc1ca3",
+   "pools": 1,
+   "tvl": 862342.002692,
+   "vol_7d": 1255917.194766,
+   "fee_7d": 3006.624141,
+   "fee_apr_7d": 18.18002284210004,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "CAKE/USDT 0.2675%"
+   ]
+  },
+  {
+   "chain": "Arbitrum",
+   "protocol": "uniswapv4",
+   "hook": "0xfa0e72d3ea2995cdcc84d7264261a5719a1f40cc",
+   "pools": 1,
+   "tvl": 855661.876783,
+   "vol_7d": 104405.764177,
+   "fee_7d": 313.217289,
+   "fee_apr_7d": 1.908703051771218,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "FORA/USDC 0.3%"
+   ],
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x5cd525c621afca515bf58631d4733fba7b72aae4",
+   "pools": 3,
+   "tvl": 854223.443682,
+   "vol_7d": 56742.367805,
+   "fee_7d": 130.367501,
+   "fee_apr_7d": 0.795779374938914,
+   "majors_tvl": 854223.443682,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeDonate",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDC/CBBTC 0.3%",
+    "EURC/USDC 0.02%",
+    "ETH/USDC 0.15%"
+   ],
+   "name": "VerifiedPoolsBasicHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x4440854b2d02c57a0dc5c58b7a884562d875c0c4",
+   "pools": 1,
+   "tvl": 851854.555336,
+   "vol_7d": 176229.099515,
+   "fee_7d": 440.572748,
+   "fee_apr_7d": 2.6967892248857885,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDT/KNC 0.25%"
+   ],
+   "name": "UniswapV4KEMHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x51Fa6A232E7Da5A25D52B4F1C372f617D2472cFF"
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xd60d6b218116cfd801e28f78d011a203d2b068cc",
+   "pools": 1,
+   "tvl": 827229.32027,
+   "vol_7d": 46890.647788,
+   "fee_7d": 468.906476,
+   "fee_apr_7d": 2.955664504668219,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/EAT 1%"
+   ],
+   "name": "ClankerHookDynamicFeeV2",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x26f251a46d15f396d2095738ad19869a13d4c9fd",
+   "pools": 1,
+   "tvl": 787223.624195,
+   "vol_7d": 31759079.155018,
+   "fee_7d": 2127.858479,
+   "fee_apr_7d": 14.09416807126086,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/DBT 0.0099%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x890681cff5ad2069f020027f41f5f68f6a292000",
+   "pools": 1,
+   "tvl": 720930.588091,
+   "vol_7d": 317916.227551,
+   "fee_7d": 953.748685,
+   "fee_apr_7d": 6.898192732233675,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/WOCT 0.3499%"
+   ],
+   "name": "FullRangeLBPStrategy",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x65aF3B62EE79763c704f04238080fBADD005B332"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x2cd91bd228ff4c537031d6b8204782090c84c0cc",
+   "pools": 1,
+   "tvl": 691747.68931,
+   "vol_7d": 592571.662643,
+   "fee_7d": 5925.716636,
+   "fee_apr_7d": 44.6671236919061,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/INDEX 1%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x32c59d556b16db81dfc32525efb3cb257f7e493d",
+   "pools": 7,
+   "tvl": 632584.4068079999,
+   "vol_7d": 1437644.942633,
+   "fee_7d": 724.7876800000001,
+   "fee_apr_7d": 5.974301618947988,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "BNB/BTCB 0.08%",
+    "CAKE/USDT 0.08%",
+    "BNB/CAKE 0.08%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x332f85e7e323214b2d55286414b059ebb1f2a044",
+   "pools": 4,
+   "tvl": 620678.7619790001,
+   "vol_7d": 1009772.050154,
+   "fee_7d": 10097.720476999999,
+   "fee_apr_7d": 84.83035485569403,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BRODIE 1%",
+    "ETH/PEPONS 1%",
+    "ETH/TROLL 1%"
+   ]
+  },
+  {
+   "chain": "Arbitrum",
+   "protocol": "uniswapv4",
+   "hook": "0x4440854b2d02c57a0dc5c58b7a884562d875c0c4",
+   "pools": 2,
+   "tvl": 591302.60304,
+   "vol_7d": 3632146.7303069998,
+   "fee_7d": 70.679328,
+   "fee_apr_7d": 0.6232717535674089,
+   "majors_tvl": 591302.60304,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDC/USD₮0 0.0001%",
+    "WBTC/CBBTC 0.005%"
+   ],
+   "name": "UniswapV4KEMHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x51Fa6A232E7Da5A25D52B4F1C372f617D2472cFF"
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xa098da8b734f00dd54169ea8986c8a95e3ec0fc0",
+   "pools": 1,
+   "tvl": 546852.732239,
+   "vol_7d": 101582.568,
+   "fee_7d": 304.747696,
+   "fee_apr_7d": 2.9057943099382757,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeRemoveLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "ETH/ELEVATE 0.3%"
+   ]
+  },
+  {
+   "chain": "Polygon",
+   "protocol": "uniswapv4",
+   "hook": "0x6c67d89c4efdc7b88e5b066b7f3d5a99060a55d8",
+   "pools": 3,
+   "tvl": 491850.49288399995,
+   "vol_7d": 678559.51752,
+   "fee_7d": 968.579681,
+   "fee_apr_7d": 10.26826498469492,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDC/FIN 0.15%",
+    "FIN/WETH 0.12%",
+    "WBTC/FIN 0.12%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xbffde2c00a6a1957a5d7c6425ecac8a8780e20cc",
+   "pools": 1,
+   "tvl": 462220.436194,
+   "vol_7d": 7269204.945544,
+   "fee_7d": 21807.614755,
+   "fee_apr_7d": 246.01061566199724,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GENIE 0.3%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x47f1c7c7d5bd2039d9d3a997d91569869edf1080",
+   "pools": 1,
+   "tvl": 453922.820605,
+   "vol_7d": 179758.906699,
+   "fee_7d": 72.463958,
+   "fee_apr_7d": 0.8324053426007416,
+   "majors_tvl": 453922.820605,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/USDC 0.0426%"
+   ],
+   "name": "MyNewHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "BSC",
+   "protocol": "uniswapv4",
+   "hook": "0x91fb28d8f4906df4e8c71806dfeb882dd82815d8",
+   "pools": 3,
+   "tvl": 433896.889393,
+   "vol_7d": 145650.422261,
+   "fee_7d": 234.32615799999996,
+   "fee_apr_7d": 2.81597671707708,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "10X/WBNB 0.14%",
+    "ETH/10X 0.14%",
+    "10X/USDC 0.2%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x720e649549f7bc2118acba9f4c9ae6fcc7586080",
+   "pools": 1,
+   "tvl": 428601.63537,
+   "vol_7d": 5816175.671481,
+   "fee_7d": 58161.756675,
+   "fee_apr_7d": 707.5848338432211,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/V4 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x4440854b2d02c57a0dc5c58b7a884562d875c0c4",
+   "pools": 2,
+   "tvl": 390344.658828,
+   "vol_7d": 1656937.219813,
+   "fee_7d": 136.484283,
+   "fee_apr_7d": 1.8231786473220717,
+   "majors_tvl": 390344.658828,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/USDC 0.009%",
+    "ETH/CBBTC 0.001%"
+   ],
+   "name": "UniswapV4KEMHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x51Fa6A232E7Da5A25D52B4F1C372f617D2472cFF"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x66622f77b797d506e5376f7798b67ab288966080",
+   "pools": 1,
+   "tvl": 389199.549728,
+   "vol_7d": 1876855.561573,
+   "fee_7d": 2380.184161,
+   "fee_apr_7d": 31.88842401473763,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/NVDA 0.114%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x03e2ded63f54d7ebf786c345a66fcb13f4380a80",
+   "pools": 1,
+   "tvl": 353523.446951,
+   "vol_7d": 3108160.934352,
+   "fee_7d": 9324.482821,
+   "fee_apr_7d": 137.5312386942807,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "WETH/PPPP 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x2aa7a1aa52a0099286f14bbc9748dd7ee3448a80",
+   "pools": 1,
+   "tvl": 346986.452384,
+   "vol_7d": 5899320.109639,
+   "fee_7d": 17697.960307,
+   "fee_apr_7d": 265.95338511562295,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "WETH/AOTTR 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf40e58b64b0982571ab67976e731d71bacca90c0",
+   "pools": 1,
+   "tvl": 345884.079485,
+   "vol_7d": 74159.043123,
+   "fee_7d": 222.477128,
+   "fee_apr_7d": 3.353896230242718,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/GLDSTN 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xce4d3fd6af3415b42e91f9e562d69ac5ba5cc0cc",
+   "pools": 1,
+   "tvl": 320211.060446,
+   "vol_7d": 723412.833749,
+   "fee_7d": 7234.128328,
+   "fee_apr_7d": 117.79984096570952,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/FILLED 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x70a9a88402989226847ec122043ce5e7ff462080",
+   "pools": 1,
+   "tvl": 311009.930527,
+   "vol_7d": 1572372.264551,
+   "fee_7d": 875.320164,
+   "fee_apr_7d": 14.67531734063133,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/AAPL 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x93492905840233b7dd76a8c707c5ad86630600cc",
+   "pools": 1,
+   "tvl": 271817.936705,
+   "vol_7d": 1241893.07204,
+   "fee_7d": 12418.930708,
+   "fee_apr_7d": 238.23244986112576,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/VRAX 1%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x44428c6ce391915d51f963c0dd395cd0f95fdfd2",
+   "pools": 2,
+   "tvl": 264236.64680499997,
+   "vol_7d": 4854977.661345,
+   "fee_7d": 42.266814,
+   "fee_apr_7d": 0.8340676703758454,
+   "majors_tvl": 82160.486119,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "BNB/USDT 0.0091%",
+    "USDT/USDC 0.0002%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x3685cc4aa1266813fa0ef346853341b0778c80cc",
+   "pools": 1,
+   "tvl": 255552.560556,
+   "vol_7d": 138822.179226,
+   "fee_7d": 416.466539,
+   "fee_apr_7d": 8.497569032613352,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/PRINTER 0.3%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xc6c965bd164c483e87d0b550671798e9a3602840",
+   "pools": 1,
+   "tvl": 252684.15961,
+   "vol_7d": 604166.122727,
+   "fee_7d": 6041.661219,
+   "fee_apr_7d": 124.67321985441538,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/VIBE 1%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x2f9d16d355318774ccef7dbacbc0214a562925d6",
+   "pools": 1,
+   "tvl": 250266.473342,
+   "vol_7d": 6457125.857446,
+   "fee_7d": 6.457126,
+   "fee_apr_7d": 0.13453380074258803,
+   "majors_tvl": 250266.473342,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/USDC 0.0001%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xfbf47e5de83e0cc2896d7e80165a59c61d90dddc",
+   "pools": 1,
+   "tvl": 242406.052692,
+   "vol_7d": 2855001.369276,
+   "fee_7d": 28550.010547,
+   "fee_apr_7d": 614.1262170836941,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/DUCAT 1%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x6adc560af85377f9a73d17c658d798c9b39186e8",
+   "pools": 2,
+   "tvl": 224405.17962100002,
+   "vol_7d": 40966.978083999995,
+   "fee_7d": 37.476601,
+   "fee_apr_7d": 0.8708074632872634,
+   "majors_tvl": 143665.333088,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/BTCB 0.1492%",
+    "BNB/USDT 0.0149%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x48b8f6ad3a1b4aa477314c9a23035b8f84dde8cc",
+   "pools": 1,
+   "tvl": 222382.585162,
+   "vol_7d": 586714.516523,
+   "fee_7d": 5867.145156,
+   "fee_apr_7d": 137.56909583673215,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/0XZAPS 1%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xcb69d5abe0589af4c57b0dcca292980d5e52c0c0",
+   "pools": 5,
+   "tvl": 217358.148378,
+   "vol_7d": 3972097.034596,
+   "fee_7d": 39720.970319,
+   "fee_apr_7d": 952.8811762406968,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ONDO/CONDO 1%",
+    "ETH/SENDOVER 1%",
+    "ETH/SNOWMOON 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x57ec02860a43e1479baf3d8e5409c13b659f60cc",
+   "pools": 1,
+   "tvl": 202703.924296,
+   "vol_7d": 272931.855312,
+   "fee_7d": 2729.318573,
+   "fee_apr_7d": 70.20804799095546,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/LOAN 1%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x62f1026da0e6cc6232574fd62bfa863e3dea2880",
+   "pools": 1,
+   "tvl": 193800.651563,
+   "vol_7d": 219594.489398,
+   "fee_7d": 109.797244,
+   "fee_apr_7d": 2.9541397112952024,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDC/ABX 0.05%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xb3ae7c0495fe4d20786cf6d119c7a821f83f40cc",
+   "pools": 2,
+   "tvl": 188649.97628300003,
+   "vol_7d": 11717.425514999999,
+   "fee_7d": 105.456819,
+   "fee_apr_7d": 2.9148266838942947,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GDEX 0.9%",
+    "ETH/ESHARE 0.9%"
+   ]
+  },
+  {
+   "chain": "Arbitrum",
+   "protocol": "uniswapv4",
+   "hook": "0xea8fc796fc7105c3071947a642aa8caace958044",
+   "pools": 1,
+   "tvl": 187131.395436,
+   "vol_7d": 65846.117961,
+   "fee_7d": 197.538344,
+   "fee_apr_7d": 5.504268071870015,
+   "majors_tvl": 0,
+   "flags": [
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "RHUB/ARB 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x4445520306c9c70952bdfec28f3989f53d9f80c4",
+   "pools": 1,
+   "tvl": 181638.394736,
+   "vol_7d": 2133939.819891,
+   "fee_7d": 53.348482,
+   "fee_apr_7d": 1.5314726161048569,
+   "majors_tvl": 181638.394736,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/USDG 0.0025%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xe54082dfbf044b6a8f584bdddb90a22d5613c440",
+   "pools": 1,
+   "tvl": 171366.659382,
+   "vol_7d": 364984.545133,
+   "fee_7d": 3649.845443,
+   "fee_apr_7d": 111.05624058622881,
+   "majors_tvl": 0,
+   "flags": [
+    "afterAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/UPEG 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc035dc35566f8dc36331f30d5ec4108a2eded0cc",
+   "pools": 1,
+   "tvl": 171045.485991,
+   "vol_7d": 65842.38382,
+   "fee_7d": 197.52716,
+   "fee_apr_7d": 6.02157398427704,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/TORO 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x67d86050d22d574df046f3d90f722045f714e080",
+   "pools": 1,
+   "tvl": 168516.844046,
+   "vol_7d": 867426.279487,
+   "fee_7d": 1162.784392,
+   "fee_apr_7d": 35.979133589428955,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "TSLA/USDG 0.09%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x34a45c6b61876d739400bd71228cbcbd4f53e8cc",
+   "pools": 1,
+   "tvl": 161714.112269,
+   "vol_7d": 11773.064371,
+   "fee_7d": 117.738916,
+   "fee_apr_7d": 3.796356045247714,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "BMIND/WETH 1.0033%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x014257c9bfb770a94065716188d60f881d1180c0",
+   "pools": 1,
+   "tvl": 152186.275076,
+   "vol_7d": 4592590.810894,
+   "fee_7d": 45925.908104,
+   "fee_apr_7d": 1573.537471908665,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "SHIB/WOOF 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x73669cea70473f28af31fd1e7750e51dcfe5ea20",
+   "pools": 1,
+   "tvl": 148982.535877,
+   "vol_7d": 260890.067057,
+   "fee_7d": 7826.702025,
+   "fee_apr_7d": 273.92915766061236,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeDonate"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "EMBOW/VVV 3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x3536e961b166254e678ddf9f602cbc94d9009acc",
+   "pools": 1,
+   "tvl": 141201.518478,
+   "vol_7d": 96392.646374,
+   "fee_7d": 289.177935,
+   "fee_apr_7d": 10.678754673534728,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/QPULL 0.3%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x21e000b808f6141aca9af77ce384d7a90484f2ef",
+   "pools": 1,
+   "tvl": 137693.636093,
+   "vol_7d": 10547.686577,
+   "fee_7d": 70.669503,
+   "fee_apr_7d": 2.6761656557583247,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDT/ACT 0.9999%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xd405e0dff2d0cc7eaa48b3aec2e3f2456c072000",
+   "pools": 4,
+   "tvl": 134686.87765,
+   "vol_7d": 2335377.348642,
+   "fee_7d": 7006.132092999999,
+   "fee_apr_7d": 271.2363306829436,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/AGI 0.3%",
+    "ETH/CUM 0.3%",
+    "ETH/CABO 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa11bdae367d2e1c97864de3b484166546762e0cc",
+   "pools": 1,
+   "tvl": 134512.567257,
+   "vol_7d": 60358.197624,
+   "fee_7d": 181.074591,
+   "fee_apr_7d": 7.019230041662104,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/DRILL 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf28a89af20fabdb89af9d033bb0a98d17212c880",
+   "pools": 3,
+   "tvl": 132522.459383,
+   "vol_7d": 1226374.09431,
+   "fee_7d": 5212.089936,
+   "fee_apr_7d": 205.07713350167006,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/PHOOD3X 0.425%",
+    "PGME5X/USDG 0.425%",
+    "USDG/PSPCX3X 0.425%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x4cd934f0a308dea92cb0065fc239ffd1b96a4840",
+   "pools": 1,
+   "tvl": 119874.66671,
+   "vol_7d": 3183949.351325,
+   "fee_7d": 1591.974672,
+   "fee_apr_7d": 69.24741496713426,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/PRLYR 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x11afe0130450df7127276e7af474eccdf4d420cc",
+   "pools": 1,
+   "tvl": 116757.686947,
+   "vol_7d": 252999.545699,
+   "fee_7d": 2529.995453,
+   "fee_apr_7d": 112.98715735756255,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BUCKET 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x2fd54aaf84023eda60bd65edb5914c1a306850cc",
+   "pools": 1,
+   "tvl": 115993.959088,
+   "vol_7d": 114979.548388,
+   "fee_7d": 344.938643,
+   "fee_apr_7d": 15.506054389741688,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SPARK 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xfa3da20ec661aa26f9f93e4421fab6989c4b4800",
+   "pools": 2,
+   "tvl": 112988.6946,
+   "vol_7d": 1067271.239909,
+   "fee_7d": 9071.805542,
+   "fee_apr_7d": 418.65238117751096,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/PHOOD3X 0.85%",
+    "PBTC3X/USDG 0.85%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xff840e2076c5d4ba713f1859b473757b042bc0cc",
+   "pools": 1,
+   "tvl": 111972.97316,
+   "vol_7d": 69038.004438,
+   "fee_7d": 690.380043,
+   "fee_apr_7d": 32.14917577029047,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/ASH 1%"
+   ]
+  },
+  {
+   "chain": "Optimism",
+   "protocol": "uniswapv4",
+   "hook": "0x4e4ecde86fc904b6e7be363e0f4bf127fd7195d8",
+   "pools": 3,
+   "tvl": 109810.630748,
+   "vol_7d": 66432.485316,
+   "fee_7d": 66.432509,
+   "fee_apr_7d": 3.1545040792798305,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDC/A3K 0.1%",
+    "WETH/A3K 0.1%",
+    "WBTC/A3K 0.1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x47ec48c74f3069e9ae69406197821996d80200cc",
+   "pools": 1,
+   "tvl": 109428.135596,
+   "vol_7d": 173372.29709,
+   "fee_7d": 1733.722974,
+   "fee_apr_7d": 82.61245507492309,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/STFY 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x9974e14cca792d64d68c1b453c19598b5efc40cc",
+   "pools": 1,
+   "tvl": 104671.013814,
+   "vol_7d": 316219.489612,
+   "fee_7d": 3162.194913,
+   "fee_apr_7d": 157.5277353283595,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/HIGGS 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x03d2434d5a9ab7fb46bd3c7956a7c62e0cd46044",
+   "pools": 1,
+   "tvl": 104159.805384,
+   "vol_7d": 385990.290842,
+   "fee_7d": 1157.970847,
+   "fee_apr_7d": 57.968530402025166,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "BSTONK/USDC 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xced7aa50727f3cd251985b09a2080db056a8c0cc",
+   "pools": 1,
+   "tvl": 103460.803195,
+   "vol_7d": 69131.373947,
+   "fee_7d": 691.313731,
+   "fee_apr_7d": 34.841284818259204,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BACKED 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x368e99c34dc303ff8401db936854de8c7bb600cc",
+   "pools": 1,
+   "tvl": 103399.26584,
+   "vol_7d": 313657.913822,
+   "fee_7d": 940.973748,
+   "fee_apr_7d": 47.452038772756985,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/CUE 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa5db6266a44f3d9e5af7015f9033354f6c3e0840",
+   "pools": 1,
+   "tvl": 101914.320714,
+   "vol_7d": 4306466.553889,
+   "fee_7d": 2153.233236,
+   "fee_apr_7d": 110.16678738906285,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/SM 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xad8efa0e935aa03745dbe4e4b7b7b359c88540cc",
+   "pools": 1,
+   "tvl": 100521.40604,
+   "vol_7d": 55987.435256,
+   "fee_7d": 559.874359,
+   "fee_apr_7d": 29.042021863153117,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/XEET 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x48140bcd6e214daa232c506b4c0765aff4328840",
+   "pools": 1,
+   "tvl": 97599.667875,
+   "vol_7d": 2743052.839427,
+   "fee_7d": 1371.526407,
+   "fee_apr_7d": 73.27412794011738,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/SECTORAL 0.05%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x0025040f0c0c0eba9daa45db1ad3d7748eeb0fc0",
+   "pools": 1,
+   "tvl": 97199.718077,
+   "vol_7d": 61214.560641,
+   "fee_7d": 183.643688,
+   "fee_apr_7d": 9.851578562178249,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeRemoveLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "GIVE/USDT 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xdd447866416ed1022c82b1e1d194ad50f4fa00cc",
+   "pools": 1,
+   "tvl": 94838.255327,
+   "vol_7d": 48824.140882,
+   "fee_7d": 488.241411,
+   "fee_apr_7d": 26.84391657904333,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SOLBORN 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf667c59cd75ab1d7943fc8284edab51f3a76bfff",
+   "pools": 1,
+   "tvl": 92229.358855,
+   "vol_7d": 684494.276073,
+   "fee_7d": 5096.678733,
+   "fee_apr_7d": 288.1461981056044,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeRemoveLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeDonate",
+    "afterDonate",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta",
+    "afterAddLiquidityReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta",
+    "afterAddLiquidityReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/TFEX 0.75%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x8140985a7c67a5c0b5c095792175a673978a80cc",
+   "pools": 1,
+   "tvl": 89648.623875,
+   "vol_7d": 52586.889253,
+   "fee_7d": 525.868888,
+   "fee_apr_7d": 30.58642187423888,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BONER 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb31780aad49d3cc7dd6e03e9e462606f0a5a30cc",
+   "pools": 1,
+   "tvl": 89581.491538,
+   "vol_7d": 21180.346397,
+   "fee_7d": 49.293382,
+   "fee_apr_7d": 2.8692286002226015,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SLEUTH 0.3505%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xcf82a68c87ae94e3434219f6bb4151051b692a80",
+   "pools": 1,
+   "tvl": 83857.898901,
+   "vol_7d": 37445.6919,
+   "fee_7d": 374.45692,
+   "fee_apr_7d": 23.283738254359545,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity"
+   ],
+   "top_pairs": [
+    "USDG/PVP 1%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0x56a78328a880c6d2b28482d9c481c0061c3d82c0",
+   "pools": 1,
+   "tvl": 80569.599498,
+   "vol_7d": 812844.677767,
+   "fee_7d": 1218.454164,
+   "fee_apr_7d": 78.85565002733884,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "SNDKB/USDT 0.2237%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x694d7d6a553bc3e8db8a10ace52490d8d51400cc",
+   "pools": 1,
+   "tvl": 80092.845025,
+   "vol_7d": 171722.655715,
+   "fee_7d": 1717.226572,
+   "fee_apr_7d": 111.79662777338615,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/FOMO 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x92dcb430133fead93ebc5cac1c9558941f1040cc",
+   "pools": 1,
+   "tvl": 79326.480741,
+   "vol_7d": 188795.934775,
+   "fee_7d": 1887.959331,
+   "fee_apr_7d": 124.09928282243388,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BACKERS 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x03498fc5536ac31ea210414ec23e16f94ffc00cc",
+   "pools": 1,
+   "tvl": 78886.730121,
+   "vol_7d": 26135.682946,
+   "fee_7d": 261.356829,
+   "fee_apr_7d": 17.275265151634592,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SM 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x257b5cc67abb13b5ee315ebd8c6f53316bb640cc",
+   "pools": 1,
+   "tvl": 74445.88654,
+   "vol_7d": 301622.062971,
+   "fee_7d": 904.866173,
+   "fee_apr_7d": 63.37799143112045,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/MUSE AI 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x6c5b376ccdc811d6f7fc427efa89bcec062380cc",
+   "pools": 1,
+   "tvl": 74368.083684,
+   "vol_7d": 18954.875276,
+   "fee_7d": 189.548758,
+   "fee_apr_7d": 13.290128399700071,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/CLAUS 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb9ab765b5436c76fe8eecc9c661a80e130ee00cc",
+   "pools": 1,
+   "tvl": 74122.411023,
+   "vol_7d": 37740.788363,
+   "fee_7d": 377.407893,
+   "fee_apr_7d": 26.54949505511813,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/XEET 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x0883bb8ee3d32ab4e224464db20fcec2ef5b00cc",
+   "pools": 1,
+   "tvl": 73950.165463,
+   "vol_7d": 316504.576568,
+   "fee_7d": 949.513736,
+   "fee_apr_7d": 66.95097810998196,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/MUSEFOMO 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x5d7ee63450c4232cbc2abcc9fee73e65bb6e0144",
+   "pools": 1,
+   "tvl": 73317.183141,
+   "vol_7d": 187898.975554,
+   "fee_7d": 18.789888,
+   "fee_apr_7d": 1.3363285436513055,
+   "majors_tvl": 0,
+   "flags": [
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/ORE 0.01%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x4423589dd8505135b40597621547d18c5bd12000",
+   "pools": 1,
+   "tvl": 73090.695804,
+   "vol_7d": 1004594.525259,
+   "fee_7d": 25114.863171,
+   "fee_apr_7d": 1791.6927839893258,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/BUCKET 2.5%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x1af6269a7e53422406ff2410b8ed5590f610aacc",
+   "pools": 1,
+   "tvl": 72995.07937,
+   "vol_7d": 442612.972524,
+   "fee_7d": 2213.064884,
+   "fee_apr_7d": 158.08671911892148,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/PRM 0.5%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x91cfc04865f0561f711cb5970844559b0dc180cc",
+   "pools": 1,
+   "tvl": 72773.67558,
+   "vol_7d": 319657.242412,
+   "fee_7d": 958.971721,
+   "fee_apr_7d": 68.71100717892702,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/HUMANITY 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x92f6e65e9b2ca580bd8777bec08afe5fe4170840",
+   "pools": 1,
+   "tvl": 72289.26515,
+   "vol_7d": 3799855.500783,
+   "fee_7d": 1899.927809,
+   "fee_apr_7d": 137.04339658296908,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/SPYDERNET 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xed7169c6e5c3e7113bdb1fc1875933836baf40cc",
+   "pools": 1,
+   "tvl": 72175.42872,
+   "vol_7d": 320937.605637,
+   "fee_7d": 962.812832,
+   "fee_apr_7d": 69.55803774861971,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/INFER 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xcd1418574c67b9f9188a72305eea107165c10144",
+   "pools": 1,
+   "tvl": 71948.264604,
+   "vol_7d": 229099.941322,
+   "fee_7d": 22.909998,
+   "fee_apr_7d": 1.660349640720492,
+   "majors_tvl": 0,
+   "flags": [
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/HENTAI 0.01%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xee8e9e49e7149897e3f437af2e02a8df0c0e40cc",
+   "pools": 1,
+   "tvl": 71784.22555,
+   "vol_7d": 315682.549824,
+   "fee_7d": 947.047657,
+   "fee_apr_7d": 68.79195297862843,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/UNO 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb424c9ef4fbce94caacd1b62bc2e2a22f88680cc",
+   "pools": 1,
+   "tvl": 71728.590362,
+   "vol_7d": 326766.792324,
+   "fee_7d": 980.300364,
+   "fee_apr_7d": 71.26260474264477,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/INFER 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf7b45294bb44a0264d2f27d99ffc5ffc21a180cc",
+   "pools": 1,
+   "tvl": 71617.540128,
+   "vol_7d": 308053.355413,
+   "fee_7d": 924.160049,
+   "fee_apr_7d": 67.28567516563288,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/ROCKET 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x0fa9b2d0d022aef5f4625a3bf62be20c9ffbc0cc",
+   "pools": 1,
+   "tvl": 71517.648689,
+   "vol_7d": 338749.984219,
+   "fee_7d": 1016.249951,
+   "fee_apr_7d": 74.09384534838448,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GMP 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc709dc9ba31bd4e2a24785d4e1556396b7b440cc",
+   "pools": 1,
+   "tvl": 71461.608786,
+   "vol_7d": 43099.168144,
+   "fee_7d": 430.991681,
+   "fee_apr_7d": 31.447847360169646,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/ASH 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x7fb3a24a4836e26b527f691fc22dd121736b40cc",
+   "pools": 1,
+   "tvl": 71418.105142,
+   "vol_7d": 315383.494582,
+   "fee_7d": 946.15049,
+   "fee_apr_7d": 69.07910779433583,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/STERLING 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa58f58a6705c2f087192d3a1d26f8d02787480cc",
+   "pools": 1,
+   "tvl": 71402.830812,
+   "vol_7d": 314046.242648,
+   "fee_7d": 942.138723,
+   "fee_apr_7d": 68.80092047259106,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/TRUMPBALL 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x6c2ce5632ecd93a8228a5b5a429e1cb96a58c0cc",
+   "pools": 1,
+   "tvl": 71183.308926,
+   "vol_7d": 309130.846506,
+   "fee_7d": 927.392556,
+   "fee_apr_7d": 67.93291614629422,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/LOAN 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc9d491b98a510af08fd49f883bd881b1dc2300cc",
+   "pools": 1,
+   "tvl": 70735.479651,
+   "vol_7d": 319150.07521,
+   "fee_7d": 957.450229,
+   "fee_apr_7d": 70.57871206707378,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/MUSECHESS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x897a551d8d2869e99fb8a5a972d386d52755c0cc",
+   "pools": 1,
+   "tvl": 70718.902766,
+   "vol_7d": 315347.831048,
+   "fee_7d": 946.043508,
+   "fee_apr_7d": 69.75420935445828,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/ST4Y 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xe78781fa568e1dfb598968cc327fb6c0660340cc",
+   "pools": 1,
+   "tvl": 70504.695165,
+   "vol_7d": 311501.773785,
+   "fee_7d": 934.505325,
+   "fee_apr_7d": 69.11281234062236,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SLM 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb20f1a330f363adba5255a8650e3d36715ab0144",
+   "pools": 1,
+   "tvl": 70175.401503,
+   "vol_7d": 1645901.619045,
+   "fee_7d": 164.590158,
+   "fee_apr_7d": 12.229643025765084,
+   "majors_tvl": 0,
+   "flags": [
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/SM 0.01%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x1b993c37768f78bcb03cfa1d7b08f43dbcd540c4",
+   "pools": 1,
+   "tvl": 69743.795031,
+   "vol_7d": 97824.353634,
+   "fee_7d": 123.005296,
+   "fee_apr_7d": 9.19629850123872,
+   "majors_tvl": 69743.795031,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/USDC 0.0801%"
+   ],
+   "name": "PushBaseDynamicFeeHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "BSC",
+   "protocol": "uniswapv4",
+   "hook": "0xfffff5962193fbdc458e81cac67437e426c708c0",
+   "pools": 1,
+   "tvl": 69724.664399,
+   "vol_7d": 170813.57681,
+   "fee_7d": 319.50702,
+   "fee_apr_7d": 23.893996541400263,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "BNB/USDT 0.1081%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x9b982a71b64203c65d44c448c57a8f5064ff00cc",
+   "pools": 1,
+   "tvl": 69638.912214,
+   "vol_7d": 311907.115727,
+   "fee_7d": 935.721333,
+   "fee_apr_7d": 70.06310443535911,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GTAIFY 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x5ac9046eb5d0c0eac4055d77899cadb038bd80cc",
+   "pools": 1,
+   "tvl": 69535.196404,
+   "vol_7d": 313929.466833,
+   "fee_7d": 941.788397,
+   "fee_apr_7d": 70.62256293669795,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/REPTILIANS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x134f058d6f05c6b5fe080ec8ae8a579eb15c80cc",
+   "pools": 1,
+   "tvl": 69242.161013,
+   "vol_7d": 319587.021607,
+   "fee_7d": 958.761073,
+   "fee_apr_7d": 72.19956877744686,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/ASTF 0.3%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x6f9c9f7b059452345ecd69e77022fee3f3a440c4",
+   "pools": 1,
+   "tvl": 69227.926296,
+   "vol_7d": 100460.669122,
+   "fee_7d": 108.343984,
+   "fee_apr_7d": 8.160528824516328,
+   "majors_tvl": 69227.926296,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/USDC 0.031%"
+   ],
+   "name": "PushBaseDynamicFeeHook",
+   "verified": true,
+   "proxy": false,
+   "creator": null
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa09a3f3ea69648d30e7d08e88964a498139500cc",
+   "pools": 1,
+   "tvl": 69091.740583,
+   "vol_7d": 305136.67422,
+   "fee_7d": 915.41001,
+   "fee_apr_7d": 69.08509320478154,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/RKS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf34dcbda6acacf7ffb773d6dc7c72c833883c0cc",
+   "pools": 1,
+   "tvl": 69054.935219,
+   "vol_7d": 321375.651632,
+   "fee_7d": 964.126946,
+   "fee_apr_7d": 72.80049348163756,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SPECTER 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x7982ed6034290638bfe03031689bf9a807fbc0cc",
+   "pools": 1,
+   "tvl": 68892.138587,
+   "vol_7d": 319374.51695,
+   "fee_7d": 958.123553,
+   "fee_apr_7d": 72.51814296081828,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/FROGLET 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x6aaaf0af9ed44f28f632441e6579b2f2329fc840",
+   "pools": 1,
+   "tvl": 68883.479172,
+   "vol_7d": 2476171.582088,
+   "fee_7d": 1238.085826,
+   "fee_apr_7d": 93.71961627332519,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/SI 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xd1a3859832e6906835a4042bd5bee9e66d4600cc",
+   "pools": 1,
+   "tvl": 68865.42932,
+   "vol_7d": 316262.723848,
+   "fee_7d": 948.788183,
+   "fee_apr_7d": 71.83942244099553,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/PILCOIN 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x53bd471e5c783a8c2bab01dc4363a468e941c840",
+   "pools": 1,
+   "tvl": 68701.558801,
+   "vol_7d": 3876398.766736,
+   "fee_7d": 1938.199356,
+   "fee_apr_7d": 147.10474390693835,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/SI 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xdbe8e8cbd3a4327d54429afa55ae75c3071a80cc",
+   "pools": 1,
+   "tvl": 68590.286526,
+   "vol_7d": 320125.19563,
+   "fee_7d": 960.375593,
+   "fee_apr_7d": 73.0084825207772,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SPARROWS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x389561117357b7d76b68049bdc1d9529556840cc",
+   "pools": 1,
+   "tvl": 68383.223622,
+   "vol_7d": 298518.144594,
+   "fee_7d": 895.554431,
+   "fee_apr_7d": 68.28687547315714,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/HERMESHD 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x080c9f1aa72fc141722cd4e2f1d817d69ebc80cc",
+   "pools": 1,
+   "tvl": 68260.972396,
+   "vol_7d": 307043.249186,
+   "fee_7d": 921.129749,
+   "fee_apr_7d": 70.36280795050229,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/4CRAWLER 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x3091ecdbf9bb442e7f806b0bae1cccdcd84180cc",
+   "pools": 1,
+   "tvl": 68235.643936,
+   "vol_7d": 305948.600684,
+   "fee_7d": 917.845801,
+   "fee_apr_7d": 70.13798026967049,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GPBOOM 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf6dd0d8816b2b13a6487c7553f3c3fcae7e340cc",
+   "pools": 1,
+   "tvl": 68104.735006,
+   "vol_7d": 312270.460069,
+   "fee_7d": 936.811378,
+   "fee_apr_7d": 71.72485415082176,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/VILLAGE 0.3%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x23ab2e6d4ab0c5f872567098671f1ffb46fd2500",
+   "pools": 1,
+   "tvl": 66952.430664,
+   "vol_7d": 192585.079232,
+   "fee_7d": 577.755232,
+   "fee_apr_7d": 44.995839922377584,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/TEL 0.3%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xfde6c74f995775bc1dc3549dce9a0a25032f48c4",
+   "pools": 1,
+   "tvl": 65879.519966,
+   "vol_7d": 84507.491251,
+   "fee_7d": 198.567789,
+   "fee_apr_7d": 15.716404521987373,
+   "majors_tvl": 65879.519966,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/USDC 0.3%"
+   ],
+   "name": "AdaptivePoolPolicyHookV1",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb914f955294799de4b891bd2ea8af628fa1c68cc",
+   "pools": 1,
+   "tvl": 65640.418773,
+   "vol_7d": 1014245.037236,
+   "fee_7d": 260.166851,
+   "fee_apr_7d": 20.666904932331214,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/HOOKR 0.05%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xdd5eeaff7bd481ad55db083062b13a3cdf0a68cc",
+   "pools": 1,
+   "tvl": 65284.351679,
+   "vol_7d": 1834.144837,
+   "fee_7d": 18.34145,
+   "fee_apr_7d": 1.4649385075390038,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/QE 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x9961aa63d55ed386044641dedd69d01e02038840",
+   "pools": 1,
+   "tvl": 64853.600681,
+   "vol_7d": 2457787.324021,
+   "fee_7d": 1228.89366,
+   "fee_apr_7d": 98.8041155530099,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/KICKERS 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x07188dcf6f0b2585d8b09ebe3ae016473e650144",
+   "pools": 1,
+   "tvl": 64146.458076,
+   "vol_7d": 277963.531619,
+   "fee_7d": 27.796357,
+   "fee_apr_7d": 2.259487921259263,
+   "majors_tvl": 0,
+   "flags": [
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/CORGI 0.01%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xed4b32249a657228207c0a429dd8668690afe0cc",
+   "pools": 1,
+   "tvl": 62173.901746,
+   "vol_7d": 89413.025999,
+   "fee_7d": 268.239065,
+   "fee_apr_7d": 22.496177421145063,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GAZZ 0.3%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xad3cc8eb9d34abeb3b0ca9b98cbfd3837b7d40c8",
+   "pools": 1,
+   "tvl": 61919.025821,
+   "vol_7d": 29874.828943,
+   "fee_7d": 298.748292,
+   "fee_apr_7d": 25.158001607553377,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SWING 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x920803f3bdb32c50e9a0546cbfec71a8bca98840",
+   "pools": 1,
+   "tvl": 60769.938248,
+   "vol_7d": 1516287.218801,
+   "fee_7d": 758.143633,
+   "fee_apr_7d": 65.05153088679788,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/FOMOMCP 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xfc78145c332dd87e755385180bf4282bbe1c80cc",
+   "pools": 1,
+   "tvl": 60347.116081,
+   "vol_7d": 317991.447117,
+   "fee_7d": 953.974338,
+   "fee_apr_7d": 82.42804437832456,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/AGENTOS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x9d0f57b40a2f5e798784f994d8c9d0a0621a00cc",
+   "pools": 1,
+   "tvl": 59158.672342,
+   "vol_7d": 314186.212471,
+   "fee_7d": 942.558631,
+   "fee_apr_7d": 83.07776036770072,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/DONKER 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x3ae6235df05ee9cd0681e74a5b034ba0909c80cc",
+   "pools": 1,
+   "tvl": 58375.411934,
+   "vol_7d": 307271.229052,
+   "fee_7d": 921.813683,
+   "fee_apr_7d": 82.33946038675332,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/MCAT 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x5c88cbba66f22e4cbec491c9453d719a4e390840",
+   "pools": 1,
+   "tvl": 58149.543693,
+   "vol_7d": 3963132.288321,
+   "fee_7d": 1981.566148,
+   "fee_apr_7d": 177.68758619979306,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/MONDO 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x6075dc0fbd8cd57c14c3bcc6bc90a04b1cfe4840",
+   "pools": 1,
+   "tvl": 56363.255281,
+   "vol_7d": 1641936.458338,
+   "fee_7d": 820.968226,
+   "fee_apr_7d": 75.94953256997785,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/BORRO 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc2fccf30e21a2a607ecaf48acea9ea1d4930c0cc",
+   "pools": 1,
+   "tvl": 55271.829258,
+   "vol_7d": 315021.971594,
+   "fee_7d": 945.065913,
+   "fee_apr_7d": 89.15651526950383,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/1 0.3%"
+   ]
+  },
+  {
+   "chain": "Polygon",
+   "protocol": "uniswapv4",
+   "hook": "0xd77cc9230ded5b6591730032975453744532a500",
+   "pools": 1,
+   "tvl": 55238.852117,
+   "vol_7d": 658555.197474,
+   "fee_7d": 1975.665603,
+   "fee_apr_7d": 186.49346492770766,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/TEL 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x76c9087f44fb6d35a408b4ace81cd98f90024840",
+   "pools": 1,
+   "tvl": 54970.634524,
+   "vol_7d": 2899203.658186,
+   "fee_7d": 1449.601809,
+   "fee_apr_7d": 137.50319728929728,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/MINDS 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x134ba7ee0ebf53f8784359e03db4316c35cbc0cc",
+   "pools": 1,
+   "tvl": 54546.332209,
+   "vol_7d": 313131.986386,
+   "fee_7d": 939.395958,
+   "fee_apr_7d": 89.80033533856817,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/GROWBLOCKS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x2f50790a18464387a39a6f49eeffbecd33e300cc",
+   "pools": 1,
+   "tvl": 54144.235335,
+   "vol_7d": 310590.269515,
+   "fee_7d": 931.77082,
+   "fee_apr_7d": 89.7329003845703,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/JOOS 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf991bd1aba9613e10480d6b221d7817b7b82a8cc",
+   "pools": 1,
+   "tvl": 52905.112821,
+   "vol_7d": 147600.214507,
+   "fee_7d": 1470.386208,
+   "fee_apr_7d": 144.92009165159214,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "HOODS/USDG 0%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb1a660b86c85561263de93cb9aa534c46a5d0044",
+   "pools": 1,
+   "tvl": 52376.837767,
+   "vol_7d": 9706.650607,
+   "fee_7d": 87.359852,
+   "fee_apr_7d": 8.696959337486273,
+   "majors_tvl": 0,
+   "flags": [
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/NOTHING 0.9%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x89964d94bc548a8faf4615f87434abc01d9d9040",
+   "pools": 1,
+   "tvl": 51800.775497,
+   "vol_7d": 64312.87962,
+   "fee_7d": 192.938639,
+   "fee_apr_7d": 19.421276600959235,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "STKAAVE/AAVE 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xe92bde61abdb4c7bbcfc94554033a74998c928cc",
+   "pools": 1,
+   "tvl": 51593.205849,
+   "vol_7d": 54355.451799,
+   "fee_7d": 3991.643811,
+   "fee_apr_7d": 403.4169026272615,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/LOOM 9.2969%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x6852ea410528ef0ebc27d4ebe891c09521ed4840",
+   "pools": 1,
+   "tvl": 51516.575639,
+   "vol_7d": 3780200.903349,
+   "fee_7d": 1890.10044,
+   "fee_apr_7d": 191.3078189031675,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/MOCHI 0.05%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x9ea932730a7787000042e34390b8e435dd839040",
+   "pools": 1,
+   "tvl": 50748.235713,
+   "vol_7d": 23815.135839,
+   "fee_7d": 714.454077,
+   "fee_apr_7d": 73.40881185077278,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/SHX 3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x983f276257e4c4129632d3f715f86902787240cc",
+   "pools": 1,
+   "tvl": 48678.289128,
+   "vol_7d": 313764.753189,
+   "fee_7d": 941.294249,
+   "fee_apr_7d": 100.82887552999047,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/SARD 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x142c4c47e235b471da3e7098dc59139c1f31a8cc",
+   "pools": 1,
+   "tvl": 48614.994802,
+   "vol_7d": 559998.338693,
+   "fee_7d": 1679.995048,
+   "fee_apr_7d": 180.1907871128017,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/NEXT 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xb1659916f9ff85211656dab4967fc7a2b83600cc",
+   "pools": 1,
+   "tvl": 48113.928445,
+   "vol_7d": 40231.049868,
+   "fee_7d": 402.310501,
+   "fee_apr_7d": 43.59988813778577,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BACKERS 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xfad27bc5ef16a0a2aa3049953c25a48e8858b0c0",
+   "pools": 2,
+   "tvl": 46228.407799,
+   "vol_7d": 49593.022904,
+   "fee_7d": 16.269169,
+   "fee_apr_7d": 1.8350641853997633,
+   "majors_tvl": 46228.407799,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "EURC/USDC 0.01%",
+    "ETH/USDC 0%"
+   ],
+   "name": "TransparentUpgradeableProxy",
+   "verified": true,
+   "proxy": true,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xeda3a8f4047cba1b1c9327c896b4b9f1cb393acc",
+   "pools": 1,
+   "tvl": 44523.207746,
+   "vol_7d": 38499.047212,
+   "fee_7d": 1924.952369,
+   "fee_apr_7d": 225.43864529300222,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/V4RC 0%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x79722ad29f44bba56a9530d8879c32aca60580cc",
+   "pools": 1,
+   "tvl": 42683.428978,
+   "vol_7d": 52867.132665,
+   "fee_7d": 528.671328,
+   "fee_apr_7d": 64.58345590190734,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/XIMD 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x9d11f9505ca92f4b6983c1285d1ac0aaff7ec0c0",
+   "pools": 2,
+   "tvl": 41238.364107999994,
+   "vol_7d": 238695.786662,
+   "fee_7d": 106.24853399999999,
+   "fee_apr_7d": 13.434340206830012,
+   "majors_tvl": 41238.364107999994,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDC/CBBTC 0.045%",
+    "ETH/USDC 0.04%"
+   ],
+   "name": "LimitOrderHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xe3fa8fa0d0a3f59c9b08ea0fe36d654a506850cc",
+   "pools": 1,
+   "tvl": 40652.977612,
+   "vol_7d": 58032.282091,
+   "fee_7d": 174.096849,
+   "fee_apr_7d": 22.330239160018973,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/FIRE 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xee588bcf2bd3e658f5160489f4199d1851bbf0cc",
+   "pools": 1,
+   "tvl": 39199.100819,
+   "vol_7d": 40914.870059,
+   "fee_7d": 431.529126,
+   "fee_apr_7d": 57.40223908170255,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/OUTLAW 1.0547%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x087a47248847db968b5a1c8ef52140fe429ca840",
+   "pools": 1,
+   "tvl": 37500.392658,
+   "vol_7d": 24761.645038,
+   "fee_7d": 247.616446,
+   "fee_apr_7d": 34.43011673971257,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/FWA 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x20f8b7ec9cc3bb5c739dedb15a8b4275f84b00c8",
+   "pools": 2,
+   "tvl": 36504.996908,
+   "vol_7d": 90261.484275,
+   "fee_7d": 46.910529,
+   "fee_apr_7d": 6.700586821873721,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/NVDA 0.035%",
+    "SPCX/USDG 0.035%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x60d31599d69cd9aa6644e6402857c5cbf7d7e0c4",
+   "pools": 1,
+   "tvl": 36502.183771,
+   "vol_7d": 135921.531125,
+   "fee_7d": 450.565053,
+   "fee_apr_7d": 64.36258537169495,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/COIN 0.3%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x0507140088aa5b266d6b44eef02ad55cf1fb40c0",
+   "pools": 1,
+   "tvl": 33713.995517,
+   "vol_7d": 11150.302623,
+   "fee_7d": 111.503023,
+   "fee_apr_7d": 17.24531936997503,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDC/STBU 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xeafa6ed9f61d11c82a84dc13e78a131b69a7e088",
+   "pools": 1,
+   "tvl": 32086.364314,
+   "vol_7d": 23608.721632,
+   "fee_7d": 70.826174,
+   "fee_apr_7d": 11.509808455443391,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/SZR 0.3%"
+   ]
+  },
+  {
+   "chain": "BSC",
+   "protocol": "pancakev4",
+   "hook": "0xd4f0a0a87b386aa3aa05fea2823cc99234084807",
+   "pools": 1,
+   "tvl": 31058.17179,
+   "vol_7d": 427112.656744,
+   "fee_7d": 1066.500278,
+   "fee_apr_7d": 179.052302288046,
+   "majors_tvl": 0,
+   "flags": [],
+   "risk_flags": [],
+   "top_pairs": [
+    "BNB/NP 0.3726%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xf78aaed48bd64a08553fb4e4157072012f410144",
+   "pools": 1,
+   "tvl": 30618.547084,
+   "vol_7d": 2700.129235,
+   "fee_7d": 0.270014,
+   "fee_apr_7d": 0.04598291809845116,
+   "majors_tvl": 0,
+   "flags": [
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/VILLAGE 0.01%"
+   ]
+  },
+  {
+   "chain": "Avalanche",
+   "protocol": "uniswapv4",
+   "hook": "0x179278c7ecd2cfbc003d76985ba05f11ddc36acc",
+   "pools": 1,
+   "tvl": 30372.282088,
+   "vol_7d": 203971.531581,
+   "fee_7d": 611.914589,
+   "fee_apr_7d": 105.05293907586713,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "AVAX/HOOK 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x832f9d9d99e1ceec121724d3f04e9959200c8840",
+   "pools": 1,
+   "tvl": 30045.544779,
+   "vol_7d": 47255.240803,
+   "fee_7d": 23.627621,
+   "fee_apr_7d": 4.100480372350154,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/HALLOWHALE 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x8526171645365821d0630f20bbe35284a3d1a040",
+   "pools": 1,
+   "tvl": 29634.803225,
+   "vol_7d": 40383.438924,
+   "fee_7d": 403.834393,
+   "fee_apr_7d": 71.05523496713357,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/ZODSCC 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x105f6435a4ab3c03c13d4a0db67961344694d0cc",
+   "pools": 1,
+   "tvl": 28895.953255,
+   "vol_7d": 144981.00939,
+   "fee_7d": 434.943049,
+   "fee_apr_7d": 78.48563800317415,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/BLOB 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xd0e428c6e2f74a245ea14500e9edb805c5480840",
+   "pools": 1,
+   "tvl": 28437.686417,
+   "vol_7d": 57599.908114,
+   "fee_7d": 28.799958,
+   "fee_apr_7d": 5.280711214315116,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/HAALAND 0.05%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x6c118313fe865fedf3705b969f171114369580cc",
+   "pools": 1,
+   "tvl": 28432.761426,
+   "vol_7d": 42881.56432,
+   "fee_7d": 428.815646,
+   "fee_apr_7d": 78.64052539600837,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/EVMA 1%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x6c24d0bcc264ef6a740754a11ca579b9d225e8cc",
+   "pools": 1,
+   "tvl": 27917.861646,
+   "vol_7d": 1930.254367,
+   "fee_7d": 191.095183,
+   "fee_apr_7d": 35.69130384770997,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "CLAUS/WETH 9.9%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa59d2a582db5b361b4eef1dd39a91efe15108040",
+   "pools": 1,
+   "tvl": 26587.574901,
+   "vol_7d": 7948.750637,
+   "fee_7d": 39.743757,
+   "fee_apr_7d": 7.7944417694653465,
+   "majors_tvl": 0,
+   "flags": [
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/KINDRA 0.5%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x8af95932ec4484fb10c641a4cbcf19a798cb2080",
+   "pools": 1,
+   "tvl": 26569.973339,
+   "vol_7d": 135600.367528,
+   "fee_7d": 178.624547,
+   "fee_apr_7d": 35.054586309114896,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/META 0.1214%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xdf62b0884e37c77f35333bdc2f6eb13d77026800",
+   "pools": 2,
+   "tvl": 26332.658879000002,
+   "vol_7d": 176917.528211,
+   "fee_7d": 516.387471,
+   "fee_apr_7d": 102.2529409371091,
+   "majors_tvl": 14221.583634,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/USDG 0.29%",
+    "USDG/NVDA 0.3%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0x5cc13033a3d7be498df43a68f951a931707fa044",
+   "pools": 1,
+   "tvl": 26195.274241,
+   "vol_7d": 137987.98717,
+   "fee_7d": 413.963955,
+   "fee_apr_7d": 82.40136434255223,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/PAY 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xfb2a13e978d88eebc75227c0857b8b65772940c0",
+   "pools": 1,
+   "tvl": 26134.96182,
+   "vol_7d": 32208.932327,
+   "fee_7d": 368.838862,
+   "fee_apr_7d": 73.58844532645274,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/EQUI 1.05%"
+   ]
+  },
+  {
+   "chain": "Arbitrum",
+   "protocol": "uniswapv4",
+   "hook": "0xd73339564ac99f3e09b0ebc80603ff8b796500c0",
+   "pools": 1,
+   "tvl": 24865.395051,
+   "vol_7d": 45075.124421,
+   "fee_7d": 45.075134,
+   "fee_apr_7d": 9.452278027501599,
+   "majors_tvl": 24865.395051,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/USDC 0.1%"
+   ],
+   "name": "LimitOrderHook",
+   "verified": true,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x334169ead82242757d0b22987e1a2136c0d98840",
+   "pools": 1,
+   "tvl": 22516.967633,
+   "vol_7d": 76261.466717,
+   "fee_7d": 38.130731,
+   "fee_apr_7d": 8.829986753508578,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/GIRLS 0.05%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x16c0a78b6fbbc4ee56074954ba9193d1f31e90c0",
+   "pools": 1,
+   "tvl": 21569.577421,
+   "vol_7d": 83098.950502,
+   "fee_7d": 132.123245,
+   "fee_apr_7d": 31.939816690976762,
+   "majors_tvl": 21569.577421,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDC/CBBTC 0.1068%"
+   ],
+   "name": null,
+   "verified": false,
+   "proxy": false,
+   "creator": "0x4e59b44847b379578588920cA78FbF26c0B4956C"
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xc9211d96bedda686e9374d4d29da61ed848920c4",
+   "pools": 1,
+   "tvl": 21267.018739,
+   "vol_7d": 10876.094032,
+   "fee_7d": 543.804701,
+   "fee_apr_7d": 133.33100979432558,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/DEAL 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xe7e91726b1c9493bf4ead12a7e98d1077633a8c0",
+   "pools": 1,
+   "tvl": 20805.075631,
+   "vol_7d": 2140.981576,
+   "fee_7d": 21.409816,
+   "fee_apr_7d": 5.365849165573058,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/KING 1%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x216317cb06e08d8f1429852d158b2fc904a85080",
+   "pools": 1,
+   "tvl": 20460.875143,
+   "vol_7d": 32552.223747,
+   "fee_7d": 976.566713,
+   "fee_apr_7d": 248.8699933436106,
+   "majors_tvl": 0,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "REI/USDC 0%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x6903396de0e1f8dca3db14baa406f269b08d4144",
+   "pools": 1,
+   "tvl": 20398.785525,
+   "vol_7d": 1566200.71741,
+   "fee_7d": 156.620092,
+   "fee_apr_7d": 40.03482988165367,
+   "majors_tvl": 0,
+   "flags": [
+    "afterRemoveLiquidity",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "WETH/GRAPHITEBOOM 0.01%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xca89f079af00f752bfd3c345358dc38d4d73e080",
+   "pools": 1,
+   "tvl": 20004.935469,
+   "vol_7d": 307788.65968,
+   "fee_7d": 623.583333,
+   "fee_apr_7d": 162.53697343674102,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/AMC 0.2%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x7e56df2e953a178b55f0b0f1a447516de4168840",
+   "pools": 1,
+   "tvl": 19950.672269,
+   "vol_7d": 32853.478527,
+   "fee_7d": 16.426738,
+   "fee_apr_7d": 4.293274137874832,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/MRBEAST 0.05%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x075e528fbf5df06caec4642d9baf6bc99516a0cc",
+   "pools": 1,
+   "tvl": 19777.958618,
+   "vol_7d": 10183.810507,
+   "fee_7d": 1.018383,
+   "fee_apr_7d": 0.26848776616099546,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/RFLX 0.01%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xbf9828455cdc5f02771536e3ecb3c0f931eabec4",
+   "pools": 1,
+   "tvl": 19448.886945,
+   "vol_7d": 22809.926706,
+   "fee_7d": 15.311782,
+   "fee_apr_7d": 4.105119556128776,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeRemoveLiquidity",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "EURC/ZCHF 0.0706%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xefa51b682deee8578a26c54222ec39fb791bd0c0",
+   "pools": 1,
+   "tvl": 19267.533631,
+   "vol_7d": 79589.874314,
+   "fee_7d": 122.793589,
+   "fee_apr_7d": 33.23107509195719,
+   "majors_tvl": 19267.533631,
+   "flags": [
+    "afterInitialize",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "TBTC/DAI 0.29%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xad3f7a661fd35af584598755e2799254fcec60cc",
+   "pools": 1,
+   "tvl": 17889.991927,
+   "vol_7d": 3975.55885,
+   "fee_7d": 11.926676,
+   "fee_apr_7d": 3.4761947651780116,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/ORB 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x73dfd2aec79c0e8990906628c1718f878f8ec0c8",
+   "pools": 1,
+   "tvl": 17151.226563,
+   "vol_7d": 35280.929843,
+   "fee_7d": 63.957514,
+   "fee_apr_7d": 19.444250843893922,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "USDG/INTC 0.1313%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x0ac219e41100999b711e432cc9539c4a0da4c880",
+   "pools": 1,
+   "tvl": 15162.68914,
+   "vol_7d": 37029.349237,
+   "fee_7d": 111.088043,
+   "fee_apr_7d": 38.20198319009111,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/QUAD 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xd2f759a1cf13c30127c551c3aee04629aea200c0",
+   "pools": 1,
+   "tvl": 15154.904189,
+   "vol_7d": 48126.502537,
+   "fee_7d": 481.265018,
+   "fee_apr_7d": 165.5868804478693,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/ZKHOOD 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0x4bfe12797a92acdbd89bb6a119532163ba9a6080",
+   "pools": 1,
+   "tvl": 12881.411469,
+   "vol_7d": 59746.736085,
+   "fee_7d": 98.899258,
+   "fee_apr_7d": 40.033577794164714,
+   "majors_tvl": 12881.411469,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "WETH/USDG 0.423%"
+   ]
+  },
+  {
+   "chain": "Ethereum",
+   "protocol": "uniswapv4",
+   "hook": "0xdca17c9e4696f87a39ed747d01653790d4e8e840",
+   "pools": 1,
+   "tvl": 12804.510478,
+   "vol_7d": 50356.953922,
+   "fee_7d": 503.569536,
+   "fee_apr_7d": 205.06488258381398,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "afterSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "ETH/SROCK 1%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xcb787a5cdea8b3715d984d82f1203fd7bfebe0c4",
+   "pools": 1,
+   "tvl": 12716.698285,
+   "vol_7d": 598256.443796,
+   "fee_7d": 464.271958,
+   "fee_apr_7d": 190.36754540275368,
+   "majors_tvl": 12716.698285,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/USDG 0.045%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0x9abcca2ee3dfbfb79c9c8ef11c77655dca1365cf",
+   "pools": 1,
+   "tvl": 11369.147534,
+   "vol_7d": 12640.13842,
+   "fee_7d": 2.022424,
+   "fee_apr_7d": 0.9275538504440847,
+   "majors_tvl": 11369.147534,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta",
+    "afterAddLiquidityReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta",
+    "afterAddLiquidityReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/CBBTC 0.016%"
+   ]
+  },
+  {
+   "chain": "Base",
+   "protocol": "uniswapv4",
+   "hook": "0xbbf0b679aee2d9e158730280a29e31e3875065c7",
+   "pools": 1,
+   "tvl": 10943.348066,
+   "vol_7d": 5969.637907,
+   "fee_7d": 534.209327,
+   "fee_apr_7d": 254.54002243323015,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeInitialize",
+    "afterAddLiquidity",
+    "afterRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta",
+    "afterAddLiquidityReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "risk_flags": [
+    "afterSwapReturnDelta",
+    "afterAddLiquidityReturnDelta",
+    "afterRemoveLiquidityReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/NVDAC 0%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xac4ee3b6f95685092567e1482f462d9991da80cc",
+   "pools": 1,
+   "tvl": 10579.841842,
+   "vol_7d": 6767.919283,
+   "fee_7d": 20.303757,
+   "fee_apr_7d": 10.006727099751721,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "risk_flags": [
+    "beforeSwapReturnDelta",
+    "afterSwapReturnDelta"
+   ],
+   "top_pairs": [
+    "ETH/MINR 0.3%"
+   ]
+  },
+  {
+   "chain": "Robinhood",
+   "protocol": "uniswapv4",
+   "hook": "0xa4e6f5500e88691fdcb289aa0e99067481434880",
+   "pools": 1,
+   "tvl": 10528.110558,
+   "vol_7d": 336139.512802,
+   "fee_7d": 471.678686,
+   "fee_apr_7d": 233.60957510785073,
+   "majors_tvl": 0,
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap"
+   ],
+   "risk_flags": [],
+   "top_pairs": [
+    "USDG/CRCL 0.5475%"
+   ]
+  }
+ ],
+ "majors": [
+  {
+   "chain": "Robinhood",
+   "pair": "ETH/USDG",
+   "fee_pct": 0.07,
+   "hook": "0x06a889870c8f83640d6816319f72e2aa579b6080",
+   "hook_name": null,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "tvl": 28268931.476164,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 17.481195092057348,
+   "hook_pos_apr_30d": 15.323469149014052,
+   "plain_pool": "ETH/USDG 0.0577% ($0.8M)",
+   "plain_pos_apr_7d": 22.014945163458716,
+   "plain_pos_apr_30d": 36.647911303036665
+  },
+  {
+   "chain": "Ethereum",
+   "pair": "USDC/USDG",
+   "fee_pct": 0.01,
+   "hook": "0x0000113dcf4add69999fad8f20f2b63f979bfcc0",
+   "hook_name": "StablePairHook",
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "tvl": 3859523.489177,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 0.6735260858062218,
+   "hook_pos_apr_30d": 0.47331985110866237,
+   "plain_pool": "USDC/USDG 0.0082% ($0.2M)",
+   "plain_pos_apr_7d": 1.3571169357156658,
+   "plain_pos_apr_30d": 3.2894402002948535
+  },
+  {
+   "chain": "Ethereum",
+   "pair": "USDC/USDT",
+   "fee_pct": 0.0015,
+   "hook": "0x0000113dcf4add69999fad8f20f2b63f979bfcc0",
+   "hook_name": "StablePairHook",
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "afterAddLiquidity",
+    "beforeSwap",
+    "afterSwap"
+   ],
+   "tvl": 3850962.743592,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 3.4068946611943303,
+   "hook_pos_apr_30d": 3.3845814995226604,
+   "plain_pool": "USDC/USDT 0.0012% ($5.9M)",
+   "plain_pos_apr_7d": 0.6258637526210896,
+   "plain_pos_apr_30d": 0.5594825762250493
+  },
+  {
+   "chain": "Ethereum",
+   "pair": "USDC/WETH",
+   "fee_pct": 0.025,
+   "hook": "0x0000000aa232009084bd71a5797d089aa4edfad4",
+   "hook_name": "Angstrom",
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 3330328.092293,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 2.0020098565576223,
+   "hook_pos_apr_30d": 3.4261283310728134,
+   "plain_pool": "ETH/USDC 0.3499% ($37.5M)",
+   "plain_pos_apr_7d": 15.291683722835883,
+   "plain_pos_apr_30d": 22.377179197239382
+  },
+  {
+   "chain": "Ethereum",
+   "pair": "WETH/USDT",
+   "fee_pct": 0.0,
+   "hook": "0x0000000aa232009084bd71a5797d089aa4edfad4",
+   "hook_name": "Angstrom",
+   "flags": [
+    "beforeInitialize",
+    "afterInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterDonate",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 2299730.6592,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 2.0581617752051526,
+   "hook_pos_apr_30d": 3.598387614906477,
+   "plain_pool": "ETH/USDT 0.3499% ($30.9M)",
+   "plain_pos_apr_7d": 12.913051307386555,
+   "plain_pos_apr_30d": 18.300392200750405
+  },
+  {
+   "chain": "BSC",
+   "pair": "USDT/USDC",
+   "fee_pct": 0.04,
+   "hook": "0x1e9c64cad39ddd36fb808e004067cffc710eb71d",
+   "hook_name": null,
+   "flags": [],
+   "tvl": 1036981.116352,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 0.2728736841838078,
+   "hook_pos_apr_30d": 0.3381309434099544,
+   "plain_pool": "USDT/USDC 0.0003% ($0.5M)",
+   "plain_pos_apr_7d": 1.2734362973125368,
+   "plain_pos_apr_30d": 1.4705271857572293
+  },
+  {
+   "chain": "Base",
+   "pair": "USDC/CBBTC",
+   "fee_pct": 0.3,
+   "hook": "0x5cd525c621afca515bf58631d4733fba7b72aae4",
+   "hook_name": "VerifiedPoolsBasicHook",
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeDonate",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 660272.924712,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 7.430908032210512,
+   "hook_pos_apr_30d": 7.167493629667774,
+   "plain_pool": "USDC/CBBTC 0.0625% ($3.3M)",
+   "plain_pos_apr_7d": 13.082322398563234,
+   "plain_pos_apr_30d": 14.218333456989917
+  },
+  {
+   "chain": "Ethereum",
+   "pair": "ETH/USDC",
+   "fee_pct": 0.0426,
+   "hook": "0x47f1c7c7d5bd2039d9d3a997d91569869edf1080",
+   "hook_name": "MyNewHook",
+   "flags": [
+    "afterInitialize",
+    "beforeSwap"
+   ],
+   "tvl": 453922.820605,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 5.035756350372173,
+   "hook_pos_apr_30d": 4.501833422969467,
+   "plain_pool": "ETH/USDC 0.3499% ($37.5M)",
+   "plain_pos_apr_7d": 15.291683722835883,
+   "plain_pos_apr_30d": 22.377179197239382
+  },
+  {
+   "chain": "Base",
+   "pair": "ETH/USDC",
+   "fee_pct": 0.009,
+   "hook": "0x4440854b2d02c57a0dc5c58b7a884562d875c0c4",
+   "hook_name": "UniswapV4KEMHook",
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 365557.436046,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 4.293750918602042,
+   "hook_pos_apr_30d": 4.734247745810313,
+   "plain_pool": "ETH/USDC 0.3499% ($4.6M)",
+   "plain_pos_apr_7d": 16.988175695880443,
+   "plain_pos_apr_30d": 39.792320525543424
+  },
+  {
+   "chain": "Arbitrum",
+   "pair": "USDC/USD₮0",
+   "fee_pct": 0.0001,
+   "hook": "0x4440854b2d02c57a0dc5c58b7a884562d875c0c4",
+   "hook_name": "UniswapV4KEMHook",
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 333356.771881,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 0.034237236769772306,
+   "hook_pos_apr_30d": 0.025179268743665918,
+   "plain_pool": "USDC/USD₮0 0.001% ($0.6M)",
+   "plain_pos_apr_7d": 2.5456788418933054,
+   "plain_pos_apr_30d": 2.8774427741182205
+  },
+  {
+   "chain": "Arbitrum",
+   "pair": "WBTC/CBBTC",
+   "fee_pct": 0.005,
+   "hook": "0x4440854b2d02c57a0dc5c58b7a884562d875c0c4",
+   "hook_name": "UniswapV4KEMHook",
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 257945.831159,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 1.951903190316422,
+   "hook_pos_apr_30d": 2.9435552479749965,
+   "plain_pool": "WBTC/CBBTC 0.0048% ($0.5M)",
+   "plain_pos_apr_7d": 1.3814725399056305,
+   "plain_pos_apr_30d": 2.9578737119529137
+  },
+  {
+   "chain": "BSC",
+   "pair": "USDT/USDC",
+   "fee_pct": 0.0001,
+   "hook": "0x2f9d16d355318774ccef7dbacbc0214a562925d6",
+   "hook_name": null,
+   "flags": [],
+   "tvl": 250266.473342,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 0.06624091631578091,
+   "hook_pos_apr_30d": 0.031882899482230616,
+   "plain_pool": "USDT/USDC 0.0003% ($0.5M)",
+   "plain_pos_apr_7d": 1.2734362973125368,
+   "plain_pos_apr_30d": 1.4705271857572293
+  },
+  {
+   "chain": "Robinhood",
+   "pair": "ETH/USDG",
+   "fee_pct": 0.0025,
+   "hook": "0x4445520306c9c70952bdfec28f3989f53d9f80c4",
+   "hook_name": null,
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 181638.394736,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 1.7780681704529115,
+   "hook_pos_apr_30d": 3.0709919075440606,
+   "plain_pool": "ETH/USDG 0.0577% ($0.8M)",
+   "plain_pos_apr_7d": 22.014945163458716,
+   "plain_pos_apr_30d": 36.647911303036665
+  },
+  {
+   "chain": "BSC",
+   "pair": "USDT/BTCB",
+   "fee_pct": 0.1492,
+   "hook": "0x6adc560af85377f9a73d17c658d798c9b39186e8",
+   "hook_name": null,
+   "flags": [],
+   "tvl": 143665.333088,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 5.990592166791366,
+   "hook_pos_apr_30d": 4.92913198390801,
+   "plain_pool": "USDT/BTCB 0.0625% ($0.6M)",
+   "plain_pos_apr_7d": 4.392584125832967,
+   "plain_pos_apr_30d": 43.1725190164851
+  },
+  {
+   "chain": "Base",
+   "pair": "EURC/USDC",
+   "fee_pct": 0.02,
+   "hook": "0x5cd525c621afca515bf58631d4733fba7b72aae4",
+   "hook_name": "VerifiedPoolsBasicHook",
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeDonate",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 113320.015449,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 1.013835622045155,
+   "hook_pos_apr_30d": 0.4942772696713113,
+   "plain_pool": "USDC/OUSD 0.0125% ($10.0M)",
+   "plain_pos_apr_7d": 0.022627173880612958,
+   "plain_pos_apr_30d": 0.005279673905476357
+  },
+  {
+   "chain": "Robinhood",
+   "pair": "WETH/USDG",
+   "fee_pct": 0.01,
+   "hook": "0x64e9ae1066c47ac4a3cc0a5bd7b135908590e088",
+   "hook_name": null,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "tvl": 101686.016429,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 6.8016311222421715,
+   "hook_pos_apr_30d": 12.898616417810182,
+   "plain_pool": "ETH/USDG 0.0577% ($0.8M)",
+   "plain_pos_apr_7d": 22.014945163458716,
+   "plain_pos_apr_30d": 36.647911303036665
+  },
+  {
+   "chain": "Robinhood",
+   "pair": "USDG/CBBTC",
+   "fee_pct": 0.12,
+   "hook": "0x08e52564bad99e05a694b4809f397edca417a080",
+   "hook_name": null,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap"
+   ],
+   "tvl": 82816.72208,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 48.0355363905565,
+   "hook_pos_apr_30d": 12.130122048595908,
+   "plain_pool": "USDG/CBBTC 0.1762% ($0.7M)",
+   "plain_pos_apr_7d": 13.159553680297654,
+   "plain_pos_apr_30d": 41.2533773985964
+  },
+  {
+   "chain": "BSC",
+   "pair": "USDT/USDC",
+   "fee_pct": 0.0002,
+   "hook": "0x44428c6ce391915d51f963c0dd395cd0f95fdfd2",
+   "hook_name": null,
+   "flags": [],
+   "tvl": 82160.486119,
+   "width_pct": 0.1,
+   "hook_pos_apr_7d": 0.10444115023726624,
+   "hook_pos_apr_30d": 0.0403209180561358,
+   "plain_pool": "USDT/USDC 0.0003% ($0.5M)",
+   "plain_pos_apr_7d": 1.2734362973125368,
+   "plain_pos_apr_30d": 1.4705271857572293
+  },
+  {
+   "chain": "Base",
+   "pair": "ETH/USDC",
+   "fee_pct": 0.15,
+   "hook": "0x5cd525c621afca515bf58631d4733fba7b72aae4",
+   "hook_name": "VerifiedPoolsBasicHook",
+   "flags": [
+    "beforeInitialize",
+    "beforeAddLiquidity",
+    "beforeRemoveLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "beforeDonate",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 80630.503521,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 2.7392314620437412,
+   "hook_pos_apr_30d": 4.492838479755382,
+   "plain_pool": "ETH/USDC 0.3499% ($4.6M)",
+   "plain_pos_apr_7d": 16.988175695880443,
+   "plain_pos_apr_30d": 39.792320525543424
+  },
+  {
+   "chain": "Robinhood",
+   "pair": "ETH/CBBTC",
+   "fee_pct": 0.02,
+   "hook": "0x64e9ae1066c47ac4a3cc0a5bd7b135908590e088",
+   "hook_name": null,
+   "flags": [
+    "beforeInitialize",
+    "beforeSwap",
+    "beforeSwapReturnDelta"
+   ],
+   "tvl": 78729.978734,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 1.1034479323888426,
+   "hook_pos_apr_30d": 10.212521543765336,
+   "plain_pool": "ETH/CBBTC 0.2899% ($0.1M)",
+   "plain_pos_apr_7d": 3.9152312014149295,
+   "plain_pos_apr_30d": 8.337603193134578
+  },
+  {
+   "chain": "Base",
+   "pair": "WETH/USDC",
+   "fee_pct": 0.0801,
+   "hook": "0x1b993c37768f78bcb03cfa1d7b08f43dbcd540c4",
+   "hook_name": "PushBaseDynamicFeeHook",
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 69743.795031,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 7.457195675518266,
+   "hook_pos_apr_30d": 1.7400123242875951,
+   "plain_pool": "ETH/USDC 0.3499% ($4.6M)",
+   "plain_pos_apr_7d": 16.988175695880443,
+   "plain_pos_apr_30d": 39.792320525543424
+  },
+  {
+   "chain": "Base",
+   "pair": "WETH/USDC",
+   "fee_pct": 0.031,
+   "hook": "0x6f9c9f7b059452345ecd69e77022fee3f3a440c4",
+   "hook_name": "PushBaseDynamicFeeHook",
+   "flags": [
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 69227.926296,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 6.597383414562777,
+   "hook_pos_apr_30d": 1.5393894633979812,
+   "plain_pool": "ETH/USDC 0.3499% ($4.6M)",
+   "plain_pos_apr_7d": 16.988175695880443,
+   "plain_pos_apr_30d": 39.792320525543424
+  },
+  {
+   "chain": "Ethereum",
+   "pair": "ETH/USDC",
+   "fee_pct": 0.3,
+   "hook": "0xfde6c74f995775bc1dc3549dce9a0a25032f48c4",
+   "hook_name": "AdaptivePoolPolicyHookV1",
+   "flags": [
+    "beforeAddLiquidity",
+    "beforeSwap",
+    "afterSwap",
+    "afterSwapReturnDelta"
+   ],
+   "tvl": 65879.519966,
+   "width_pct": 20.0,
+   "hook_pos_apr_7d": 5.197530422490856,
+   "hook_pos_apr_30d": 2.7333776483213508,
+   "plain_pool": "ETH/USDC 0.3499% ($37.5M)",
+   "plain_pos_apr_7d": 15.291683722835883,
+   "plain_pos_apr_30d": 22.377179197239382
+  }
+ ]
+}
