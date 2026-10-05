@@ -1,0 +1,1262 @@
+{
+ "42161:0xc6962004f452be9203591991d15f6b388e09e8d0": {
+  "name": "USDC / WETH 0.05%",
+  "reserve_usd": 37001680.9757,
+  "vol_24h": 28249082.5693251,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-08T21:28:24Z"
+ },
+ "42161:0x2f5e87c9312fa29aed5c179e456625d79015299c": {
+  "name": "WBTC / WETH 0.05%",
+  "reserve_usd": 36413375.4612,
+  "vol_24h": 12175677.6157804,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:13:14Z"
+ },
+ "42161:0xec6e37b2d66aa5ef5a9fc296b4da3474b121f512428dd425a51c6424955fc5eb": {
+  "name": "Dory / USDC 1%",
+  "reserve_usd": 3568112.3058,
+  "vol_24h": 1675620.24540837,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-09-09T12:37:04Z"
+ },
+ "42161:0x0e4831319a50228b9e450861297ab92dee15b44f": {
+  "name": "USDC / WBTC 0.05%",
+  "reserve_usd": 8038933.7945,
+  "vol_24h": 6363723.46343554,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-28T12:07:23Z"
+ },
+ "42161:0x864abca0a6202dba5b8868772308da953ff125b0f95015adbf89aaf579e903a8": {
+  "name": "ETH / USDC 0.05%",
+  "reserve_usd": 7210628.489,
+  "vol_24h": 3669831.62088821,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-30T00:55:56Z"
+ },
+ "42161:0x641c00a822e8b671738d32a431a4fb6074e5c79d": {
+  "name": "WETH / USDT 0.05%",
+  "reserve_usd": 6439227.8173,
+  "vol_24h": 3078463.95066386,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:10:40Z"
+ },
+ "42161:0xc473e2aee3441bf9240be85eb122abb059a3b57c": {
+  "name": "USDC / WETH 0.3%",
+  "reserve_usd": 5702793.5045,
+  "vol_24h": 459960.540348186,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-08T21:27:50Z"
+ },
+ "42161:0x5969efdde3cf5c0d9a88ae51e47d721096a97203": {
+  "name": "WBTC / USDT 0.05%",
+  "reserve_usd": 4166131.5915,
+  "vol_24h": 2149733.2735313,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-09-17T07:00:12Z"
+ },
+ "42161:0x80c735c5a0222241f211b3edb8df2ccefad94553ec18f1c29143f0399c78f500": {
+  "name": "WBTC / USDC 0.05%",
+  "reserve_usd": 3534907.2234,
+  "vol_24h": 2655836.20255665,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-29T18:33:39Z"
+ },
+ "42161:0x03df2300e83353309c1069ae3ea89c31b361a009f9c36a1de5c8f0afcc45bde8": {
+  "name": "ETH / USDC 0.3%",
+  "reserve_usd": 3289402.4896,
+  "vol_24h": 152953.785303459,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-23T20:23:51Z"
+ },
+ "42161:0xc6f780497a95e246eb9449f5e4770916dcd6396a": {
+  "name": "ARB / WETH 0.05%",
+  "reserve_usd": 2037482.8232,
+  "vol_24h": 3459435.72866967,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-03-17T01:49:14Z"
+ },
+ "42161:0x80a9ae39310abf666a87c743d6ebbd0e8c42158e": {
+  "name": "GMX / WETH 1%",
+  "reserve_usd": 2785060.6443,
+  "vol_24h": 1269.2215923183,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:10:34Z"
+ },
+ "42161:0x468b88941e7cc0b88c1869d68ab6b570bcef62ff": {
+  "name": "LINK / WETH 0.3%",
+  "reserve_usd": 1332080.5777,
+  "vol_24h": 106313.152475517,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:54:01Z"
+ },
+ "42161:0xdbaeb7f0dfe3a0aafd798ccecb5b22e708f7852c": {
+  "name": "PENDLE / WETH 0.3%",
+  "reserve_usd": 1165337.3428,
+  "vol_24h": 214088.298790834,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-03-08T09:19:01Z"
+ },
+ "42161:0x299c7d6f2ef82cb52b2ab83b14f05c6b2b803aba": {
+  "name": "PEAR / USDC 1.036%",
+  "reserve_usd": 1073499.1642,
+  "vol_24h": 44987.0133283081,
+  "dex": "camelot-v3",
+  "created": "2024-09-26T12:51:56Z"
+ },
+ "42161:0x8b3781471ab98774c59775df9cc505ce20b36afffd297aef2dc17daafce3b140": {
+  "name": "ETH / WBTC 0.05%",
+  "reserve_usd": 1285577.2318,
+  "vol_24h": 228167.695606671,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-31T20:51:38Z"
+ },
+ "42161:0x4bfc22a4da7f31f8a912a79a7e44a822398b4390": {
+  "name": "WBTC / WETH 0.01%",
+  "reserve_usd": 1222093.9353,
+  "vol_24h": 2836812.76435749,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2024-04-24T07:30:34Z"
+ },
+ "42161:0x9b42809aaae8d088ee01fe637e948784730f0386": {
+  "name": "cbBTC / WBTC 0.01%",
+  "reserve_usd": 1281626.6554,
+  "vol_24h": 1176806.91652445,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-11-21T10:02:20Z"
+ },
+ "42161:0xbe3ad6a5669dc0b8b12febc03608860c31e2eef6": {
+  "name": "USDC / USDT 0.01%",
+  "reserve_usd": 1157058.0454,
+  "vol_24h": 1117211.20000286,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-09T06:51:09Z"
+ },
+ "42161:0xc31e54c7a869b9fcbecc14363cf510d1c41fa443": {
+  "name": "WETH / USDC 0.05%",
+  "reserve_usd": 1118195.3343,
+  "vol_24h": 147792.163911633,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:10:59Z"
+ },
+ "42161:0xd3b190d7e8b7f91ffd1827a5611c1958c7e2623a8214d75bbd700917a42491dc": {
+  "name": "GMX / ETH 0.05%",
+  "reserve_usd": 1124305.1744,
+  "vol_24h": 140723.605723269,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-03-11T20:58:18Z"
+ },
+ "42161:0xe88bba0ec2fc9091d68344b32b504abcc59f0aa9e1ae2ef048b69bc7ec3f4df8": {
+  "name": "ETH / USDT 0.05%",
+  "reserve_usd": 930456.9132,
+  "vol_24h": 467622.606216951,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-30T13:13:46Z"
+ },
+ "42161:0x8385ce82f2331160114760cef76253fc16ebbbe091eadaf4f0d29ae4f752fbc7": {
+  "name": "VSN / USDC 0.35%",
+  "reserve_usd": 1116468.1155,
+  "vol_24h": 6607.579291542,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-11-26T20:31:27Z"
+ },
+ "42161:0xe5cf22ee4988d54141b77050967e1052bd9c7f7a": {
+  "name": "MOR / WETH 0.3%",
+  "reserve_usd": 1074827.2853,
+  "vol_24h": 7836.6991522636,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-05-08T12:10:24Z"
+ },
+ "42161:0x35218a1cbac5bbc3e57fd9bd38219d37571b3537": {
+  "name": "wstETH / WETH 0.01%",
+  "reserve_usd": 1038450.6273,
+  "vol_24h": 243585.005263314,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-02-25T00:34:14Z"
+ },
+ "42161:0x50e7b9293aef80c304234e86c84a01be8401c530": {
+  "name": "PENDLE / USDT 0.3%",
+  "reserve_usd": 565468.1845,
+  "vol_24h": 180853.90600753,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-04-27T17:11:15Z"
+ },
+ "42161:0x64a08d4f8aae62fffa4993f59a6706606f155e3e4133ecedb137de341c7d4564": {
+  "name": "syrupUSDC / USDC 0.08%",
+  "reserve_usd": 1009711.7409,
+  "vol_24h": 3844.8886200303,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-04-01T15:59:33Z"
+ },
+ "42161:0xa95b0f5a65a769d82ab4f3e82842e45b8bbaf101": {
+  "name": "CRV / WETH 0.3%",
+  "reserve_usd": 566120.2687,
+  "vol_24h": 148046.457917266,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T16:35:47Z"
+ },
+ "42161:0x49340dbb8fb5ece2f9b594e77ab774e65725e9d8": {
+  "name": "CHIP / USDC 0.01%",
+  "reserve_usd": 984289.3816,
+  "vol_24h": 816184.656318389,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2026-04-21T10:29:55Z"
+ },
+ "42161:0xd9e2a1a61b6e61b275cec326465d417e52c1b95c": {
+  "name": "USDC / WETH 0.05%",
+  "reserve_usd": 786806.9305,
+  "vol_24h": 515438.642681328,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2023-08-09T07:58:56Z"
+ },
+ "42161:0x149e36e72726e0bcea5c59d40df2c43f60f5a22d": {
+  "name": "WBTC / WETH 0.3%",
+  "reserve_usd": 836365.3215,
+  "vol_24h": 18951.8209099553,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:34:55Z"
+ },
+ "42161:0x71743469b7da4a69271a6705481cde70ddc6f15ca66c836bbbd55cf7b7ea2dec": {
+  "name": "FORA / USDC 0.3%",
+  "reserve_usd": 793351.6778,
+  "vol_24h": 28136.7932420674,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-06-25T03:21:17Z"
+ },
+ "42161:0xb2aec80e582cec4ffceacfcd01eef7dc31d4d0f3d8241843ffafbc4623d2d517": {
+  "name": "ARB / USDC 0.3%",
+  "reserve_usd": 465480.9536,
+  "vol_24h": 66864.7606442895,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-02-02T05:23:36Z"
+ },
+ "42161:0xdd672b3b768a16b9bcb4ee1060d3e8221435beaa": {
+  "name": "AAVE / WETH 0.3%",
+  "reserve_usd": 468327.6925,
+  "vol_24h": 71412.6771211927,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-10-21T09:19:14Z"
+ },
+ "42161:0x74b8bcadc831369ce75543e0d7517875af1c157d": {
+  "name": "VSN / USDC 0.01%",
+  "reserve_usd": 749722.5076,
+  "vol_24h": 73034.4849795063,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2025-11-11T17:14:51Z"
+ },
+ "42161:0xc24f7d8e51a64dc1238880bd00bb961d54cbeb29": {
+  "name": "UNI / WETH 0.3%",
+  "reserve_usd": 478306.2273,
+  "vol_24h": 67551.7170673108,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T16:08:24Z"
+ },
+ "42161:0x973b2ab0a5108ead5eb3c6feeffc5c2b9c3c4004be8376d51f6f3241c41aca6e": {
+  "name": "ARB / ETH 0.3%",
+  "reserve_usd": 353317.1566,
+  "vol_24h": 88279.4996397211,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-31T14:28:06Z"
+ },
+ "42161:0xab05003a63d2f34ac7eec4670bca3319f0e3d2f62af5c2b9cbd69d03fd804fd2": {
+  "name": "USDC / USDT",
+  "reserve_usd": 594086.927,
+  "vol_24h": 4257721.62240399,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-04-28T19:33:04Z"
+ },
+ "42161:0xd13040d4fe917ee704158cfcb3338dcd2838b245": {
+  "name": "RAIN / WETH 0.01%",
+  "reserve_usd": 535936.5141,
+  "vol_24h": 347306.260289569,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2025-10-19T14:00:25Z"
+ },
+ "42161:0x9576c70b482e79544a9c6afc322e450d7a035b8a4114ede9039a112e7c14c8a8": {
+  "name": "cbBTC / WBTC 0.004%",
+  "reserve_usd": 544854.5255,
+  "vol_24h": 458298.633014287,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-07-27T23:27:43Z"
+ },
+ "42161:0xf3d53f87e3f82ebbcb1f4a6c4226dd80cdfaa731": {
+  "name": "LION / WETH",
+  "reserve_usd": 548551.6984,
+  "vol_24h": 4364.416683033,
+  "dex": "uniswap-v2-arbitrum",
+  "created": "2025-03-13T11:53:24Z"
+ },
+ "42161:0xd9f6d67f109e67b9b28117dcf4aafbc874fbd89f92bdca1a66901a3965582748": {
+  "name": "UNI / ETH 0.3%",
+  "reserve_usd": 383371.8053,
+  "vol_24h": 37676.4352635319,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-27T01:12:03Z"
+ },
+ "42161:0x4d1576158518dd61924218446c1057cf03138d57": {
+  "name": "WETH / USDC 0.3%",
+  "reserve_usd": 498050.7563,
+  "vol_24h": 16255.2406257318,
+  "dex": "sushiswap-v3-arbitrum",
+  "created": "2023-06-06T12:38:01Z"
+ },
+ "42161:0x7fcdc35463e3770c2fb992716cd070b63540b947": {
+  "name": "USDC / WETH 0.01%",
+  "reserve_usd": 472844.2375,
+  "vol_24h": 510844.268146159,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2023-08-11T20:55:44Z"
+ },
+ "42161:0xebcb8b7f619f8dc7143d2c27e6e59189c3750cf92b83b7c8951acf22574301c9": {
+  "name": "ESP / USDC 1%",
+  "reserve_usd": 294935.9062,
+  "vol_24h": 27754.9984565178,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-09-28T15:12:43Z"
+ },
+ "42161:0xc6af8e73e2261264ef95466b97b13e03bd88165e": {
+  "name": "PENDLE / USDC 0.3%",
+  "reserve_usd": 356347.7721,
+  "vol_24h": 48432.5763449572,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-23T15:34:15Z"
+ },
+ "42161:0x843ac8dc6d34aeb07a56812b8b36429ee46bdd07": {
+  "name": "USDC / WBTC 0.05%",
+  "reserve_usd": 406659.8447,
+  "vol_24h": 319060.076221599,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2023-12-01T22:54:02Z"
+ },
+ "42161:0xe9e6b9aaafaf6816c3364345f6ef745ccfc8660a": {
+  "name": "tBTC / WBTC 0.05%",
+  "reserve_usd": 486392.9173,
+  "vol_24h": 14474.560429845,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-05-16T01:43:56Z"
+ },
+ "42161:0x91308bc9ce8ca2db82aa30c65619856cc939d907": {
+  "name": "LINK / WETH 0.05%",
+  "reserve_usd": 335535.5022,
+  "vol_24h": 226426.911989166,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-09-05T20:12:13Z"
+ },
+ "42161:0x4fd47e5102dfbf95541f64ed6fe13d4ed26d2546": {
+  "name": "LPT / WETH 0.3%",
+  "reserve_usd": 316885.653,
+  "vol_24h": 34114.7029118901,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-25T21:45:32Z"
+ },
+ "42161:0x70bf44c3a9b6b047bf60e5a05968225dbf3d6a5b9e8a95a73727e48921e889c1": {
+  "name": "WBTC / USDC 0.3%",
+  "reserve_usd": 329510.4393,
+  "vol_24h": 58060.368527788,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-29T20:28:20Z"
+ },
+ "42161:0xc82819f72a9e77e2c0c3a69b3196478f44303cf4": {
+  "name": "WETH / USDT 0.3%",
+  "reserve_usd": 368217.5546,
+  "vol_24h": 29574.6037652308,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T16:14:51Z"
+ },
+ "42161:0x44d1592a3ac6c42c77d6543544c3b1543a44bd9c4057335da7a1d48051999d16": {
+  "name": "cbBTC / WBTC 0.01%",
+  "reserve_usd": 392758.9229,
+  "vol_24h": 311920.446119589,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-02-18T02:46:29Z"
+ },
+ "42161:0xc24b560c7f8a1a50c2336cd8917af61b5e14984f": {
+  "name": "SQD / WETH 1%",
+  "reserve_usd": 259118.0593,
+  "vol_24h": 35982.7028257426,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2024-07-04T15:27:24Z"
+ },
+ "42161:0xf3eb87c1f6020982173c908e7eb31aa66c1f0296": {
+  "name": "USDC / WETH 0.05%",
+  "reserve_usd": 368178.593,
+  "vol_24h": 87083.9878296384,
+  "dex": "sushiswap-v3-arbitrum",
+  "created": "2023-07-06T21:11:05Z"
+ },
+ "42161:0xcac39127c59112f63bf31dc3daf103527369e646f3dbcc2ba74b28e6fa37f03b": {
+  "name": "WOO / ETH 0.3%",
+  "reserve_usd": 335804.3035,
+  "vol_24h": 11344.3845410887,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-06-09T10:35:09Z"
+ },
+ "42161:0xcda53b1f66614552f834ceef361a8d12a0b8dad8": {
+  "name": "ARB / USDC 0.05%",
+  "reserve_usd": 310351.8861,
+  "vol_24h": 125291.192739068,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-03-20T19:40:12Z"
+ },
+ "42161:0xaebdca1bc8d89177ebe2308d62af5e74885dccc3": {
+  "name": "ARB / USDC 0.3%",
+  "reserve_usd": 188930.75,
+  "vol_24h": 57639.6148178628,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-10T09:08:11Z"
+ },
+ "42161:0xfc7b3ad139daaf1e9c3637ed921c154d1b04286f8a82b805a6c352da57028653": {
+  "name": "WETH / USDC 0.05%",
+  "reserve_usd": 249751.6299,
+  "vol_24h": 255080.105123801,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-22T15:45:26Z"
+ },
+ "42161:0x68ebadf62ee5acce5f8d64211d24b4710eeb2029": {
+  "name": "PEAR / WETH 0.3%",
+  "reserve_usd": 300630.7362,
+  "vol_24h": 26244.7004432455,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-09-26T18:39:58Z"
+ },
+ "42161:0xb1026b8e7276e7ac75410f1fcbbe21796e8f7526": {
+  "name": "USDC / WETH 0.01%",
+  "reserve_usd": 268566.1027,
+  "vol_24h": 961557.958718233,
+  "dex": "camelot-v3",
+  "created": "2023-06-23T02:23:53Z"
+ },
+ "42161:0xcfe0acf3b242aef2697ba94f11a31f61f2349bcb": {
+  "name": "LAVA / USDT 0.25%",
+  "reserve_usd": 337513.0535,
+  "vol_24h": 5550.8619495191,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2025-12-09T07:23:57Z"
+ },
+ "42161:0x3db70832f48f8c01ee041671f7bb1cfaa2677584": {
+  "name": "USDC / AAVE 0.3%",
+  "reserve_usd": 205081.4219,
+  "vol_24h": 27321.3229753567,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-07-05T23:23:59Z"
+ },
+ "42161:0x076994463d511adbe0c113b93dcb084a839b0d80": {
+  "name": "EVA / WBTC 0.3%",
+  "reserve_usd": 174249.0336,
+  "vol_24h": 16189.0818976936,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-07-11T22:44:58Z"
+ },
+ "42161:0x13fd8faf63c1b0dbd44157df1a390224d734bdcf1f60451fb84a8b48dd3d388a": {
+  "name": "USDC / USDT",
+  "reserve_usd": 338834.7746,
+  "vol_24h": 245844.613366006,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-05-19T15:55:16Z"
+ },
+ "42161:0x15eb51a325cbce6c1cc8202a6f8a76224c5b7540": {
+  "name": "ESP / USDC 0.01%",
+  "reserve_usd": 307461.1202,
+  "vol_24h": 302074.412442557,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2026-02-11T07:07:06Z"
+ },
+ "42161:0x32a5746ba6826828716cc1a394bc33301ebc7656": {
+  "name": "LINK / USDT 0.3%",
+  "reserve_usd": 208239.1976,
+  "vol_24h": 15583.0442887093,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-09-21T20:36:07Z"
+ },
+ "42161:0x6433a2079638d8794b296d6fa5532d0f51c0e6bf": {
+  "name": "RBTC / WBTC 0.05%",
+  "reserve_usd": 316172.7344,
+  "vol_24h": 1271.1552006927,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2025-06-27T10:13:13Z"
+ },
+ "42161:0x05477c22a5349cee601500da0489dad137fd6bfa": {
+  "name": "USDC / UNI 0.3%",
+  "reserve_usd": 130835.0234,
+  "vol_24h": 41983.4285949956,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-07-09T17:44:21Z"
+ },
+ "42161:0xb7e50106a5bd3cf21af210a755f9c8740890a8c9": {
+  "name": "MAGIC / WETH",
+  "reserve_usd": 216221.9711,
+  "vol_24h": 48686.7043648423,
+  "dex": "sushiswap_arbitrum",
+  "created": "2024-04-04T07:46:57Z"
+ },
+ "42161:0x689c96ceab93f5e131631d225d75dea3fd37747e": {
+  "name": "ARB / WBTC 0.3%",
+  "reserve_usd": 130014.9235,
+  "vol_24h": 80284.1504118174,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-03-23T23:04:12Z"
+ },
+ "42161:0x1b2c9a12ccd172e95c2e09a6ebb7c715445e2b91e29ea0c5e18ac5d2c6fca665": {
+  "name": "ETH / PENDLE 0.3%",
+  "reserve_usd": 239581.3204,
+  "vol_24h": 23442.2348797508,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-29T23:00:44Z"
+ },
+ "42161:0x64f68f27a2e2b477e70f98f32376bf3989884526947b9d46ee990d3882ff1a76": {
+  "name": "PENDLE / ETH 0.45%",
+  "reserve_usd": 140870.6343,
+  "vol_24h": 41899.6433762154,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-06-12T03:11:01Z"
+ },
+ "42161:0x783ef2da6de46d971e3cb749d0e5940380ef089d418e76448e9a0fb25bd0d120": {
+  "name": "ETH / ZRO 0.3%",
+  "reserve_usd": 89096.4991,
+  "vol_24h": 59721.5051397665,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-29T18:27:38Z"
+ },
+ "42161:0x17c14d2c404d167802b16c450d3c99f88f2c4f4d": {
+  "name": "WETH / USDC 0.3%",
+  "reserve_usd": 274951.9293,
+  "vol_24h": 3289.1460491513,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:20:01Z"
+ },
+ "42161:0x0a36952fb8c8dc6daefb2fadb07c5212f560880e": {
+  "name": "USDC / GMX 1%",
+  "reserve_usd": 240295.5493,
+  "vol_24h": 9648.9538670706,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-10T04:52:14Z"
+ },
+ "42161:0x6985cb98ce393fce8d6272127f39013f61e36166": {
+  "name": "USDC / WBTC 0.3%",
+  "reserve_usd": 231592.8393,
+  "vol_24h": 24605.0366711106,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-06-10T16:25:51Z"
+ },
+ "42161:0x9b6ff025aee245d314c09f57b72f0de6e231c3a6": {
+  "name": "GNS / WETH 0.3%",
+  "reserve_usd": 217474.6113,
+  "vol_24h": 11309.723671465,
+  "dex": "camelot-v3",
+  "created": "2024-06-11T00:45:18Z"
+ },
+ "42161:0x4fd69d55704d8c40ebbd6d0086f1c827eed02bfb4a42cea8aafda66b45dab22e": {
+  "name": "cbBTC / WBTC 0.005%",
+  "reserve_usd": 255791.4792,
+  "vol_24h": 211689.428463033,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-12-04T09:30:05Z"
+ },
+ "42161:0x92c63d0e701caae670c9415d91c474f686298f00": {
+  "name": "ARB / WETH 0.3%",
+  "reserve_usd": 186983.2389,
+  "vol_24h": 35896.4050507865,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-03-17T01:48:42Z"
+ },
+ "42161:0x2212dd9937e9c55a79c4e4aa1147497cd73fad94": {
+  "name": "DGAI / USDT 0.01%",
+  "reserve_usd": 257728.8614,
+  "vol_24h": 13900.8091184427,
+  "dex": "pancakeswap-v3-arbitrum",
+  "created": "2026-08-24T08:26:08Z"
+ },
+ "42161:0x72099b283d5e29b87d32c978c7c59a2bdfc9a6031ef8c748757ba212efe69658": {
+  "name": "ETH / LINK 0.3%",
+  "reserve_usd": 191652.1661,
+  "vol_24h": 10226.9265991143,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-01-29T20:51:26Z"
+ },
+ "42161:0x87ba69021d369bf2a080687cab68b623b716cb98df215694dd983055363212a7": {
+  "name": "ETHFI / ETH 0.3%",
+  "reserve_usd": 171625.1894,
+  "vol_24h": 26557.0311618161,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-09-15T09:10:41Z"
+ },
+ "42161:0x4cef551255ec96d89fec975446301b5c4e164c59": {
+  "name": "ZRO / WETH 0.3%",
+  "reserve_usd": 92076.9139,
+  "vol_24h": 49574.195174255,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-06-20T10:27:15Z"
+ },
+ "42161:0x53d3e59faac08184720bcb2816f4cf5b36d6767d": {
+  "name": "NST / WETH 0.3%",
+  "reserve_usd": 205060.8737,
+  "vol_24h": 33485.1147135371,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-03-24T23:08:05Z"
+ },
+ "42161:0x23d17764f41aea93fdbb5beffa83571f0bf3f8b2": {
+  "name": "PEAS / WETH 1%",
+  "reserve_usd": 210962.2438,
+  "vol_24h": 1650.4514904955,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2024-03-16T19:29:30Z"
+ },
+ "42161:0x1aeedd3727a6431b8f070c0afaa81cc74f273882": {
+  "name": "GMX / WETH 0.3%",
+  "reserve_usd": 146230.081,
+  "vol_24h": 97328.1966963542,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2022-02-07T15:10:40Z"
+ },
+ "42161:0xb08a8794a5d3ccca3725d92964696858d3201909": {
+  "name": "PENDLE / WETH 0.05%",
+  "reserve_usd": 197627.3092,
+  "vol_24h": 101186.766162924,
+  "dex": "uniswap_v3_arbitrum",
+  "created": "2023-05-04T13:23:09Z"
+ },
+ "42161:0x108a840f633c00927f0b773c8851cc1835ae7631833e88d7a3c38fd761ef2f7a": {
+  "name": "WBTC / USDC 1%",
+  "reserve_usd": 188382.4638,
+  "vol_24h": 6444.082753049,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2025-03-03T12:28:40Z"
+ },
+ "42161:0x0352a9f1744511cb734ae924b518264daf8ecae77bcd89497915dc03d5f089db": {
+  "name": "cbBTC / WBTC 0.004%",
+  "reserve_usd": 212389.1744,
+  "vol_24h": 590092.617503348,
+  "dex": "uniswap-v4-arbitrum",
+  "created": "2026-09-19T16:47:31Z"
+ },
+ "8453:0x6c561b446416e1a00e8e93e221854d6ea4171372": {
+  "name": "WETH / USDC 0.3%",
+  "reserve_usd": 162627064.371,
+  "vol_24h": 39609355.5669479,
+  "dex": "uniswap-v3-base",
+  "created": "2023-11-18T05:59:09Z"
+ },
+ "8453:0xf448d35a7121ebd0f7f15a88c222233c1bbe1082": {
+  "name": "IOTA / WETH 0.3%",
+  "reserve_usd": 141400195.5238,
+  "vol_24h": 0.0,
+  "dex": "uniswap-v3-base",
+  "created": "2026-09-28T22:58:21Z"
+ },
+ "8453:0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59": {
+  "name": "WETH / USDC 0.05%",
+  "reserve_usd": 8387005.6739,
+  "vol_24h": 48583421.8588229,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-05-06T05:03:45Z"
+ },
+ "8453:0x3fe04a59ebd38cf06080a6f60a98d124eb59392a": {
+  "name": "WETH / USDC 0.05%",
+  "reserve_usd": 9583612.6262,
+  "vol_24h": 49850297.3315955,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-22T21:59:50Z"
+ },
+ "8453:0x42d4a22cad0f5a49681a5715ce994af73a43b76b": {
+  "name": "cbBTC / WETH 0.05%",
+  "reserve_usd": 9173101.5637,
+  "vol_24h": 39165873.493974,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-22T21:55:43Z"
+ },
+ "8453:0x7c84276e317f128b55bd270dbfba3ef94c84b984c124a1de7c4f72da90bfba45": {
+  "name": "POD / ETH 1%",
+  "reserve_usd": 3954968.4601,
+  "vol_24h": 768856.694716362,
+  "dex": "uniswap-v4-base",
+  "created": "2026-03-02T17:54:15Z"
+ },
+ "8453:0x70acdf2ad0bf2402c957154f944c19ef4e1cbae1": {
+  "name": "cbBTC / WETH 0.05%",
+  "reserve_usd": 16491000.8886,
+  "vol_24h": 1698524.80976346,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-09-12T13:53:26Z"
+ },
+ "8453:0x7aea2e8a3843516afa07293a10ac8e49906dabd1": {
+  "name": "cbBTC / WETH 0.05%",
+  "reserve_usd": 14492520.7381,
+  "vol_24h": 11835041.1462556,
+  "dex": "uniswap-v3-base",
+  "created": "2024-09-13T15:24:23Z"
+ },
+ "8453:0xe2b8c33ae97658cead06afd47c7f3857e5851871": {
+  "name": "JitoSOL / cbBTC 0.01%",
+  "reserve_usd": 15750399.6415,
+  "vol_24h": 716278.875500772,
+  "dex": "uniswap-v3-base",
+  "created": "2026-05-29T16:16:13Z"
+ },
+ "8453:0xd0b53d9277642d899df5c87a3966a349a798f224": {
+  "name": "USDC / WETH 0.05%",
+  "reserve_usd": 10036673.6718,
+  "vol_24h": 11007979.4941917,
+  "dex": "uniswap-v3-base",
+  "created": "2024-03-23T12:55:07Z"
+ },
+ "8453:0x8c7080564b5a792a33ef2fd473fba6364d5495e5": {
+  "name": "cbBTC / WETH 0.3%",
+  "reserve_usd": 11628711.4328,
+  "vol_24h": 884780.609194103,
+  "dex": "uniswap-v3-base",
+  "created": "2024-09-11T19:49:35Z"
+ },
+ "8453:0x2df380544b88adb3ad0a94100dcc45fd705aae2d": {
+  "name": "xdp / USDC 0.01%",
+  "reserve_usd": 1888053.6231,
+  "vol_24h": 180177145.893026,
+  "dex": "uniswap-v3-base",
+  "created": "2026-09-28T12:52:05Z"
+ },
+ "8453:0x1ef035205f94c7734827961c438474d089a334a0": {
+  "name": "xdp / USDC 2%",
+  "reserve_usd": 2310798.5246,
+  "vol_24h": 6305915.99990892,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-28T13:07:23Z"
+ },
+ "8453:0xa135b59fe221c0c8d441294f97f96fbc37bc9fbe": {
+  "name": "VVV / WETH 0.3%",
+  "reserve_usd": 3169104.8824,
+  "vol_24h": 3782598.40341174,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-16T04:45:13Z"
+ },
+ "8453:0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef": {
+  "name": "cbBTC / USDC 0.05%",
+  "reserve_usd": 8552817.7594,
+  "vol_24h": 6658408.10648892,
+  "dex": "uniswap-v3-base",
+  "created": "2024-09-14T12:04:07Z"
+ },
+ "8453:0x4e506648d493c8870f55e870480f92f2f33ece51": {
+  "name": "AERO / WETH 0.3%",
+  "reserve_usd": 4039592.6461,
+  "vol_24h": 6523449.47492698,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-29T19:14:02Z"
+ },
+ "8453:0xbe00ff35af70e8415d0eb605a286d8a45466a4c1": {
+  "name": "AERO / USDC 1%",
+  "reserve_usd": 4947884.0783,
+  "vol_24h": 348144.732622565,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-05-29T14:38:57Z"
+ },
+ "8453:0xdf5bde0fc414fcd1f803c9d1b52ebbb4db5982d8dca5316ae06b467e06fc429a": {
+  "name": "OUSD / USDC 0.01%",
+  "reserve_usd": 10101114.5874,
+  "vol_24h": 4187.3942779422,
+  "dex": "uniswap-v4-base",
+  "created": "2026-09-29T20:54:21Z"
+ },
+ "8453:0x4e962bb3889bf030368f56810a9c96b83cb3e778": {
+  "name": "cbBTC / USDC 0.05%",
+  "reserve_usd": 5994099.0576,
+  "vol_24h": 7644301.41104449,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-09-12T13:56:07Z"
+ },
+ "8453:0x160d7e9d948b16c163332a277b393c288408eb12": {
+  "name": "cbBTC / USDC 0.05%",
+  "reserve_usd": 5174103.5013,
+  "vol_24h": 24846518.1436908,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-22T21:52:40Z"
+ },
+ "8453:0xdfe5f275020def30993f042174fc2d335678b626": {
+  "name": "AERO / cbBTC 0.6%",
+  "reserve_usd": 2081889.5666,
+  "vol_24h": 10317567.4123153,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-11-27T22:05:52Z"
+ },
+ "8453:0x01271a205e3f37cbfc9b353170d726060e193c0d": {
+  "name": "VVV / DIEM 0.25%",
+  "reserve_usd": 7507696.5314,
+  "vol_24h": 384754.293365025,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-05-12T15:06:10Z"
+ },
+ "8453:0x3e66e55e97ce60096f74b7c475e8249f2d31a9fb": {
+  "name": "USDC / cbBTC 1%",
+  "reserve_usd": 7327538.9493,
+  "vol_24h": 4976593.12906129,
+  "dex": "aerodrome-slipstream",
+  "created": "2025-03-12T06:42:10Z"
+ },
+ "8453:0xe2654cc01616e962fbfcc4277c23062e59e70e39f87221d77b6d438705a5f286": {
+  "name": "DRV / USDC 0.49%",
+  "reserve_usd": 4789048.2239,
+  "vol_24h": 653039.233862634,
+  "dex": "uniswap-v4-base",
+  "created": "2026-05-26T05:23:51Z"
+ },
+ "8453:0xc211e1f853a898bd1302385ccde55f33a8c4b3f3": {
+  "name": "cbBTC / WETH 0.01%",
+  "reserve_usd": 6102479.9422,
+  "vol_24h": 24026110.5485487,
+  "dex": "pancakeswap-v3-base",
+  "created": "2024-09-13T06:45:47Z"
+ },
+ "8453:0x7ec6c9d993d9832aa654593f2dbc21303650bc6c": {
+  "name": "VVV / WETH 0.05%",
+  "reserve_usd": 3121416.7942,
+  "vol_24h": 1866385.52397543,
+  "dex": "aerodrome-slipstream",
+  "created": "2025-01-29T23:33:20Z"
+ },
+ "8453:0x72ab388e2e2f6facef59e3c3fa2c4e29011c2d38": {
+  "name": "WETH / USDC 0.01%",
+  "reserve_usd": 4958626.3533,
+  "vol_24h": 31655919.3873992,
+  "dex": "pancakeswap-v3-base",
+  "created": "2023-10-18T05:54:25Z"
+ },
+ "8453:0x48c5d4a6677ed59646a9c6465db2562be4a20aec": {
+  "name": "POD / USDC 0.3%",
+  "reserve_usd": 511885.0748,
+  "vol_24h": 449660.064928801,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-07-14T17:29:24Z"
+ },
+ "8453:0x0c3b466104545efa096b8f944c1e524e1d0d4888": {
+  "name": "TIBBIR / VIRTUAL",
+  "reserve_usd": 3820324.7587,
+  "vol_24h": 195572.705041064,
+  "dex": "uniswap-v2-base",
+  "created": "2025-01-12T00:30:03Z"
+ },
+ "8453:0xef7e596aef9e4c6301b4d1f1e88f8ffe8c306222": {
+  "name": "DRV / WETH 0.8%",
+  "reserve_usd": 1961120.8841,
+  "vol_24h": 358986.083033805,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-16T04:45:42Z"
+ },
+ "8453:0xb5f0b4ae66c14f7efaa9aa1468e8fc536a3e288c": {
+  "name": "MORPHO / WETH 0.3%",
+  "reserve_usd": 1110564.3093,
+  "vol_24h": 1435338.8379279,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-11-26T20:22:44Z"
+ },
+ "8453:0x7c7420dd105e2779316423ba3e973f434315efa9": {
+  "name": "cbBTC / WETH 0.009%",
+  "reserve_usd": 2269450.8383,
+  "vol_24h": 54640752.8558944,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-16T04:45:09Z"
+ },
+ "8453:0xe070797535b13431808f8fc81fdbe7b41362960ed0b55bc2b6117c49c51b7eb9": {
+  "name": "ETH / USDC 0.3%",
+  "reserve_usd": 4620879.8125,
+  "vol_24h": 258223.402830558,
+  "dex": "uniswap-v4-base",
+  "created": "2025-01-29T18:20:53Z"
+ },
+ "8453:0x8b27f626ab668197000bc722a1012022caed10e2": {
+  "name": "MSTRc / USDC 0.05%",
+  "reserve_usd": 1523386.964,
+  "vol_24h": 8403892.82181063,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-03T10:36:21Z"
+ },
+ "8453:0xeaf57753bc382e0324a1d43f72e7027705a2273e": {
+  "name": "METAc / USDC 0.022%",
+  "reserve_usd": 2088804.2479,
+  "vol_24h": 3243103.83008513,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-08-13T13:02:11Z"
+ },
+ "8453:0xef256e214c45aab706ca54d6e2c5d0ca42b87895a43e97b382ea012d13e78e49": {
+  "name": "boar / WETH",
+  "reserve_usd": 305336.7498,
+  "vol_24h": 242934.328562539,
+  "dex": "uniswap-v4-base",
+  "created": "2026-09-26T02:58:01Z"
+ },
+ "8453:0x853f5f1b92b16714fe6cda67caad0856b83c7ab9": {
+  "name": "NVDAc / USDC 0.174%",
+  "reserve_usd": 2020293.589,
+  "vol_24h": 3416792.97820077,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-08-12T19:31:01Z"
+ },
+ "8453:0xa44d3bb767d953711ea4bce8c0f01f4d7d299af6": {
+  "name": "LBTC / cbBTC 0.01%",
+  "reserve_usd": 4701828.7522,
+  "vol_24h": 61229.6800845627,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-11-26T15:41:13Z"
+ },
+ "8453:0x9785ef59e2b499fb741674ecf6faf912df7b3c1b": {
+  "name": "USDT / WETH 0.05%",
+  "reserve_usd": 2478814.475,
+  "vol_24h": 5671968.0988075,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-07-24T23:06:55Z"
+ },
+ "8453:0x82321f3beb69f503380d6b233857d5c43562e2d0": {
+  "name": "AERO / WETH 1%",
+  "reserve_usd": 1131481.5099,
+  "vol_24h": 2071242.61224708,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-05-08T21:46:47Z"
+ },
+ "8453:0x12d76c5c8ec8edffd3c143995b0aa43fe44a6d71eb9113796272909e54b8e078": {
+  "name": "cbBTC / USDC 0.05%",
+  "reserve_usd": 3402570.7643,
+  "vol_24h": 2080518.71511217,
+  "dex": "uniswap-v4-base",
+  "created": "2025-01-29T22:05:51Z"
+ },
+ "8453:0xb1987cad1682841b4b641d50e520777ec5ab5542": {
+  "name": "GOOGLc / USDC 0.05%",
+  "reserve_usd": 1851523.9892,
+  "vol_24h": 2832095.75218899,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-08-13T13:03:59Z"
+ },
+ "8453:0xfc25fdd217e288d03a877f0b7d49e0bbe52b2288c88de929125062569fc7eb2a": {
+  "name": "Surplus / WETH",
+  "reserve_usd": 849597.3196,
+  "vol_24h": 291303.631927386,
+  "dex": "uniswap-v4-base",
+  "created": "2026-05-16T15:20:31Z"
+ },
+ "8453:0xbc6683f3fed27bbfdfb6d9f342a29c5f2c2f02de9f9d65fb35d77d4f43a7b51e": {
+  "name": "umia / USDC 1%",
+  "reserve_usd": 3441555.6037,
+  "vol_24h": 75839.8989489071,
+  "dex": "uniswap-v4-base",
+  "created": "2026-09-02T12:10:07Z"
+ },
+ "8453:0x0392b12a1ceb0cd13af5ea448cf5586ea609852d": {
+  "name": "ZEN / WETH 0.15%",
+  "reserve_usd": 2800750.9661,
+  "vol_24h": 835276.698620516,
+  "dex": "aerodrome-slipstream",
+  "created": "2025-07-23T13:35:47Z"
+ },
+ "8453:0x861a2922be165a5bd41b1e482b49216b465e1b5f": {
+  "name": "wstETH / WETH 0.3%",
+  "reserve_usd": 4047996.23,
+  "vol_24h": 789046.609881112,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-05-06T05:26:49Z"
+ },
+ "8453:0xd03bc8c7f2faedce2aac81bf0444aea08ea06e9b": {
+  "name": "AMZNc / USDC 0.088%",
+  "reserve_usd": 2034842.3004,
+  "vol_24h": 2577577.90197402,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-03T20:11:59Z"
+ },
+ "8453:0xe70d39303ecfbc64df28facabae250ce2b31147a": {
+  "name": "MPP / USDC 0.3%",
+  "reserve_usd": 3896812.1612,
+  "vol_24h": 4173.263997864,
+  "dex": "uniswap-v3-base",
+  "created": "2026-02-26T14:45:53Z"
+ },
+ "8453:0x529d2863a1521d0b57db028168fde2e97120017c": {
+  "name": "VIRTUAL / USDC 0.3%",
+  "reserve_usd": 1114479.4086,
+  "vol_24h": 1076593.83508896,
+  "dex": "uniswap-v3-base",
+  "created": "2024-04-12T23:47:59Z"
+ },
+ "8453:0x4a79b0168296c0ef7b8f314973b82ad406a29f1b": {
+  "name": "AAVE / WETH 0.3%",
+  "reserve_usd": 1729275.0388,
+  "vol_24h": 728047.717763126,
+  "dex": "aerodrome-slipstream",
+  "created": "2025-02-05T22:33:44Z"
+ },
+ "8453:0x5a8236f575471e7bfca2c8462a200c28f737246e": {
+  "name": "SNDKc / USDC 0.018%",
+  "reserve_usd": 1227298.2663,
+  "vol_24h": 3842256.91730153,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-03T22:23:35Z"
+ },
+ "8453:0x0fc47c17af86078d809358db1b4db2debc988566": {
+  "name": "cbZEC / USDC 0.2%",
+  "reserve_usd": 648356.9356,
+  "vol_24h": 1358283.39313377,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-01T16:26:12Z"
+ },
+ "8453:0x5116773e18a9c7bb03ebb961b38678e45e238923": {
+  "name": "DRB / WETH 1%",
+  "reserve_usd": 1710947.4033,
+  "vol_24h": 77082.4057808645,
+  "dex": "uniswap-v3-base",
+  "created": "2025-03-07T09:58:57Z"
+ },
+ "8453:0xa3b1e3f9747065e2073722ff4c9027d3ea4994f0": {
+  "name": "AAPL / USDC 0.137%",
+  "reserve_usd": 1735864.41,
+  "vol_24h": 2001778.64646807,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-08-13T09:31:03Z"
+ },
+ "8453:0x3dfdecc334a8f2618321c78a9de0e9428438f871": {
+  "name": "BLUECHIP / USDC 0.03%",
+  "reserve_usd": 128932.1698,
+  "vol_24h": 440940.487572882,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-08-26T18:55:09Z"
+ },
+ "8453:0x8d479a4c680a76d4ae03f10203569558405ddfff": {
+  "name": "O / USDC 0.012%",
+  "reserve_usd": 2109089.4185,
+  "vol_24h": 161723.947817673,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-06-17T15:00:33Z"
+ },
+ "8453:0x6a77cdec82eff6a6a5d273f18c1c27cd3d71a588": {
+  "name": "DINO / WETH",
+  "reserve_usd": 3250343.3977,
+  "vol_24h": 5045.104768966,
+  "dex": "uniswap-v2-base",
+  "created": "2024-03-29T12:44:25Z"
+ },
+ "8453:0xaec085e5a5ce8d96a7bdd3eb3a62445d4f6ce703": {
+  "name": "BNKR / WETH 1%",
+  "reserve_usd": 2656165.6194,
+  "vol_24h": 13105.895220183,
+  "dex": "uniswap-v3-base",
+  "created": "2024-12-03T04:44:53Z"
+ },
+ "8453:0x3d5d143381916280ff91407febeb52f2b60f33cf": {
+  "name": "AERO / WETH 0.3%",
+  "reserve_usd": 1616585.4642,
+  "vol_24h": 665769.787211611,
+  "dex": "uniswap-v3-base",
+  "created": "2023-10-04T13:09:45Z"
+ },
+ "8453:0x5f547579519beaa158cddd3543604029165f66e86a00c373d0ee90c38784921b": {
+  "name": "DOT / ETH 1%",
+  "reserve_usd": 730677.1206,
+  "vol_24h": 90130.5658243123,
+  "dex": "uniswap-v4-base",
+  "created": "2026-05-27T17:10:59Z"
+ },
+ "8453:0x3f2bb479c96227805dd98d862f564afc0131478c": {
+  "name": "OPAL / WETH",
+  "reserve_usd": 2815115.9533,
+  "vol_24h": 4357.4865243801,
+  "dex": "uniswap-v2-base",
+  "created": "2026-08-31T21:32:19Z"
+ },
+ "8453:0x2f42df4af5312b492e9d7f7b2110d9c7bf2d9e4f": {
+  "name": "MORPHO / WETH 0.3%",
+  "reserve_usd": 975410.5518,
+  "vol_24h": 526803.199166973,
+  "dex": "uniswap-v3-base",
+  "created": "2024-11-11T23:28:21Z"
+ },
+ "8453:0x46d398a5b33709877f50c8918a7ee96f1be1d7dd": {
+  "name": "VVV / WETH 0.3%",
+  "reserve_usd": 1218617.7841,
+  "vol_24h": 214208.636255226,
+  "dex": "aerodrome-slipstream",
+  "created": "2025-01-27T17:50:32Z"
+ },
+ "8453:0x47f9e291bb766fc307ad7bba4f29f3eab6a97101": {
+  "name": "ZEN / cbBTC 0.25%",
+  "reserve_usd": 1773054.3884,
+  "vol_24h": 245305.670340774,
+  "dex": "aerodrome-slipstream",
+  "created": "2025-07-23T13:35:47Z"
+ },
+ "8453:0xe2b182796518e76845f46ccdc522495d81630d14": {
+  "name": "EDEL / USDC 0.3%",
+  "reserve_usd": 512250.2695,
+  "vol_24h": 1343512.58428391,
+  "dex": "aerodrome-slipstream-2",
+  "created": "2025-11-17T18:30:14Z"
+ },
+ "8453:0xd418dfe7670c21f682e041f34250c114db5d7789": {
+  "name": "GAME / VIRTUAL",
+  "reserve_usd": 2684692.3642,
+  "vol_24h": 19847.2558185541,
+  "dex": "uniswap-v2-base",
+  "created": "2024-09-23T11:42:11Z"
+ },
+ "8453:0x0e4409f7a8eba3213f336daf608985302e79328c": {
+  "name": "TIBBIR / WETH 0.25%",
+  "reserve_usd": 233526.5929,
+  "vol_24h": 424942.677575924,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-16T04:45:17Z"
+ },
+ "8453:0xfba22a6b7629a2fec052cc2a6eddd2c9d6da5ea5": {
+  "name": "Basecat / WETH 0.018%",
+  "reserve_usd": 69116.7015,
+  "vol_24h": 547902.117591011,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-08-24T23:19:57Z"
+ },
+ "8453:0x0bf58fe0fac935ac69595c19b12ba0d75e3f8c0e": {
+  "name": "SPCXc / USDC 0.024%",
+  "reserve_usd": 1084047.9293,
+  "vol_24h": 2073368.56543021,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-03T20:38:13Z"
+ },
+ "8453:0x7692acc1cdd771d09ebcae3663e1843b2911bec7": {
+  "name": "STONKEX / WETH 1%",
+  "reserve_usd": 459901.4599,
+  "vol_24h": 117529.905965773,
+  "dex": "uniswap-v3-base",
+  "created": "2026-08-24T15:19:45Z"
+ },
+ "8453:0x7103eb3c9590d1281f7dc03b2a9ee27c39df5d54": {
+  "name": "MSFTc / USDC 0.092%",
+  "reserve_usd": 1118810.1222,
+  "vol_24h": 2042344.93831806,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-03T20:25:31Z"
+ },
+ "8453:0xec558e484cc9f2210714e345298fdc53b253c27d": {
+  "name": "cbBTC / USDC 0.3%",
+  "reserve_usd": 1786342.0421,
+  "vol_24h": 292624.17458203,
+  "dex": "uniswap-v3-base",
+  "created": "2024-09-11T19:50:47Z"
+ },
+ "8453:0x2fbe93bf7177596c5d04675bdcef7bacaf98bd954dc26829fcda39f122239459": {
+  "name": "ETH / cbBTC 0.05%",
+  "reserve_usd": 1973513.8563,
+  "vol_24h": 969776.888518633,
+  "dex": "uniswap-v4-base",
+  "created": "2025-02-01T09:40:07Z"
+ },
+ "8453:0x34e3334e845d101205394e0bd8821fddc7cd5559": {
+  "name": "REI / WETH 0.05%",
+  "reserve_usd": 1822502.1653,
+  "vol_24h": 221844.231239352,
+  "dex": "aerodrome-slipstream-2",
+  "created": "2025-11-21T17:38:06Z"
+ },
+ "8453:0x47ca96ea59c13f72745928887f84c9f52c3d7348": {
+  "name": "cbETH / WETH 0.05%",
+  "reserve_usd": 2222021.9324,
+  "vol_24h": 3400497.01230222,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-05-06T05:11:31Z"
+ },
+ "8453:0x47865dcde7136215a76802aeb800f5e063434a01a51a2baa2c696f4d92a82130": {
+  "name": "BASEPAD / ETH 1%",
+  "reserve_usd": 41615.3823,
+  "vol_24h": 256990.293008369,
+  "dex": "uniswap-v4-base",
+  "created": "2026-10-02T19:29:59Z"
+ },
+ "8453:0xd364eb55e17700b54bd75feb3f14582ed7a29444": {
+  "name": "MAG7.ssi / USDC 0.3%",
+  "reserve_usd": 2022974.9356,
+  "vol_24h": 110930.001962587,
+  "dex": "uniswap-v3-base",
+  "created": "2024-12-19T03:47:43Z"
+ },
+ "8453:0xec33256bf1ded407a57fd3c1965e7556e42ac14db09bc4e6fef57d5e2eb0b0b9": {
+  "name": "GITLAWB / WETH",
+  "reserve_usd": 558834.839,
+  "vol_24h": 44847.3392700656,
+  "dex": "uniswap-v4-base",
+  "created": "2026-03-11T02:00:07Z"
+ },
+ "8453:0x469337fdcc5e8f38e2e4b670b04f57865d13a7bb": {
+  "name": "TSLAc / USDC 0.054%",
+  "reserve_usd": 1020286.0394,
+  "vol_24h": 2205738.05864515,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-03T20:17:39Z"
+ },
+ "8453:0xb94b22332abf5f89877a14cc88f2abc48c34b3df": {
+  "name": "cbBTC / USDC 0.01%",
+  "reserve_usd": 1763541.2813,
+  "vol_24h": 6888096.22457795,
+  "dex": "pancakeswap-v3-base",
+  "created": "2024-09-13T06:47:43Z"
+ },
+ "8453:0xaa5fe7dcc07dcb8b7afcd1b93874e7cb1e0ab50b": {
+  "name": "EURC / WETH 0.05%",
+  "reserve_usd": 712116.7707,
+  "vol_24h": 2697058.71216321,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-29T21:49:46Z"
+ },
+ "8453:0xbbb79f10ba7a225ffd0ddb87554a132a38747feb9a4c9cdd12f865d87c82c30b": {
+  "name": "EMBOW / VVV 3%",
+  "reserve_usd": 154027.7018,
+  "vol_24h": 18450.659508937,
+  "dex": "uniswap-v4-base",
+  "created": "2026-09-21T18:36:47Z"
+ },
+ "8453:0xa8e64fb120ce8796594670bae72279c8aa1e5359": {
+  "name": "LUNA / VIRTUAL",
+  "reserve_usd": 2064340.9768,
+  "vol_24h": 8875.2212664608,
+  "dex": "uniswap-v2-base",
+  "created": "2024-10-16T12:59:47Z"
+ },
+ "8453:0x1131db5977242a03ebead1acd18f80a9a29e5922": {
+  "name": "SOL / USDC 0.033%",
+  "reserve_usd": 666854.0225,
+  "vol_24h": 4274377.27563515,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-04-16T04:45:10Z"
+ },
+ "8453:0x7501bc8bb51616f79bfa524e464fb7b41f0b10fb": {
+  "name": "msUSD / USDC 0.05%",
+  "reserve_usd": 1708354.9872,
+  "vol_24h": 686089.136777396,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-12-04T17:59:18Z"
+ },
+ "8453:0x99cf3e8bfb02c300312c53aac5d0b082e3d5975c": {
+  "name": "LAPTOP / USDC 1%",
+  "reserve_usd": 1195905.1692,
+  "vol_24h": 212632.677826448,
+  "dex": "aerodrome-slipstream-3",
+  "created": "2026-09-09T02:27:33Z"
+ },
+ "8453:0xe31c372a7af875b3b5e0f3713b17ef51556da667": {
+  "name": "VIRTUAL / WETH",
+  "reserve_usd": 1589556.9235,
+  "vol_24h": 179435.467483346,
+  "dex": "uniswap-v2-base",
+  "created": "2024-10-21T16:17:07Z"
+ },
+ "8453:0x8bb9eaf3c5a906d20c4cc10ea2f73a3ac2d5d41a": {
+  "name": "cbETH / cbBTC 0.05%",
+  "reserve_usd": 1185421.4153,
+  "vol_24h": 2697661.68902403,
+  "dex": "aerodrome-slipstream-2",
+  "created": "2026-01-12T21:00:22Z"
+ },
+ "8453:0x73184f3f24a9993aeb4ae040e36997dfe2e927a6742bbb1f24706c421f527330": {
+  "name": "ATLAS / WETH",
+  "reserve_usd": 84266.6104,
+  "vol_24h": 39105.911918821,
+  "dex": "bankr",
+  "created": "2026-09-26T22:50:31Z"
+ },
+ "8453:0x2ae9df02539887d4ebce0230168a302d34784c82": {
+  "name": "bsdETH / WETH 0.01%",
+  "reserve_usd": 1829051.461,
+  "vol_24h": 995766.399146994,
+  "dex": "aerodrome-slipstream",
+  "created": "2024-05-15T13:54:17Z"
+ }
+}

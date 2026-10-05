@@ -1,0 +1,3800 @@
+{
+ "totalDataChart": [
+  [
+   1756684800,
+   3007.89
+  ],
+  [
+   1756771200,
+   10023.24
+  ],
+  [
+   1756857600,
+   2309.2
+  ],
+  [
+   1756944000,
+   2393.0299999999997
+  ],
+  [
+   1757030400,
+   2806.62
+  ],
+  [
+   1757116800,
+   7538.63
+  ],
+  [
+   1757203200,
+   1426.55
+  ],
+  [
+   1757289600,
+   5628.57
+  ],
+  [
+   1757376000,
+   4527.35
+  ],
+  [
+   1757462400,
+   3407.4500000000003
+  ],
+  [
+   1757548800,
+   2056.13
+  ],
+  [
+   1757635200,
+   6773.82
+  ],
+  [
+   1757721600,
+   2078.5
+  ],
+  [
+   1757808000,
+   1453.96
+  ],
+  [
+   1757894400,
+   6544.1900000000005
+  ],
+  [
+   1757980800,
+   3101.0299999999997
+  ],
+  [
+   1758067200,
+   2997.51
+  ],
+  [
+   1758153600,
+   3314.9500000000003
+  ],
+  [
+   1758240000,
+   1807.82
+  ],
+  [
+   1758326400,
+   811.17
+  ],
+  [
+   1758412800,
+   570.5
+  ],
+  [
+   1758499200,
+   3267.06
+  ],
+  [
+   1758585600,
+   1573.9699999999998
+  ],
+  [
+   1758672000,
+   1100.69
+  ],
+  [
+   1758758400,
+   4146.59
+  ],
+  [
+   1758844800,
+   2175.69
+  ],
+  [
+   1758931200,
+   2226.83
+  ],
+  [
+   1759017600,
+   1839.9099999999999
+  ],
+  [
+   1759104000,
+   2744.1800000000003
+  ],
+  [
+   1759190400,
+   1924.25
+  ],
+  [
+   1759276800,
+   1813.21
+  ],
+  [
+   1759363200,
+   2864.36
+  ],
+  [
+   1759449600,
+   2874.3700000000003
+  ],
+  [
+   1759536000,
+   845.1099999999999
+  ],
+  [
+   1759622400,
+   1849.28
+  ],
+  [
+   1759708800,
+   1828.66
+  ],
+  [
+   1759795200,
+   2725.23
+  ],
+  [
+   1759881600,
+   2231.1800000000003
+  ],
+  [
+   1759968000,
+   1941.99
+  ],
+  [
+   1760054400,
+   3728.87
+  ],
+  [
+   1760140800,
+   2068.91
+  ],
+  [
+   1760227200,
+   1556.93
+  ],
+  [
+   1760313600,
+   937.11
+  ],
+  [
+   1760400000,
+   1370.6100000000001
+  ],
+  [
+   1760486400,
+   877.6600000000001
+  ],
+  [
+   1760572800,
+   961.09
+  ],
+  [
+   1760659200,
+   1494.19
+  ],
+  [
+   1760745600,
+   801.74
+  ],
+  [
+   1760832000,
+   1310.02
+  ],
+  [
+   1760918400,
+   586.36
+  ],
+  [
+   1761004800,
+   1072.28
+  ],
+  [
+   1761091200,
+   1213.18
+  ],
+  [
+   1761177600,
+   857.11
+  ],
+  [
+   1761264000,
+   953.15
+  ],
+  [
+   1761350400,
+   599.29
+  ],
+  [
+   1761436800,
+   777.14
+  ],
+  [
+   1761523200,
+   650.02
+  ],
+  [
+   1761609600,
+   1178.37
+  ],
+  [
+   1761696000,
+   693.51
+  ],
+  [
+   1761782400,
+   816.52
+  ],
+  [
+   1761868800,
+   514.28
+  ],
+  [
+   1761955200,
+   412.73
+  ],
+  [
+   1762041600,
+   322.57
+  ],
+  [
+   1762128000,
+   1237.75
+  ],
+  [
+   1762214400,
+   2001.05
+  ],
+  [
+   1762300800,
+   1530.48
+  ],
+  [
+   1762387200,
+   978.57
+  ],
+  [
+   1762473600,
+   1434.35
+  ],
+  [
+   1762560000,
+   514.36
+  ],
+  [
+   1762646400,
+   703.64
+  ],
+  [
+   1762732800,
+   712.36
+  ],
+  [
+   1762819200,
+   1110.74
+  ],
+  [
+   1762905600,
+   822.98
+  ],
+  [
+   1762992000,
+   1574.87
+  ],
+  [
+   1763078400,
+   1862.91
+  ],
+  [
+   1763164800,
+   566.29
+  ],
+  [
+   1763251200,
+   807.89
+  ],
+  [
+   1763337600,
+   1216.3999999999999
+  ],
+  [
+   1763424000,
+   1008.51
+  ],
+  [
+   1763510400,
+   48516.24
+  ],
+  [
+   1763596800,
+   3406.56
+  ],
+  [
+   1763683200,
+   1116.75
+  ],
+  [
+   1763769600,
+   390.59
+  ],
+  [
+   1763856000,
+   710.17
+  ],
+  [
+   1763942400,
+   958.94
+  ],
+  [
+   1764028800,
+   687.87
+  ],
+  [
+   1764115200,
+   342.55
+  ],
+  [
+   1764201600,
+   284.68
+  ],
+  [
+   1764288000,
+   590.9499999999999
+  ],
+  [
+   1764374400,
+   251.07
+  ],
+  [
+   1764460800,
+   294.37
+  ],
+  [
+   1764547200,
+   591.1500000000001
+  ],
+  [
+   1764633600,
+   940.29
+  ],
+  [
+   1764720000,
+   679.43
+  ],
+  [
+   1764806400,
+   665.4799999999999
+  ],
+  [
+   1764892800,
+   605.31
+  ],
+  [
+   1764979200,
+   181.13
+  ],
+  [
+   1765065600,
+   631.69
+  ],
+  [
+   1765152000,
+   794.3
+  ],
+  [
+   1765238400,
+   3565.24
+  ],
+  [
+   1765324800,
+   674.5400000000001
+  ],
+  [
+   1765411200,
+   786.15
+  ],
+  [
+   1765497600,
+   520.21
+  ],
+  [
+   1765584000,
+   138.4
+  ],
+  [
+   1765670400,
+   275.4
+  ],
+  [
+   1765756800,
+   29222.08
+  ],
+  [
+   1765843200,
+   483.22
+  ],
+  [
+   1765929600,
+   435.36
+  ],
+  [
+   1766016000,
+   564.96
+  ],
+  [
+   1766102400,
+   535.71
+  ],
+  [
+   1766188800,
+   268.28
+  ],
+  [
+   1766275200,
+   187.14000000000001
+  ],
+  [
+   1766361600,
+   415.03
+  ],
+  [
+   1766448000,
+   276.54999999999995
+  ],
+  [
+   1766534400,
+   233.62
+  ],
+  [
+   1766620800,
+   179.17999999999998
+  ],
+  [
+   1766707200,
+   355.2
+  ],
+  [
+   1766793600,
+   78.53
+  ],
+  [
+   1766880000,
+   78.47
+  ],
+  [
+   1766966400,
+   381.67999999999995
+  ],
+  [
+   1767052800,
+   259.42
+  ],
+  [
+   1767139200,
+   351.01
+  ],
+  [
+   1767225600,
+   301.93
+  ],
+  [
+   1767312000,
+   382.36
+  ],
+  [
+   1767398400,
+   103.53
+  ],
+  [
+   1767484800,
+   283.02
+  ],
+  [
+   1767571200,
+   490.5
+  ],
+  [
+   1767657600,
+   512.77
+  ],
+  [
+   1767744000,
+   232.67
+  ],
+  [
+   1767830400,
+   354.92
+  ],
+  [
+   1767916800,
+   393.04
+  ],
+  [
+   1768003200,
+   129.67000000000002
+  ],
+  [
+   1768089600,
+   220.02
+  ],
+  [
+   1768176000,
+   453.38
+  ],
+  [
+   1768262400,
+   832.9
+  ],
+  [
+   1768348800,
+   658.5999999999999
+  ],
+  [
+   1768435200,
+   411.03
+  ],
+  [
+   1768521600,
+   245.06
+  ],
+  [
+   1768608000,
+   153.56
+  ],
+  [
+   1768694400,
+   147.05
+  ],
+  [
+   1768780800,
+   439.13
+  ],
+  [
+   1768867200,
+   364.77
+  ],
+  [
+   1768953600,
+   503.13
+  ],
+  [
+   1769040000,
+   346.35
+  ],
+  [
+   1769126400,
+   405.93
+  ],
+  [
+   1769212800,
+   282.5
+  ],
+  [
+   1769299200,
+   251.3
+  ],
+  [
+   1769385600,
+   418.96000000000004
+  ],
+  [
+   1769472000,
+   6399.66
+  ],
+  [
+   1769558400,
+   199.76
+  ],
+  [
+   1769644800,
+   426.17
+  ],
+  [
+   1769731200,
+   391.15999999999997
+  ],
+  [
+   1769817600,
+   342.42
+  ],
+  [
+   1769904000,
+   181.8
+  ],
+  [
+   1769990400,
+   315374.97
+  ],
+  [
+   1770076800,
+   3813.6499999999996
+  ],
+  [
+   1770163200,
+   1397.51
+  ],
+  [
+   1770249600,
+   634.9300000000001
+  ],
+  [
+   1770336000,
+   451.65
+  ],
+  [
+   1770422400,
+   225.85000000000002
+  ],
+  [
+   1770508800,
+   354.79
+  ],
+  [
+   1770595200,
+   229.77
+  ],
+  [
+   1770681600,
+   7125.96
+  ],
+  [
+   1770768000,
+   1426.12
+  ],
+  [
+   1770854400,
+   463.59999999999997
+  ],
+  [
+   1770940800,
+   437.26
+  ],
+  [
+   1771027200,
+   642.9
+  ],
+  [
+   1771113600,
+   175.02
+  ],
+  [
+   1771200000,
+   130.04
+  ],
+  [
+   1771286400,
+   115.25
+  ],
+  [
+   1771372800,
+   287.01
+  ],
+  [
+   1771459200,
+   166.44
+  ],
+  [
+   1771545600,
+   105.44
+  ],
+  [
+   1771632000,
+   47.239999999999995
+  ],
+  [
+   1771718400,
+   65.56
+  ],
+  [
+   1771804800,
+   150.43
+  ],
+  [
+   1771891200,
+   171.36
+  ],
+  [
+   1771977600,
+   232.09
+  ],
+  [
+   1772064000,
+   549.15
+  ],
+  [
+   1772150400,
+   180.37
+  ],
+  [
+   1772236800,
+   280.78
+  ],
+  [
+   1772323200,
+   256.38
+  ],
+  [
+   1772409600,
+   276.29
+  ],
+  [
+   1772496000,
+   215.69
+  ],
+  [
+   1772582400,
+   363.89
+  ],
+  [
+   1772668800,
+   201.92000000000002
+  ],
+  [
+   1772755200,
+   223.02
+  ],
+  [
+   1772841600,
+   43.11
+  ],
+  [
+   1772928000,
+   80.97
+  ],
+  [
+   1773014400,
+   194.38
+  ],
+  [
+   1773100800,
+   149.12
+  ],
+  [
+   1773187200,
+   322.72
+  ],
+  [
+   1773273600,
+   233
+  ],
+  [
+   1773360000,
+   260.2
+  ],
+  [
+   1773446400,
+   56.1
+  ],
+  [
+   1773532800,
+   165.2
+  ],
+  [
+   1773619200,
+   640.22
+  ],
+  [
+   1773705600,
+   143.97
+  ],
+  [
+   1773792000,
+   255.78
+  ],
+  [
+   1773878400,
+   206.28
+  ],
+  [
+   1773964800,
+   252.92000000000002
+  ],
+  [
+   1774051200,
+   76.84
+  ],
+  [
+   1774137600,
+   52839.87
+  ],
+  [
+   1774224000,
+   383.25
+  ],
+  [
+   1774310400,
+   175.41
+  ],
+  [
+   1774396800,
+   104.65
+  ],
+  [
+   1774483200,
+   152.32
+  ],
+  [
+   1774569600,
+   107.84
+  ],
+  [
+   1774656000,
+   125.73
+  ],
+  [
+   1774742400,
+   127.89
+  ],
+  [
+   1774828800,
+   226.18
+  ],
+  [
+   1774915200,
+   810.8
+  ],
+  [
+   1775001600,
+   304.75
+  ],
+  [
+   1775088000,
+   149470.16
+  ],
+  [
+   1775174400,
+   106.22
+  ],
+  [
+   1775260800,
+   159.35
+  ],
+  [
+   1775347200,
+   99.16
+  ],
+  [
+   1775433600,
+   172.37
+  ],
+  [
+   1775520000,
+   397.21
+  ],
+  [
+   1775606400,
+   193.8
+  ],
+  [
+   1775692800,
+   133.07
+  ],
+  [
+   1775779200,
+   85
+  ],
+  [
+   1775865600,
+   350.3
+  ],
+  [
+   1775952000,
+   192.16
+  ],
+  [
+   1776038400,
+   201.82
+  ],
+  [
+   1776124800,
+   214.06
+  ],
+  [
+   1776211200,
+   148.53
+  ],
+  [
+   1776297600,
+   131.42
+  ],
+  [
+   1776384000,
+   133.14
+  ],
+  [
+   1776470400,
+   49.010000000000005
+  ],
+  [
+   1776556800,
+   124.53
+  ],
+  [
+   1776643200,
+   134.21
+  ],
+  [
+   1776729600,
+   83.78999999999999
+  ],
+  [
+   1776816000,
+   74.61000000000001
+  ],
+  [
+   1776902400,
+   213.54999999999998
+  ],
+  [
+   1776988800,
+   90.87
+  ],
+  [
+   1777075200,
+   22.400000000000002
+  ],
+  [
+   1777161600,
+   113.5
+  ],
+  [
+   1777248000,
+   210.51999999999998
+  ],
+  [
+   1777334400,
+   156.26
+  ],
+  [
+   1777420800,
+   171.03
+  ],
+  [
+   1777507200,
+   162.01
+  ],
+  [
+   1777593600,
+   138.74
+  ],
+  [
+   1777680000,
+   32.739999999999995
+  ],
+  [
+   1777766400,
+   133.58999999999997
+  ],
+  [
+   1777852800,
+   178.14
+  ],
+  [
+   1777939200,
+   36.38
+  ],
+  [
+   1778025600,
+   127.92
+  ],
+  [
+   1778112000,
+   182.39999999999998
+  ],
+  [
+   1778198400,
+   78.99000000000001
+  ],
+  [
+   1778284800,
+   43.019999999999996
+  ],
+  [
+   1778371200,
+   117.95
+  ],
+  [
+   1778457600,
+   268.54
+  ],
+  [
+   1778544000,
+   595.0399999999998
+  ],
+  [
+   1778630400,
+   720.0799999999999
+  ],
+  [
+   1778716800,
+   97.42000000000002
+  ],
+  [
+   1778803200,
+   76952.09999999999
+  ],
+  [
+   1778889600,
+   46.02
+  ],
+  [
+   1778976000,
+   41.32
+  ],
+  [
+   1779062400,
+   308.39
+  ],
+  [
+   1779148800,
+   92.35
+  ],
+  [
+   1779235200,
+   30.560000000000002
+  ],
+  [
+   1779321600,
+   880.9399999999999
+  ],
+  [
+   1779408000,
+   69.95
+  ],
+  [
+   1779494400,
+   68.01999999999998
+  ],
+  [
+   1779580800,
+   431.26
+  ],
+  [
+   1779667200,
+   7158.909999999999
+  ],
+  [
+   1779753600,
+   127.5
+  ],
+  [
+   1779840000,
+   41.06
+  ],
+  [
+   1779926400,
+   675.5400000000001
+  ],
+  [
+   1780012800,
+   55.17
+  ],
+  [
+   1780099200,
+   95.78999999999998
+  ],
+  [
+   1780185600,
+   119.51
+  ],
+  [
+   1780272000,
+   71.30000000000003
+  ],
+  [
+   1780358400,
+   63.919999999999995
+  ],
+  [
+   1780444800,
+   1400.7999999999997
+  ],
+  [
+   1780531200,
+   451.28
+  ],
+  [
+   1780617600,
+   415.84
+  ],
+  [
+   1780704000,
+   91.10000000000002
+  ],
+  [
+   1780790400,
+   79.49
+  ],
+  [
+   1780876800,
+   520.3900000000001
+  ],
+  [
+   1780963200,
+   270.64000000000004
+  ],
+  [
+   1781049600,
+   84.95000000000002
+  ],
+  [
+   1781136000,
+   195.20999999999995
+  ],
+  [
+   1781222400,
+   110.64999999999998
+  ],
+  [
+   1781308800,
+   21.339999999999996
+  ],
+  [
+   1781395200,
+   30.100000000000005
+  ],
+  [
+   1781481600,
+   1553.57
+  ],
+  [
+   1781568000,
+   74.49000000000001
+  ],
+  [
+   1781654400,
+   70.67999999999999
+  ],
+  [
+   1781740800,
+   59.63999999999999
+  ],
+  [
+   1781827200,
+   33.11999999999999
+  ],
+  [
+   1781913600,
+   32.440000000000005
+  ],
+  [
+   1782000000,
+   42.739999999999995
+  ],
+  [
+   1782086400,
+   490.43999999999994
+  ],
+  [
+   1782172800,
+   45.42
+  ],
+  [
+   1782259200,
+   199.12
+  ],
+  [
+   1782345600,
+   62.94999999999999
+  ],
+  [
+   1782432000,
+   58.59
+  ],
+  [
+   1782518400,
+   53.54
+  ],
+  [
+   1782604800,
+   41.23
+  ],
+  [
+   1782691200,
+   67.65
+  ],
+  [
+   1782777600,
+   64.28999999999999
+  ],
+  [
+   1782864000,
+   31.31
+  ],
+  [
+   1782950400,
+   90.80000000000001
+  ],
+  [
+   1783036800,
+   33.190000000000005
+  ],
+  [
+   1783123200,
+   73.51000000000002
+  ],
+  [
+   1783209600,
+   46.87
+  ],
+  [
+   1783296000,
+   292.88
+  ],
+  [
+   1783382400,
+   41.290000000000006
+  ],
+  [
+   1783468800,
+   163.79
+  ],
+  [
+   1783555200,
+   70.32000000000001
+  ],
+  [
+   1783641600,
+   57.52000000000001
+  ],
+  [
+   1783728000,
+   19.31
+  ],
+  [
+   1783814400,
+   172.07000000000002
+  ],
+  [
+   1783900800,
+   101.95999999999997
+  ],
+  [
+   1783987200,
+   8376.89
+  ],
+  [
+   1784073600,
+   64.14
+  ],
+  [
+   1784160000,
+   25.090000000000003
+  ],
+  [
+   1784246400,
+   35.150000000000006
+  ],
+  [
+   1784332800,
+   37.02
+  ],
+  [
+   1784419200,
+   21.169999999999995
+  ],
+  [
+   1784505600,
+   37.07
+  ],
+  [
+   1784592000,
+   22.75
+  ],
+  [
+   1784678400,
+   27.1
+  ],
+  [
+   1784764800,
+   35.41
+  ],
+  [
+   1784851200,
+   10.540000000000001
+  ],
+  [
+   1784937600,
+   14.39
+  ],
+  [
+   1785024000,
+   49.3
+  ],
+  [
+   1785110400,
+   88.04
+  ],
+  [
+   1785196800,
+   41.85999999999999
+  ],
+  [
+   1785283200,
+   18.27
+  ],
+  [
+   1785369600,
+   20.709999999999997
+  ],
+  [
+   1785456000,
+   26.999999999999996
+  ],
+  [
+   1785542400,
+   29.129999999999995
+  ],
+  [
+   1785628800,
+   18.57
+  ],
+  [
+   1785715200,
+   33.19
+  ],
+  [
+   1785801600,
+   9.380000000000003
+  ],
+  [
+   1785888000,
+   19.840000000000007
+  ],
+  [
+   1785974400,
+   99.41000000000001
+  ],
+  [
+   1786060800,
+   4.68
+  ],
+  [
+   1786147200,
+   19.92
+  ],
+  [
+   1786233600,
+   12851.399999999998
+  ],
+  [
+   1786320000,
+   55.7
+  ],
+  [
+   1786406400,
+   14.59
+  ],
+  [
+   1786492800,
+   86.66999999999999
+  ],
+  [
+   1786579200,
+   22.220000000000002
+  ],
+  [
+   1786665600,
+   5.220000000000001
+  ],
+  [
+   1786752000,
+   76.49
+  ],
+  [
+   1786838400,
+   12.57
+  ],
+  [
+   1786924800,
+   105.53999999999999
+  ],
+  [
+   1787011200,
+   28.189999999999998
+  ],
+  [
+   1787097600,
+   74.8
+  ],
+  [
+   1787184000,
+   59.47
+  ],
+  [
+   1787270400,
+   92.83000000000001
+  ],
+  [
+   1787356800,
+   90.44
+  ],
+  [
+   1787443200,
+   49.73
+  ],
+  [
+   1787529600,
+   54.92
+  ],
+  [
+   1787616000,
+   64.55
+  ],
+  [
+   1787702400,
+   32.39
+  ],
+  [
+   1787788800,
+   83.12000000000002
+  ],
+  [
+   1787875200,
+   42.98000000000001
+  ],
+  [
+   1787961600,
+   9.429999999999998
+  ],
+  [
+   1788048000,
+   41.65
+  ],
+  [
+   1788134400,
+   26.580000000000002
+  ],
+  [
+   1788220800,
+   36.22
+  ],
+  [
+   1788307200,
+   30.630000000000003
+  ],
+  [
+   1788393600,
+   56.320000000000014
+  ],
+  [
+   1788480000,
+   43.870000000000005
+  ],
+  [
+   1788566400,
+   13.049999999999997
+  ],
+  [
+   1788652800,
+   21.109999999999996
+  ],
+  [
+   1788739200,
+   30.20000000000001
+  ],
+  [
+   1788825600,
+   33783.380000000005
+  ],
+  [
+   1788912000,
+   32.17
+  ],
+  [
+   1788998400,
+   111.98000000000002
+  ],
+  [
+   1789084800,
+   264.74
+  ],
+  [
+   1789171200,
+   149.55999999999995
+  ],
+  [
+   1789257600,
+   112.61000000000001
+  ],
+  [
+   1789344000,
+   285.87
+  ],
+  [
+   1789430400,
+   89.46000000000001
+  ],
+  [
+   1789516800,
+   49.709999999999994
+  ],
+  [
+   1789603200,
+   86.89
+  ],
+  [
+   1789689600,
+   145.7
+  ],
+  [
+   1789776000,
+   181.47000000000003
+  ],
+  [
+   1789862400,
+   57.08000000000001
+  ],
+  [
+   1789948800,
+   170.47000000000003
+  ],
+  [
+   1790035200,
+   119.51000000000002
+  ],
+  [
+   1790121600,
+   301.35
+  ],
+  [
+   1790208000,
+   69.01999999999998
+  ],
+  [
+   1790294400,
+   136.76999999999998
+  ],
+  [
+   1790380800,
+   170.83000000000004
+  ],
+  [
+   1790467200,
+   114.41
+  ],
+  [
+   1790553600,
+   180.57999999999998
+  ],
+  [
+   1790640000,
+   75.04
+  ],
+  [
+   1790726400,
+   61.83
+  ],
+  [
+   1790812800,
+   26013.25
+  ],
+  [
+   1790899200,
+   3709.0099999999993
+  ],
+  [
+   1790985600,
+   1133.23
+  ],
+  [
+   1791072000,
+   2350.06
+  ],
+  [
+   1791158400,
+   1026.09
+  ]
+ ],
+ "totalDataChartBreakdown": [],
+ "breakdown24h": null,
+ "breakdown30d": null,
+ "chain": "Blast",
+ "total24h": 2350.06,
+ "total48hto24h": 1133.23,
+ "total7d": 33523.00000000004,
+ "total14dto7d": 1082.3599999999997,
+ "total30d": 70020.3399999999,
+ "total60dto30d": 14272.53000000001,
+ "total1y": 914834.9300000014,
+ "total7DaysAgo": 114.41,
+ "total30DaysAgo": 43.870000000000005,
+ "totalAllTime": 94854275.03999996,
+ "change_1d": 107.38,
+ "change_7d": 1954.07,
+ "change_1m": 5256.87,
+ "change_7dover7d": 2997.21,
+ "change_30dover30d": 390.6,
+ "protocols": [
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 12.359999999999982,
+   "annualized1y": 12.889714285714266,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 164.8900000000008,
+   "average1y": 0.03531428571428566,
+   "monthlyAverage1y": 1.0749668571428554,
+   "defillamaId": "119",
+   "name": "SushiSwap",
+   "displayName": "SushiSwap",
+   "module": "sushiswap-classic",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-classic.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushiswap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap Classic pools."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap Classic pools."
+    },
+    "Revenue": {
+     "Swap Fees To xSUSHI Stakers": "The 1/6 protocol fee share from SushiSwap Classic swaps."
+    },
+    "HoldersRevenue": {
+     "Swap Fees To xSUSHI Stakers": "The 1/6 protocol fee share from SushiSwap Classic swaps."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "The 5/6 fee share retained by liquidity providers."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "119"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "199",
+   "name": "Sablier Legacy",
+   "displayName": "Sablier Legacy",
+   "module": "sablier",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/sablier.ts",
+   "parentProtocol": "parent#sablier-finance",
+   "slug": "sablier-legacy",
+   "breakdownMethodology": {
+    "Fees": {
+     "Deposit/Withdraw Fees": "Flat native-token fee charged when a recipient claims from a Lockup stream, a Flow stream, or an airdrop campaign"
+    },
+    "Revenue": {
+     "Claim Fees To Treasury": "The whole claim fee; none of it is shared with LPs, stream creators, or integrators"
+    },
+    "ProtocolRevenue": {
+     "Claim Fees To Treasury": "Swept to the Sablier treasury via the comptroller"
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "199"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 39,
+   "defillamaId": "343",
+   "name": "Impermax V2",
+   "displayName": "Impermax V2",
+   "module": "impermax-finance",
+   "category": "Lending",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/fees/impermax-finance",
+   "parentProtocol": "parent#impermax-finance",
+   "slug": "impermax-v2",
+   "id": "343"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0.01,
+   "total1y": 136.09000000000003,
+   "annualized1y": 136.46387362637367,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 32788.090000000004,
+   "average1y": 0.3738736263736265,
+   "monthlyAverage1y": 11.38071318681319,
+   "change_30dover30d": -100,
+   "defillamaId": "355",
+   "name": "Gamma",
+   "displayName": "Gamma",
+   "module": "gamma",
+   "category": "Liquidity Manager",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/gamma.ts",
+   "slug": "gamma",
+   "breakdownMethodology": {
+    "Fees": {
+     "LP management fees": "Performance and management fees charged on liquidity provider positions managed by Gamma across all integrated DEXs"
+    },
+    "Revenue": {
+     "Protocol revenue": "All management fees collected are retained by Gamma Protocol"
+    },
+    "ProtocolRevenue": {
+     "Protocol revenue": "All management fees collected are retained by Gamma Protocol"
+    }
+   },
+   "id": "355"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 76.58000000000006,
+   "annualized1y": 76.58000000000006,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 30477.57999999998,
+   "average1y": 0.20980821917808234,
+   "monthlyAverage1y": 6.386562191780826,
+   "defillamaId": "1207",
+   "name": "Across",
+   "displayName": "Across",
+   "module": "across",
+   "category": "Cross Chain Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/across.ts",
+   "slug": "across",
+   "breakdownMethodology": {
+    "Fees": {
+     "Relayer Fees": "Fees paid to relayers who execute cross-chain bridge transactions on the destination chain",
+     "LP Fees": "Fees paid to liquidity providers who supply capital for cross-chain transfers"
+    },
+    "SupplySideRevenue": {
+     "Relayer Fees": "Fees paid to relayers who execute cross-chain bridge transactions on the destination chain",
+     "LP Fees": "Fees paid to liquidity providers who supply capital for cross-chain transfers"
+    }
+   },
+   "id": "1207"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 4.43,
+   "total1y": 112.60000000000001,
+   "annualized1y": 112.60000000000001,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 144.55999999999997,
+   "average1y": 0.30849315068493155,
+   "monthlyAverage1y": 9.390531506849317,
+   "change_30dover30d": -100,
+   "defillamaId": "1594",
+   "name": "Symbiosis",
+   "displayName": "Symbiosis",
+   "module": "symbiosis",
+   "category": "Cross Chain Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/symbiosis",
+   "slug": "symbiosis",
+   "breakdownMethodology": {
+    "Fees": {
+     "Partner Fees": "Fee collected by the PartnerFeeCollector on each routed swap.",
+     "Octopool Swap Fees": "Swap fee charged by the octopools on both sides of a swap, read from the FeeCollected event.",
+     "Bridging Fees": "stableBridgingFee deducted on the destination leg of a transfer, on the mint leg from the Synthesis contract and on the unlock leg from the Portal contract."
+    },
+    "Revenue": {
+     "Partner Fees To Symbiosis": "Partner fees collected by the symbiosis owned fee address.",
+     "Octopool Swap Fees To Protocol": "Share of the octopool swap fee sent to the protocol fee receiver, one minus lpDividendRatio.",
+     "Bridging Fees To Bridge": "The whole bridging fee, minted or transferred to the BridgeV2 contract which only the owner or admin can withdraw from."
+    },
+    "ProtocolRevenue": {
+     "Partner Fees To Symbiosis": "Partner fees collected by the symbiosis owned fee address.",
+     "Octopool Swap Fees To Protocol": "Share of the octopool swap fee sent to the protocol fee receiver, one minus lpDividendRatio.",
+     "Bridging Fees To Bridge": "The whole bridging fee, minted or transferred to the BridgeV2 contract which only the owner or admin can withdraw from."
+    },
+    "SupplySideRevenue": {
+     "Partner Fees To Partners": "Partner fees claimed by the partner that routed the swap.",
+     "Octopool Swap Fees To LPs": "Share of the octopool swap fee kept by the liquidity providers, lpDividendRatio."
+    }
+   },
+   "id": "1594"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 139,
+   "defillamaId": "2197",
+   "name": "Uniswap V2",
+   "displayName": "Uniswap V2",
+   "module": "uniswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v2.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v2",
+   "hasLabelBreakdown": true,
+   "id": "2197"
+  },
+  {
+   "total24h": 1.05,
+   "total48hto24h": 100,
+   "total7d": 303.72999999999996,
+   "total14dto7d": 16.63,
+   "total30d": 334.2,
+   "total60dto30d": 9.560000000000002,
+   "total1y": 1202.649999999999,
+   "annualized1y": 1350.6684615384604,
+   "total7DaysAgo": 2.73,
+   "total30DaysAgo": 0.36,
+   "totalAllTime": 17450.699999999968,
+   "average1y": 3.2949315068493124,
+   "monthlyAverage1y": 100.29771506849308,
+   "change_1d": -98.95,
+   "change_7d": -61.54,
+   "change_1m": 191.67,
+   "change_7dover7d": 1726.4,
+   "change_30dover30d": 3395.82,
+   "defillamaId": "2198",
+   "name": "Uniswap V3",
+   "displayName": "Uniswap V3",
+   "module": "uniswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v3.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v3",
+   "hasLabelBreakdown": true,
+   "id": "2198"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 1.16,
+   "total60dto30d": 0.05,
+   "total1y": 372.2800000000001,
+   "annualized1y": 372.2800000000001,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 18047.279999999995,
+   "average1y": 1.0199452054794522,
+   "monthlyAverage1y": 31.047132054794528,
+   "change_30dover30d": 2220,
+   "defillamaId": "2237",
+   "name": "Axelar",
+   "displayName": "Axelar",
+   "module": "axelar",
+   "category": "Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/axelar",
+   "parentProtocol": "parent#axelar-network",
+   "slug": "axelar",
+   "breakdownMethodology": {
+    "Fees": {
+     "Transaction Gas Fees": "Gas fees paid by users for cross-chain contract calls, express calls, and with-token calls through Axelar bridge",
+     "Gas Refunds": "Refunds issued to users when transactions fail or gas is overpaid (shown as negative to reduce total fees)"
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "2237"
+  },
+  {
+   "total24h": 0.02,
+   "total48hto24h": 0,
+   "total7d": 1.5,
+   "total14dto7d": 22.540000000000003,
+   "total30d": 27.570000000000004,
+   "total60dto30d": 85.85000000000001,
+   "total1y": 143.58000000000004,
+   "annualized1y": 143.58000000000004,
+   "total7DaysAgo": 0.16,
+   "total30DaysAgo": 0,
+   "totalAllTime": 3197.6000000000013,
+   "average1y": 0.39336986301369875,
+   "monthlyAverage1y": 11.97417863013699,
+   "change_7d": -87.5,
+   "change_7dover7d": -93.35,
+   "change_30dover30d": -67.89,
+   "defillamaId": "2258",
+   "name": "Opensea Seaport",
+   "displayName": "Opensea Seaport",
+   "module": "opensea-seaport",
+   "category": "NFT Marketplace",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/opensea-seaport.ts",
+   "parentProtocol": "parent#opensea",
+   "slug": "opensea-seaport",
+   "id": "2258"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 693939,
+   "defillamaId": "2296",
+   "name": "HMX",
+   "displayName": "HMX",
+   "module": "perp88",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/fees/perp88.ts",
+   "parentProtocol": "parent#desk",
+   "slug": "hmx",
+   "id": "2296"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0.01,
+   "total7d": 0.01,
+   "total14dto7d": 0,
+   "total30d": 0.89,
+   "total60dto30d": 0,
+   "total1y": 35.70000000000001,
+   "annualized1y": 35.70000000000001,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1216.4499999999946,
+   "average1y": 0.09780821917808222,
+   "monthlyAverage1y": 2.977282191780823,
+   "change_1d": -100,
+   "defillamaId": "2776",
+   "name": "SushiSwap V3",
+   "displayName": "SushiSwap V3",
+   "module": "sushiswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-v3.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushiswap-v3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap V3 pools. Fee rates vary by pool, from 0.01% to 1% on most chains and up to 4% on Katana."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap V3 pools. Fee rates vary by pool, from 0.01% to 1% on most chains and up to 4% on Katana."
+    },
+    "Revenue": {
+     "Swap Fees To Treasury": "The part of each swap fee Sushi keeps - 25% where the protocol fee is switched on, 50% on Katana.",
+     "Swap Fees To xSUSHI Stakers": "Protocol fee share routed to xSUSHI stakers through the SushiBar flow (Negligible since Mid of October 2025)."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Treasury": "The part of each swap fee Sushi keeps, collected into a Sushi-controlled treasury wallet on each chain."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "Swap fees retained by liquidity providers after protocol fees."
+    },
+    "HoldersRevenue": {
+     "Swap Fees To xSUSHI Stakers": "Protocol fee share routed to xSUSHI stakers through the SushiBar flow (Negligible since Mid of October 2025)."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "2776"
+  },
+  {
+   "total24h": 0.26,
+   "total48hto24h": 2.09,
+   "total7d": 14.479999999999999,
+   "total14dto7d": 3.82,
+   "total30d": 23.689999999999998,
+   "total60dto30d": 18.099999999999998,
+   "total1y": 45.580000000000005,
+   "annualized1y": 45.580000000000005,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0.27,
+   "totalAllTime": 48529.550000000076,
+   "average1y": 0.12487671232876714,
+   "monthlyAverage1y": 3.8012471232876717,
+   "change_1d": -87.56,
+   "change_1m": -3.7,
+   "change_7dover7d": 279.06,
+   "change_30dover30d": 30.88,
+   "defillamaId": "3038",
+   "name": "Rainbow Wallet",
+   "displayName": "Rainbow Wallet",
+   "module": "rainbow-wallet",
+   "category": "Wallets",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/rainbow-wallet.ts",
+   "parentProtocol": "parent#rainbow",
+   "slug": "rainbow-wallet",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "0.85% of the volume is fees",
+     "Bridge Fees": "the relaying fee charged on each bridge transfer"
+    },
+    "Revenue": {
+     "Token Swap Fees": "0.85% of the volume is revenue",
+     "Bridge Fees": "the relaying fee charged on each bridge transfer"
+    },
+    "ProtocolRevenue": {
+     "Token Swap Fees": "0.85% of the volume is protocol revenue",
+     "Bridge Fees": "the relaying fee charged on each bridge transfer"
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "3038"
+  },
+  {
+   "total24h": 2.08,
+   "total48hto24h": 42,
+   "total7d": 83.89999999999999,
+   "total14dto7d": 42.46,
+   "total30d": 172.54,
+   "total60dto30d": 52.30999999999998,
+   "total1y": 8034.260000000001,
+   "annualized1y": 8034.260000000001,
+   "total7DaysAgo": 5.45,
+   "total30DaysAgo": 2.94,
+   "totalAllTime": 2303866.3399999947,
+   "average1y": 22.011671232876715,
+   "monthlyAverage1y": 670.0352723287672,
+   "change_1d": -95.05,
+   "change_7d": -61.83,
+   "change_1m": -29.25,
+   "change_7dover7d": 97.6,
+   "change_30dover30d": 229.84,
+   "defillamaId": "3104",
+   "name": "Ambient",
+   "displayName": "Ambient",
+   "module": "ambient",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ambient",
+   "slug": "ambient",
+   "id": "3104"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 82.71000000000001,
+   "total1y": 12282.339999999998,
+   "annualized1y": 12316.08269230769,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 51275.339999999975,
+   "average1y": 33.7426923076923,
+   "monthlyAverage1y": 1027.1275538461537,
+   "change_30dover30d": -100,
+   "defillamaId": "3243",
+   "name": "ZeroLend Lending",
+   "displayName": "ZeroLend Lending",
+   "module": "zerolend",
+   "category": "Lending",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/aave.ts",
+   "parentProtocol": "parent#zerolend",
+   "slug": "zerolend-lending",
+   "hasLabelBreakdown": true,
+   "id": "3243"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 315759,
+   "defillamaId": "3336",
+   "name": "Banana Gun",
+   "displayName": "Banana Gun",
+   "module": "banana-gun-trading",
+   "category": "Telegram Bot",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/banana-gun-trading.ts",
+   "slug": "banana-gun",
+   "breakdownMethodology": {
+    "Fees": {
+     "Trading Fees": "Trading fees charged on each trade executed through Banana Gun bot."
+    },
+    "Revenue": {
+     "Trading Fees": "Trading fees collected by Banana Gun protocol."
+    }
+   },
+   "id": "3336"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1801,
+   "defillamaId": "3345",
+   "name": "DackieSwap V3",
+   "displayName": "DackieSwap V3",
+   "module": "dackieswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dackieswap",
+   "parentProtocol": "parent#dackieswap",
+   "slug": "dackieswap-v3",
+   "hasLabelBreakdown": true,
+   "id": "3345"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "3515",
+   "name": "DackieSwap V2",
+   "displayName": "DackieSwap V2",
+   "module": "dackieswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#dackieswap",
+   "slug": "dackieswap-v2",
+   "hasLabelBreakdown": true,
+   "id": "3515"
+  },
+  {
+   "total24h": 0.28,
+   "total48hto24h": 0.8,
+   "total7d": 2.8100000000000005,
+   "total30d": 2.8100000000000005,
+   "total1y": 2.8100000000000005,
+   "annualized1y": 146.5214285714286,
+   "totalAllTime": 6407.09,
+   "average1y": 0.06108695652173914,
+   "monthlyAverage1y": 1.8594869565217396,
+   "change_1d": -65,
+   "defillamaId": "3524",
+   "name": "Jumper DEX Aggregator",
+   "displayName": "Jumper DEX Aggregator",
+   "module": "jumper-exchange",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jumper-exchange",
+   "parentProtocol": "parent#jumper-exchange",
+   "slug": "jumper-dex-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Swap Fees": "Jumper platform fees on swaps."
+    },
+    "Revenue": {
+     "Swap Fees": "Jumper platform fees on swaps."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees": "Jumper platform fees on swaps."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "3524"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 37330,
+   "defillamaId": "3747",
+   "name": "IntentX",
+   "displayName": "IntentX",
+   "module": "intent-x",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/dexs/intent-x",
+   "slug": "intentx",
+   "id": "3747"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": null,
+   "totalAllTime": 0,
+   "defillamaId": "3817",
+   "name": "Stryke CLAMM",
+   "displayName": "Stryke CLAMM",
+   "module": "dopex",
+   "category": "Options",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/options/dopex",
+   "parentProtocol": "parent#dopex",
+   "slug": "stryke-clamm",
+   "breakdownMethodology": {
+    "Fees": {
+     "Option Purchase Fees": "Protocol fee charged on top of the option premium at purchase (fixed % of premium per market, set in the CLAMM FeeStrategy)."
+    },
+    "Revenue": {
+     "Option Purchase Fees To Protocol": "The full protocol fee is transferred to the Stryke feeTo address."
+    }
+   },
+   "id": "3817"
+  },
+  {
+   "total24h": 0.01,
+   "total48hto24h": 0.22,
+   "total7d": 1.23,
+   "total14dto7d": 0.5800000000000001,
+   "total30d": 2.8400000000000007,
+   "total60dto30d": 9.139999999999999,
+   "total1y": 40.62999999999997,
+   "annualized1y": 52.58847517730493,
+   "total7DaysAgo": 0.04,
+   "total30DaysAgo": 0.12,
+   "totalAllTime": 315.6399999999991,
+   "average1y": 0.14407801418439706,
+   "monthlyAverage1y": 4.385734751773047,
+   "change_1d": -95.45,
+   "change_7d": -75,
+   "change_1m": -91.67,
+   "change_7dover7d": 112.07,
+   "change_30dover30d": -68.93,
+   "defillamaId": "3837",
+   "name": "DyorSwap AMM",
+   "displayName": "DyorSwap AMM",
+   "module": "dyorswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#dyorswap",
+   "slug": "dyorswap-amm",
+   "hasLabelBreakdown": true,
+   "id": "3837"
+  },
+  {
+   "total24h": 23,
+   "total48hto24h": 4.59,
+   "total7d": 49.31,
+   "total14dto7d": 46.68000000000001,
+   "total30d": 199.94,
+   "total60dto30d": 180.20999999999998,
+   "total1y": 2728.38,
+   "annualized1y": 2728.38,
+   "total7DaysAgo": 4.56,
+   "total30DaysAgo": 0.84,
+   "totalAllTime": 23270.380000000012,
+   "average1y": 7.475013698630137,
+   "monthlyAverage1y": 227.5394169863014,
+   "change_1d": 401.09,
+   "change_7d": 404.39,
+   "change_1m": 2638.1,
+   "change_7dover7d": 5.63,
+   "change_30dover30d": 10.95,
+   "defillamaId": "3946",
+   "name": "Kelp",
+   "displayName": "Kelp",
+   "module": "kelp",
+   "category": "Liquid Restaking",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/kelp.ts",
+   "parentProtocol": "parent#kelp-dao",
+   "slug": "kelp",
+   "breakdownMethodology": {
+    "Fees": {
+     "ETH Staking Rewards": "Total ETH staking rewards from EigenLayer restaking across all chains.",
+     "EIGEN Token Rewards": "EIGEN token rewards distributed from EigenLayer reward distributor.",
+     "agETH Management Fees": "Management fees (2%) collected from agETH vault in rsETH tokens.",
+     "hgETH Management Fees": "Management fees (1.5%) collected from hgETH vault in rsETH tokens.",
+     "hgETH Performance Fees": "Performance fees (20%) collected from positive rate delta in hgETH vault."
+    },
+    "SupplySideRevenue": {
+     "ETH Staking Rewards": "ETH staking rewards distributed to rsETH holders after protocol fees.",
+     "EIGEN Token Rewards": "EIGEN token rewards distributed to rsETH holders after protocol fees."
+    },
+    "Revenue": {
+     "ETH Staking Rewards": "Protocol share of ETH staking rewards at the on-chain protocol fee rate.",
+     "EIGEN Token Rewards": "Protocol fees from EIGEN token rewards.",
+     "agETH Management Fees": "Management fees (2%) collected from agETH vault.",
+     "hgETH Management Fees": "Management fees (1.5%) collected from hgETH vault.",
+     "hgETH Performance Fees": "Performance fees (20%) from positive rate delta in hgETH vault."
+    },
+    "ProtocolRevenue": {
+     "ETH Staking Rewards": "Protocol share of ETH staking rewards at the on-chain protocol fee rate.",
+     "EIGEN Token Rewards": "Protocol fees from EIGEN token rewards.",
+     "agETH Management Fees": "Management fees (2%) collected from agETH vault.",
+     "hgETH Management Fees": "Management fees (1.5%) collected from hgETH vault.",
+     "hgETH Performance Fees": "Performance fees (20%) from positive rate delta in hgETH vault."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "3946"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "4019",
+   "name": "Ajna V2",
+   "displayName": "Ajna V2",
+   "module": "ajna-v2",
+   "category": "Lending",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/ajna-v2",
+   "parentProtocol": "parent#ajna",
+   "slug": "ajna-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "Borrow Interest": "Interest paid by borrowers for loans, with approximately 85-90% distributed to lenders"
+    },
+    "Revenue": {
+     "Reserve Accumulation": "Portion of borrow interest accumulated in pool reserves, approximately 10-15% of total interest, held for future token burns"
+    },
+    "SupplySideRevenue": {
+     "Borrow Interest": "Interest distributed to lenders who supply liquidity to lending pools"
+    },
+    "HoldersRevenue": {
+     "Token Buy Back": "AJNA token burns that reduce circulating supply, benefiting all token holders"
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "4019"
+  },
+  {
+   "total24h": 95.17,
+   "total48hto24h": 633,
+   "total7d": 1860.09,
+   "total14dto7d": 533.92,
+   "total30d": 2930.0699999999997,
+   "total60dto30d": 372.99999999999994,
+   "total1y": 231025.84999999992,
+   "annualized1y": 231025.84999999992,
+   "total7DaysAgo": 45.78,
+   "total30DaysAgo": 13.18,
+   "totalAllTime": 9376341.019999998,
+   "average1y": 632.9475342465752,
+   "monthlyAverage1y": 19266.92294246575,
+   "change_1d": -84.97,
+   "change_7d": 107.89,
+   "change_1m": 622.08,
+   "change_7dover7d": 248.38,
+   "change_30dover30d": 685.54,
+   "defillamaId": "4199",
+   "name": "Thruster V3",
+   "displayName": "Thruster V3",
+   "module": "thruster-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#thruster",
+   "slug": "thruster-v3",
+   "hasLabelBreakdown": true,
+   "id": "4199"
+  },
+  {
+   "total24h": 2.16,
+   "total48hto24h": 16.84,
+   "total7d": 46.160000000000004,
+   "total14dto7d": 7.620000000000001,
+   "total30d": 133.90999999999997,
+   "total60dto30d": 69.99,
+   "total1y": 6162.669999999999,
+   "annualized1y": 6162.669999999999,
+   "total7DaysAgo": 0.27,
+   "total30DaysAgo": 2.71,
+   "totalAllTime": 543931.8299999994,
+   "average1y": 16.884027397260272,
+   "monthlyAverage1y": 513.9497939726027,
+   "change_1d": -87.17,
+   "change_7d": 700,
+   "change_1m": -20.3,
+   "change_7dover7d": 505.77,
+   "change_30dover30d": 91.33,
+   "defillamaId": "4207",
+   "name": "Thruster V2",
+   "displayName": "Thruster V2",
+   "module": "thruster-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#thruster",
+   "slug": "thruster-v2",
+   "hasLabelBreakdown": true,
+   "id": "4207"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 2876,
+   "defillamaId": "4208",
+   "name": "Juice Finance",
+   "displayName": "Juice Finance",
+   "module": "juice-finance",
+   "category": "Leveraged Farming",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/juice-finance",
+   "slug": "juice-finance",
+   "id": "4208"
+  },
+  {
+   "total24h": 776,
+   "total48hto24h": 0,
+   "total7d": 29306,
+   "total14dto7d": 0,
+   "total30d": 62968,
+   "total60dto30d": 12771,
+   "total1y": 605869,
+   "annualized1y": 605869,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1001416,
+   "average1y": 1659.9150684931508,
+   "monthlyAverage1y": 50527.81468493151,
+   "change_30dover30d": 393.05,
+   "defillamaId": "4211",
+   "name": "Pac Finance",
+   "displayName": "Pac Finance",
+   "module": "pac-finance",
+   "category": "Lending",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/aave.ts",
+   "slug": "pac-finance",
+   "id": "4211"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 2184548.281893004,
+   "totalAllTime": 2908741,
+   "defillamaId": "4214",
+   "name": "Blitz Perps",
+   "displayName": "Blitz Perps",
+   "module": "blitz",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/fees/blitz.ts",
+   "parentProtocol": "parent#Edge",
+   "slug": "blitz-perps",
+   "id": "4214"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 97379863.03418803,
+   "totalAllTime": 31214915,
+   "defillamaId": "4215",
+   "name": "SynFutures V3",
+   "displayName": "SynFutures V3",
+   "module": "synfutures-v3",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/synfutures-v3",
+   "parentProtocol": "parent#synfutures",
+   "slug": "synfutures-v3",
+   "id": "4215"
+  },
+  {
+   "total24h": 1.1,
+   "total48hto24h": 12.04,
+   "total7d": 170.55,
+   "total14dto7d": 13.469999999999999,
+   "total30d": 219.61999999999998,
+   "total60dto30d": 74.8,
+   "total1y": 8906.910000000002,
+   "annualized1y": 8906.910000000002,
+   "total7DaysAgo": 0.95,
+   "total30DaysAgo": 1.6,
+   "totalAllTime": 1307761.0099999993,
+   "average1y": 24.402493150684936,
+   "monthlyAverage1y": 742.8118915068495,
+   "change_1d": -90.86,
+   "change_7d": 15.79,
+   "change_1m": -31.25,
+   "change_7dover7d": 1166.15,
+   "change_30dover30d": 193.61,
+   "defillamaId": "4222",
+   "name": "Ring Swap",
+   "displayName": "Ring Swap",
+   "module": "ring-dex",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ring-dex.ts",
+   "parentProtocol": "parent#ring-protocol",
+   "slug": "ring-swap",
+   "id": "4222"
+  },
+  {
+   "total24h": 4.46,
+   "total48hto24h": 36.33,
+   "total7d": 71.21000000000001,
+   "total14dto7d": 25.87,
+   "total30d": 193.82999999999998,
+   "total60dto30d": 144.08999999999997,
+   "total1y": 12352.430000000011,
+   "annualized1y": 12352.430000000011,
+   "total7DaysAgo": 2.07,
+   "total30DaysAgo": 5.48,
+   "totalAllTime": 676350.8899999998,
+   "average1y": 33.84227397260277,
+   "monthlyAverage1y": 1030.1588197260282,
+   "change_1d": -87.72,
+   "change_7d": 115.46,
+   "change_1m": -18.61,
+   "change_7dover7d": 175.26,
+   "change_30dover30d": 34.52,
+   "defillamaId": "4296",
+   "name": "Blasterswap V2",
+   "displayName": "Blasterswap V2",
+   "module": "blasterswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#blasterswap",
+   "slug": "blasterswap-v2",
+   "hasLabelBreakdown": true,
+   "id": "4296"
+  },
+  {
+   "total24h": 0.01,
+   "total48hto24h": 0.16,
+   "total7d": 0.31000000000000005,
+   "total14dto7d": 0.01,
+   "total30d": 3.349999999999999,
+   "total60dto30d": 9.429999999999998,
+   "total1y": 16.099999999999994,
+   "annualized1y": 64.57692307692305,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0.15,
+   "totalAllTime": 16.109999999999996,
+   "average1y": 0.06822033898305083,
+   "monthlyAverage1y": 2.0766271186440672,
+   "change_1d": -93.75,
+   "change_1m": -93.33,
+   "change_7dover7d": 3000,
+   "change_30dover30d": -64.48,
+   "defillamaId": "4457",
+   "name": "fly.trade",
+   "displayName": "fly.trade",
+   "module": "fly-trade",
+   "category": "Cross Chain Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/fly-trade",
+   "slug": "fly.trade",
+   "breakdownMethodology": {
+    "Fees": {
+     "Swap Fees": "Protocol fee routed to fly.trade's fee collector.",
+     "Affiliate Fees": "Fee routed to affiliate / integrator addresses.",
+     "Surplus": "Positive slippage retained by fly.trade's router (capped at maxRetentionBps)."
+    },
+    "Revenue": {
+     "Swap Fees": "Fees retained by fly.trade.",
+     "Surplus": "Positive slippage retained by fly.trade."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees": "Fees retained by fly.trade.",
+     "Surplus": "Positive slippage retained by fly.trade."
+    },
+    "SupplySideRevenue": {
+     "Affiliate Fees": "Fees paid out to affiliates / integrators."
+    }
+   },
+   "id": "4457"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 1.07,
+   "total7d": 2.95,
+   "total14dto7d": 2.18,
+   "total30d": 8.610000000000001,
+   "total60dto30d": 9.129999999999999,
+   "total1y": 6782.499999999999,
+   "annualized1y": 6782.499999999999,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 1.96,
+   "totalAllTime": 22530600.299999993,
+   "average1y": 18.582191780821915,
+   "monthlyAverage1y": 565.6419178082191,
+   "change_1d": -100,
+   "change_1m": -100,
+   "change_7dover7d": 35.32,
+   "change_30dover30d": -5.7,
+   "defillamaId": "4495",
+   "name": "YOLO Games",
+   "displayName": "YOLO Games",
+   "module": "yologames",
+   "category": "Gaming",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/yologames",
+   "slug": "yolo-games",
+   "breakdownMethodology": {
+    "Fees": {
+     "Protocol Fees": "Includes 1% of the fees for Moon Or Doom and YOLO winnings, and a 3% fee on Poke The Bear winnings."
+    },
+    "Revenue": {
+     "Token Buy Back": "Includes 20% of the fees going to token buybacks.",
+     "Protocol Fees to Treasury": "Includes 30% of the fees going to the protocol treasury."
+    },
+    "ProtocolRevenue": {
+     "Protocol Fees to Treasury": "Includes 30% of the fees going to the protocol treasury."
+    },
+    "SupplySideRevenue": {
+     "Rake Back to Players": "Includes 45% of the fees going to the rake back to players.",
+     "Protocol Fees to Lottery": "Includes 5% of the fees going to the protocol fees to the lottery."
+    },
+    "HoldersRevenue": {
+     "Token Buy Back": "Includes 20% of the fees going to token buybacks."
+    }
+   },
+   "id": "4495"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 472809,
+   "defillamaId": "4505",
+   "name": "Fjord V2",
+   "displayName": "Fjord V2",
+   "module": "fjord-foundry-v2",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/fjord-foundry-v2.ts",
+   "parentProtocol": "parent#fjord-foundry",
+   "slug": "fjord-v2",
+   "id": "4505"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0.04,
+   "total1y": 0.04,
+   "annualized1y": 0.04,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 209.04,
+   "average1y": 0.00010958904109589041,
+   "monthlyAverage1y": 0.0033358904109589043,
+   "change_30dover30d": -100,
+   "defillamaId": "4563",
+   "name": "Fenix Concentrated Liquidity",
+   "displayName": "Fenix Concentrated Liquidity",
+   "module": "fenix-finance",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#fenix-finance",
+   "slug": "fenix-concentrated-liquidity",
+   "hasLabelBreakdown": true,
+   "id": "4563"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 7053188,
+   "defillamaId": "4570",
+   "name": "fantasy.top",
+   "displayName": "fantasy.top",
+   "module": "fantasy-top",
+   "category": "SoFi",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/fantasy-top",
+   "slug": "fantasy.top",
+   "id": "4570"
+  },
+  {
+   "total24h": 0.01,
+   "total48hto24h": 25.64,
+   "total7d": 49.13,
+   "total14dto7d": 1.67,
+   "total30d": 54.790000000000006,
+   "total60dto30d": 5.090000000000001,
+   "total1y": 397.89999999999964,
+   "annualized1y": 410.26412429378496,
+   "total7DaysAgo": 0.85,
+   "total30DaysAgo": 0.17,
+   "totalAllTime": 528.9099999999996,
+   "average1y": 1.1240112994350273,
+   "monthlyAverage1y": 34.21490395480223,
+   "change_1d": -99.96,
+   "change_7d": -98.82,
+   "change_1m": -94.12,
+   "change_7dover7d": 2841.92,
+   "change_30dover30d": 976.42,
+   "defillamaId": "4691",
+   "name": "EISEN Finance",
+   "displayName": "EISEN Finance",
+   "module": "eisen",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/aggregators/eisen",
+   "slug": "eisen-finance",
+   "id": "4691"
+  },
+  {
+   "total24h": 0.29,
+   "total48hto24h": 5.72,
+   "total7d": 13.98,
+   "total14dto7d": 2.29,
+   "total30d": 19.57,
+   "total60dto30d": 1.9500000000000004,
+   "total1y": 465.86,
+   "annualized1y": 465.86,
+   "total7DaysAgo": 0.29,
+   "total30DaysAgo": 0.11,
+   "totalAllTime": 81823.14999999995,
+   "average1y": 1.2763287671232877,
+   "monthlyAverage1y": 38.851447671232876,
+   "change_1d": -94.93,
+   "change_7d": 0,
+   "change_1m": 163.64,
+   "change_7dover7d": 510.48,
+   "change_30dover30d": 903.59,
+   "defillamaId": "4728",
+   "name": "Blasterswap V3",
+   "displayName": "Blasterswap V3",
+   "module": "blasterswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#blasterswap",
+   "slug": "blasterswap-v3",
+   "hasLabelBreakdown": true,
+   "id": "4728"
+  },
+  {
+   "total24h": 10.55,
+   "total48hto24h": 8.73,
+   "total7d": 81.68,
+   "total14dto7d": 14.670000000000002,
+   "total30d": 103.94,
+   "total60dto30d": 4.669999999999999,
+   "total1y": 1663.6199999999985,
+   "annualized1y": 1663.6199999999985,
+   "total7DaysAgo": 1.49,
+   "total30DaysAgo": 0.07,
+   "totalAllTime": 14262.169999999996,
+   "average1y": 4.5578630136986265,
+   "monthlyAverage1y": 138.7413501369862,
+   "change_1d": 20.85,
+   "change_7d": 608.05,
+   "change_1m": 14971.43,
+   "change_7dover7d": 456.78,
+   "change_30dover30d": 2125.7,
+   "defillamaId": "4775",
+   "name": "Fenix Standard Pools",
+   "displayName": "Fenix Standard Pools",
+   "module": "fenix-finance-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#fenix-finance",
+   "slug": "fenix-standard-pools",
+   "hasLabelBreakdown": true,
+   "id": "4775"
+  },
+  {
+   "total24h": 8.19,
+   "total48hto24h": 66,
+   "total7d": 94.3,
+   "total14dto7d": 8.94,
+   "total30d": 140.38,
+   "total60dto30d": 33.29,
+   "total1y": 655.4199999999998,
+   "annualized1y": 695.4311046511626,
+   "total7DaysAgo": 3.61,
+   "total30DaysAgo": 0.28,
+   "totalAllTime": 137905.61000000002,
+   "average1y": 1.8359103641456578,
+   "monthlyAverage1y": 55.88511148459383,
+   "change_1d": -87.59,
+   "change_7d": 126.87,
+   "change_1m": 2825,
+   "change_7dover7d": 954.81,
+   "change_30dover30d": 321.69,
+   "defillamaId": "4867",
+   "name": "LayerZero V2",
+   "displayName": "LayerZero V2",
+   "module": "layerzero",
+   "category": "Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/layerzero.ts",
+   "parentProtocol": "parent#layerzero",
+   "slug": "layerzero-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "DVN_FEES": "Native token fees paid to required and optional DVNs that verify cross-chain messages.",
+     "EXECUTOR_FEES": "Native token fees paid to Executors that deliver and execute messages on the destination chain."
+    },
+    "Revenue": {
+     "Token Buy Back": "ZRO bought back using Stargate ecosystem revenue."
+    },
+    "HoldersRevenue": {
+     "Token Buy Back": "ZRO bought back and distributed to holders."
+    },
+    "SupplySideRevenue": {
+     "DVN_FEES": "Fees earned by DVNs.",
+     "EXECUTOR_FEES": "Fees earned by Executors."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "4867"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 2,
+   "annualized1y": 2.050561797752809,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 4654,
+   "average1y": 0.0056179775280898875,
+   "monthlyAverage1y": 0.17101123595505618,
+   "defillamaId": "4920",
+   "name": "ZNS Connect",
+   "displayName": "ZNS Connect",
+   "module": "zns",
+   "category": "Domains",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/zns",
+   "parentProtocol": "parent#zns",
+   "slug": "zns-connect",
+   "id": "4920"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 1.72,
+   "total7d": 49.03,
+   "total14dto7d": 3.4399999999999995,
+   "total30d": 53.24,
+   "total60dto30d": 0,
+   "total1y": 154.24,
+   "annualized1y": 161.3111747851003,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 154.24,
+   "average1y": 0.44194842406876794,
+   "monthlyAverage1y": 13.452910028653296,
+   "change_1d": -100,
+   "change_7dover7d": 1325.29,
+   "defillamaId": "5201",
+   "name": "OKX Swap",
+   "displayName": "OKX Swap",
+   "module": "okx-swap",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/okx-swap.ts",
+   "parentProtocol": "parent#okx-dex",
+   "slug": "okx-swap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Referral commissions": "Commission each OKX router records on the swaps it routes, counted in whichever token the commission was taken in."
+    },
+    "UserFees": {
+     "Referral commissions": "The same commissions, which are paid by the user out of the swap."
+    },
+    "SupplySideRevenue": {
+     "Referral commissions": "Every commission is booked against the referrer that brought the trade, so all of it is supply side."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "5201"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 27,
+   "defillamaId": "5474",
+   "name": "Swing",
+   "displayName": "Swing",
+   "module": "swing",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/fees/swing",
+   "slug": "swing",
+   "id": "5474"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "5668",
+   "name": "SuperSwap Ink DEX Aggregator",
+   "displayName": "SuperSwap Ink DEX Aggregator",
+   "module": "superswap",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/aggregators/superswap",
+   "parentProtocol": "parent#superswap-ink",
+   "slug": "superswap-ink-dex-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Swap Fees": "Swap fees charged on v2 SuperSwap routes: 0.25% for in-chain swaps and 0.35% for cross-chain portal swaps."
+    },
+    "UserFees": {
+     "Swap Fees": "Fees paid by users on v2 SuperSwap routes."
+    },
+    "Revenue": {
+     "Swap Fees To Protocol": "Swap fees retained by SuperSwap."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Protocol": "Swap fees retained by SuperSwap."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "5668"
+  },
+  {
+   "total24h": 14.41,
+   "total48hto24h": 37.28,
+   "total7d": 832.9599999999999,
+   "total14dto7d": 281.01,
+   "total30d": 1401.01,
+   "total60dto30d": 285.67,
+   "total1y": 2649.1600000000003,
+   "annualized1y": 2649.1600000000003,
+   "total7DaysAgo": 38.67,
+   "total30DaysAgo": 12.7,
+   "totalAllTime": 2876.57,
+   "average1y": 7.257972602739727,
+   "monthlyAverage1y": 220.9326860273973,
+   "change_1d": -61.35,
+   "change_7d": -62.74,
+   "change_1m": 13.46,
+   "change_7dover7d": 196.42,
+   "change_30dover30d": 390.43,
+   "defillamaId": "5690",
+   "name": "Uniswap V4",
+   "displayName": "Uniswap V4",
+   "module": "uniswap-v4",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v4.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v4",
+   "id": "5690"
+  },
+  {
+   "total24h": 11.15,
+   "total48hto24h": 52.69,
+   "total7d": 165.05,
+   "total14dto7d": 11.860000000000001,
+   "total30d": 303.71999999999997,
+   "total60dto30d": 2.9700000000000006,
+   "total1y": 1493.5199999999975,
+   "annualized1y": 1493.5199999999975,
+   "total7DaysAgo": 1.3,
+   "total30DaysAgo": 0.11,
+   "totalAllTime": 3373.6700000000046,
+   "average1y": 4.091835616438349,
+   "monthlyAverage1y": 124.55547616438335,
+   "change_1d": -78.84,
+   "change_7d": 757.69,
+   "change_1m": 10036.36,
+   "change_7dover7d": 1291.65,
+   "change_30dover30d": 10126.26,
+   "defillamaId": "5714",
+   "name": "Rabby Wallet",
+   "displayName": "Rabby Wallet",
+   "module": "rabby",
+   "category": "Wallets",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/rabby.ts",
+   "parentProtocol": "parent#rabby",
+   "slug": "rabby-wallet",
+   "id": "5714"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "5859",
+   "name": "ERC Burner",
+   "displayName": "ERC Burner",
+   "module": "erc-burner",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/erc-burner",
+   "slug": "erc-burner",
+   "id": "5859"
+  },
+  {
+   "total24h": 71,
+   "total48hto24h": 80,
+   "total7d": 294.67,
+   "total14dto7d": 28.810000000000006,
+   "total30d": 640.19,
+   "total60dto30d": 40.23000000000001,
+   "total1y": 4076.9800000000027,
+   "annualized1y": 4076.9800000000027,
+   "total7DaysAgo": 3.8,
+   "total30DaysAgo": 0.81,
+   "totalAllTime": 25550.309999999994,
+   "average1y": 11.16980821917809,
+   "monthlyAverage1y": 340.0089621917811,
+   "change_1d": -11.25,
+   "change_7d": 1768.42,
+   "change_1m": 8665.43,
+   "change_7dover7d": 922.8,
+   "change_30dover30d": 1491.32,
+   "defillamaId": "6093",
+   "name": "LI.FI Bridge Aggregator",
+   "displayName": "LI.FI Bridge Aggregator",
+   "module": "lifi",
+   "category": "Bridge Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/lifi",
+   "parentProtocol": "parent#li.fi",
+   "slug": "li.fi-bridge-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Bridge Fees": "Fees on bridges, including swaps before bridging.",
+     "Other Fees": "Fees that could not be matched to a swap or a bridge."
+    },
+    "Revenue": {
+     "LiFi Fees": "Share of fees kept by LI.FI."
+    },
+    "ProtocolRevenue": {
+     "LiFi Fees": "Share of fees kept by LI.FI."
+    },
+    "SupplySideRevenue": {
+     "Integration & Partnership Fees": "Share of fees paid to integrators, including Jumper since 2026-08-07."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "6093"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 181,
+   "annualized1y": 181.99724517906336,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1614,
+   "average1y": 0.4986225895316804,
+   "monthlyAverage1y": 15.178071625344353,
+   "defillamaId": "6097",
+   "name": "SOCKET Protocol",
+   "displayName": "SOCKET Protocol",
+   "module": "socket",
+   "category": "Bridge Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/socket",
+   "slug": "socket-protocol",
+   "id": "6097"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "6109",
+   "name": "LobbyFi",
+   "displayName": "LobbyFi",
+   "module": "lobbyfi",
+   "category": "Governance Incentives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/lobbyfi.ts",
+   "slug": "lobbyfi",
+   "id": "6109"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 180,
+   "annualized1y": 180.4945054945055,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 6422,
+   "average1y": 0.4945054945054945,
+   "monthlyAverage1y": 15.052747252747254,
+   "defillamaId": "6188",
+   "name": "Bungee Bridge Aggregator",
+   "displayName": "Bungee Bridge Aggregator",
+   "module": "bungee-bridge",
+   "category": "Bridge Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/bungee-bridge.ts",
+   "parentProtocol": "parent#bungee",
+   "slug": "bungee-bridge-aggregator",
+   "hasLabelBreakdown": true,
+   "id": "6188"
+  },
+  {
+   "total24h": 0.7,
+   "total48hto24h": 2.01,
+   "total7d": 11.559999999999999,
+   "total30d": 11.559999999999999,
+   "total1y": 11.559999999999999,
+   "annualized1y": 843.88,
+   "totalAllTime": 12.259999999999998,
+   "average1y": 2.312,
+   "change_1d": -65.17,
+   "defillamaId": "6233",
+   "name": "LI.FI DEX Aggregator",
+   "displayName": "LI.FI DEX Aggregator",
+   "module": "lifi-dex-aggregator",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/lifi-dex-aggregator",
+   "parentProtocol": "parent#li.fi",
+   "slug": "li.fi-dex-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Swap Fees": "Fees on same-chain swaps."
+    },
+    "Revenue": {
+     "LiFi Fees": "Share of fees kept by LI.FI."
+    },
+    "ProtocolRevenue": {
+     "LiFi Fees": "Share of fees kept by LI.FI."
+    },
+    "SupplySideRevenue": {
+     "Integration & Partnership Fees": "Share of fees paid to integrators, including Jumper since 2026-08-07."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "6233"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "totalAllTime": 0,
+   "defillamaId": "6334",
+   "name": "GlueX",
+   "displayName": "GlueX",
+   "module": "gluex-protocol",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/aggregators/gluex-protocol",
+   "slug": "gluex",
+   "id": "6334"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 26,
+   "defillamaId": "6349",
+   "name": "Smithii",
+   "displayName": "Smithii",
+   "module": "smithii",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/smithii",
+   "slug": "smithii",
+   "id": "6349"
+  },
+  {
+   "total24h": 1.19,
+   "total48hto24h": 0.12,
+   "total7d": 2.7600000000000002,
+   "total14dto7d": 11.239999999999998,
+   "total30d": 52.61999999999999,
+   "total60dto30d": 2.5,
+   "total1y": 55.19999999999999,
+   "annualized1y": 347.3793103448275,
+   "total7DaysAgo": 0.1,
+   "total30DaysAgo": 0.01,
+   "totalAllTime": 56.389999999999986,
+   "average1y": 0.9517241379310343,
+   "monthlyAverage1y": 28.970482758620683,
+   "change_1d": 891.67,
+   "change_7d": 1090,
+   "change_1m": 11800,
+   "change_7dover7d": -75.44,
+   "change_30dover30d": 2004.8,
+   "defillamaId": "6382",
+   "name": "Rango",
+   "displayName": "Rango",
+   "module": "rango",
+   "category": "Bridge Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/rango.ts",
+   "slug": "rango",
+   "breakdownMethodology": {
+    "Fees": {
+     "Platform Fees": "Fee charged by Rango on each swap or cross-chain transfer.",
+     "Affiliate Fees": "Fee charged on behalf of the integrator that routed the transaction.",
+     "Destination Executor Fees": "Fee covering execution costs on the destination chain."
+    },
+    "Revenue": {
+     "Platform Fees to Protocol": "Platform fees are kept by Rango."
+    },
+    "ProtocolRevenue": {
+     "Platform Fees to Protocol": "Platform fees are kept by Rango."
+    },
+    "SupplySideRevenue": {
+     "Affiliate Fees to Affiliates": "Affiliate fees are paid out to the integrator that routed the transaction.",
+     "Destination Executor Fees": "Destination executor fees are paid to executors that complete the transfer on the destination chain."
+    }
+   },
+   "id": "6382"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "6868",
+   "name": "CheapGM",
+   "displayName": "CheapGM",
+   "module": "cheapgm",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/cheapgm.ts",
+   "slug": "cheapgm",
+   "id": "6868"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0.03,
+   "total14dto7d": 0,
+   "total30d": 0.03,
+   "total60dto30d": 0,
+   "total1y": 0.03,
+   "annualized1y": 1.825,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0.03,
+   "average1y": 8.902077151335311e-05,
+   "monthlyAverage1y": 0.002709792284866469,
+   "defillamaId": "6871",
+   "name": "Gate Swap Spot",
+   "displayName": "Gate Swap Spot",
+   "module": "gateswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/gateswap",
+   "parentProtocol": "parent#gate-products",
+   "slug": "gate-swap-spot",
+   "breakdownMethodology": {
+    "Fees": {
+     "Swap Fees": "Fees paid by users on Gate Swap routes."
+    },
+    "UserFees": {
+     "Swap Fees": "Fees paid directly by Gate Swap users."
+    },
+    "Revenue": {
+     "Swap Fees To Protocol": "Swap fees retained by Gate Swap."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Protocol": "Swap fees allocated to the Gate Swap protocol."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Integrators": "Swap fees paid to integrators, referrers, or other route suppliers."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "6871"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "6902",
+   "name": "Pyth Entropy",
+   "displayName": "Pyth Entropy",
+   "module": "pyth-entropy",
+   "category": "Oracle",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/pyth-entropy",
+   "parentProtocol": "parent#pyth",
+   "slug": "pyth-entropy",
+   "breakdownMethodology": {
+    "Fees": {
+     "Randomness Service Fees": "Total fees paid per Entropy randomness request. Fee = Provider fee (dynamic, covers gas) + Protocol fee (set by Pyth DAO governance)."
+    },
+    "Revenue": {
+     "Randomness Service Fees To Pyth DAO": "Protocol fees collected by Pyth DAO treasury per randomness request."
+    },
+    "SupplySideRevenue": {
+     "Randomness Service Fees To Providers": "Provider fees paid to randomness providers for fulfilling requests (includes gas cost reimbursement)."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "6902"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1,
+   "defillamaId": "7187",
+   "name": "OmniHub",
+   "displayName": "OmniHub",
+   "module": "omnihub",
+   "category": "NFT Marketplace",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/omnihub",
+   "slug": "omnihub",
+   "id": "7187"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "7394",
+   "name": "Lunar Finance Aggregator",
+   "displayName": "Lunar Finance Aggregator",
+   "module": "lunar-finance",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/aggregators/lunar-finance",
+   "slug": "lunar-finance-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Aggregator Fees": "Aggregator fees paid by users for the swaps."
+    },
+    "UserFees": {
+     "Aggregator Fees": "Aggregator fees paid by users for the swaps."
+    },
+    "Revenue": {
+     "Aggregator Fees to Protocol": "Part of the aggregator fees that is retained by the protocol."
+    },
+    "ProtocolRevenue": {
+     "Aggregator Fees to Protocol": "Part of the aggregator fees that is retained by the protocol."
+    },
+    "SupplySideRevenue": {
+     "Aggregator Fees to Liquidity Providers": "Part of the aggregator fees that is paid to the liquidity providers."
+    }
+   },
+   "id": "7394"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0.02,
+   "annualized1y": 0.09733333333333334,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0.02,
+   "average1y": 0.00013986013986013986,
+   "monthlyAverage1y": 0.004257342657342658,
+   "defillamaId": "7395",
+   "name": "Lunar Finance Bridge Aggregator",
+   "displayName": "Lunar Finance Bridge Aggregator",
+   "module": "lunar-finance-bridge",
+   "category": "Bridge Aggregators",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/bridge-aggregators/lunar-finance-bridge",
+   "slug": "lunar-finance-bridge-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Bridge Fees": "User-paid bridge fees including underlying provider fees."
+    },
+    "UserFees": {
+     "Bridge Fees": "User-paid bridge fees including underlying provider fees."
+    },
+    "Revenue": {
+     "Bridge Fees to Protocol": "Protocol fees retained by Lunar Finance."
+    },
+    "ProtocolRevenue": {
+     "Bridge Fees to Protocol": "Protocol fees retained by Lunar Finance."
+    },
+    "SupplySideRevenue": {
+     "Bridge Fees to Providers": "Fees paid to underlying bridge and relayer providers."
+    }
+   },
+   "id": "7395"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1996.6899999999991,
+   "defillamaId": "7468",
+   "name": "Hyperlane",
+   "displayName": "Hyperlane",
+   "module": "hyperlane",
+   "category": "Cross Chain Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/hyperlane.ts",
+   "slug": "hyperlane",
+   "breakdownMethodology": {
+    "Fees": {
+     "Interchain Gas Payments": "GasPayment fees from Hyperlane InterchainGasPaymaster."
+    },
+    "UserFees": {
+     "Interchain Gas Payments": "User paid fees from Hyperlane InterchainGasPaymaster."
+    },
+    "SupplySideRevenue": {
+     "Interchain Gas Payments": "Gross IGP payments to non-Hyperlane relayer contracts when present."
+    },
+    "Revenue": {
+     "Interchain Gas Payments": "Gross IGP payments to Hyperlane-published relayer contracts."
+    },
+    "ProtocolRevenue": {
+     "Interchain Gas Payments": "Gross IGP payments to Hyperlane-published relayer contracts."
+    }
+   },
+   "id": "7468"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 2.31,
+   "total1y": 26.820000000000014,
+   "annualized1y": 53.78736263736266,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 26.820000000000014,
+   "average1y": 0.07347945205479456,
+   "monthlyAverage1y": 2.2367145205479466,
+   "change_30dover30d": -100,
+   "defillamaId": "7483",
+   "name": "Pyth Core",
+   "displayName": "Pyth Core",
+   "module": "pyth-network",
+   "category": "Oracle",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/pyth-network",
+   "parentProtocol": "parent#pyth",
+   "slug": "pyth-core",
+   "breakdownMethodology": {
+    "Fees": {
+     "Oracle Service Fees": "Fees paid by users to update Pyth price feeds on-chain. Fee amounts per chain are set by Pyth DAO governance via singleUpdateFeeInWei() on each contract."
+    },
+    "Revenue": {
+     "Oracle Service Fees To Pyth Treasury": "All update fees accrue to the Pyth protocol treasury."
+    },
+    "ProtocolRevenue": {
+     "Oracle Service Fees To Pyth Treasury": "All update fees accrue to the Pyth protocol treasury."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "7483"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "7611",
+   "name": "Layer3",
+   "displayName": "Layer3",
+   "module": "layer3",
+   "category": "Foundation",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/layer3",
+   "slug": "layer3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Cube Minting Fees": "Total fees paid by users when minting Cube NFTs."
+    },
+    "Revenue": {
+     "Cube Minting Fees to Treasury": "Portion of the Cube minting fee retained by the Layer3 treasury."
+    },
+    "ProtocolRevenue": {
+     "Cube Minting Fees to Treasury": "Portion of the Cube minting fee retained by the Layer3 treasury."
+    },
+    "SupplySideRevenue": {
+     "Cube Minting Fees to Creators and Referrals": "Portion of the Cube minting fee paid out to creators, publishers, and referrers."
+    }
+   },
+   "id": "7611"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 6464,
+   "annualized1y": 7193.170731707317,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 48396,
+   "average1y": 19.70731707317073,
+   "monthlyAverage1y": 599.8907317073171,
+   "defillamaId": "7758",
+   "name": "LayerZero V1",
+   "displayName": "LayerZero V1",
+   "module": "layerzerov1",
+   "category": "Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/layerzerov1.ts",
+   "parentProtocol": "parent#layerzero",
+   "slug": "layerzero-v1",
+   "breakdownMethodology": {
+    "Fees": {
+     "Service Fees": "Native fees paid out to relayers, oracles, and treasury via WithdrawNative.",
+     "Protocol Fees": "ZRO protocol fees withdrawn from UltraLightNodeV2 by the V1 Treasury contract via WithdrawZRO."
+    },
+    "Revenue": {
+     "Protocol Fees": "ZRO protocol fees moved to the V1 Treasury contract."
+    },
+    "SupplySideRevenue": {
+     "Service Fees": "Native fees paid out to relayers and oracles."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "7758"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "8198",
+   "name": "DropSwap",
+   "displayName": "DropSwap",
+   "module": "dropswap",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/dropswap",
+   "slug": "dropswap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Integrator Fees": "A 0.25% integrator fee is charged on the input token of every swap routed through DropSwap, recorded per chain in DropSwap's own database."
+    },
+    "Revenue": {
+     "Integrator Fees to Token Buybacks": "Part of integrator fees used to fund $DROP buybacks and burns.",
+     "Integrator Fees to Protocol": "Part of integrator fees retained by the protocol."
+    },
+    "ProtocolRevenue": {
+     "Integrator Fees to Protocol": "Part of integrator fees retained by the protocol."
+    },
+    "HoldersRevenue": {
+     "Integrator Fees to Token Buybacks": "Part of integrator fees used to fund $DROP buybacks and burns."
+    },
+    "SupplySideRevenue": {
+     "Integrator Fees to Swap Campaigns": "Part of integrator fees used to fund swap campaigns."
+    }
+   },
+   "id": "8198"
+  },
+  {
+   "total24h": 2.96,
+   "total48hto24h": 4.17,
+   "total7d": 13.610000000000001,
+   "total14dto7d": 2.65,
+   "total30d": 16.259999999999998,
+   "total1y": 16.259999999999998,
+   "annualized1y": 659.4333333333333,
+   "total7DaysAgo": 2.29,
+   "totalAllTime": 19.22,
+   "average1y": 0.3871428571428571,
+   "monthlyAverage1y": 11.784628571428572,
+   "change_1d": -29.02,
+   "change_7d": 29.26,
+   "change_7dover7d": 413.58,
+   "defillamaId": "8831",
+   "name": "Jumper Bridge Aggregator",
+   "displayName": "Jumper Bridge Aggregator",
+   "module": "jumper-exchange-bridge",
+   "category": "Bridge Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/jumper-exchange-bridge",
+   "parentProtocol": "parent#jumper-exchange",
+   "slug": "jumper-bridge-aggregator",
+   "breakdownMethodology": {
+    "Fees": {
+     "Bridge Fees": "Jumper platform fees on bridges."
+    },
+    "Revenue": {
+     "Bridge Fees": "Jumper platform fees on bridges."
+    },
+    "ProtocolRevenue": {
+     "Bridge Fees": "Jumper platform fees on bridges."
+    }
+   },
+   "hasLabelBreakdown": true,
+   "id": "8831"
+  },
+  {
+   "total24h": 65,
+   "total48hto24h": 399,
+   "total7d": 2325,
+   "total14dto7d": 392,
+   "total30d": 4037.0699999999997,
+   "total60dto30d": 1116.49,
+   "total1y": 7276.29,
+   "total7DaysAgo": 51,
+   "total30DaysAgo": 47,
+   "totalAllTime": 13849235.289999997,
+   "average1y": 19.935041095890412,
+   "monthlyAverage1y": 606.8226509589042,
+   "change_1d": -83.71,
+   "change_7d": 27.45,
+   "change_1m": 38.3,
+   "change_7dover7d": 493.11,
+   "change_30dover30d": 261.59,
+   "defillamaId": "chain#blast",
+   "name": "Blast",
+   "displayName": "Blast",
+   "module": "blast",
+   "category": "Chain",
+   "protocolType": "chain",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/ethereum-l2.ts",
+   "slug": "blast",
+   "id": "chain#blast"
+  }
+ ]
+}

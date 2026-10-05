@@ -1,0 +1,170 @@
+{
+ "aerodrome": {
+  "key": "aerodrome",
+  "name": "Aerodrome",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/aerodrome.png",
+  "version": 2
+ },
+ "aerodromecl": {
+  "key": "aerodromecl",
+  "name": "Aerodrome Concentrated",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/aerodrome.png",
+  "version": 3
+ },
+ "aerodromecl2": {
+  "key": "aerodromecl2",
+  "name": "Aerodrome Concentrated V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/aerodrome.png",
+  "version": 3
+ },
+ "aerodromecl3": {
+  "key": "aerodromecl3",
+  "name": "Aerodrome Concentrated V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/aerodrome.png",
+  "version": 3
+ },
+ "camelotv2": {
+  "key": "camelotv2",
+  "name": "Camelot V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/camelot.png",
+  "version": 2
+ },
+ "camelotv3": {
+  "key": "camelotv3",
+  "name": "Camelot V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/camelot.png",
+  "version": 3
+ },
+ "hyperswapv2": {
+  "key": "hyperswapv2",
+  "name": "HyperSwap V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/hyperswap.png",
+  "version": 2
+ },
+ "hyperswapv3": {
+  "key": "hyperswapv3",
+  "name": "HyperSwap V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/hyperswap.png",
+  "version": 3
+ },
+ "katanav2": {
+  "key": "katanav2",
+  "name": "Katana V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/katana.jpg",
+  "version": 2
+ },
+ "katanav3": {
+  "key": "katanav3",
+  "name": "Katana V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/katana.jpg",
+  "version": 3
+ },
+ "kodiakcl": {
+  "key": "kodiakcl",
+  "name": "Kodiak Concentrated",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/kodiak.png",
+  "version": 3
+ },
+ "pancakev2": {
+  "key": "pancakev2",
+  "name": "PancakeSwap V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/pancake.png",
+  "version": 2
+ },
+ "pancakev3": {
+  "key": "pancakev3",
+  "name": "PancakeSwap V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/pancake.png",
+  "version": 3
+ },
+ "pancakev4": {
+  "key": "pancakev4",
+  "name": "PancakeSwap Infinity",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/pancake.png",
+  "version": 4
+ },
+ "projectxv3": {
+  "key": "projectxv3",
+  "name": "Project X V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/project-x.png",
+  "version": 3
+ },
+ "quickswapv2": {
+  "key": "quickswapv2",
+  "name": "QuickSwap V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/quickswap.png",
+  "version": 2
+ },
+ "quickswapv3": {
+  "key": "quickswapv3",
+  "name": "QuickSwap V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/quickswap.png",
+  "version": 3
+ },
+ "ramsescl": {
+  "key": "ramsescl",
+  "name": "Ramses Concentrated",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/ramses.png",
+  "version": 3
+ },
+ "shadowcl": {
+  "key": "shadowcl",
+  "name": "Shadow Concentrated",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/shadow.png",
+  "version": 3
+ },
+ "sushiv2": {
+  "key": "sushiv2",
+  "name": "SushiSwap V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/sushiswap.png",
+  "version": 2
+ },
+ "sushiv3": {
+  "key": "sushiv3",
+  "name": "SushiSwap V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/sushiswap.png",
+  "version": 3
+ },
+ "swapxcl": {
+  "key": "swapxcl",
+  "name": "SwapX Concentrated",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/swapx.png",
+  "version": 3
+ },
+ "thena": {
+  "key": "thena",
+  "name": "THENA",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/thena.png",
+  "version": 3
+ },
+ "thenav3": {
+  "key": "thenav3",
+  "name": "THENA V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/thena.png",
+  "version": 3
+ },
+ "uniswapv2": {
+  "key": "uniswapv2",
+  "name": "Uniswap V2",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/uniswap.png",
+  "version": 2
+ },
+ "uniswapv3": {
+  "key": "uniswapv3",
+  "name": "Uniswap V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/uniswap.png",
+  "version": 3
+ },
+ "uniswapv4": {
+  "key": "uniswapv4",
+  "name": "Uniswap V4",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/uniswap.png",
+  "version": 4
+ },
+ "wagmiv3": {
+  "key": "wagmiv3",
+  "name": "Wagmi V3",
+  "logo": "https://files.krystal.app/DesignAssets/platformIcons/wagmi.png",
+  "version": 3
+ }
+}

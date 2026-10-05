@@ -1,0 +1,422 @@
+[
+ {
+  "name": "axlUSDC / USDB 0.05%",
+  "address": "0x94aa7c30931e68a25d057b4b0c7df44f36d46ed5",
+  "dex": "thruster-v3",
+  "reserve_usd": 289800.9588,
+  "vol_24h": 24867.2231346667
+ },
+ {
+  "name": "USDe / USDB 0.05%",
+  "address": "0x8c1bb76510d6873a4a156a9cb394e74a3783bdb5",
+  "dex": "thruster-v3",
+  "reserve_usd": 1044001.6867,
+  "vol_24h": 14983.8467346138
+ },
+ {
+  "name": "WETH / USDB 0.05%",
+  "address": "0x7f0db0d77d0694f29c3f940b5b1f589fff6ef2e0",
+  "dex": "thruster-v3",
+  "reserve_usd": 79565.3072,
+  "vol_24h": 13184.0865518139
+ },
+ {
+  "name": "WETH / USDB 0.3%",
+  "address": "0xf00da13d2960cf113edcef6e3f30d92e52906537",
+  "dex": "thruster-v3",
+  "reserve_usd": 157117.7567,
+  "vol_24h": 11285.0925365771
+ },
+ {
+  "name": "BLAST / WETH 0.3%",
+  "address": "0x9a0aa28d999a21d3cf6f2703cdbba9feaf4a32f7",
+  "dex": "thruster-v3",
+  "reserve_usd": 14725.5364,
+  "vol_24h": 9483.8628217592
+ },
+ {
+  "name": "USDB / WETH 0.3%",
+  "address": "0x0d44f3f22f917cc57368a6d30ba18d5801789cd9",
+  "dex": "monoswap-v3-blast",
+  "reserve_usd": 109290.1508,
+  "vol_24h": 6643.8984198491
+ },
+ {
+  "name": "BLAST / WETH",
+  "address": "0x266bafb866fc4a47d53ebabf4f7c102a884d1335",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 3190.7422,
+  "vol_24h": 4606.410066416
+ },
+ {
+  "name": "WETH / USDB",
+  "address": "0x3b5d3f610cc3505f4701e9fb7d0f0c93b7713add",
+  "dex": "blasterswap",
+  "reserve_usd": 103919.6963,
+  "vol_24h": 1354.3774000755
+ },
+ {
+  "name": "USDB / WETH 0.3%",
+  "address": "0xa59ce2b83a856881e3293f216225d37c6a2fb87a",
+  "dex": "roguex-protocol",
+  "reserve_usd": 33230.2548,
+  "vol_24h": 1065.3643620853
+ },
+ {
+  "name": "ezETH / WETH 0.3%",
+  "address": "0x1d42751ce4f28f58e7b757a586615a0cf31566df",
+  "dex": "thruster-v3",
+  "reserve_usd": 98778.543,
+  "vol_24h": 650.4638774822
+ },
+ {
+  "name": "USDB / WETH 0.05%",
+  "address": "0x9f8b6c144268f784e79faafd6f6df8355733eb2e",
+  "dex": "blasterswap-v3",
+  "reserve_usd": 10531.0035,
+  "vol_24h": 572.0439591736
+ },
+ {
+  "name": "BLASTUP / WETH",
+  "address": "0xd5e8e04179cfbc51d2b4526ccd8d3060c6ea931f",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 4586.4731,
+  "vol_24h": 527.3187001552
+ },
+ {
+  "name": "BLAST / USDB 0.553%",
+  "address": "0x4c577f4873061003d6c83eaac20e24397ff5b89b",
+  "dex": "fenix-finance",
+  "reserve_usd": 403.418,
+  "vol_24h": 425.8279735866
+ },
+ {
+  "name": "ezETH / WETH 0.05%",
+  "address": "0x7be481d464cad7ad99500ce8a637599eb8d0fcdb",
+  "dex": "thruster-v3",
+  "reserve_usd": 62133.6325,
+  "vol_24h": 313.8803597875
+ },
+ {
+  "name": "BLAST / WETH 0.3%",
+  "address": "0x1cf4cfc7a984a474ab03f444ccedb30c3ae6f56c",
+  "dex": "uniswap-v3-blast",
+  "reserve_usd": 223.5638,
+  "vol_24h": 303.1822911299
+ },
+ {
+  "name": "BLAST / USDB",
+  "address": "0x814d4dd83295aa3df5c4594423cc634c42d11ab1",
+  "dex": "squadswap-blast",
+  "reserve_usd": 241.2208,
+  "vol_24h": 283.7709513624
+ },
+ {
+  "name": "BLAST / WETH 0.542%",
+  "address": "0xc8252c4f9136209ec47534bf1c0781307ec9a86f",
+  "dex": "fenix-finance",
+  "reserve_usd": 318.0963,
+  "vol_24h": 253.432315562
+ },
+ {
+  "name": "GOODY / WETH",
+  "address": "0x2f3a53a309020bff1ae9e000d8378b6bd2d363b6",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 38623.9472,
+  "vol_24h": 251.7671968541
+ },
+ {
+  "name": "BLAST / USDB 0.3%",
+  "address": "0xe3a5f46667461e35eece4e39e2177b438af6b7f7",
+  "dex": "thruster-v3",
+  "reserve_usd": 769.2986,
+  "vol_24h": 203.7467302052
+ },
+ {
+  "name": "OHNO / WETH",
+  "address": "0xd0e1bafc5b2606d8841c4358b89a6e01996a4f20",
+  "dex": "thruster-v2-1-0-fee-tier",
+  "reserve_usd": 397621.82,
+  "vol_24h": 194.6381494022
+ },
+ {
+  "name": "fwUSDB / fwWETH",
+  "address": "0x9be8a40c9cf00fe33fd84eaedaa5c4fe3f04cbc3",
+  "dex": "ring-exchange-blast",
+  "reserve_usd": 72387.9996,
+  "vol_24h": 179.9997439253
+ },
+ {
+  "name": "OLE / WETH",
+  "address": "0x254b286ae84432f4cdcf41851627a2dd4d8a9894",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 105647.6301,
+  "vol_24h": 167.5339774576
+ },
+ {
+  "name": "WETH / USDB",
+  "address": "0x12c69bfa3fb3cba75a1defa6e976b87e233fc7df",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 19860.7809,
+  "vol_24h": 163.3232275582
+ },
+ {
+  "name": "PUMP / WETH 0.3%",
+  "address": "0x131151ef6e1099d44f12a981b53a6f965b2bc1bb",
+  "dex": "thruster-v3",
+  "reserve_usd": 9782.3017,
+  "vol_24h": 104.9871666462
+ },
+ {
+  "name": "BLAST / USDB 9%",
+  "address": "0x585aabe11e72d8b8f1794ab0c1a1282a246b2c7d8abf8a4f4e8e3759bfe56fd6",
+  "dex": "uniswap-v4-blast",
+  "reserve_usd": 455.0054,
+  "vol_24h": 72.8748864168
+ },
+ {
+  "name": "USDB / WETH",
+  "address": "0xad06cd451fe4034a6dd515af08e222a3d95b4a1c",
+  "dex": "uniswap-v2-blast",
+  "reserve_usd": 350.1504,
+  "vol_24h": 67.2102759468
+ },
+ {
+  "name": "weETH / WETH 0.05%",
+  "address": "0xfe8fa9f973e1db10578ed14ace06e9d29875ff1a",
+  "dex": "thruster-v3",
+  "reserve_usd": 57699.5712,
+  "vol_24h": 62.607362603
+ },
+ {
+  "name": "USDB / WETH 0.05%",
+  "address": "0xf5a23bdd36a56ede75d503f6f643d5eaf25b1a8f",
+  "dex": "uniswap-v3-blast",
+  "reserve_usd": 12371.5282,
+  "vol_24h": 60.1163703815
+ },
+ {
+  "name": "WETH / USDB 0.013%",
+  "address": "0x1d74611f3ef04e7252f7651526711a937aa1f75e",
+  "dex": "fenix-finance",
+  "reserve_usd": 4674.7388,
+  "vol_24h": 59.7333929113
+ },
+ {
+  "name": "BLAST / WETH",
+  "address": "0x84f7c4c3de559a76189df8dacd84e25a72781601",
+  "dex": "squadswap-blast",
+  "reserve_usd": 63.5649,
+  "vol_24h": 58.495053423
+ },
+ {
+  "name": "USDB / WETH 0.05%",
+  "address": "0x83e7c9f12348a95a5fe02c8af7074dd52defd1e108e19e51234c49da56d7c635",
+  "dex": "uniswap-v4-blast",
+  "reserve_usd": 59.4903,
+  "vol_24h": 41.6791440043
+ },
+ {
+  "name": "BTC / WETH",
+  "address": "0xd93cf8171b630226c805fea737db25955d203400",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 6449.6004,
+  "vol_24h": 40.2224586678
+ },
+ {
+  "name": "USDB / WETH",
+  "address": "0xc84499ee6934209af2ff925783aabe410d537f12",
+  "dex": "bladeswap",
+  "reserve_usd": 16415.6328,
+  "vol_24h": 39.9633823756
+ },
+ {
+  "name": "wrsETH / WETH 0.05%",
+  "address": "0x4cc9959ae7a4d380c1100b271bc63d9961ca162f",
+  "dex": "thruster-v3",
+  "reserve_usd": 25018.7761,
+  "vol_24h": 37.3023298645
+ },
+ {
+  "name": "BLAST / USDB",
+  "address": "0x399f85e720f41dceef628a4326c8b0795032e3c7",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 42.6483,
+  "vol_24h": 32.8948888251
+ },
+ {
+  "name": "BLAST / WETH",
+  "address": "0x886fbec3e46cec07851747263aade08afd756e9d",
+  "dex": "uniswap-v2-blast",
+  "reserve_usd": 18.2002,
+  "vol_24h": 29.8266605596
+ },
+ {
+  "name": "USDB / WETH",
+  "address": "0xfb57c98d0a9bd50c3a01862e47190a87426b28bb",
+  "dex": "hyperblast",
+  "reserve_usd": 1448.6187,
+  "vol_24h": 23.3664525766
+ },
+ {
+  "name": "YES / WETH 1%",
+  "address": "0x1d16788b97edb7d9a6ae66d5c5c16469037faa00",
+  "dex": "thruster-v3",
+  "reserve_usd": 153070530.8205,
+  "vol_24h": 20.9471800399
+ },
+ {
+  "name": "ESE / WETH",
+  "address": "0x61f536056708b3b0d2b47cf6e4f799605d493ff0",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 1808.0691,
+  "vol_24h": 20.7111212955
+ },
+ {
+  "name": "PAC / WETH",
+  "address": "0x35cffd490fa1f20c7fadb669067e4cf289bd61a2",
+  "dex": "blasterswap",
+  "reserve_usd": 2388.2105,
+  "vol_24h": 16.6017071285
+ },
+ {
+  "name": "VLT / WETH",
+  "address": "0xe8778ff4e509dbbceb17c25df2817a9bfe048f78",
+  "dex": "blasterswap",
+  "reserve_usd": 63827.3984,
+  "vol_24h": 16.191061885
+ },
+ {
+  "name": "PAC / WETH",
+  "address": "0x798de49488a1d4642d80dee1b700802fd1953060",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 184.8179,
+  "vol_24h": 13.8923415826
+ },
+ {
+  "name": "OFF / WETH",
+  "address": "0xe23dc785d32ba1e4e5955978675689280af21fbc",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 5174.6288,
+  "vol_24h": 12.9939152092
+ },
+ {
+  "name": "MAWE / USDB",
+  "address": "0x8abe5ab37eced29d6f8bfad38c33510eeb65513b",
+  "dex": "uniswap-v2-blast",
+  "reserve_usd": 256.2146,
+  "vol_24h": 12.0389194171
+ },
+ {
+  "name": "MAWE / WETH",
+  "address": "0x7de9dc8388257830068d4b904113b555a741f5ce",
+  "dex": "uniswap-v2-blast",
+  "reserve_usd": 256.2146,
+  "vol_24h": 11.4279139103
+ },
+ {
+  "name": "fwBLAST / fwWETH",
+  "address": "0xaf6ec30c93203ff0269b997f422c26115adc613d",
+  "dex": "ring-exchange-blast",
+  "reserve_usd": 25.2766,
+  "vol_24h": 10.6789939897
+ },
+ {
+  "name": "ESE / BLAST 0.3%",
+  "address": "0xfe7135530b7d85427de8a635731a424bdeddaa3dd1fa55b212c4d5fb34a466b0",
+  "dex": "uniswap-v4-blast",
+  "reserve_usd": 31.7825,
+  "vol_24h": 10.5867848061
+ },
+ {
+  "name": "USDB / WETH 0.05%",
+  "address": "0x165693c767357d12dee74cd1096356de6df55b9c",
+  "dex": "cyberblast-v3",
+  "reserve_usd": 719.8593,
+  "vol_24h": 10.2639352535
+ },
+ {
+  "name": "ORBIT / WETH 1%",
+  "address": "0xe9b623df3a61434d9628b04df6381c7c5725a5af",
+  "dex": "thruster-v3",
+  "reserve_usd": 40112.0029,
+  "vol_24h": 10.1073360945
+ },
+ {
+  "name": "BLAST / WETH 1%",
+  "address": "0x79fb89437cb97a6bbffb9c76b0f0dfa102b4c07d",
+  "dex": "monoswap-v3-blast",
+  "reserve_usd": 760.0627,
+  "vol_24h": 9.2777583171
+ },
+ {
+  "name": "PAC / WETH 0.3%",
+  "address": "0x14c5766f8556683af2d8023e389837044794795a",
+  "dex": "thruster-v3",
+  "reserve_usd": 2301.2281,
+  "vol_24h": 8.1046400595
+ },
+ {
+  "name": "BLAST / USDB",
+  "address": "0xcabac4a2fcd520a036778f62a2c1f2e5509b45a8",
+  "dex": "uniswap-v2-blast",
+  "reserve_usd": 14.1255,
+  "vol_24h": 7.9626362123
+ },
+ {
+  "name": "ezETH / USDB 0.05%",
+  "address": "0x918f4881361ca287650b5e573f94f383b2b6921a",
+  "dex": "thruster-v3",
+  "reserve_usd": 43.7348,
+  "vol_24h": 7.0435366435
+ },
+ {
+  "name": "BCat / WETH",
+  "address": "0xdf00e2e77db4a197bcfa74c222f16ee574a794e1",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 133.7212,
+  "vol_24h": 6.5742952978
+ },
+ {
+  "name": "PEW / BLAST 1%",
+  "address": "0x3a6b52b1503fd38505b6c5d63ce52596fce11efb",
+  "dex": "thruster-v3",
+  "reserve_usd": 65.1948,
+  "vol_24h": 6.4964056881
+ },
+ {
+  "name": "KAP / BLAST",
+  "address": "0x7967d12c3cd0c618513e62f36e46feaeb21a6db3",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 8.1494,
+  "vol_24h": 6.1831295961
+ },
+ {
+  "name": "KAP / WETH",
+  "address": "0x41950f0e69a5d0b6bafefd1e3d9a0b57d336db32",
+  "dex": "blasterswap",
+  "reserve_usd": 5120.5083,
+  "vol_24h": 5.8694358894
+ },
+ {
+  "name": "ezETH / USDB 0.3%",
+  "address": "0x5e16968b4259990bb1cd2775d3eee58b18762665",
+  "dex": "thruster-v3",
+  "reserve_usd": 892.6255,
+  "vol_24h": 5.6177894283
+ },
+ {
+  "name": "PEW / WETH",
+  "address": "0x17bcde725110e3c77eb209ed3f0433724e3807ec",
+  "dex": "blasterswap",
+  "reserve_usd": 14.6688,
+  "vol_24h": 5.5514804155
+ },
+ {
+  "name": "CRAG / WETH",
+  "address": "0x7231352b42a156e2a3a97d5d03fb68ea6b96916b",
+  "dex": "thruster-v2-0-3-fee-tier",
+  "reserve_usd": 38366.2894,
+  "vol_24h": 5.2675094637
+ }
+]

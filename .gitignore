@@ -1,0 +1,7 @@
+data/.cache/
+__pycache__/
+*.pyc
+# крупные сырые файлы (воспроизводятся collect.py)
+data/raw/krystal_history_*.json
+data/raw/krystal_ticks_*.json
+data/raw/llama_pools.json

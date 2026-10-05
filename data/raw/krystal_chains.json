@@ -1,0 +1,159 @@
+[
+ {
+  "name": "Arbitrum",
+  "id": 42161,
+  "logo": "https://files.krystal.app/DesignAssets/chains/arbitrum.png",
+  "explorer": "https://arbiscan.io",
+  "supportedProtocols": [
+   "camelotv3",
+   "pancakev2",
+   "sushiv3",
+   "uniswapv4",
+   "uniswapv2",
+   "sushiv2",
+   "uniswapv3",
+   "pancakev3",
+   "camelotv2"
+  ]
+ },
+ {
+  "name": "Base",
+  "id": 8453,
+  "logo": "https://files.krystal.app/DesignAssets/chains/base.png",
+  "explorer": "https://basescan.org",
+  "supportedProtocols": [
+   "aerodromecl",
+   "uniswapv2",
+   "pancakev4",
+   "aerodromecl3",
+   "uniswapv4",
+   "sushiv2",
+   "uniswapv3",
+   "aerodromecl2",
+   "pancakev3",
+   "sushiv3",
+   "aerodrome"
+  ]
+ },
+ {
+  "name": "Ronin",
+  "id": 2020,
+  "logo": "https://files.krystal.app/DesignAssets/chains/ronin.png",
+  "explorer": "https://app.roninchain.com/explorer"
+ },
+ {
+  "name": "Polygon",
+  "id": 137,
+  "logo": "https://files.krystal.app/DesignAssets/chains/polygon.png",
+  "explorer": "https://polygonscan.com",
+  "supportedProtocols": [
+   "uniswapv3",
+   "sushiv3",
+   "quickswapv3",
+   "uniswapv4",
+   "uniswapv2",
+   "sushiv2",
+   "quickswapv2"
+  ]
+ },
+ {
+  "name": "UniChain",
+  "id": 130,
+  "logo": "https://files.krystal.app/DesignAssets/chains/unichain.png",
+  "explorer": "https://uniscan.xyz/"
+ },
+ {
+  "name": "Ethereum",
+  "id": 1,
+  "logo": "https://files.krystal.app/DesignAssets/chains/ethereum.png",
+  "explorer": "https://etherscan.io",
+  "supportedProtocols": [
+   "uniswapv3",
+   "sushiv3",
+   "pancakev3",
+   "uniswapv4",
+   "uniswapv2",
+   "sushiv2",
+   "pancakev2"
+  ]
+ },
+ {
+  "name": "Robinhood",
+  "id": 4663,
+  "logo": "https://files.krystal.app/DesignAssets/chains/robinhood.png",
+  "explorer": "https://robinhoodchain.blockscout.com",
+  "supportedProtocols": [
+   "ramsescl",
+   "uniswapv4",
+   "uniswapv3",
+   "uniswapv2"
+  ]
+ },
+ {
+  "name": "Avalanche",
+  "id": 43114,
+  "logo": "https://files.krystal.app/DesignAssets/chains/avalanche.png",
+  "explorer": "https://snowtrace.io",
+  "supportedProtocols": [
+   "blackholecl",
+   "uniswapv2",
+   "uniswapv3",
+   "uniswapv4"
+  ]
+ },
+ {
+  "name": "Optimism",
+  "id": 10,
+  "logo": "https://files.krystal.app/DesignAssets/chains/optimism.png",
+  "explorer": "https://optimistic.etherscan.io",
+  "supportedProtocols": [
+   "sushiv3",
+   "uniswapv4",
+   "uniswapv2",
+   "sushiv2",
+   "uniswapv3"
+  ]
+ },
+ {
+  "name": "Binance Smart Chain",
+  "id": 56,
+  "logo": "https://files.krystal.app/DesignAssets/chains/bsc.png",
+  "explorer": "https://bscscan.com",
+  "supportedProtocols": [
+   "uniswapv3",
+   "thenav3",
+   "pancakev3",
+   "uniswapv4",
+   "pancakev2",
+   "uniswapv2",
+   "pancakev4",
+   "thena",
+   "sushiv3",
+   "sushiv2"
+  ]
+ },
+ {
+  "name": "Sonic",
+  "id": 146,
+  "logo": "https://files.krystal.app/DesignAssets/chains/sonic.png",
+  "explorer": "https://sonicscan.org"
+ },
+ {
+  "name": "Berachain",
+  "id": 80094,
+  "logo": "https://files.krystal.app/DesignAssets/chains/berachain.png",
+  "explorer": "https://berascan.org"
+ },
+ {
+  "name": "HyperEVM",
+  "id": 999,
+  "logo": "https://files.krystal.app/DesignAssets/chains/hyperevm.png",
+  "explorer": "https://hyperevmscan.io",
+  "supportedProtocols": [
+   "projectxv3",
+   "upheavalv3",
+   "hyperswapv3",
+   "hyperswapv2"
+  ]
+ }
+]

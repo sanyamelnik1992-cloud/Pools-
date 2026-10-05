@@ -1,0 +1,297 @@
+{
+ "42161:0xc6962004f452be9203591991d15f6b388e09e8d0": {
+  "liquidity_usd": 37014206.76,
+  "vol_24h": 28229149.08,
+  "dex": "uniswap"
+ },
+ "42161:0x2f5e87c9312fa29aed5c179e456625d79015299c": {
+  "liquidity_usd": 36432595.03,
+  "vol_24h": 12167593.34,
+  "dex": "uniswap"
+ },
+ "42161:0x0e4831319a50228b9e450861297ab92dee15b44f": {
+  "liquidity_usd": 8041338.75,
+  "vol_24h": 6357323.3,
+  "dex": "uniswap"
+ },
+ "42161:0x641c00a822e8b671738d32a431a4fb6074e5c79d": {
+  "liquidity_usd": 6441256.94,
+  "vol_24h": 3077873.04,
+  "dex": "uniswap"
+ },
+ "42161:0xc473e2aee3441bf9240be85eb122abb059a3b57c": {
+  "liquidity_usd": 5693819.5,
+  "vol_24h": 460277.04,
+  "dex": "uniswap"
+ },
+ "42161:0x5969efdde3cf5c0d9a88ae51e47d721096a97203": {
+  "liquidity_usd": 4165693.36,
+  "vol_24h": 2148397.37,
+  "dex": "uniswap"
+ },
+ "42161:0x80a9ae39310abf666a87c743d6ebbd0e8c42158e": {
+  "liquidity_usd": 2805188.14,
+  "vol_24h": 1269.61,
+  "dex": "uniswap"
+ },
+ "42161:0xc6f780497a95e246eb9449f5e4770916dcd6396a": {
+  "liquidity_usd": 2037677.75,
+  "vol_24h": 3460492.43,
+  "dex": "uniswap"
+ },
+ "42161:0x468b88941e7cc0b88c1869d68ab6b570bcef62ff": {
+  "liquidity_usd": 1332311.51,
+  "vol_24h": 106347.28,
+  "dex": "uniswap"
+ },
+ "42161:0x9b42809aaae8d088ee01fe637e948784730f0386": {
+  "liquidity_usd": 1282619.22,
+  "vol_24h": 1176909.31,
+  "dex": "uniswap"
+ },
+ "42161:0x4bfc22a4da7f31f8a912a79a7e44a822398b4390": {
+  "liquidity_usd": 1206801.89,
+  "vol_24h": 2792074.96,
+  "dex": "pancakeswap"
+ },
+ "42161:0xdbaeb7f0dfe3a0aafd798ccecb5b22e708f7852c": {
+  "liquidity_usd": 1168736.33,
+  "vol_24h": 214141.47,
+  "dex": "uniswap"
+ },
+ "42161:0xbe3ad6a5669dc0b8b12febc03608860c31e2eef6": {
+  "liquidity_usd": 1158592.6,
+  "vol_24h": 1117496.17,
+  "dex": "uniswap"
+ },
+ "42161:0xc31e54c7a869b9fcbecc14363cf510d1c41fa443": {
+  "liquidity_usd": 1118058.25,
+  "vol_24h": 147700.01,
+  "dex": "uniswap"
+ },
+ "42161:0xe5cf22ee4988d54141b77050967e1052bd9c7f7a": {
+  "liquidity_usd": 1073477.77,
+  "vol_24h": 7837.95,
+  "dex": "uniswap"
+ },
+ "42161:0x299c7d6f2ef82cb52b2ab83b14f05c6b2b803aba": {
+  "liquidity_usd": 1073581.42,
+  "vol_24h": 44954.2,
+  "dex": "camelot"
+ },
+ "42161:0x35218a1cbac5bbc3e57fd9bd38219d37571b3537": {
+  "liquidity_usd": 1039470.43,
+  "vol_24h": 243628.74,
+  "dex": "uniswap"
+ },
+ "42161:0x49340dbb8fb5ece2f9b594e77ab774e65725e9d8": {
+  "liquidity_usd": 984917.17,
+  "vol_24h": 817373.57,
+  "dex": "uniswap"
+ },
+ "42161:0x149e36e72726e0bcea5c59d40df2c43f60f5a22d": {
+  "liquidity_usd": 837187.09,
+  "vol_24h": 18961.15,
+  "dex": "uniswap"
+ },
+ "42161:0xd9e2a1a61b6e61b275cec326465d417e52c1b95c": {
+  "liquidity_usd": 787288.11,
+  "vol_24h": 515052.16,
+  "dex": "pancakeswap"
+ },
+ "42161:0x74b8bcadc831369ce75543e0d7517875af1c157d": {
+  "liquidity_usd": 750035.74,
+  "vol_24h": 72521.9,
+  "dex": "pancakeswap"
+ },
+ "42161:0xa95b0f5a65a769d82ab4f3e82842e45b8bbaf101": {
+  "liquidity_usd": 565497.71,
+  "vol_24h": 147705.64,
+  "dex": "uniswap"
+ },
+ "42161:0x50e7b9293aef80c304234e86c84a01be8401c530": {
+  "liquidity_usd": 566381.3,
+  "vol_24h": 180912.72,
+  "dex": "uniswap"
+ },
+ "42161:0xf3d53f87e3f82ebbcb1f4a6c4226dd80cdfaa731": {
+  "liquidity_usd": 548755.33,
+  "vol_24h": 4364.58,
+  "dex": "uniswap"
+ },
+ "42161:0xd13040d4fe917ee704158cfcb3338dcd2838b245": {
+  "liquidity_usd": 535894.06,
+  "vol_24h": 347000.61,
+  "dex": "uniswap"
+ },
+ "42161:0x4d1576158518dd61924218446c1057cf03138d57": {
+  "liquidity_usd": 497831.28,
+  "vol_24h": 16267.52,
+  "dex": "sushiswap"
+ },
+ "42161:0xe9e6b9aaafaf6816c3364345f6ef745ccfc8660a": {
+  "liquidity_usd": 485010.19,
+  "vol_24h": 14474.72,
+  "dex": "uniswap"
+ },
+ "42161:0xc24f7d8e51a64dc1238880bd00bb961d54cbeb29": {
+  "liquidity_usd": 479390.13,
+  "vol_24h": 67578.15,
+  "dex": "uniswap"
+ },
+ "42161:0x7fcdc35463e3770c2fb992716cd070b63540b947": {
+  "liquidity_usd": 473176.09,
+  "vol_24h": 510913.29,
+  "dex": "pancakeswap"
+ },
+ "42161:0xdd672b3b768a16b9bcb4ee1060d3e8221435beaa": {
+  "liquidity_usd": 468413,
+  "vol_24h": 71431.72,
+  "dex": "uniswap"
+ },
+ "8453:0x6c561b446416e1a00e8e93e221854d6ea4171372": {
+  "liquidity_usd": 163077367.04,
+  "vol_24h": 41100250.35,
+  "dex": "uniswap"
+ },
+ "8453:0xe2b8c33ae97658cead06afd47c7f3857e5851871": {
+  "liquidity_usd": 15801211.26,
+  "vol_24h": 728538.68,
+  "dex": "uniswap"
+ },
+ "8453:0x70acdf2ad0bf2402c957154f944c19ef4e1cbae1": {
+  "liquidity_usd": 13680302.82,
+  "vol_24h": 1729849.69,
+  "dex": "aerodrome"
+ },
+ "8453:0x7aea2e8a3843516afa07293a10ac8e49906dabd1": {
+  "liquidity_usd": 14512704.56,
+  "vol_24h": 12239842.53,
+  "dex": "uniswap"
+ },
+ "8453:0x3fe04a59ebd38cf06080a6f60a98d124eb59392a": {
+  "liquidity_usd": 9604124.02,
+  "vol_24h": 51343472.24,
+  "dex": "aerodrome"
+ },
+ "8453:0x8c7080564b5a792a33ef2fd473fba6364d5495e5": {
+  "liquidity_usd": 11644054.44,
+  "vol_24h": 922769.83,
+  "dex": "uniswap"
+ },
+ "8453:0xd0b53d9277642d899df5c87a3966a349a798f224": {
+  "liquidity_usd": 10056694.5,
+  "vol_24h": 11282851.79,
+  "dex": "uniswap"
+ },
+ "8453:0x42d4a22cad0f5a49681a5715ce994af73a43b76b": {
+  "liquidity_usd": 9189315.41,
+  "vol_24h": 40393797.51,
+  "dex": "aerodrome"
+ },
+ "8453:0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59": {
+  "liquidity_usd": 8925560.4,
+  "vol_24h": 49611340.14,
+  "dex": "aerodrome"
+ },
+ "8453:0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef": {
+  "liquidity_usd": 8506777.96,
+  "vol_24h": 6871675.07,
+  "dex": "uniswap"
+ },
+ "8453:0x01271a205e3f37cbfc9b353170d726060e193c0d": {
+  "liquidity_usd": 7457867.71,
+  "vol_24h": 384938.18,
+  "dex": "aerodrome"
+ },
+ "8453:0x3e66e55e97ce60096f74b7c475e8249f2d31a9fb": {
+  "liquidity_usd": 7356074.04,
+  "vol_24h": 5097054.96,
+  "dex": "aerodrome"
+ },
+ "8453:0xc211e1f853a898bd1302385ccde55f33a8c4b3f3": {
+  "liquidity_usd": 6112294.35,
+  "vol_24h": 24670104.51,
+  "dex": "pancakeswap"
+ },
+ "8453:0x4e962bb3889bf030368f56810a9c96b83cb3e778": {
+  "liquidity_usd": 6016408.08,
+  "vol_24h": 7922617.59,
+  "dex": "aerodrome"
+ },
+ "8453:0x160d7e9d948b16c163332a277b393c288408eb12": {
+  "liquidity_usd": 5193743.19,
+  "vol_24h": 25776200.13,
+  "dex": "aerodrome"
+ },
+ "8453:0xbe00ff35af70e8415d0eb605a286d8a45466a4c1": {
+  "liquidity_usd": 4186797.07,
+  "vol_24h": 348409.87,
+  "dex": "aerodrome"
+ },
+ "8453:0x72ab388e2e2f6facef59e3c3fa2c4e29011c2d38": {
+  "liquidity_usd": 4966536.08,
+  "vol_24h": 32818161.34,
+  "dex": "pancakeswap"
+ },
+ "8453:0xa44d3bb767d953711ea4bce8c0f01f4d7d299af6": {
+  "liquidity_usd": 4714186.02,
+  "vol_24h": 61207.8,
+  "dex": "aerodrome"
+ },
+ "8453:0x861a2922be165a5bd41b1e482b49216b465e1b5f": {
+  "liquidity_usd": 4050212.78,
+  "vol_24h": 789032.21,
+  "dex": "aerodrome"
+ },
+ "8453:0xe70d39303ecfbc64df28facabae250ce2b31147a": {
+  "liquidity_usd": 3877445.96,
+  "vol_24h": 4169.08,
+  "dex": "uniswap"
+ },
+ "8453:0x0c3b466104545efa096b8f944c1e524e1d0d4888": {
+  "liquidity_usd": 3784995.5,
+  "vol_24h": 197278.62,
+  "dex": "uniswap"
+ },
+ "8453:0xa135b59fe221c0c8d441294f97f96fbc37bc9fbe": {
+  "liquidity_usd": 2287612.98,
+  "vol_24h": 3988073.07,
+  "dex": "aerodrome"
+ },
+ "8453:0x6a77cdec82eff6a6a5d273f18c1c27cd3d71a588": {
+  "liquidity_usd": 3251204.4,
+  "vol_24h": 5044.61,
+  "dex": "uniswap"
+ },
+ "8453:0x7ec6c9d993d9832aa654593f2dbc21303650bc6c": {
+  "liquidity_usd": 3117781.62,
+  "vol_24h": 1892208.21,
+  "dex": "aerodrome"
+ },
+ "8453:0x0392b12a1ceb0cd13af5ea448cf5586ea609852d": {
+  "liquidity_usd": 2841630.13,
+  "vol_24h": 851950.35,
+  "dex": "aerodrome"
+ },
+ "8453:0x3f2bb479c96227805dd98d862f564afc0131478c": {
+  "liquidity_usd": 2812076.17,
+  "vol_24h": 4355.54,
+  "dex": "uniswap"
+ },
+ "8453:0xd418dfe7670c21f682e041f34250c114db5d7789": {
+  "liquidity_usd": 2658740.21,
+  "vol_24h": 19841.71,
+  "dex": "uniswap"
+ },
+ "8453:0x4e506648d493c8870f55e870480f92f2f33ece51": {
+  "liquidity_usd": 4051615.19,
+  "vol_24h": 6614454.14,
+  "dex": "aerodrome"
+ },
+ "8453:0xaec085e5a5ce8d96a7bdd3eb3a62445d4f6ce703": {
+  "liquidity_usd": 2646107.7,
+  "vol_24h": 13126.86,
+  "dex": "uniswap"
+ }
+}

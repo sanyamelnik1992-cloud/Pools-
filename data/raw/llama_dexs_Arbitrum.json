@@ -1,0 +1,5972 @@
+{
+ "totalDataChart": [
+  [
+   1756684800,
+   698348960
+  ],
+  [
+   1756771200,
+   713742993
+  ],
+  [
+   1756857600,
+   578401344
+  ],
+  [
+   1756944000,
+   698878100
+  ],
+  [
+   1757030400,
+   848162183
+  ],
+  [
+   1757116800,
+   322058268
+  ],
+  [
+   1757203200,
+   256891992
+  ],
+  [
+   1757289600,
+   519125150
+  ],
+  [
+   1757376000,
+   534386806
+  ],
+  [
+   1757462400,
+   562328191
+  ],
+  [
+   1757548800,
+   670479589
+  ],
+  [
+   1757635200,
+   705049043
+  ],
+  [
+   1757721600,
+   488920334
+  ],
+  [
+   1757808000,
+   447029195
+  ],
+  [
+   1757894400,
+   615452785
+  ],
+  [
+   1757980800,
+   520151773
+  ],
+  [
+   1758067200,
+   845246521
+  ],
+  [
+   1758153600,
+   652132299
+  ],
+  [
+   1758240000,
+   556070901
+  ],
+  [
+   1758326400,
+   340624459
+  ],
+  [
+   1758412800,
+   375438373
+  ],
+  [
+   1758499200,
+   903770718
+  ],
+  [
+   1758585600,
+   633895979
+  ],
+  [
+   1758672000,
+   584391472
+  ],
+  [
+   1758758400,
+   1370100574
+  ],
+  [
+   1758844800,
+   1002365869
+  ],
+  [
+   1758931200,
+   591520944
+  ],
+  [
+   1759017600,
+   589492706
+  ],
+  [
+   1759104000,
+   613953359
+  ],
+  [
+   1759190400,
+   789463411
+  ],
+  [
+   1759276800,
+   823249185
+  ],
+  [
+   1759363200,
+   883703755
+  ],
+  [
+   1759449600,
+   887396123
+  ],
+  [
+   1759536000,
+   448218226
+  ],
+  [
+   1759622400,
+   715929295
+  ],
+  [
+   1759708800,
+   856126133
+  ],
+  [
+   1759795200,
+   1008735116
+  ],
+  [
+   1759881600,
+   951267972
+  ],
+  [
+   1759968000,
+   1253766922
+  ],
+  [
+   1760054400,
+   2199804177
+  ],
+  [
+   1760140800,
+   1068232236
+  ],
+  [
+   1760227200,
+   1229219642
+  ],
+  [
+   1760313600,
+   1107698466
+  ],
+  [
+   1760400000,
+   1408517451
+  ],
+  [
+   1760486400,
+   1115243341
+  ],
+  [
+   1760572800,
+   1008325870
+  ],
+  [
+   1760659200,
+   1027681446
+  ],
+  [
+   1760745600,
+   320815442
+  ],
+  [
+   1760832000,
+   482676081
+  ],
+  [
+   1760918400,
+   530830838
+  ],
+  [
+   1761004800,
+   868037767
+  ],
+  [
+   1761091200,
+   816180746
+  ],
+  [
+   1761177600,
+   756516503.6700001
+  ],
+  [
+   1761264000,
+   594191124
+  ],
+  [
+   1761350400,
+   226235222
+  ],
+  [
+   1761436800,
+   449549067.04
+  ],
+  [
+   1761523200,
+   658486772
+  ],
+  [
+   1761609600,
+   657157389
+  ],
+  [
+   1761696000,
+   703118653
+  ],
+  [
+   1761782400,
+   758664040
+  ],
+  [
+   1761868800,
+   561269280
+  ],
+  [
+   1761955200,
+   229424940
+  ],
+  [
+   1762041600,
+   292019565
+  ],
+  [
+   1762128000,
+   788626281
+  ],
+  [
+   1762214400,
+   1180809950
+  ],
+  [
+   1762300800,
+   691519276
+  ],
+  [
+   1762387200,
+   581440983
+  ],
+  [
+   1762473600,
+   723398751
+  ],
+  [
+   1762560000,
+   384403042.09
+  ],
+  [
+   1762646400,
+   473491320
+  ],
+  [
+   1762732800,
+   538749873
+  ],
+  [
+   1762819200,
+   615252190.1
+  ],
+  [
+   1762905600,
+   626194812
+  ],
+  [
+   1762992000,
+   901470817
+  ],
+  [
+   1763078400,
+   1024932799
+  ],
+  [
+   1763164800,
+   360068997
+  ],
+  [
+   1763251200,
+   583622504
+  ],
+  [
+   1763337600,
+   748964577
+  ],
+  [
+   1763424000,
+   781545330
+  ],
+  [
+   1763510400,
+   758844297
+  ],
+  [
+   1763596800,
+   855976160
+  ],
+  [
+   1763683200,
+   1096753063
+  ],
+  [
+   1763769600,
+   366573781.37
+  ],
+  [
+   1763856000,
+   327804629.07
+  ],
+  [
+   1763942400,
+   590373425
+  ],
+  [
+   1764028800,
+   503429431
+  ],
+  [
+   1764115200,
+   486796602
+  ],
+  [
+   1764201600,
+   412414384
+  ],
+  [
+   1764288000,
+   476724426
+  ],
+  [
+   1764374400,
+   238330541
+  ],
+  [
+   1764460800,
+   254846701
+  ],
+  [
+   1764547200,
+   696522523
+  ],
+  [
+   1764633600,
+   591725433
+  ],
+  [
+   1764720000,
+   703566165
+  ],
+  [
+   1764806400,
+   597003958
+  ],
+  [
+   1764892800,
+   600968370
+  ],
+  [
+   1764979200,
+   253210778
+  ],
+  [
+   1765065600,
+   547522217
+  ],
+  [
+   1765152000,
+   607490745
+  ],
+  [
+   1765238400,
+   1501520038
+  ],
+  [
+   1765324800,
+   685622718
+  ],
+  [
+   1765411200,
+   706422344
+  ],
+  [
+   1765497600,
+   566892119
+  ],
+  [
+   1765584000,
+   197798534
+  ],
+  [
+   1765670400,
+   378622227
+  ],
+  [
+   1765756800,
+   734648391
+  ],
+  [
+   1765843200,
+   552011500
+  ],
+  [
+   1765929600,
+   608054343
+  ],
+  [
+   1766016000,
+   682486399
+  ],
+  [
+   1766102400,
+   611052304
+  ],
+  [
+   1766188800,
+   164398353
+  ],
+  [
+   1766275200,
+   269356838
+  ],
+  [
+   1766361600,
+   587333744
+  ],
+  [
+   1766448000,
+   610999709
+  ],
+  [
+   1766534400,
+   810296776
+  ],
+  [
+   1766620800,
+   756903335
+  ],
+  [
+   1766707200,
+   393598190
+  ],
+  [
+   1766793600,
+   181636440
+  ],
+  [
+   1766880000,
+   191387099
+  ],
+  [
+   1766966400,
+   499381265
+  ],
+  [
+   1767052800,
+   414903988
+  ],
+  [
+   1767139200,
+   325141781
+  ],
+  [
+   1767225600,
+   221367964
+  ],
+  [
+   1767312000,
+   583511115
+  ],
+  [
+   1767398400,
+   308609002
+  ],
+  [
+   1767484800,
+   304225939
+  ],
+  [
+   1767571200,
+   611010013
+  ],
+  [
+   1767657600,
+   651149067
+  ],
+  [
+   1767744000,
+   598947146
+  ],
+  [
+   1767830400,
+   567535104
+  ],
+  [
+   1767916800,
+   566090617
+  ],
+  [
+   1768003200,
+   163187210
+  ],
+  [
+   1768089600,
+   220552439
+  ],
+  [
+   1768176000,
+   508854624
+  ],
+  [
+   1768262400,
+   697553843
+  ],
+  [
+   1768348800,
+   803487101
+  ],
+  [
+   1768435200,
+   608853913
+  ],
+  [
+   1768521600,
+   377329763
+  ],
+  [
+   1768608000,
+   199107083.79000002
+  ],
+  [
+   1768694400,
+   248732255
+  ],
+  [
+   1768780800,
+   507307694
+  ],
+  [
+   1768867200,
+   739917951
+  ],
+  [
+   1768953600,
+   733430494
+  ],
+  [
+   1769040000,
+   507351318
+  ],
+  [
+   1769126400,
+   516234909
+  ],
+  [
+   1769212800,
+   212949570
+  ],
+  [
+   1769299200,
+   362385721
+  ],
+  [
+   1769385600,
+   552970881
+  ],
+  [
+   1769472000,
+   487686347
+  ],
+  [
+   1769558400,
+   564882607
+  ],
+  [
+   1769644800,
+   674987331
+  ],
+  [
+   1769731200,
+   906347244.33
+  ],
+  [
+   1769817600,
+   818411672
+  ],
+  [
+   1769904000,
+   602804289
+  ],
+  [
+   1769990400,
+   876127948
+  ],
+  [
+   1770076800,
+   824672965
+  ],
+  [
+   1770163200,
+   759886451.43
+  ],
+  [
+   1770249600,
+   1156277235
+  ],
+  [
+   1770336000,
+   1000875602
+  ],
+  [
+   1770422400,
+   831524802
+  ],
+  [
+   1770508800,
+   373721229
+  ],
+  [
+   1770595200,
+   415857149
+  ],
+  [
+   1770681600,
+   383943163.04
+  ],
+  [
+   1770768000,
+   458173258.9
+  ],
+  [
+   1770854400,
+   407156908.99
+  ],
+  [
+   1770940800,
+   382097591.3
+  ],
+  [
+   1771027200,
+   226129613.96
+  ],
+  [
+   1771113600,
+   364715787.71999997
+  ],
+  [
+   1771200000,
+   1734053284
+  ],
+  [
+   1771286400,
+   281581347.01
+  ],
+  [
+   1771372800,
+   303687734.83
+  ],
+  [
+   1771459200,
+   344458174
+  ],
+  [
+   1771545600,
+   337480975
+  ],
+  [
+   1771632000,
+   128675833
+  ],
+  [
+   1771718400,
+   114246728
+  ],
+  [
+   1771804800,
+   358284825.26
+  ],
+  [
+   1771891200,
+   356465112
+  ],
+  [
+   1771977600,
+   483470086.71
+  ],
+  [
+   1772064000,
+   378656990
+  ],
+  [
+   1772150400,
+   354346585
+  ],
+  [
+   1772236800,
+   427331026.08
+  ],
+  [
+   1772323200,
+   509526842.48
+  ],
+  [
+   1772409600,
+   624267192.28
+  ],
+  [
+   1772496000,
+   551447722
+  ],
+  [
+   1772582400,
+   632204746.37
+  ],
+  [
+   1772668800,
+   485031676.84
+  ],
+  [
+   1772755200,
+   421884775.62
+  ],
+  [
+   1772841600,
+   207071392.14
+  ],
+  [
+   1772928000,
+   315206824
+  ],
+  [
+   1773014400,
+   485138275
+  ],
+  [
+   1773100800,
+   426593908
+  ],
+  [
+   1773187200,
+   326618755.46
+  ],
+  [
+   1773273600,
+   372247452
+  ],
+  [
+   1773360000,
+   478257885.93
+  ],
+  [
+   1773446400,
+   123231852
+  ],
+  [
+   1773532800,
+   232666272.49
+  ],
+  [
+   1773619200,
+   518436336.81
+  ],
+  [
+   1773705600,
+   396040613
+  ],
+  [
+   1773792000,
+   370151936.93
+  ],
+  [
+   1773878400,
+   378866318.89
+  ],
+  [
+   1773964800,
+   288890377.57000005
+  ],
+  [
+   1774051200,
+   106649448
+  ],
+  [
+   1774137600,
+   300506859.46
+  ],
+  [
+   1774224000,
+   611973819.4
+  ],
+  [
+   1774310400,
+   320492848
+  ],
+  [
+   1774396800,
+   250198174
+  ],
+  [
+   1774483200,
+   300877564
+  ],
+  [
+   1774569600,
+   272885755.81
+  ],
+  [
+   1774656000,
+   142521491
+  ],
+  [
+   1774742400,
+   170990576.69
+  ],
+  [
+   1774828800,
+   339879417
+  ],
+  [
+   1774915200,
+   447871832
+  ],
+  [
+   1775001600,
+   331197840.72
+  ],
+  [
+   1775088000,
+   339393650
+  ],
+  [
+   1775174400,
+   147883195
+  ],
+  [
+   1775260800,
+   80740333.92
+  ],
+  [
+   1775347200,
+   150921985.16
+  ],
+  [
+   1775433600,
+   300591718
+  ],
+  [
+   1775520000,
+   440361769.9
+  ],
+  [
+   1775606400,
+   320518363.15
+  ],
+  [
+   1775692800,
+   294326820.36
+  ],
+  [
+   1775779200,
+   266663149.24
+  ],
+  [
+   1775865600,
+   208128709.82
+  ],
+  [
+   1775952000,
+   225030953.87
+  ],
+  [
+   1776038400,
+   363461960.92
+  ],
+  [
+   1776124800,
+   311786562
+  ],
+  [
+   1776211200,
+   302102036.85
+  ],
+  [
+   1776297600,
+   284527425.34000003
+  ],
+  [
+   1776384000,
+   349533397
+  ],
+  [
+   1776470400,
+   197448370
+  ],
+  [
+   1776556800,
+   284936904
+  ],
+  [
+   1776643200,
+   336375519
+  ],
+  [
+   1776729600,
+   328432331
+  ],
+  [
+   1776816000,
+   346061415.32
+  ],
+  [
+   1776902400,
+   285024707
+  ],
+  [
+   1776988800,
+   183058733
+  ],
+  [
+   1777075200,
+   62293445
+  ],
+  [
+   1777161600,
+   148306638
+  ],
+  [
+   1777248000,
+   215829643.77
+  ],
+  [
+   1777334400,
+   163805672.94
+  ],
+  [
+   1777420800,
+   270813975
+  ],
+  [
+   1777507200,
+   200244360
+  ],
+  [
+   1777593600,
+   185653742
+  ],
+  [
+   1777680000,
+   60969422
+  ],
+  [
+   1777766400,
+   121567125.2
+  ],
+  [
+   1777852800,
+   305871211
+  ],
+  [
+   1777939200,
+   191633865.25999996
+  ],
+  [
+   1778025600,
+   241976677.29000002
+  ],
+  [
+   1778112000,
+   189615311.29
+  ],
+  [
+   1778198400,
+   219311054.79000002
+  ],
+  [
+   1778284800,
+   84226115.43
+  ],
+  [
+   1778371200,
+   164413852.04000002
+  ],
+  [
+   1778457600,
+   204078512.19000006
+  ],
+  [
+   1778544000,
+   178074866.67999998
+  ],
+  [
+   1778630400,
+   161364197.17999998
+  ],
+  [
+   1778716800,
+   196658103.9
+  ],
+  [
+   1778803200,
+   204833058.38000005
+  ],
+  [
+   1778889600,
+   115942317.16000001
+  ],
+  [
+   1778976000,
+   95967586.69000001
+  ],
+  [
+   1779062400,
+   219255416.39000002
+  ],
+  [
+   1779148800,
+   168619552.17000002
+  ],
+  [
+   1779235200,
+   144068145.57999995
+  ],
+  [
+   1779321600,
+   161488895.44
+  ],
+  [
+   1779408000,
+   161034117.24999997
+  ],
+  [
+   1779494400,
+   186879411.58
+  ],
+  [
+   1779580800,
+   124271013.39
+  ],
+  [
+   1779667200,
+   123361688.18999998
+  ],
+  [
+   1779753600,
+   1768373243.45
+  ],
+  [
+   1779840000,
+   230786390.75
+  ],
+  [
+   1779926400,
+   225887765.13
+  ],
+  [
+   1780012800,
+   187310405.44000003
+  ],
+  [
+   1780099200,
+   103163388.43
+  ],
+  [
+   1780185600,
+   98620084.25
+  ],
+  [
+   1780272000,
+   249491205.18
+  ],
+  [
+   1780358400,
+   372467763.13
+  ],
+  [
+   1780444800,
+   335968352.48
+  ],
+  [
+   1780531200,
+   436532235.99
+  ],
+  [
+   1780617600,
+   538096113.0999999
+  ],
+  [
+   1780704000,
+   233688765.21000004
+  ],
+  [
+   1780790400,
+   236380607.57000005
+  ],
+  [
+   1780876800,
+   235094838.66
+  ],
+  [
+   1780963200,
+   219164998.72000003
+  ],
+  [
+   1781049600,
+   208345845.69
+  ],
+  [
+   1781136000,
+   188864023.79
+  ],
+  [
+   1781222400,
+   152429660.17999998
+  ],
+  [
+   1781308800,
+   85292096.55
+  ],
+  [
+   1781395200,
+   112269194.68999998
+  ],
+  [
+   1781481600,
+   214130664.41999996
+  ],
+  [
+   1781568000,
+   190503725.17
+  ],
+  [
+   1781654400,
+   233105337.58
+  ],
+  [
+   1781740800,
+   188647854.15
+  ],
+  [
+   1781827200,
+   128200737.83000001
+  ],
+  [
+   1781913600,
+   113428898.09
+  ],
+  [
+   1782000000,
+   113312361.94000001
+  ],
+  [
+   1782086400,
+   175704248.53000003
+  ],
+  [
+   1782172800,
+   154250236
+  ],
+  [
+   1782259200,
+   281612899.42
+  ],
+  [
+   1782345600,
+   892470899.7700001
+  ],
+  [
+   1782432000,
+   243175046.45
+  ],
+  [
+   1782518400,
+   83474228.16999999
+  ],
+  [
+   1782604800,
+   107849605.13
+  ],
+  [
+   1782691200,
+   219366927.38000005
+  ],
+  [
+   1782777600,
+   141056954.98999998
+  ],
+  [
+   1782864000,
+   186600900.80000004
+  ],
+  [
+   1782950400,
+   226887603.63000003
+  ],
+  [
+   1783036800,
+   154257357.21
+  ],
+  [
+   1783123200,
+   106675367.06000002
+  ],
+  [
+   1783209600,
+   91215627.08000001
+  ],
+  [
+   1783296000,
+   194973492.79
+  ],
+  [
+   1783382400,
+   158696453.24999997
+  ],
+  [
+   1783468800,
+   167454892.5
+  ],
+  [
+   1783555200,
+   147063455.02
+  ],
+  [
+   1783641600,
+   141837720.19000003
+  ],
+  [
+   1783728000,
+   96584641.61999999
+  ],
+  [
+   1783814400,
+   86645222.34
+  ],
+  [
+   1783900800,
+   200873693.07
+  ],
+  [
+   1783987200,
+   211240712.85999995
+  ],
+  [
+   1784073600,
+   309422236.53999996
+  ],
+  [
+   1784160000,
+   156612567.48
+  ],
+  [
+   1784246400,
+   157042528.76999995
+  ],
+  [
+   1784332800,
+   51874048.87
+  ],
+  [
+   1784419200,
+   74083661.70000002
+  ],
+  [
+   1784505600,
+   627962839.5299999
+  ],
+  [
+   1784592000,
+   121917714.18
+  ],
+  [
+   1784678400,
+   132181859.02000001
+  ],
+  [
+   1784764800,
+   120137670.51000004
+  ],
+  [
+   1784851200,
+   113407665.23
+  ],
+  [
+   1784937600,
+   38644094.08
+  ],
+  [
+   1785024000,
+   87406464.14
+  ],
+  [
+   1785110400,
+   162803591.37
+  ],
+  [
+   1785196800,
+   152435389.77000004
+  ],
+  [
+   1785283200,
+   187003079.25
+  ],
+  [
+   1785369600,
+   130914061.44000001
+  ],
+  [
+   1785456000,
+   135800505.57
+  ],
+  [
+   1785542400,
+   59057447.62
+  ],
+  [
+   1785628800,
+   82418034.25999999
+  ],
+  [
+   1785715200,
+   124396753.81
+  ],
+  [
+   1785801600,
+   118701077.01999997
+  ],
+  [
+   1785888000,
+   123015267.21
+  ],
+  [
+   1785974400,
+   373159256.05999994
+  ],
+  [
+   1786060800,
+   106176323.39000002
+  ],
+  [
+   1786147200,
+   38561537.839999996
+  ],
+  [
+   1786233600,
+   58486851.74
+  ],
+  [
+   1786320000,
+   105819231.60000001
+  ],
+  [
+   1786406400,
+   85044264.52
+  ],
+  [
+   1786492800,
+   99447076.83000001
+  ],
+  [
+   1786579200,
+   88986343.39999999
+  ],
+  [
+   1786665600,
+   75310732.77
+  ],
+  [
+   1786752000,
+   42556695.67
+  ],
+  [
+   1786838400,
+   39284085.47
+  ],
+  [
+   1786924800,
+   101343269.24000001
+  ],
+  [
+   1787011200,
+   71145178.26
+  ],
+  [
+   1787097600,
+   406380699.24
+  ],
+  [
+   1787184000,
+   325123409.66
+  ],
+  [
+   1787270400,
+   555223490.55
+  ],
+  [
+   1787356800,
+   363026941.76
+  ],
+  [
+   1787443200,
+   270999769.3
+  ],
+  [
+   1787529600,
+   301300355.05
+  ],
+  [
+   1787616000,
+   244828234.42
+  ],
+  [
+   1787702400,
+   159464501.56
+  ],
+  [
+   1787788800,
+   257152622.29999995
+  ],
+  [
+   1787875200,
+   223602233.99
+  ],
+  [
+   1787961600,
+   83742669.41
+  ],
+  [
+   1788048000,
+   171368134.75
+  ],
+  [
+   1788134400,
+   211279146.93
+  ],
+  [
+   1788220800,
+   207175024.64000002
+  ],
+  [
+   1788307200,
+   198076959.89
+  ],
+  [
+   1788393600,
+   247653651.55999997
+  ],
+  [
+   1788480000,
+   225204352.08
+  ],
+  [
+   1788566400,
+   115390523.10000001
+  ],
+  [
+   1788652800,
+   185332639.52
+  ],
+  [
+   1788739200,
+   145784018.78
+  ],
+  [
+   1788825600,
+   153833870.77
+  ],
+  [
+   1788912000,
+   172951913.69
+  ],
+  [
+   1788998400,
+   158604084.95
+  ],
+  [
+   1789084800,
+   311491529.39
+  ],
+  [
+   1789171200,
+   68134575.26
+  ],
+  [
+   1789257600,
+   96272152.07000001
+  ],
+  [
+   1789344000,
+   229548741.03
+  ],
+  [
+   1789430400,
+   292961722.75000006
+  ],
+  [
+   1789516800,
+   287973854.59
+  ],
+  [
+   1789603200,
+   177151594.39
+  ],
+  [
+   1789689600,
+   304447525.87
+  ],
+  [
+   1789776000,
+   141548419.57
+  ],
+  [
+   1789862400,
+   187075644.45999995
+  ],
+  [
+   1789948800,
+   384084103.77
+  ],
+  [
+   1790035200,
+   197910042.59
+  ],
+  [
+   1790121600,
+   236400831.75
+  ],
+  [
+   1790208000,
+   435601085.84999996
+  ],
+  [
+   1790294400,
+   189960399.68
+  ],
+  [
+   1790380800,
+   68249691.22999999
+  ],
+  [
+   1790467200,
+   107731481.61999999
+  ],
+  [
+   1790553600,
+   216164193.8
+  ],
+  [
+   1790640000,
+   177465248.54000002
+  ],
+  [
+   1790726400,
+   174352891.17999998
+  ],
+  [
+   1790812800,
+   173117856.89000002
+  ],
+  [
+   1790899200,
+   191809540.98
+  ],
+  [
+   1790985600,
+   60229222.08
+  ],
+  [
+   1791072000,
+   77156396.77
+  ],
+  [
+   1791158400,
+   105548656.86
+  ]
+ ],
+ "totalDataChartBreakdown": [],
+ "breakdown24h": null,
+ "breakdown30d": null,
+ "chain": "Arbitrum",
+ "total24h": 77156396.77,
+ "total48hto24h": 60229222.08,
+ "total7d": 1070295350.2400002,
+ "total14dto7d": 1619937636.4900002,
+ "total30d": 5718735796.920007,
+ "total60dto30d": 5736923043.880003,
+ "total1y": 138701217622.60992,
+ "total7DaysAgo": 107731481.61999999,
+ "total30DaysAgo": 225204352.08,
+ "totalAllTime": 737895464796.2998,
+ "change_1d": 28.1,
+ "change_7d": -28.38,
+ "change_1m": -65.74,
+ "change_7dover7d": -33.93,
+ "change_30dover30d": -0.32,
+ "protocols": [
+  {
+   "total24h": 714664,
+   "total48hto24h": 1952933,
+   "total7d": 10255328,
+   "total14dto7d": 14896482,
+   "total30d": 46050124,
+   "total60dto30d": 72370044,
+   "total1y": 1891256418,
+   "annualized1y": 1891256418,
+   "total7DaysAgo": 996642,
+   "total30DaysAgo": 2011989,
+   "totalAllTime": 11646008584,
+   "average1y": 5181524.432876713,
+   "monthlyAverage1y": 157725603.73676714,
+   "change_1d": -63.41,
+   "change_7d": -28.29,
+   "change_1m": -64.48,
+   "change_7dover7d": -31.16,
+   "change_30dover30d": -36.37,
+   "defillamaId": "3",
+   "name": "Curve DEX",
+   "displayName": "Curve DEX",
+   "module": "curve",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/curve",
+   "parentProtocol": "parent#curve-finance",
+   "slug": "curve-dex",
+   "id": "3"
+  },
+  {
+   "total24h": 163427,
+   "total48hto24h": 198744,
+   "total7d": 1481041,
+   "total14dto7d": 1621840,
+   "total30d": 6117174,
+   "total60dto30d": 6296343,
+   "total1y": 98040881,
+   "annualized1y": 98581051.14325069,
+   "total7DaysAgo": 396594,
+   "total30DaysAgo": 177196,
+   "totalAllTime": 16545475251,
+   "average1y": 270085.07162534434,
+   "monthlyAverage1y": 8221389.580275482,
+   "change_1d": -17.77,
+   "change_7d": -58.79,
+   "change_1m": -7.77,
+   "change_7dover7d": -8.68,
+   "change_30dover30d": -2.85,
+   "defillamaId": "119",
+   "name": "SushiSwap",
+   "displayName": "SushiSwap",
+   "module": "sushiswap-classic",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-classic.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushiswap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap Classic pools."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap Classic pools."
+    },
+    "Revenue": {
+     "Swap Fees To xSUSHI Stakers": "The 1/6 protocol fee share from SushiSwap Classic swaps."
+    },
+    "HoldersRevenue": {
+     "Swap Fees To xSUSHI Stakers": "The 1/6 protocol fee share from SushiSwap Classic swaps."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "The 5/6 fee share retained by liquidity providers."
+    }
+   },
+   "id": "119"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 12094396.27419355,
+   "totalAllTime": 30815859,
+   "defillamaId": "127",
+   "name": "KyberSwap Classic",
+   "displayName": "KyberSwap Classic",
+   "module": "kyberswap-classic",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/kyberswap-classic.ts",
+   "parentProtocol": "parent#kyberswap",
+   "slug": "kyberswap-classic",
+   "id": "127"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 48782072.52293578,
+   "totalAllTime": 101974579,
+   "defillamaId": "133",
+   "name": "Shell Protocol",
+   "displayName": "Shell Protocol",
+   "module": "shell-protocol",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/dexs/shell-protocol",
+   "slug": "shell-protocol",
+   "id": "133"
+  },
+  {
+   "total24h": 351888,
+   "total48hto24h": 294967,
+   "total7d": 6861342,
+   "total14dto7d": 7616885,
+   "total30d": 20182807,
+   "total60dto30d": 14657016,
+   "total1y": 519642860,
+   "annualized1y": 538834215.625,
+   "totalAllTime": 6766144842,
+   "average1y": 1451516.3687150837,
+   "monthlyAverage1y": 44184158.26368715,
+   "change_1d": 19.3,
+   "change_7dover7d": -9.92,
+   "change_30dover30d": 37.7,
+   "defillamaId": "146",
+   "name": "DODO AMM",
+   "displayName": "DODO AMM",
+   "module": "dodo",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dodo",
+   "parentProtocol": "parent#dodo",
+   "slug": "dodo-amm",
+   "id": "146"
+  },
+  {
+   "total24h": 5483,
+   "total48hto24h": 8191,
+   "total7d": 46171,
+   "total14dto7d": 17294,
+   "total30d": 114440,
+   "total60dto30d": 34775,
+   "total1y": 12692154,
+   "annualized1y": 12692154,
+   "total7DaysAgo": 3912,
+   "total30DaysAgo": 636,
+   "totalAllTime": 18788545.15,
+   "average1y": 34773.024657534246,
+   "monthlyAverage1y": 1058490.8705753426,
+   "change_1d": -33.06,
+   "change_7d": 40.16,
+   "change_1m": 762.11,
+   "change_7dover7d": 166.98,
+   "change_30dover30d": 229.09,
+   "defillamaId": "194",
+   "name": "PancakeSwap AMM",
+   "displayName": "PancakeSwap AMM",
+   "module": "pancakeswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-v2.ts",
+   "parentProtocol": "parent#pancakeswap",
+   "slug": "pancakeswap-amm",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "User pays 0.25% fees on each swap"
+    },
+    "Revenue": {
+     "Swap Fees To Protocol": "Treasury receives 0.0225% of each swap.",
+     "Swap Fees To Holders": "0.0575% is used to facilitate CAKE buyback and burn."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Protocol": "Treasury receives 0.0225% of each swap."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "LPs receive 0.17% of the fees."
+    },
+    "HoldersRevenue": {
+     "Buy Back And Burn CAKE": "0.0575% is used to facilitate CAKE buyback and burn."
+    }
+   },
+   "id": "194"
+  },
+  {
+   "total24h": 3.13,
+   "total48hto24h": 0.14,
+   "total7d": 1.3900000000000001,
+   "total14dto7d": 194.6,
+   "total30d": 479.41999999999996,
+   "total60dto30d": 246.82999999999998,
+   "total1y": 142837.04,
+   "annualized1y": 142837.04,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 15.71,
+   "totalAllTime": 226661228.17,
+   "average1y": 391.33435616438356,
+   "monthlyAverage1y": 11912.217801643836,
+   "change_1d": 2135.71,
+   "change_1m": -80.08,
+   "change_7dover7d": -99.29,
+   "change_30dover30d": 94.23,
+   "defillamaId": "202",
+   "name": "Saddle Finance",
+   "displayName": "Saddle Finance",
+   "module": "saddle-finance",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/saddle-finance",
+   "slug": "saddle-finance",
+   "id": "202"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 22265,
+   "total1y": 176571967,
+   "annualized1y": 176571967,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1064852695,
+   "average1y": 483758.81369863014,
+   "monthlyAverage1y": 14725618.288986303,
+   "change_30dover30d": -100,
+   "defillamaId": "291",
+   "name": "Integral",
+   "displayName": "Integral",
+   "module": "integral",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/integral",
+   "slug": "integral",
+   "id": "291"
+  },
+  {
+   "total24h": 444,
+   "total48hto24h": 204,
+   "total7d": 7160,
+   "total14dto7d": 13744,
+   "total30d": 42357,
+   "total60dto30d": 40226.76,
+   "total1y": 833348.76,
+   "annualized1y": 833348.76,
+   "total7DaysAgo": 457,
+   "total30DaysAgo": 1619,
+   "totalAllTime": 99940332.76,
+   "average1y": 2283.147287671233,
+   "monthlyAverage1y": 69499.00343671233,
+   "change_1d": 117.65,
+   "change_7d": -2.84,
+   "change_1m": -72.58,
+   "change_7dover7d": -47.9,
+   "change_30dover30d": 5.3,
+   "defillamaId": "292",
+   "name": "Swapr V2",
+   "displayName": "Swapr V2",
+   "module": "swapr",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#swapr",
+   "slug": "swapr-v2",
+   "id": "292"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 190,
+   "total14dto7d": 135,
+   "total30d": 487,
+   "total60dto30d": 753,
+   "total1y": 12732.96,
+   "annualized1y": 12732.96,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 44231.81,
+   "average1y": 34.88482191780822,
+   "monthlyAverage1y": 1061.8939791780822,
+   "change_7dover7d": 40.74,
+   "change_30dover30d": -35.33,
+   "defillamaId": "364",
+   "name": "Volmex",
+   "displayName": "Volmex",
+   "module": "volmex",
+   "category": "Yield",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/volmex",
+   "slug": "volmex",
+   "breakdownMethodology": {
+    "Fees": {
+     "Mint/Redeem Fees": "Fees emitted by V1 Collateralized and Redeemed events."
+    },
+    "Revenue": {
+     "Mint/Redeem Fees To Treasury": "V1 mint and redeem fees collected by the protocol treasury."
+    },
+    "ProtocolRevenue": {
+     "Mint/Redeem Fees To Treasury": "V1 mint and redeem fees collected by the protocol treasury."
+    },
+    "Volume": {
+     "Mint Volume": "Gross V1 collateral deposited for minting volatility token pairs.",
+     "Redeem Volume": "Gross V1 collateral redeemed by burning volatility token pairs."
+    }
+   },
+   "id": "364"
+  },
+  {
+   "total24h": 251671,
+   "total48hto24h": 260987,
+   "total7d": 10535282,
+   "total14dto7d": 29875363,
+   "total30d": 63522792,
+   "total60dto30d": 23087196,
+   "total1y": 1786735099,
+   "annualized1y": 1786735099,
+   "total7DaysAgo": 1193134,
+   "total30DaysAgo": 1319911,
+   "totalAllTime": 3191454416,
+   "average1y": 4895164.654794521,
+   "monthlyAverage1y": 149008812.09194523,
+   "change_1d": -3.57,
+   "change_7d": -78.91,
+   "change_1m": -80.93,
+   "change_7dover7d": -64.74,
+   "change_30dover30d": 175.14,
+   "defillamaId": "382",
+   "name": "Pendle V2",
+   "displayName": "Pendle V2",
+   "module": "pendle",
+   "category": "Yield",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pendle",
+   "parentProtocol": "parent#pendle",
+   "slug": "pendle-v2",
+   "id": "382"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 4068662.5883575883,
+   "totalAllTime": 10723434,
+   "defillamaId": "392",
+   "name": "WardenSwap",
+   "displayName": "WardenSwap",
+   "module": "wardenswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "slug": "wardenswap",
+   "id": "392"
+  },
+  {
+   "total24h": 16.44,
+   "total48hto24h": 10.55,
+   "total7d": 478.21000000000004,
+   "total14dto7d": 360.15,
+   "total30d": 1779.7200000000003,
+   "total60dto30d": 637.57,
+   "total1y": 15983.989999999998,
+   "annualized1y": 15983.989999999998,
+   "total7DaysAgo": 48.49,
+   "total30DaysAgo": 42.25,
+   "totalAllTime": 1406537.4300000006,
+   "average1y": 43.79175342465753,
+   "monthlyAverage1y": 1333.0209742465752,
+   "change_1d": 55.83,
+   "change_7d": -66.1,
+   "change_1m": -61.09,
+   "change_7dover7d": 32.78,
+   "change_30dover30d": 179.14,
+   "defillamaId": "398",
+   "name": "ApeSwap AMM",
+   "displayName": "ApeSwap AMM",
+   "module": "apeswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#apeswap",
+   "slug": "apeswap-amm",
+   "id": "398"
+  },
+  {
+   "total24h": 15.32,
+   "total48hto24h": 13.9,
+   "total7d": 247.32,
+   "total14dto7d": 520.3100000000001,
+   "total30d": 2588.12,
+   "total60dto30d": 1126.0600000000002,
+   "total1y": 38562.75999999999,
+   "annualized1y": 38562.75999999999,
+   "total7DaysAgo": 52.89,
+   "total30DaysAgo": 86.14,
+   "totalAllTime": 2990085.0800000005,
+   "average1y": 105.65139726027394,
+   "monthlyAverage1y": 3216.028532602739,
+   "change_1d": 10.22,
+   "change_7d": -71.03,
+   "change_1m": -82.21,
+   "change_7dover7d": -52.47,
+   "change_30dover30d": 129.84,
+   "defillamaId": "420",
+   "name": "Elk",
+   "displayName": "Elk",
+   "module": "elk",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "slug": "elk",
+   "id": "420"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 1636672,
+   "annualized1y": 4560192.977099237,
+   "totalAllTime": 45408239,
+   "average1y": 4484.032876712329,
+   "monthlyAverage1y": 136493.9607671233,
+   "defillamaId": "468",
+   "name": "Joe DEX",
+   "displayName": "Joe DEX",
+   "module": "traderjoe-v1",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#trader-joe",
+   "slug": "joe-dex",
+   "id": "468"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 39.52,
+   "total14dto7d": 0,
+   "total30d": 39.52,
+   "total60dto30d": 0,
+   "total1y": 60.11000000000001,
+   "annualized1y": 63.22809798270894,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 60.11,
+   "average1y": 0.16468493150684932,
+   "monthlyAverage1y": 5.013009315068493,
+   "defillamaId": "483",
+   "name": "NFTX",
+   "displayName": "NFTX",
+   "module": "nftx-v3",
+   "category": "NFT Marketplace",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/nftx-v3.ts",
+   "slug": "nftx",
+   "breakdownMethodology": {
+    "Fees": {
+     "Vault Fees": "Fees paid in ETH to mint, redeem or swap NFTs in an NFTX vault, plus 10% of premium fees.",
+     "NFT Premium Fees": "The 90% of premium fees passed to the NFT's depositor. A premium starts at 5x one vToken and decays to zero over the 10 hours after an NFT is deposited.",
+     "AMM Swap Fees": "Swap fees on the NFTX AMM's vToken/WETH pools (0.3% or 1% fee tiers)."
+    },
+    "Revenue": {
+     "Vault Fees To Treasury": "Vault fees sent to the NFTX treasury when the vault had no LPs or inventory stakers to receive them."
+    },
+    "ProtocolRevenue": {
+     "Vault Fees To Treasury": "Vault fees sent to the NFTX treasury when the vault had no LPs or inventory stakers to receive them."
+    },
+    "SupplySideRevenue": {
+     "Vault Fees To Liquidity Providers": "80% of vault fees, paid to LPs of the vToken's 0.3% pool.",
+     "Vault Fees To Inventory Stakers": "20% of vault fees, paid to inventory stakers.",
+     "NFT Premium Fees To Depositors": "90% of premium fees, paid to the address that deposited the redeemed NFT.",
+     "AMM Swap Fees To Liquidity Providers": "All NFTX AMM swap fees, paid to the pool's LPs (the AMM protocol fee is off)."
+    }
+   },
+   "id": "483"
+  },
+  {
+   "total24h": 43364,
+   "total48hto24h": 59994,
+   "total7d": 683214,
+   "total14dto7d": 433319,
+   "total30d": 2816841,
+   "total60dto30d": 1797075,
+   "total1y": 27409340,
+   "annualized1y": 27409340,
+   "total7DaysAgo": 63510,
+   "total30DaysAgo": 76242,
+   "totalAllTime": 50167775,
+   "average1y": 75094.08219178082,
+   "monthlyAverage1y": 2285863.861917808,
+   "change_1d": -27.72,
+   "change_7d": -31.72,
+   "change_1m": -43.12,
+   "change_7dover7d": 57.67,
+   "change_30dover30d": 56.75,
+   "defillamaId": "534",
+   "name": "Overtime",
+   "displayName": "Overtime",
+   "module": "thales",
+   "category": "Prediction Market",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/thales",
+   "slug": "overtime",
+   "breakdownMethodology": {
+    "Fees": {
+     "Sportsbook Gross Gaming Revenue": "From 2026-07-21: buy-in minus final payout (winnings, cash-out or refund) of every sportsbook ticket settled in the period, excluding free bet tickets.",
+     "Sportsbook Trading Fees": "Before 2026-07-21: SafeBox fee charged on sportsbook ticket buy-ins, including the share paid to referrers.",
+     "Sportsbook LP Performance Fees": "Before 2026-07-21: share of each profitable weekly liquidity pool round sent to the SafeBox.",
+     "Casino Gross Gaming Revenue": "Stakes minus payouts of casino bets (Roulette, Dice, Blackjack, Baccarat, Slots and the CasinoCoreV2 games: Plinko, Hi-Lo, Keno, Video Poker, Three Card Poker, Ultimate and Bonus Hold'em, Penalty Shootout), excluding free bets.",
+     "Speed Markets Gross Gaming Revenue": "Buy-in plus SafeBox and LP fees minus payout of every Speed Markets and Chained Speed Markets position resolved in the period, excluding free bets.",
+     "Free Bet Winnings": "Net winnings paid to users on protocol-funded free bets (negative)."
+    },
+    "Revenue": {
+     "Sportsbook Gross Gaming Revenue To Protocol": "From 2026-07-21: sportsbook result kept by the protocol, the treasury being the only liquidity provider, net of referral fees.",
+     "Sportsbook Trading Fees To SafeBox": "Before 2026-07-21: SafeBox fee on sportsbook buy-ins, net of the referral share.",
+     "Sportsbook LP Performance Fees To SafeBox": "Before 2026-07-21: SafeBox share of profitable liquidity pool rounds.",
+     "Casino Gross Gaming Revenue To Protocol": "Casino result kept by the treasury-funded bankrolls, net of referral fees.",
+     "Speed Markets Gross Gaming Revenue To Protocol": "Speed Markets result kept by the treasury-funded AMMs. Referral fees paid out of the SafeBox fee on referred positions are not tracked and are not deducted.",
+     "Free Bet Winnings Paid By Protocol": "Net winnings paid to users on protocol-funded free bets (negative)."
+    },
+    "SupplySideRevenue": {
+     "Sportsbook Referral Fees To Referrers": "Share of the sportsbook SafeBox fee paid to the referrer of the bettor.",
+     "Casino Referral Fees To Referrers": "Share of lost casino stakes paid to the referrer of the player."
+    },
+    "HoldersRevenue": {
+     "Token Buy Back": "Stablecoins (USDC, sUSD before December 2024) spent by the SafeBoxBuyback contracts to buy back and burn OVER (THALES before the migration)."
+    },
+    "ProtocolRevenue": {
+     "Sportsbook Gross Gaming Revenue To Protocol": "From 2026-07-21: sportsbook result kept by the protocol, net of referral fees.",
+     "Sportsbook Trading Fees To SafeBox": "Before 2026-07-21: SafeBox fee on sportsbook buy-ins, net of the referral share.",
+     "Sportsbook LP Performance Fees To SafeBox": "Before 2026-07-21: SafeBox share of profitable liquidity pool rounds.",
+     "Casino Gross Gaming Revenue To Protocol": "Casino result kept by the treasury-funded bankrolls, net of referral fees.",
+     "Speed Markets Gross Gaming Revenue To Protocol": "Speed Markets result kept by the treasury-funded AMMs, not net of referral fees (not tracked).",
+     "Free Bet Winnings Paid By Protocol": "Net winnings paid to users on protocol-funded free bets (negative).",
+     "Token Buy Back": "Stablecoins spent on OVER buybacks, moved to holders revenue (negative)."
+    }
+   },
+   "id": "534"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 4.75,
+   "total1y": 10749639.75,
+   "annualized1y": 10838725.162292818,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 356838189.75,
+   "average1y": 29695.137430939227,
+   "monthlyAverage1y": 903919.9833977901,
+   "change_30dover30d": -100,
+   "defillamaId": "622",
+   "name": "Clipper",
+   "displayName": "Clipper",
+   "module": "clipper",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/clipper",
+   "slug": "clipper",
+   "id": "622"
+  },
+  {
+   "total24h": 1177,
+   "total48hto24h": 1170,
+   "total7d": 7975,
+   "total14dto7d": 7800,
+   "total30d": 36551,
+   "total60dto30d": 52149,
+   "total1y": 2844647,
+   "annualized1y": 2844647,
+   "total7DaysAgo": 1080,
+   "total30DaysAgo": 1349,
+   "totalAllTime": 7185655,
+   "average1y": 7793.553424657534,
+   "monthlyAverage1y": 237235.76624657537,
+   "change_1d": 0.6,
+   "change_7d": 8.98,
+   "change_1m": -12.75,
+   "change_7dover7d": 2.24,
+   "change_30dover30d": -29.91,
+   "defillamaId": "693",
+   "name": "Superfluid",
+   "displayName": "Superfluid",
+   "module": "superfluid",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/superfluid.ts",
+   "slug": "superfluid",
+   "id": "693"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 24,
+   "annualized1y": 24,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1776910,
+   "average1y": 0.06575342465753424,
+   "monthlyAverage1y": 2.0015342465753423,
+   "defillamaId": "799",
+   "name": "Rubicon",
+   "displayName": "Rubicon",
+   "module": "rubicon",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/rubicon",
+   "slug": "rubicon",
+   "breakdownMethodology": {
+    "Fees": {
+     "Aquila V2": "30 bps × swap notional on every Aquila pair.",
+     "CLMM V3": "Per-pool tier (5/30/100 bps) × swap notional.",
+     "Classic": "2 bps × take-event notional.",
+     "Gladius": "All taker fees collected by the Rubicon fee wallet."
+    },
+    "Revenue": {
+     "Aquila V2": "~5 bps (1/6 of LP fee) on OP/Arb/Base; 0 on mainnet.",
+     "CLMM V3": "Live per-pool pool.slot0().feeProtocol cut, read per timeslot (currently 1/6 where the fee switch is on).",
+     "Classic": "100% of the 2 bps taker fee.",
+     "Gladius": "All taker fees collected by the Rubicon fee wallet."
+    },
+    "ProtocolRevenue": {
+     "Aquila V2": "~5 bps (1/6 of LP fee) on OP/Arb/Base; 0 on mainnet.",
+     "CLMM V3": "Live per-pool pool.slot0().feeProtocol cut, read per timeslot (currently 1/6 where the fee switch is on).",
+     "Classic": "100% of the 2 bps taker fee.",
+     "Gladius": "All taker fees collected by the Rubicon fee wallet."
+    },
+    "SupplySideRevenue": {
+     "Aquila V2": "~25 bps on OP/Arb/Base; 30 bps on mainnet (fee switch off).",
+     "CLMM V3": "Whatever's left after the live per-pool pool.slot0().feeProtocol cut."
+    }
+   },
+   "id": "799"
+  },
+  {
+   "total24h": 1.14,
+   "total48hto24h": 0.21,
+   "total7d": 23.749999999999996,
+   "total14dto7d": 24.380000000000003,
+   "total30d": 132.16,
+   "total60dto30d": 2360.95,
+   "total1y": 3647.370000000001,
+   "annualized1y": 3647.370000000001,
+   "total7DaysAgo": 0.82,
+   "total30DaysAgo": 5.48,
+   "totalAllTime": 4271.509999999999,
+   "average1y": 9.992794520547948,
+   "monthlyAverage1y": 304.18066520547956,
+   "change_1d": 442.86,
+   "change_7d": 39.02,
+   "change_1m": -79.2,
+   "change_7dover7d": -2.58,
+   "change_30dover30d": -94.4,
+   "defillamaId": "1296",
+   "name": "ZipSwap",
+   "displayName": "ZipSwap",
+   "module": "zipswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "slug": "zipswap",
+   "id": "1296"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 19726252,
+   "annualized1y": 26766104.014869887,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 2609761703,
+   "average1y": 54044.52602739726,
+   "monthlyAverage1y": 1645115.3722739727,
+   "defillamaId": "1447",
+   "name": "Hashflow",
+   "displayName": "Hashflow",
+   "module": "hashflow",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/hashflow",
+   "slug": "hashflow",
+   "id": "1447"
+  },
+  {
+   "total24h": 2429002,
+   "total48hto24h": 1735383,
+   "total7d": 19061888,
+   "total14dto7d": 21989410,
+   "total30d": 87101207,
+   "total60dto30d": 62438483,
+   "total1y": 944068436,
+   "annualized1y": 959846738.551532,
+   "total7DaysAgo": 2833927,
+   "total30DaysAgo": 2457748,
+   "totalAllTime": 8450613663,
+   "average1y": 2629717.0919220056,
+   "monthlyAverage1y": 80048588.27810585,
+   "change_1d": 39.97,
+   "change_7d": -14.29,
+   "change_1m": -1.17,
+   "change_7dover7d": -13.31,
+   "change_30dover30d": 39.5,
+   "defillamaId": "1461",
+   "name": "WOOFi Swap",
+   "displayName": "WOOFi Swap",
+   "module": "woofi",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/woofi",
+   "parentProtocol": "parent#woofi",
+   "slug": "woofi-swap",
+   "id": "1461"
+  },
+  {
+   "total24h": 5105,
+   "total48hto24h": 21614,
+   "total7d": 119968,
+   "total14dto7d": 82575,
+   "total30d": 349825,
+   "total60dto30d": 384294,
+   "total1y": 4673459,
+   "annualized1y": 4673459,
+   "total7DaysAgo": 3331,
+   "total30DaysAgo": 7805,
+   "totalAllTime": 6785843,
+   "average1y": 12803.997260273973,
+   "monthlyAverage1y": 389753.6766027397,
+   "change_1d": -76.38,
+   "change_7d": 53.26,
+   "change_1m": -34.59,
+   "change_7dover7d": 45.28,
+   "change_30dover30d": -8.97,
+   "defillamaId": "1664",
+   "name": "LlamaPay",
+   "displayName": "LlamaPay",
+   "module": "llamapay",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/llamapay.ts",
+   "slug": "llamapay",
+   "id": "1664"
+  },
+  {
+   "total24h": 8010,
+   "total48hto24h": 6057,
+   "total7d": 81507,
+   "total14dto7d": 123534,
+   "total30d": 297962.74,
+   "total60dto30d": 212483.89,
+   "total1y": 2050705.15,
+   "annualized1y": 2050705.15,
+   "total7DaysAgo": 94,
+   "total30DaysAgo": 6164,
+   "totalAllTime": 1044393782.1500002,
+   "average1y": 5618.370273972602,
+   "monthlyAverage1y": 171023.19113972603,
+   "change_1d": 32.24,
+   "change_7d": 8421.28,
+   "change_1m": 29.95,
+   "change_7dover7d": -34.02,
+   "change_30dover30d": 40.23,
+   "defillamaId": "1700",
+   "name": "Wombat Exchange",
+   "displayName": "Wombat Exchange",
+   "module": "wombat-exchange",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/wombat-exchange",
+   "slug": "wombat-exchange",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users, computed from each pool's haircutRate applied to swap volume.",
+     "Bribes Rewards": "Bribes rewards deposited into Wombat bribe contracts."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users, computed from each pool's haircutRate applied to swap volume.",
+     "Bribes Rewards": "Bribes rewards deposited into Wombat bribe contracts."
+    },
+    "Revenue": {
+     "Token Swap Fees To Protocol": "Protocol share of swap fees, computed as 1 - each pool's lpDividendRatio.",
+     "Bribes Revenue": "Bribes revenue distributed to WOM voters."
+    },
+    "ProtocolRevenue": {
+     "Token Swap Fees To Protocol": "Protocol share of swap fees, computed as 1 - each pool's lpDividendRatio."
+    },
+    "HoldersRevenue": {
+     "Bribes Revenue": "Bribes revenue distributed to WOM voters."
+    },
+    "SupplySideRevenue": {
+     "Token Swap Fees To LPs": "LP share of swap fees, determined by each pool's lpDividendRatio."
+    }
+   },
+   "id": "1700"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "1824",
+   "name": "Swapsicle V1",
+   "displayName": "Swapsicle V1",
+   "module": "swapsicle",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#swapsicle",
+   "slug": "swapsicle-v1",
+   "id": "1824"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 8139.599999999999,
+   "annualized1y": 8139.599999999999,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 3338154.6,
+   "average1y": 22.30027397260274,
+   "monthlyAverage1y": 678.8203397260274,
+   "defillamaId": "1883",
+   "name": "iZiSwap",
+   "displayName": "iZiSwap",
+   "module": "iziswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/iziswap",
+   "parentProtocol": "parent#izumi-finance",
+   "slug": "iziswap",
+   "id": "1883"
+  },
+  {
+   "total24h": 8663,
+   "total48hto24h": 198,
+   "total7d": 116774,
+   "total14dto7d": 403504,
+   "total30d": 952429,
+   "total60dto30d": 282316,
+   "total1y": 1234745,
+   "annualized1y": 9389206.770833334,
+   "total7DaysAgo": 40103,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1234745,
+   "average1y": 3382.8630136986303,
+   "monthlyAverage1y": 102974.35013698631,
+   "change_1d": 4275.25,
+   "change_7d": -78.4,
+   "change_7dover7d": -71.06,
+   "change_30dover30d": 237.36,
+   "defillamaId": "2116",
+   "name": "0x",
+   "displayName": "0x",
+   "module": "0x-rfq",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/0x-rfq.ts",
+   "slug": "0x",
+   "id": "2116"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 21.520000000000003,
+   "total30d": 92.22999999999999,
+   "total60dto30d": 192.67,
+   "total1y": 10604.479999999989,
+   "annualized1y": 10604.479999999989,
+   "total7DaysAgo": 9.46,
+   "total30DaysAgo": 8.97,
+   "totalAllTime": 75074050.47999999,
+   "average1y": 29.053369863013668,
+   "monthlyAverage1y": 884.384578630136,
+   "change_7d": -100,
+   "change_1m": -100,
+   "change_7dover7d": -100,
+   "change_30dover30d": -52.13,
+   "defillamaId": "2121",
+   "name": "Frax Swap",
+   "displayName": "Frax Swap",
+   "module": "frax-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/frax-swap",
+   "parentProtocol": "parent#frax-finance",
+   "slug": "frax-swap",
+   "id": "2121"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 47107312,
+   "defillamaId": "2152",
+   "name": "Sushi Trident",
+   "displayName": "Sushi Trident",
+   "module": "sushiswap-trident",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-trident.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushi-trident",
+   "id": "2152"
+  },
+  {
+   "total24h": 2090,
+   "total48hto24h": 1645,
+   "total7d": 22446,
+   "total14dto7d": 32433,
+   "total30d": 156151,
+   "total60dto30d": 62590,
+   "total1y": 42055351,
+   "annualized1y": 42055351,
+   "total7DaysAgo": 5578,
+   "total30DaysAgo": 3298,
+   "totalAllTime": 233944293,
+   "average1y": 115220.1397260274,
+   "monthlyAverage1y": 3507301.053260274,
+   "change_1d": 27.05,
+   "change_7d": -62.53,
+   "change_1m": -36.63,
+   "change_7dover7d": -30.79,
+   "change_30dover30d": 149.48,
+   "defillamaId": "2197",
+   "name": "Uniswap V2",
+   "displayName": "Uniswap V2",
+   "module": "uniswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v2.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v2",
+   "id": "2197"
+  },
+  {
+   "total24h": 56987506,
+   "total48hto24h": 25772169,
+   "total7d": 615433849,
+   "total14dto7d": 958480773,
+   "total30d": 3510262251,
+   "total60dto30d": 3399363931,
+   "total1y": 79733948925,
+   "annualized1y": 79733948925,
+   "total7DaysAgo": 59618746,
+   "total30DaysAgo": 150876768,
+   "totalAllTime": 408809624540,
+   "average1y": 218449175.13698632,
+   "monthlyAverage1y": 6649592891.169864,
+   "change_1d": 121.12,
+   "change_7d": -4.41,
+   "change_1m": -62.23,
+   "change_7dover7d": -35.79,
+   "change_30dover30d": 3.26,
+   "defillamaId": "2198",
+   "name": "Uniswap V3",
+   "displayName": "Uniswap V3",
+   "module": "uniswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v3.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v3",
+   "id": "2198"
+  },
+  {
+   "total24h": 2.76,
+   "total48hto24h": 0,
+   "total7d": 27.049999999999997,
+   "total14dto7d": 96.16,
+   "total30d": 512.59,
+   "total60dto30d": 152.36999999999998,
+   "total1y": 3941.559999999999,
+   "annualized1y": 3941.559999999999,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 3.66,
+   "totalAllTime": 68033641.32,
+   "average1y": 10.798794520547943,
+   "monthlyAverage1y": 328.7153052054794,
+   "change_1m": -24.59,
+   "change_7dover7d": -71.87,
+   "change_30dover30d": 236.41,
+   "defillamaId": "2283",
+   "name": "3xcalibur",
+   "displayName": "3xcalibur",
+   "module": "3xcalibur",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "slug": "3xcalibur",
+   "id": "2283"
+  },
+  {
+   "total24h": 84403,
+   "total48hto24h": 86820,
+   "total7d": 1104011,
+   "total14dto7d": 2619702,
+   "total30d": 8047267,
+   "total60dto30d": 4230341,
+   "total1y": 73095559,
+   "annualized1y": 73701323.30110498,
+   "total7DaysAgo": 254107,
+   "total30DaysAgo": 203330,
+   "totalAllTime": 5143561577,
+   "average1y": 201921.43370165746,
+   "monthlyAverage1y": 6146488.441878453,
+   "change_1d": -2.78,
+   "change_7d": -66.78,
+   "change_1m": -58.49,
+   "change_7dover7d": -57.86,
+   "change_30dover30d": 90.23,
+   "defillamaId": "2307",
+   "name": "Camelot V2",
+   "displayName": "Camelot V2",
+   "module": "camelot",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#camelot",
+   "slug": "camelot-v2",
+   "id": "2307"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 15876218.54978355,
+   "totalAllTime": 10047689,
+   "defillamaId": "2356",
+   "name": "El Dorado Exchange",
+   "displayName": "El Dorado Exchange",
+   "module": "el-dorado-exchange-swap",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/el-dorado-exchange-swap.ts",
+   "parentProtocol": "parent#ede",
+   "slug": "el-dorado-exchange",
+   "id": "2356"
+  },
+  {
+   "total24h": 2.33,
+   "total48hto24h": 9.09,
+   "total7d": 397.44999999999993,
+   "total14dto7d": 628.05,
+   "total30d": 1723.9899999999998,
+   "total60dto30d": 5797.32,
+   "total1y": 123203.26999999996,
+   "annualized1y": 123203.26999999996,
+   "total7DaysAgo": 147,
+   "total30DaysAgo": 0.25,
+   "totalAllTime": 13779320597.600002,
+   "average1y": 337.54320547945196,
+   "monthlyAverage1y": 10274.815174794518,
+   "change_1d": -74.37,
+   "change_7d": -98.41,
+   "change_1m": 832,
+   "change_7dover7d": -36.72,
+   "change_30dover30d": -70.26,
+   "defillamaId": "2393",
+   "name": "Joe V2",
+   "displayName": "Joe V2",
+   "module": "traderjoe-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/joeLiquidityBook.ts",
+   "parentProtocol": "parent#trader-joe",
+   "slug": "joe-v2",
+   "id": "2393"
+  },
+  {
+   "total24h": 250,
+   "total48hto24h": 70.13,
+   "total7d": 2971.13,
+   "total14dto7d": 6120,
+   "total30d": 20351.13,
+   "total60dto30d": 18128.64,
+   "total1y": 7695738.98,
+   "annualized1y": 7695738.98,
+   "total7DaysAgo": 478,
+   "total30DaysAgo": 698,
+   "totalAllTime": 269304749.97999996,
+   "average1y": 21084.216383561645,
+   "monthlyAverage1y": 641803.5467156165,
+   "change_1d": 256.48,
+   "change_7d": -47.7,
+   "change_1m": -64.18,
+   "change_7dover7d": -51.45,
+   "change_30dover30d": 12.26,
+   "defillamaId": "2467",
+   "name": "Zyberswap AMM",
+   "displayName": "Zyberswap AMM",
+   "module": "zyberswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#zyberswap",
+   "slug": "zyberswap-amm",
+   "id": "2467"
+  },
+  {
+   "total24h": 419,
+   "total48hto24h": 239,
+   "total7d": 3967,
+   "total14dto7d": 8891,
+   "total30d": 30320,
+   "total60dto30d": 15965.46,
+   "total1y": 318298.45,
+   "annualized1y": 318298.45,
+   "total7DaysAgo": 764,
+   "total30DaysAgo": 956,
+   "totalAllTime": 172232974.45000002,
+   "average1y": 872.0505479452055,
+   "monthlyAverage1y": 26545.218679452057,
+   "change_1d": 75.31,
+   "change_7d": -45.16,
+   "change_1m": -56.17,
+   "change_7dover7d": -55.38,
+   "change_30dover30d": 89.91,
+   "defillamaId": "2528",
+   "name": "SolidLizard Dex",
+   "displayName": "SolidLizard Dex",
+   "module": "solidlizard",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#solidlizard",
+   "slug": "solidlizard-dex",
+   "id": "2528"
+  },
+  {
+   "total24h": 2227,
+   "total48hto24h": 215,
+   "total7d": 8674,
+   "total14dto7d": 38532,
+   "total30d": 280709.19,
+   "total60dto30d": 185460.63,
+   "total1y": 475847.75,
+   "annualized1y": 2315792.3833333333,
+   "total7DaysAgo": 1241,
+   "total30DaysAgo": 19073,
+   "totalAllTime": 49857786.75,
+   "average1y": 1303.6924657534246,
+   "monthlyAverage1y": 39684.39865753425,
+   "change_1d": 935.81,
+   "change_7d": 79.45,
+   "change_1m": -88.32,
+   "change_7dover7d": -77.49,
+   "change_30dover30d": 51.36,
+   "defillamaId": "2529",
+   "name": "PancakeSwap StableSwap",
+   "displayName": "PancakeSwap StableSwap",
+   "module": "pancakeswap-stableswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-stableswap.ts",
+   "parentProtocol": "parent#pancakeswap",
+   "slug": "pancakeswap-stableswap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Each pool's on-chain swap fee applied to trade volume."
+    },
+    "Revenue": {
+     "Swap Fees To Protocol": "Treasury keeps 10% of swap fees.",
+     "Swap Fees To Holders": "40% of swap fees funds CAKE buyback and burn."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Protocol": "Treasury keeps 10% of swap fees."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "Liquidity providers keep 50% of swap fees."
+    },
+    "HoldersRevenue": {
+     "Buy Back And Burn CAKE": "40% of swap fees funds CAKE buyback and burn."
+    }
+   },
+   "id": "2529"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 141.81,
+   "total14dto7d": 783,
+   "total30d": 2257.45,
+   "total60dto30d": 120.05,
+   "total1y": 6143.379999999999,
+   "annualized1y": 6143.379999999999,
+   "total7DaysAgo": 657,
+   "total30DaysAgo": 0,
+   "totalAllTime": 164504932.38000003,
+   "average1y": 16.83117808219178,
+   "monthlyAverage1y": 512.3410608219178,
+   "change_7d": -100,
+   "change_7dover7d": -81.89,
+   "change_30dover30d": 1780.42,
+   "defillamaId": "2530",
+   "name": "ZyberSwap Stableswap",
+   "displayName": "ZyberSwap Stableswap",
+   "module": "zyberswap-stable",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/saddle.ts",
+   "parentProtocol": "parent#zyberswap",
+   "slug": "zyberswap-stableswap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users."
+    },
+    "Revenue": {
+     "Protocol Fees": "The admin share of swap fees retained by the protocol."
+    },
+    "SupplySideRevenue": {
+     "LP Fees": "The remaining swap fees distributed to liquidity providers."
+    }
+   },
+   "id": "2530"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 22569.50276243094,
+   "totalAllTime": 11192,
+   "defillamaId": "2541",
+   "name": "Clober V1",
+   "displayName": "Clober V1",
+   "module": "clober",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/clober",
+   "parentProtocol": "parent#clober",
+   "slug": "clober-v1",
+   "id": "2541"
+  },
+  {
+   "total24h": 50984,
+   "total48hto24h": 124116,
+   "total7d": 1371043,
+   "total14dto7d": 2338468,
+   "total30d": 7592821,
+   "total60dto30d": 7924869,
+   "total1y": 235963477,
+   "annualized1y": 235963477,
+   "total7DaysAgo": 93799,
+   "total30DaysAgo": 128917,
+   "totalAllTime": 4870455666,
+   "average1y": 646475.2794520548,
+   "monthlyAverage1y": 19678707.506520547,
+   "change_1d": -58.92,
+   "change_7d": -45.65,
+   "change_1m": -60.45,
+   "change_7dover7d": -41.37,
+   "change_30dover30d": -4.19,
+   "defillamaId": "2589",
+   "name": "Dexalot DEX",
+   "displayName": "Dexalot DEX",
+   "module": "dexalot",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dexalot",
+   "parentProtocol": "parent#dexalot",
+   "slug": "dexalot-dex",
+   "id": "2589"
+  },
+  {
+   "total24h": 721,
+   "total48hto24h": 1505,
+   "total7d": 18178,
+   "total14dto7d": 46275,
+   "total30d": 121541,
+   "total60dto30d": 117227,
+   "total1y": 8881567,
+   "annualized1y": 8881567,
+   "total7DaysAgo": 1451,
+   "total30DaysAgo": 682,
+   "totalAllTime": 3613217179,
+   "average1y": 24333.060273972602,
+   "monthlyAverage1y": 740698.354739726,
+   "change_1d": -52.09,
+   "change_7d": -50.31,
+   "change_1m": 5.72,
+   "change_7dover7d": -60.72,
+   "change_30dover30d": 3.68,
+   "defillamaId": "2602",
+   "name": "Zyberswap V3",
+   "displayName": "Zyberswap V3",
+   "module": "zyberswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/zyberswap-v3.ts",
+   "parentProtocol": "parent#zyberswap",
+   "slug": "zyberswap-v3",
+   "id": "2602"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 15.75,
+   "total30d": 44.58,
+   "total60dto30d": 40.49999999999999,
+   "total1y": 18977.300000000007,
+   "annualized1y": 18977.300000000007,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 36085783.30000002,
+   "average1y": 51.992602739726046,
+   "monthlyAverage1y": 1582.654827397261,
+   "change_7dover7d": -100,
+   "change_30dover30d": 10.07,
+   "defillamaId": "2603",
+   "name": "AlienFi",
+   "displayName": "AlienFi",
+   "module": "alienfi",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "slug": "alienfi",
+   "id": "2603"
+  },
+  {
+   "total24h": 56759,
+   "total48hto24h": 11726,
+   "total7d": 475307,
+   "total14dto7d": 1197241,
+   "total30d": 4338661,
+   "total60dto30d": 1140096,
+   "total1y": 78647119,
+   "annualized1y": 78647119,
+   "total7DaysAgo": 143270,
+   "total30DaysAgo": 24567,
+   "totalAllTime": 6864480845,
+   "average1y": 215471.55890410958,
+   "monthlyAverage1y": 6558954.253041096,
+   "change_1d": 384.04,
+   "change_7d": -60.38,
+   "change_1m": 131.04,
+   "change_7dover7d": -60.3,
+   "change_30dover30d": 280.55,
+   "defillamaId": "2611",
+   "name": "Balancer V2",
+   "displayName": "Balancer V2",
+   "module": "balancer-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/balancer-v2.ts",
+   "parentProtocol": "parent#balancer",
+   "slug": "balancer-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on each trade (0.0001% to 10%).",
+     "Flashloan Fees": "Fees paid by borrowers on Balancer V2 flash loans."
+    },
+    "Revenue": {
+     "Protocol Fees": "50% of collected fees taken as protocol revenue."
+    },
+    "ProtocolRevenue": {
+     "Protocol Fees": "Share of revenue kept by the Balancer DAO."
+    },
+    "HoldersRevenue": {
+     "Protocol Fees": "Share of revenue distributed to veBAL holders (none after 2026-04-23)."
+    },
+    "SupplySideRevenue": {
+     "Token Swap Fees To LPs": "50% of collected fees distributed to pool liquidity providers."
+    }
+   },
+   "id": "2611"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 1594610498.502445,
+   "totalAllTime": 3573675035,
+   "defillamaId": "2615",
+   "name": "KyberSwap Elastic",
+   "displayName": "KyberSwap Elastic",
+   "module": "kyberswap-elastic",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/kyberswap-elastic.ts",
+   "parentProtocol": "parent#kyberswap",
+   "slug": "kyberswap-elastic",
+   "id": "2615"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 2130968455.2074966,
+   "totalAllTime": 4361187496,
+   "defillamaId": "2636",
+   "name": "Lighter V1",
+   "displayName": "Lighter V1",
+   "module": "lighter",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/lighter",
+   "parentProtocol": "parent#lighter",
+   "slug": "lighter-v1",
+   "id": "2636"
+  },
+  {
+   "total24h": 57.08,
+   "total48hto24h": 459,
+   "total7d": 1622.99,
+   "total14dto7d": 4679.610000000001,
+   "total30d": 10973.359999999999,
+   "total60dto30d": 7984.35,
+   "total1y": 1361014.5799999998,
+   "annualized1y": 1361014.5799999998,
+   "total7DaysAgo": 177,
+   "total30DaysAgo": 356,
+   "totalAllTime": 340242687.65999997,
+   "average1y": 3728.8070684931504,
+   "monthlyAverage1y": 113504.8871649315,
+   "change_1d": -87.56,
+   "change_7d": -67.75,
+   "change_1m": -83.97,
+   "change_7dover7d": -65.32,
+   "change_30dover30d": 37.44,
+   "defillamaId": "2675",
+   "name": "Ramses Legacy",
+   "displayName": "Ramses Legacy",
+   "module": "ramses-exchange",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#ramses-exchange-hl",
+   "slug": "ramses-legacy",
+   "id": "2675"
+  },
+  {
+   "total24h": 127,
+   "total48hto24h": 211,
+   "total7d": 2532,
+   "total14dto7d": 6557,
+   "total30d": 28189,
+   "total60dto30d": 6067,
+   "total1y": 98352,
+   "annualized1y": 131016.3503649635,
+   "total7DaysAgo": 702,
+   "total30DaysAgo": 851,
+   "totalAllTime": 96854683,
+   "average1y": 358.94890510948903,
+   "monthlyAverage1y": 10926.404671532846,
+   "change_1d": -39.81,
+   "change_7d": -81.91,
+   "change_1m": -85.08,
+   "change_7dover7d": -61.38,
+   "change_30dover30d": 364.63,
+   "defillamaId": "2685",
+   "name": "Arbitrum Exchange V2",
+   "displayName": "Arbitrum Exchange V2",
+   "module": "ArbitrumExchange-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ArbitrumExchange-v2.ts",
+   "parentProtocol": "parent#arbitrum-exchange",
+   "slug": "arbitrum-exchange-v2",
+   "id": "2685"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 1.68,
+   "total7d": 810.42,
+   "total14dto7d": 832.4200000000001,
+   "total30d": 3824.79,
+   "total60dto30d": 6263.669999999999,
+   "total1y": 120338.73000000001,
+   "annualized1y": 161483.9575367647,
+   "total7DaysAgo": 9.94,
+   "total30DaysAgo": 249,
+   "totalAllTime": 34553710.73000002,
+   "average1y": 442.42180147058826,
+   "monthlyAverage1y": 13467.319636764707,
+   "change_1d": -100,
+   "change_7d": -100,
+   "change_1m": -100,
+   "change_7dover7d": -2.64,
+   "change_30dover30d": -38.94,
+   "defillamaId": "2695",
+   "name": "SMARDEX AMM",
+   "displayName": "SMARDEX AMM",
+   "module": "smardex",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/smardex",
+   "parentProtocol": "parent#smardex-ecosystem",
+   "slug": "smardex-amm",
+   "id": "2695"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 60242.26351351351,
+   "totalAllTime": 24427,
+   "defillamaId": "2731",
+   "name": "Swapline V1",
+   "displayName": "Swapline V1",
+   "module": "swapline",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/swapline",
+   "parentProtocol": "parent#swapline",
+   "slug": "swapline-v1",
+   "id": "2731"
+  },
+  {
+   "total24h": 8.18,
+   "total48hto24h": 0.54,
+   "total7d": 57.85,
+   "total14dto7d": 69.7,
+   "total30d": 256.02,
+   "total60dto30d": 260.86,
+   "total1y": 5140.439999999997,
+   "annualized1y": 5140.439999999997,
+   "total7DaysAgo": 2.08,
+   "total30DaysAgo": 9.86,
+   "totalAllTime": 45410798.62,
+   "average1y": 14.083397260273964,
+   "monthlyAverage1y": 428.6986126027395,
+   "change_1d": 1414.81,
+   "change_7d": 293.27,
+   "change_1m": -17.04,
+   "change_7dover7d": -17,
+   "change_30dover30d": -1.86,
+   "defillamaId": "2754",
+   "name": "MM Finance Arbitrum",
+   "displayName": "MM Finance Arbitrum",
+   "module": "mm-finance-arbitrum",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#mm-finance",
+   "slug": "mm-finance-arbitrum",
+   "id": "2754"
+  },
+  {
+   "total24h": 3352173,
+   "total48hto24h": 2739742,
+   "total7d": 46644023,
+   "total14dto7d": 64092799,
+   "total30d": 246363120,
+   "total60dto30d": 215162812,
+   "total1y": 9524423972,
+   "annualized1y": 9524423972,
+   "total7DaysAgo": 4777519,
+   "total30DaysAgo": 7886185,
+   "totalAllTime": 38790262667,
+   "average1y": 26094312.252054796,
+   "monthlyAverage1y": 794310864.952548,
+   "change_1d": 22.35,
+   "change_7d": -29.83,
+   "change_1m": -57.49,
+   "change_7dover7d": -27.22,
+   "change_30dover30d": 14.5,
+   "defillamaId": "2769",
+   "name": "PancakeSwap AMM V3",
+   "displayName": "PancakeSwap AMM V3",
+   "module": "pancakeswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-v3.ts",
+   "parentProtocol": "parent#pancakeswap",
+   "slug": "pancakeswap-amm-v3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Total trading fees - sum of LP fees and protocol fees. LP fees vary by pool type (0.25% for most pools, with some special pools having different rates). Protocol fees are 0.05% for most pools"
+    },
+    "Revenue": {
+     "Swap Fees To Protocol": "Swap fees collected by Pancakeswap - distribute to Treasury",
+     "Swap Fees To Holders": "Swap fees collected to buyback and burn CAKE: 15% fees in 0.01%, 0.05% tier pools, 23% fees in 0.25%, 1% tier pools"
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Protocol": "Swap fees collected by Pancakeswap - distribute to Treasury"
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "Fees distributed to LPs"
+    },
+    "HoldersRevenue": {
+     "Buy Back And Burn CAKE": "Swap fees collected to buyback and burn CAKE: 15% fees in 0.01%, 0.05% tier pools, 23% fees in 0.25%, 1% tier pools"
+    }
+   },
+   "id": "2769"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 10378361.424129352,
+   "totalAllTime": 22860829,
+   "defillamaId": "2773",
+   "name": "Auragi Finance",
+   "displayName": "Auragi Finance",
+   "module": "auragi",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "slug": "auragi-finance",
+   "id": "2773"
+  },
+  {
+   "total24h": 113142,
+   "total48hto24h": 45157,
+   "total7d": 1416700,
+   "total14dto7d": 2291315,
+   "total30d": 10914037,
+   "total60dto30d": 11654690,
+   "total1y": 395506369,
+   "annualized1y": 397685467.45179063,
+   "total7DaysAgo": 103639,
+   "total30DaysAgo": 406580,
+   "totalAllTime": 5602044952,
+   "average1y": 1089549.2258953168,
+   "monthlyAverage1y": 33165878.436253443,
+   "change_1d": 150.55,
+   "change_7d": 9.17,
+   "change_1m": -72.17,
+   "change_7dover7d": -38.17,
+   "change_30dover30d": -6.35,
+   "defillamaId": "2776",
+   "name": "SushiSwap V3",
+   "displayName": "SushiSwap V3",
+   "module": "sushiswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-v3.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushiswap-v3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap V3 pools. Fee rates vary by pool, from 0.01% to 1% on most chains and up to 4% on Katana."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap V3 pools. Fee rates vary by pool, from 0.01% to 1% on most chains and up to 4% on Katana."
+    },
+    "Revenue": {
+     "Swap Fees To Treasury": "The part of each swap fee Sushi keeps - 25% where the protocol fee is switched on, 50% on Katana.",
+     "Swap Fees To xSUSHI Stakers": "Protocol fee share routed to xSUSHI stakers through the SushiBar flow (Negligible since Mid of October 2025)."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Treasury": "The part of each swap fee Sushi keeps, collected into a Sushi-controlled treasury wallet on each chain."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "Swap fees retained by liquidity providers after protocol fees."
+    },
+    "HoldersRevenue": {
+     "Swap Fees To xSUSHI Stakers": "Protocol fee share routed to xSUSHI stakers through the SushiBar flow (Negligible since Mid of October 2025)."
+    }
+   },
+   "id": "2776"
+  },
+  {
+   "total24h": 2414372,
+   "total48hto24h": 1576485,
+   "total7d": 24040313,
+   "total14dto7d": 47543722,
+   "total30d": 154907095,
+   "total60dto30d": 154032822,
+   "total1y": 5274101336,
+   "annualized1y": 5303159745.564738,
+   "total7DaysAgo": 3329772,
+   "total30DaysAgo": 8486864,
+   "totalAllTime": 64620401419,
+   "average1y": 14529204.782369146,
+   "monthlyAverage1y": 442268993.57531685,
+   "change_1d": 53.15,
+   "change_7d": -27.49,
+   "change_1m": -71.55,
+   "change_7dover7d": -49.44,
+   "change_30dover30d": 0.57,
+   "defillamaId": "2792",
+   "name": "Camelot V3",
+   "displayName": "Camelot V3",
+   "module": "camelot-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/camelot-v3",
+   "parentProtocol": "parent#camelot",
+   "slug": "camelot-v3",
+   "breakdownMethodology": {
+    "UserFees": {
+     "Trading fees": "Fees paid by swappers, set per pool and moving with volatility, typically 0.01% to 1.5% of the trade"
+    },
+    "Fees": {
+     "Token Swap Fees": "All trading fees collected across Camelot V3 pools, using each pool's own live fee rate"
+    },
+    "Revenue": {
+     "Protocol fees": "The share of trading fees Camelot keeps instead of paying liquidity providers, taken from each pool's on-chain community fee setting"
+    },
+    "ProtocolRevenue": {
+     "Protocol fees": "The part of Camelot's cut that funds operating expenses and the Algebra V3 AMM licence, 30% of what the protocol keeps"
+    },
+    "HoldersRevenue": {
+     "Tokenholder fees": "The part of Camelot's cut paid to GRAIL/xGRAIL holders via Real Yield Staking and GRAIL buyback & burn, 70% of what the protocol keeps"
+    },
+    "SupplySideRevenue": {
+     "LP fees": "Trading fees paid straight to the liquidity providers backing each pool"
+    }
+   },
+   "id": "2792"
+  },
+  {
+   "total24h": 38727,
+   "total48hto24h": 44499,
+   "total7d": 2171206,
+   "total14dto7d": 2940459,
+   "total30d": 12319490,
+   "total60dto30d": 30444320,
+   "total1y": 1680428402,
+   "annualized1y": 1680428402,
+   "total7DaysAgo": 217007,
+   "total30DaysAgo": 718022,
+   "totalAllTime": 2200868876,
+   "average1y": 4603913.430136986,
+   "monthlyAverage1y": 140143124.81336987,
+   "change_1d": -12.97,
+   "change_7d": -82.15,
+   "change_1m": -94.61,
+   "change_7dover7d": -26.16,
+   "change_30dover30d": -59.53,
+   "defillamaId": "2803",
+   "name": "Native Swap",
+   "displayName": "Native Swap",
+   "module": "native",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/native",
+   "parentProtocol": "parent#native",
+   "slug": "native-swap",
+   "id": "2803"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 6267,
+   "annualized1y": 23582.01030927835,
+   "totalAllTime": 433597,
+   "average1y": 64.6082474226804,
+   "monthlyAverage1y": 1966.6750515463916,
+   "defillamaId": "2814",
+   "name": "SpaceDex",
+   "displayName": "SpaceDex",
+   "module": "spacedex-swap",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/dexs/spacedex-swap.ts",
+   "slug": "spacedex",
+   "id": "2814"
+  },
+  {
+   "total24h": 5702,
+   "total48hto24h": 4670,
+   "total7d": 66313,
+   "total14dto7d": 96885,
+   "total30d": 373932,
+   "total60dto30d": 461272,
+   "total1y": 166436905,
+   "annualized1y": 166436905,
+   "total7DaysAgo": 6374,
+   "total30DaysAgo": 17638,
+   "totalAllTime": 3182760040,
+   "average1y": 455991.5205479452,
+   "monthlyAverage1y": 13880381.885479454,
+   "change_1d": 22.1,
+   "change_7d": -10.54,
+   "change_1m": -67.67,
+   "change_7dover7d": -31.55,
+   "change_30dover30d": -18.93,
+   "defillamaId": "2906",
+   "name": "Joe V2.1",
+   "displayName": "Joe V2.1",
+   "module": "joe-v2.1",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/joeLiquidityBook.ts",
+   "parentProtocol": "parent#trader-joe",
+   "slug": "joe-v2.1",
+   "id": "2906"
+  },
+  {
+   "total24h": 172,
+   "total48hto24h": 86.1,
+   "total7d": 3005.1,
+   "total14dto7d": 7802,
+   "total30d": 24704.1,
+   "total60dto30d": 18555.64,
+   "total1y": 307486.79,
+   "annualized1y": 307486.79,
+   "total7DaysAgo": 1060,
+   "total30DaysAgo": 776,
+   "totalAllTime": 228551748.79000002,
+   "average1y": 842.4295616438355,
+   "monthlyAverage1y": 25643.555856438354,
+   "change_1d": 99.77,
+   "change_7d": -83.77,
+   "change_1m": -77.84,
+   "change_7dover7d": -61.48,
+   "change_30dover30d": 33.14,
+   "defillamaId": "2907",
+   "name": "Chronos V1",
+   "displayName": "Chronos V1",
+   "module": "chronos",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#chronos",
+   "slug": "chronos-v1",
+   "id": "2907"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0.42,
+   "total14dto7d": 0.91,
+   "total30d": 1.33,
+   "total60dto30d": 0,
+   "total1y": 6328.33,
+   "annualized1y": 6345.715521978022,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 4774277.33,
+   "average1y": 17.385521978021977,
+   "monthlyAverage1y": 529.215289010989,
+   "change_7dover7d": -53.85,
+   "defillamaId": "2926",
+   "name": "E3",
+   "displayName": "E3",
+   "module": "e3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/e3",
+   "parentProtocol": "parent#guru-network-dao",
+   "slug": "e3",
+   "id": "2926"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "2954",
+   "name": "AirSwap",
+   "displayName": "AirSwap",
+   "module": "airswap",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/airswap",
+   "slug": "airswap",
+   "id": "2954"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 278860244,
+   "defillamaId": "2962",
+   "name": "Arbitrum Exchange V3",
+   "displayName": "Arbitrum Exchange V3",
+   "module": "ArbitrumExchange-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ArbitrumExchange-v3.ts",
+   "parentProtocol": "parent#arbitrum-exchange",
+   "slug": "arbitrum-exchange-v3",
+   "id": "2962"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0.55,
+   "total30d": 0.55,
+   "total60dto30d": 0,
+   "total1y": 0.55,
+   "annualized1y": 20.075000000000003,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0.55,
+   "average1y": 0.0035483870967741938,
+   "monthlyAverage1y": 0.10801290322580646,
+   "change_7dover7d": -100,
+   "defillamaId": "3095",
+   "name": "Sudoswap V2",
+   "displayName": "Sudoswap V2",
+   "module": "sudoswap-v2",
+   "category": "NFT Marketplace",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sudoswap-v2",
+   "parentProtocol": "parent#sudoswap",
+   "slug": "sudoswap-v2",
+   "id": "3095"
+  },
+  {
+   "total24h": 17085,
+   "total48hto24h": 11948,
+   "total7d": 205348,
+   "total14dto7d": 258261,
+   "total30d": 1120499,
+   "total60dto30d": 678784,
+   "total1y": 146159903,
+   "annualized1y": 146159903,
+   "total7DaysAgo": 18977,
+   "total30DaysAgo": 25376,
+   "totalAllTime": 20950683100,
+   "average1y": 400438.0904109589,
+   "monthlyAverage1y": 12189335.47210959,
+   "change_1d": 42.99,
+   "change_7d": -9.97,
+   "change_1m": -32.67,
+   "change_7dover7d": -20.49,
+   "change_30dover30d": 65.07,
+   "defillamaId": "3096",
+   "name": "Ramses CL",
+   "displayName": "Ramses CL",
+   "module": "ramses-exchange-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ramses-exchange-v2.ts",
+   "parentProtocol": "parent#ramses-exchange-hl",
+   "slug": "ramses-cl",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on each trade.",
+     "Bribes": "External bribes paid to influence gauge votes."
+    },
+    "Revenue": {
+     "Protocol fees": "80% of swap fees, split between the protocol treasury and token holders.",
+     "Bribes to Voters": "External bribes paid to influence gauge votes."
+    },
+    "SupplySideRevenue": {
+     "LP fees": "20% of swap fees, distributed to LPs."
+    },
+    "ProtocolRevenue": {
+     "Protocol fees": "8% of swap fees, allocated to the protocol treasury."
+    },
+    "HoldersRevenue": {
+     "Tokenholder fees": "72% of swap fees, allocated to token holders.",
+     "Bribes to Voters": "External bribes paid to influence gauge votes, paid out entirely to token holders who vote."
+    }
+   },
+   "id": "3096"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total1y": 18643646,
+   "annualized1y": 21810675.60897436,
+   "total7DaysAgo": 0,
+   "totalAllTime": 1178176633,
+   "average1y": 51078.48219178082,
+   "monthlyAverage1y": 1554828.9979178084,
+   "defillamaId": "3218",
+   "name": "Swaap Maker V2",
+   "displayName": "Swaap Maker V2",
+   "module": "swaap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/swaap-v2.ts",
+   "parentProtocol": "parent#swaap",
+   "slug": "swaap-maker-v2",
+   "id": "3218"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 9,
+   "annualized1y": 9,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 7545066,
+   "average1y": 0.024657534246575342,
+   "monthlyAverage1y": 0.7505753424657534,
+   "defillamaId": "3277",
+   "name": "dexSWAP",
+   "displayName": "dexSWAP",
+   "module": "dexswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dexswap",
+   "parentProtocol": "parent#dexfinance",
+   "slug": "dexswap",
+   "id": "3277"
+  },
+  {
+   "total24h": 2110,
+   "total48hto24h": 0,
+   "total7d": 24086,
+   "total14dto7d": 8659.39,
+   "total30d": 50026.34,
+   "total60dto30d": 275941746.11,
+   "total1y": 5321592246.299999,
+   "annualized1y": 5321592246.299999,
+   "total7DaysAgo": 1443,
+   "total30DaysAgo": 463,
+   "totalAllTime": 5324203729.16,
+   "average1y": 14579704.78438356,
+   "monthlyAverage1y": 443806213.6366356,
+   "change_7d": 46.22,
+   "change_1m": 355.72,
+   "change_7dover7d": 178.15,
+   "change_30dover30d": -99.98,
+   "defillamaId": "3308",
+   "name": "Sablier Lockup",
+   "displayName": "Sablier Lockup",
+   "module": "sablier-lockup",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sablier-lockup.ts",
+   "parentProtocol": "parent#sablier-finance",
+   "slug": "sablier-lockup",
+   "id": "3308"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0.08,
+   "total14dto7d": 0,
+   "total30d": 1.3000000000000003,
+   "total60dto30d": 264.31999999999994,
+   "total1y": 8013.960000000004,
+   "annualized1y": 8013.960000000004,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 192060.95999999982,
+   "average1y": 21.956054794520558,
+   "monthlyAverage1y": 668.3423079452058,
+   "change_30dover30d": -99.51,
+   "defillamaId": "3315",
+   "name": "CrescentSwap",
+   "displayName": "CrescentSwap",
+   "module": "crescent-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "slug": "crescentswap",
+   "id": "3315"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 150325769,
+   "defillamaId": "3341",
+   "name": "Chronos V2",
+   "displayName": "Chronos V2",
+   "module": "chronos-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#chronos",
+   "slug": "chronos-v2",
+   "id": "3341"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 10097776,
+   "defillamaId": "3345",
+   "name": "DackieSwap V3",
+   "displayName": "DackieSwap V3",
+   "module": "dackieswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dackieswap",
+   "parentProtocol": "parent#dackieswap",
+   "slug": "dackieswap-v3",
+   "id": "3345"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "3370",
+   "name": "Sweep n Flip",
+   "displayName": "Sweep n Flip",
+   "module": "sweep-n-flip",
+   "category": "NFT Marketplace",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sweep-n-flip",
+   "slug": "sweep-n-flip",
+   "breakdownMethodology": {
+    "Fees": {
+     "Marketplace Fees": "2.5% marketplace fees going to the protocol",
+     "LP Fees": "2% LP fees charged on SnF NFT pools swaps"
+    },
+    "Revenue": {
+     "Marketplace Fees to Protocol": "2.5% marketplace fees going to the protocol"
+    },
+    "ProtocolRevenue": {
+     "Marketplace Fees to Protocol": "2.5% marketplace fees going to the protocol"
+    },
+    "SupplySideRevenue": {
+     "LP Fees to Liquidity Providers": "2% LP fees charged on SnF NFT pools swaps going to the liquidity providers"
+    }
+   },
+   "id": "3370"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 66685501,
+   "defillamaId": "3429",
+   "name": "YFX",
+   "displayName": "YFX",
+   "module": "yfx-v3",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/yfx-v3",
+   "slug": "yfx",
+   "id": "3429"
+  },
+  {
+   "total24h": 48824,
+   "total48hto24h": 29152,
+   "total7d": 239721,
+   "total14dto7d": 465367,
+   "total30d": 1428162,
+   "total60dto30d": 1408789,
+   "total1y": 21930870,
+   "annualized1y": 21930870,
+   "total7DaysAgo": 23937,
+   "total30DaysAgo": 58624,
+   "totalAllTime": 566739370,
+   "average1y": 60084.57534246575,
+   "monthlyAverage1y": 1828974.4734246575,
+   "change_1d": 67.48,
+   "change_7d": 103.97,
+   "change_1m": -16.72,
+   "change_7dover7d": -48.49,
+   "change_30dover30d": 1.38,
+   "defillamaId": "3481",
+   "name": "Solidly V3",
+   "displayName": "Solidly V3",
+   "module": "solidly-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/solidly-v3",
+   "parentProtocol": "parent#solidly-labs",
+   "slug": "solidly-v3",
+   "id": "3481"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 17553,
+   "defillamaId": "3515",
+   "name": "DackieSwap V2",
+   "displayName": "DackieSwap V2",
+   "module": "dackieswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#dackieswap",
+   "slug": "dackieswap-v2",
+   "id": "3515"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 8.588235294117647,
+   "totalAllTime": 16,
+   "defillamaId": "3561",
+   "name": "Tegro",
+   "displayName": "Tegro",
+   "module": "tegro",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/tegro",
+   "slug": "tegro",
+   "id": "3561"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": null,
+   "totalAllTime": 0,
+   "defillamaId": "3605",
+   "name": "BLEX",
+   "displayName": "BLEX",
+   "module": "blex-volume",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/dexs/blex-volume.ts",
+   "slug": "blex",
+   "id": "3605"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 88385,
+   "total1y": 158518,
+   "annualized1y": 158518,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 15138389,
+   "average1y": 434.2958904109589,
+   "monthlyAverage1y": 13219.96690410959,
+   "change_30dover30d": -100,
+   "defillamaId": "3664",
+   "name": "Primex Finance",
+   "displayName": "Primex Finance",
+   "module": "primex-finance",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/primex-finance",
+   "slug": "primex-finance",
+   "id": "3664"
+  },
+  {
+   "total24h": 10.37,
+   "total48hto24h": 3.39,
+   "total7d": 154.95,
+   "total14dto7d": 244.9,
+   "total30d": 900.65,
+   "total60dto30d": 969.4,
+   "total1y": 16532.040000000005,
+   "annualized1y": 16532.040000000005,
+   "total7DaysAgo": 9.76,
+   "total30DaysAgo": 14.88,
+   "totalAllTime": 49832.410000000025,
+   "average1y": 45.293260273972614,
+   "monthlyAverage1y": 1378.7268427397264,
+   "change_1d": 205.9,
+   "change_7d": 6.25,
+   "change_1m": -30.31,
+   "change_7dover7d": -36.73,
+   "change_30dover30d": -7.09,
+   "defillamaId": "3878",
+   "name": "Thick",
+   "displayName": "Thick",
+   "module": "thick",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#guru-network-dao",
+   "slug": "thick",
+   "id": "3878"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 1798793.3411214955,
+   "totalAllTime": 3163905,
+   "defillamaId": "3907",
+   "name": "Ryze.Fi",
+   "displayName": "Ryze.Fi",
+   "module": "ryze",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/ryze",
+   "slug": "ryze.fi",
+   "id": "3907"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 515.27,
+   "annualized1y": 522.4265277777778,
+   "total30DaysAgo": 0,
+   "totalAllTime": 6921.2699999999995,
+   "average1y": 1.4313055555555556,
+   "monthlyAverage1y": 43.568941111111116,
+   "defillamaId": "3940",
+   "name": "Archly V2",
+   "displayName": "Archly V2",
+   "module": "archly-finance-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#archly-finance",
+   "slug": "archly-v2",
+   "id": "3940"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0.17,
+   "total1y": 48008.32,
+   "annualized1y": 48008.32,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 38757422.32,
+   "average1y": 131.52964383561644,
+   "monthlyAverage1y": 4003.7623583561644,
+   "change_30dover30d": -100,
+   "defillamaId": "4041",
+   "name": "Horiza",
+   "displayName": "Horiza",
+   "module": "horiza",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "slug": "horiza",
+   "id": "4041"
+  },
+  {
+   "total24h": 3015,
+   "total48hto24h": 2087,
+   "total7d": 30700,
+   "total14dto7d": 66685,
+   "total30d": 223965,
+   "total60dto30d": 319273,
+   "total1y": 26646124,
+   "annualized1y": 26646124,
+   "total7DaysAgo": 7167,
+   "total30DaysAgo": 10581,
+   "totalAllTime": 144793390,
+   "average1y": 73003.0794520548,
+   "monthlyAverage1y": 2222213.738520548,
+   "change_1d": 44.47,
+   "change_7d": -57.93,
+   "change_1m": -71.51,
+   "change_7dover7d": -53.96,
+   "change_30dover30d": -29.85,
+   "defillamaId": "4062",
+   "name": "DeltaSwap",
+   "displayName": "DeltaSwap",
+   "module": "deltaswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#gammaswaplabs",
+   "slug": "deltaswap",
+   "id": "4062"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 64428,
+   "annualized1y": 96377.95081967213,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 367274415,
+   "average1y": 264.04918032786884,
+   "monthlyAverage1y": 8037.657049180328,
+   "defillamaId": "4086",
+   "name": "Garden",
+   "displayName": "Garden",
+   "module": "garden",
+   "category": "Cross Chain Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/garden",
+   "slug": "garden",
+   "id": "4086"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 392097,
+   "defillamaId": "4087",
+   "name": "Lexer Markets",
+   "displayName": "Lexer Markets",
+   "module": "lexer-swap",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/lexer-swap.ts",
+   "slug": "lexer-markets",
+   "id": "4087"
+  },
+  {
+   "total24h": 2450,
+   "total48hto24h": 1234,
+   "total7d": 1135522,
+   "total14dto7d": 511127,
+   "total30d": 3543511,
+   "total60dto30d": 0,
+   "total1y": 5358557,
+   "annualized1y": 5358557,
+   "total7DaysAgo": 3453,
+   "total30DaysAgo": 0,
+   "totalAllTime": 9244744,
+   "average1y": 14680.978082191781,
+   "monthlyAverage1y": 446888.97282191785,
+   "change_1d": 98.54,
+   "change_7d": -29.05,
+   "change_7dover7d": 122.16,
+   "defillamaId": "4196",
+   "name": "Dinari",
+   "displayName": "Dinari",
+   "module": "dinari",
+   "category": "RWA",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dinari",
+   "slug": "dinari",
+   "breakdownMethodology": {
+    "Fees": {
+     "Trading Fees": "Trading fees (flat + variable) charged on buy and sell orders of tokenized stocks (dShares)."
+    },
+    "UserFees": {
+     "Trading Fees": "Trading fees (flat + variable) charged on buy and sell orders of tokenized stocks (dShares). All fees are paid by users."
+    },
+    "Revenue": {
+     "Trading Fees": "Trading fees (flat + variable) charged on buy and sell orders of tokenized stocks (dShares). All fees are revenue."
+    },
+    "ProtocolRevenue": {
+     "Trading Fees": "Trading fees (flat + variable) charged on buy and sell orders of tokenized stocks (dShares). All fees go to the protocol."
+    }
+   },
+   "id": "4196"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 8979,
+   "total60dto30d": 95,
+   "total1y": 14255.33,
+   "annualized1y": 14255.33,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 192039.33000000002,
+   "average1y": 39.05569863013699,
+   "monthlyAverage1y": 1188.85546630137,
+   "change_30dover30d": 9351.58,
+   "defillamaId": "4197",
+   "name": "Secured Finance Lending",
+   "displayName": "Secured Finance Lending",
+   "module": "securedfinance",
+   "category": "Lending",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/securedfinance",
+   "parentProtocol": "parent#secured-finance",
+   "slug": "secured-finance-lending",
+   "id": "4197"
+  },
+  {
+   "total24h": 3024,
+   "total48hto24h": 320,
+   "total7d": 23058,
+   "total14dto7d": 48428,
+   "total30d": 92624.72,
+   "total60dto30d": 79747.47,
+   "total1y": 8088814.1899999995,
+   "annualized1y": 8088814.1899999995,
+   "total7DaysAgo": 827,
+   "total30DaysAgo": 7228,
+   "totalAllTime": 23225031.19,
+   "average1y": 22161.134767123287,
+   "monthlyAverage1y": 674584.9423112329,
+   "change_1d": 845,
+   "change_7d": 265.66,
+   "change_1m": -58.16,
+   "change_7dover7d": -52.39,
+   "change_30dover30d": 16.15,
+   "defillamaId": "4321",
+   "name": "Curve LlamaLend",
+   "displayName": "Curve LlamaLend",
+   "module": "llamalend-curve",
+   "category": "Lending",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/fees/llamalend-curve.ts",
+   "parentProtocol": "parent#curve-finance",
+   "slug": "curve-llamalend",
+   "breakdownMethodology": {
+    "Fees": {
+     "LlamaLend Borrow Interest": "Interest paid by borrowers on their loans, accrued daily based on utilization rate",
+     "LlamaLend AMM Swap Fees": "Fees from token swaps in LLAMMA (Lending-Liquidating AMM Algorithm) pools used for soft liquidations"
+    },
+    "Revenue": {
+     "LlamaLend AMM Admin Fees": "Admin share of AMM swap fees collected by Curve DAO"
+    },
+    "ProtocolRevenue": {
+     "LlamaLend AMM Admin Fees": "Admin share of AMM swap fees collected by Curve DAO"
+    },
+    "SupplySideRevenue": {
+     "LlamaLend Lender & LP Revenue": "Borrow interest paid to lenders plus AMM swap fees earned by liquidity providers (net of admin fees)"
+    }
+   },
+   "id": "4321"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "totalAllTime": 1249118,
+   "defillamaId": "4505",
+   "name": "Fjord V2",
+   "displayName": "Fjord V2",
+   "module": "fjord-foundry-v2",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/fjord-foundry-v2.ts",
+   "parentProtocol": "parent#fjord-foundry",
+   "slug": "fjord-v2",
+   "id": "4505"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 9913178.647871116,
+   "totalAllTime": 23601513,
+   "defillamaId": "4557",
+   "name": "Fjord V1",
+   "displayName": "Fjord V1",
+   "module": "fjord-foundry-v1",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/fjord-foundry-v1.ts",
+   "parentProtocol": "parent#fjord-foundry",
+   "slug": "fjord-v1",
+   "id": "4557"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 1494646075.153846,
+   "totalAllTime": 1330849245,
+   "defillamaId": "4586",
+   "name": "Equation V3",
+   "displayName": "Equation V3",
+   "module": "equation-v3",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/equation-v3",
+   "parentProtocol": "parent#equation",
+   "slug": "equation-v3",
+   "id": "4586"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "4605",
+   "name": "Whales Market",
+   "displayName": "Whales Market",
+   "module": "whales-market",
+   "category": "OTC Marketplace",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/whales-market.ts",
+   "slug": "whales-market",
+   "id": "4605"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 557068,
+   "defillamaId": "4610",
+   "name": "Mangrove",
+   "displayName": "Mangrove",
+   "module": "mangrove",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/mangrove",
+   "slug": "mangrove",
+   "id": "4610"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 5878012.737642585,
+   "totalAllTime": 8470780,
+   "defillamaId": "4670",
+   "name": "C3 Exchange",
+   "displayName": "C3 Exchange",
+   "module": "c3-exchange",
+   "category": "Cross Chain Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/c3-exchange",
+   "slug": "c3-exchange",
+   "id": "4670"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 67030819.91803278,
+   "totalAllTime": 89619288,
+   "defillamaId": "4674",
+   "name": "YFX V4",
+   "displayName": "YFX V4",
+   "module": "yfx-v4",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/yfx-v4",
+   "slug": "yfx-v4",
+   "id": "4674"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 44,
+   "total7d": 44,
+   "total14dto7d": 3261,
+   "total30d": 12936,
+   "total60dto30d": 46307.009999999995,
+   "total1y": 332466.01,
+   "annualized1y": 332466.01,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 5096337.01,
+   "average1y": 910.8657808219178,
+   "monthlyAverage1y": 27726.75436821918,
+   "change_1d": -100,
+   "change_7dover7d": -98.65,
+   "change_30dover30d": -72.06,
+   "defillamaId": "4703",
+   "name": "Basin Exchange",
+   "displayName": "Basin Exchange",
+   "module": "basin",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/basin",
+   "parentProtocol": "parent#beanstalk",
+   "slug": "basin-exchange",
+   "id": "4703"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 134989,
+   "annualized1y": 134989,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 4781018,
+   "average1y": 369.83287671232875,
+   "monthlyAverage1y": 11257.712767123288,
+   "defillamaId": "4725",
+   "name": "Spectra V2",
+   "displayName": "Spectra V2",
+   "module": "spectra-v2",
+   "category": "Yield",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/spectra-v2.ts",
+   "parentProtocol": "parent#spectra",
+   "slug": "spectra-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "Yield Trading Fees": "Fees paid by users on Spectra yield trading transactions.",
+     "Voting Fees": "Voting fee rewards distributed through Spectra governance.",
+     "Voting Incentives": "Voting incentives distributed through Spectra governance."
+    },
+    "Revenue": {
+     "Yield Trading Fees To Holders": "Yield trading fees distributed to veSPECTRA holders.",
+     "Voting Fees": "Voting fee rewards distributed to veSPECTRA holders.",
+     "Voting Incentives": "Voting incentives distributed to veSPECTRA holders."
+    },
+    "HoldersRevenue": {
+     "Yield Trading Fees To Holders": "Yield trading fees distributed to veSPECTRA holders.",
+     "Voting Fees": "Voting fee rewards distributed to veSPECTRA holders.",
+     "Voting Incentives": "Voting incentives distributed to veSPECTRA holders."
+    },
+    "SupplySideRevenue": {
+     "Yield Trading Fees To LPs": "Yield trading fees distributed to LPs.",
+     "Yield Trading Fees To Curve DAO": "Yield trading fees distributed to Curve DAO."
+    }
+   },
+   "id": "4725"
+  },
+  {
+   "total24h": 408424,
+   "total48hto24h": 210325,
+   "total7d": 1232312,
+   "total14dto7d": 2770771,
+   "total30d": 7207134,
+   "total60dto30d": 8653043,
+   "total1y": 518105004,
+   "annualized1y": 518105004,
+   "total7DaysAgo": 243513,
+   "total30DaysAgo": 534706,
+   "totalAllTime": 6748984758,
+   "average1y": 1419465.7643835617,
+   "monthlyAverage1y": 43208537.86783562,
+   "change_1d": 94.19,
+   "change_7d": 67.72,
+   "change_1m": -23.62,
+   "change_7dover7d": -55.52,
+   "change_30dover30d": -16.71,
+   "defillamaId": "4752",
+   "name": "Maverick V2",
+   "displayName": "Maverick V2",
+   "module": "maverick-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/maverick-v2",
+   "parentProtocol": "parent#maverick-protocol",
+   "slug": "maverick-v2",
+   "id": "4752"
+  },
+  {
+   "total24h": 839,
+   "total48hto24h": 508,
+   "total7d": 20271,
+   "total14dto7d": 23659,
+   "total30d": 3755452,
+   "total60dto30d": 4215355.25,
+   "total1y": 10693061.719999999,
+   "annualized1y": 10693061.719999999,
+   "total7DaysAgo": 2155,
+   "total30DaysAgo": 321024,
+   "totalAllTime": 2292469490.7200007,
+   "average1y": 29296.059506849313,
+   "monthlyAverage1y": 891772.0513884932,
+   "change_1d": 65.16,
+   "change_7d": -61.07,
+   "change_1m": -99.74,
+   "change_7dover7d": -14.32,
+   "change_30dover30d": -10.91,
+   "defillamaId": "4794",
+   "name": "Joe V2.2",
+   "displayName": "Joe V2.2",
+   "module": "traderjoe-lb-v2-2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/joeLiquidityBook.ts",
+   "parentProtocol": "parent#trader-joe",
+   "slug": "joe-v2.2",
+   "id": "4794"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "4834",
+   "name": "Napier",
+   "displayName": "Napier",
+   "module": "napier",
+   "category": "Yield",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/napier",
+   "slug": "napier",
+   "id": "4834"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "4896",
+   "name": "Ducata",
+   "displayName": "Ducata",
+   "module": "ducata",
+   "category": "Yield",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/balancer.ts",
+   "slug": "ducata",
+   "id": "4896"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 12449,
+   "total1y": 12242129,
+   "annualized1y": 12242129,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 14268624,
+   "average1y": 33540.07945205479,
+   "monthlyAverage1y": 1020960.018520548,
+   "change_30dover30d": -100,
+   "defillamaId": "4930",
+   "name": "SpaceWhale",
+   "displayName": "SpaceWhale",
+   "module": "spacewhale",
+   "category": "Derivatives",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/spacewhale",
+   "slug": "spacewhale",
+   "id": "4930"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 10756047821,
+   "defillamaId": "5069",
+   "name": "GMX V1 AMM",
+   "displayName": "GMX V1 AMM",
+   "module": "gmx-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/gmx-swap.ts",
+   "parentProtocol": "parent#gmx",
+   "slug": "gmx-v1-amm",
+   "id": "5069"
+  },
+  {
+   "total24h": 400443,
+   "total48hto24h": 529758,
+   "total7d": 6043842,
+   "total14dto7d": 17725492,
+   "total30d": 47236150,
+   "total60dto30d": 22844254,
+   "total1y": 429758379,
+   "annualized1y": 429758379,
+   "total7DaysAgo": 2503235,
+   "total30DaysAgo": 2233948,
+   "totalAllTime": 6905985794,
+   "average1y": 1177420.216438356,
+   "monthlyAverage1y": 35840671.38838356,
+   "change_1d": -24.41,
+   "change_7d": -84,
+   "change_1m": -82.07,
+   "change_7dover7d": -65.9,
+   "change_30dover30d": 106.77,
+   "defillamaId": "5070",
+   "name": "GMX V2 AMM",
+   "displayName": "GMX V2 AMM",
+   "module": "gmx-v2-gmx-v2-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/gmx-v2-gmx-v2-swap.ts",
+   "parentProtocol": "parent#gmx",
+   "slug": "gmx-v2-amm",
+   "id": "5070"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 331784613,
+   "defillamaId": "5089",
+   "name": "Level AMM",
+   "displayName": "Level AMM",
+   "module": "level-finance-level-finance",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/dexs/level-finance-level-finance.ts",
+   "parentProtocol": "parent#level-finance",
+   "slug": "level-amm",
+   "id": "5089"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 94826817,
+   "annualized1y": 159501328.13364056,
+   "totalAllTime": 170555413,
+   "average1y": 436989.9400921659,
+   "monthlyAverage1y": 13301973.77640553,
+   "defillamaId": "5103",
+   "name": "Renegade",
+   "displayName": "Renegade",
+   "module": "renegade-fi",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/renegade-fi",
+   "slug": "renegade",
+   "id": "5103"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 3976646767.945879,
+   "totalAllTime": 8857572116,
+   "defillamaId": "5117",
+   "name": "Vertex AMM",
+   "displayName": "Vertex AMM",
+   "module": "vertex-protocol-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/vertex-protocol-swap.ts",
+   "parentProtocol": "parent#Edge",
+   "slug": "vertex-amm",
+   "id": "5117"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 6,
+   "annualized1y": 115.26315789473684,
+   "totalAllTime": 499729775,
+   "average1y": 0.21428571428571427,
+   "defillamaId": "5121",
+   "name": "KTX spot",
+   "displayName": "KTX spot",
+   "module": "ktx-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/907a33a21a905e24de53272e391f73b262898e8b/dexs/ktx-swap.ts",
+   "parentProtocol": "parent#ktx.finance",
+   "slug": "ktx-spot",
+   "id": "5121"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 74.85000000000001,
+   "total1y": 3776.3000000000015,
+   "annualized1y": 3776.3000000000015,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 850707.3000000004,
+   "average1y": 10.346027397260277,
+   "monthlyAverage1y": 314.93307397260287,
+   "change_30dover30d": -100,
+   "defillamaId": "5221",
+   "name": "Raindex",
+   "displayName": "Raindex",
+   "module": "raindex",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/raindex",
+   "slug": "raindex",
+   "id": "5221"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 3024460,
+   "annualized1y": 3024460,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 5395595,
+   "average1y": 8286.191780821919,
+   "monthlyAverage1y": 252231.67780821922,
+   "defillamaId": "5291",
+   "name": "Cables Finance",
+   "displayName": "Cables Finance",
+   "module": "cables",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/cables",
+   "slug": "cables-finance",
+   "id": "5291"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 89035873,
+   "annualized1y": 89035873,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 165052076,
+   "average1y": 243933.89863013697,
+   "monthlyAverage1y": 7425347.87430137,
+   "defillamaId": "5309",
+   "name": "Nabla Finance",
+   "displayName": "Nabla Finance",
+   "module": "nabla",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/nabla",
+   "slug": "nabla-finance",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Total fee charged on each swap, before it is split between liquidity providers, the backstop pool and the treasury."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Total fee charged on each swap."
+    },
+    "Revenue": {
+     "Protocol Fees": "The protocol's share of each swap fee."
+    },
+    "ProtocolRevenue": {
+     "Protocol Fees": "The protocol's share of each swap fee, allocated to the Nabla DAO Treasury."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To LPs": "The share of each swap fee paid to the liquidity providers of the swap pool.",
+     "Swap Fees To Backstop Depositors": "The share of each swap fee paid to depositors in the backstop pool that covers the swap pool."
+    }
+   },
+   "id": "5309"
+  },
+  {
+   "total24h": 13222005,
+   "total48hto24h": 10231528,
+   "total7d": 91623924,
+   "total14dto7d": 104433653,
+   "total30d": 311778269,
+   "total60dto30d": 196248802,
+   "total1y": 10064070246,
+   "annualized1y": 10064070246,
+   "total7DaysAgo": 5451651,
+   "total30DaysAgo": 8425282,
+   "totalAllTime": 23607335511,
+   "average1y": 27572795.194520548,
+   "monthlyAverage1y": 839315885.7212055,
+   "change_1d": 29.23,
+   "change_7d": 142.53,
+   "change_1m": 56.93,
+   "change_7dover7d": -12.27,
+   "change_30dover30d": 58.87,
+   "defillamaId": "5317",
+   "name": "Fluid DEX",
+   "displayName": "Fluid DEX",
+   "module": "fluid-dex",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/fluid-dex",
+   "parentProtocol": "parent#fluid",
+   "slug": "fluid-dex",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Total swap fees paid by users."
+    },
+    "Revenue": {
+     "Swap Fees To Treasury": "Fluid takes a portion of swap fees."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Treasury": "Fluid takes a portion of swap fees."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To LPs": "Amount of swap fees distributed to LPs."
+    }
+   },
+   "id": "5317"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 11540692,
+   "defillamaId": "5399",
+   "name": "Mach",
+   "displayName": "Mach",
+   "module": "mach",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/mach",
+   "slug": "mach",
+   "id": "5399"
+  },
+  {
+   "total24h": 3049,
+   "total48hto24h": 3049,
+   "total7d": 90594,
+   "total14dto7d": 73278,
+   "total30d": 4225283,
+   "total60dto30d": 1250289,
+   "total1y": 5475572,
+   "total7DaysAgo": 24178,
+   "total30DaysAgo": 229802,
+   "totalAllTime": 5475572,
+   "average1y": 15337.736694677871,
+   "monthlyAverage1y": 466880.70498599444,
+   "change_1d": 0,
+   "change_7d": -87.39,
+   "change_1m": -98.67,
+   "change_7dover7d": 23.63,
+   "change_30dover30d": 237.94,
+   "defillamaId": "5408",
+   "name": "GMGN",
+   "displayName": "GMGN",
+   "module": "gmgnai",
+   "category": "Trading App",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/gmgnai.ts",
+   "slug": "gmgn",
+   "doublecounted": true,
+   "id": "5408"
+  },
+  {
+   "total24h": 63946,
+   "total48hto24h": 67888,
+   "total7d": 1226329,
+   "total14dto7d": 1926491,
+   "total30d": 5423461,
+   "total60dto30d": 5439511,
+   "total1y": 574121127,
+   "annualized1y": 575698382.8434066,
+   "total7DaysAgo": 279613,
+   "total30DaysAgo": 113452,
+   "totalAllTime": 697160736,
+   "average1y": 1577255.8434065934,
+   "monthlyAverage1y": 48011667.87329671,
+   "change_1d": -5.81,
+   "change_7d": -77.13,
+   "change_1m": -43.64,
+   "change_7dover7d": -36.34,
+   "change_30dover30d": -0.3,
+   "defillamaId": "5491",
+   "name": "Balancer V3",
+   "displayName": "Balancer V3",
+   "module": "balancer-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/balancer-v3",
+   "parentProtocol": "parent#balancer",
+   "slug": "balancer-v3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users from all trades.",
+     "Assets Yields": "Yields captured from all assets in liquidity pools."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users from all trades."
+    },
+    "Revenue": {
+     "Token Swap Fees": "Protocol + holders share of swap fees (25%, 50% before 2026-04-23).",
+     "Assets Yields": "10% of yield capture taken as protocol + holders revenue."
+    },
+    "ProtocolRevenue": {
+     "Token Swap Fees": "Protocol treasury share of swap fees.",
+     "Assets Yields": "Protocol treasury share of yield capture."
+    },
+    "HoldersRevenue": {
+     "Token Swap Fees": "veBAL/BAL holders share of swap fees (0% after 2026-04-23).",
+     "Assets Yields": "veBAL/BAL holders share of yield capture (0% after 2026-04-23)."
+    },
+    "SupplySideRevenue": {
+     "Token Swap Fees": "LP share of swap fees (75%, 50% before 2026-04-23).",
+     "Assets Yields": "90% of yield capture distributed to LPs."
+    }
+   },
+   "id": "5491"
+  },
+  {
+   "total24h": 15621902,
+   "total48hto24h": 9381064,
+   "total7d": 171076106,
+   "total14dto7d": 236248641,
+   "total30d": 754980796,
+   "total60dto30d": 816498496,
+   "total1y": 16831462374,
+   "annualized1y": 16831462374,
+   "total7DaysAgo": 15165304,
+   "total30DaysAgo": 24115087,
+   "totalAllTime": 24461514593,
+   "average1y": 46113595.54520548,
+   "monthlyAverage1y": 1403697848.396055,
+   "change_1d": 66.53,
+   "change_7d": 3.01,
+   "change_1m": -35.22,
+   "change_7dover7d": -27.59,
+   "change_30dover30d": -7.53,
+   "defillamaId": "5690",
+   "name": "Uniswap V4",
+   "displayName": "Uniswap V4",
+   "module": "uniswap-v4",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v4.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v4",
+   "id": "5690"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 10193668,
+   "defillamaId": "5734",
+   "name": "Bunni V2",
+   "displayName": "Bunni V2",
+   "module": "bunni-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/bunni-v2.ts",
+   "parentProtocol": "parent#bunni",
+   "slug": "bunni-v2",
+   "doublecounted": true,
+   "id": "5734"
+  },
+  {
+   "total24h": 630,
+   "total48hto24h": 3494,
+   "total7d": 24614,
+   "total14dto7d": 7196,
+   "total30d": 79965,
+   "total60dto30d": 116631.76,
+   "total1y": 1541268.0699999998,
+   "annualized1y": 1541268.0699999998,
+   "total7DaysAgo": 3710,
+   "total30DaysAgo": 7.76,
+   "totalAllTime": 2019437.07,
+   "average1y": 4222.652246575342,
+   "monthlyAverage1y": 128537.53438575343,
+   "change_1d": -81.97,
+   "change_7d": -83.02,
+   "change_1m": 8018.56,
+   "change_7dover7d": 242.05,
+   "change_30dover30d": -31.44,
+   "defillamaId": "6060",
+   "name": "Sablier Flow",
+   "displayName": "Sablier Flow",
+   "module": "sablier-flow",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sablier-flow.ts",
+   "parentProtocol": "parent#sablier-finance",
+   "slug": "sablier-flow",
+   "id": "6060"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 771605,
+   "annualized1y": 6258573.888888889,
+   "totalAllTime": 83035649,
+   "average1y": 17146.777777777777,
+   "monthlyAverage1y": 521947.91555555555,
+   "defillamaId": "6092",
+   "name": "Swaps.io",
+   "displayName": "Swaps.io",
+   "module": "swaps-io",
+   "category": "Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/f87f9543a7906b671a14395ef1e44db86a181100/dexs/swaps-io",
+   "slug": "swaps.io",
+   "id": "6092"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 3752461.75,
+   "annualized1y": 3752461.75,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 5362768.75,
+   "average1y": 10280.717123287672,
+   "monthlyAverage1y": 312945.0292328767,
+   "defillamaId": "6246",
+   "name": "Skate AMM",
+   "displayName": "Skate AMM",
+   "module": "skate-amm",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/skate-amm",
+   "slug": "skate-amm",
+   "id": "6246"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 56208,
+   "annualized1y": 220601.29032258064,
+   "totalAllTime": 56208,
+   "average1y": 472.33613445378154,
+   "monthlyAverage1y": 14377.911932773111,
+   "defillamaId": "6256",
+   "name": "Permute",
+   "displayName": "Permute",
+   "module": "bitcoin-bridge",
+   "category": "Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/bitcoin-bridge",
+   "slug": "permute",
+   "id": "6256"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 3972,
+   "annualized1y": 3972,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 149151,
+   "average1y": 10.882191780821918,
+   "monthlyAverage1y": 331.25391780821917,
+   "defillamaId": "6506",
+   "name": "Omni Exchange V3",
+   "displayName": "Omni Exchange V3",
+   "module": "omni-exchange-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#omni-exchange",
+   "slug": "omni-exchange-v3",
+   "id": "6506"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 5.01,
+   "total30d": 10.709999999999999,
+   "total60dto30d": 7.469999999999999,
+   "total1y": 870.44,
+   "annualized1y": 931.7026392961877,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 3186.439999999999,
+   "average1y": 2.552609970674487,
+   "monthlyAverage1y": 77.70144750733138,
+   "change_7dover7d": -100,
+   "change_30dover30d": 43.37,
+   "defillamaId": "6539",
+   "name": "Omni Exchange V2",
+   "displayName": "Omni Exchange V2",
+   "module": "omni-exchange-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#omni-exchange",
+   "slug": "omni-exchange-v2",
+   "id": "6539"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 53,
+   "annualized1y": 149.96124031007753,
+   "totalAllTime": 53065,
+   "average1y": 0.4108527131782946,
+   "monthlyAverage1y": 12.506356589147288,
+   "defillamaId": "6540",
+   "name": "Omni Exchange Flux",
+   "displayName": "Omni Exchange Flux",
+   "module": "omni-exchange-flux",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/79df3bd74a7bab0e7f6358ec4b7d9c6991da159b/dexs/omni-exchange-flux",
+   "parentProtocol": "parent#omni-exchange",
+   "slug": "omni-exchange-flux",
+   "id": "6540"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 1414562,
+   "annualized1y": 1414562,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1915260,
+   "average1y": 3875.512328767123,
+   "monthlyAverage1y": 117970.59528767123,
+   "defillamaId": "6616",
+   "name": "BrownFi V2",
+   "displayName": "BrownFi V2",
+   "module": "brownfi",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/brownfi",
+   "parentProtocol": "parent#brownfi",
+   "slug": "brownfi-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Fees from swap transactions."
+    },
+    "Revenue": {
+     "Swap Fees to Protocol": "Protocol share from swap fees."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees to Protocol": "Protocol share from swap fees."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees to Liquidity Providers": "Liquidity providers share from swap fees."
+    }
+   },
+   "id": "6616"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 65023,
+   "total60dto30d": 1408902,
+   "total1y": 40884616.22,
+   "annualized1y": 46927311.07012579,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 40884616.22,
+   "average1y": 128567.9755345912,
+   "monthlyAverage1y": 3913609.175272956,
+   "change_30dover30d": -95.38,
+   "defillamaId": "6924",
+   "name": "Rain",
+   "displayName": "Rain",
+   "module": "rain-one",
+   "category": "Prediction Market",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/rain-one",
+   "slug": "rain",
+   "id": "6924"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 1528.7,
+   "total14dto7d": 70903,
+   "total30d": 93347.68,
+   "total60dto30d": 3117,
+   "total1y": 195725.79000000004,
+   "annualized1y": 375999.54394736845,
+   "total7DaysAgo": 19240,
+   "total30DaysAgo": 0,
+   "totalAllTime": 195725.79000000004,
+   "average1y": 1030.1357368421054,
+   "monthlyAverage1y": 31357.33182947369,
+   "change_7d": -100,
+   "change_7dover7d": -97.84,
+   "change_30dover30d": 2894.79,
+   "defillamaId": "7133",
+   "name": "Tristero Darkpool",
+   "displayName": "Tristero Darkpool",
+   "module": "tristero",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/tristero",
+   "parentProtocol": "parent#tristero",
+   "slug": "tristero-darkpool",
+   "id": "7133"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 11507079,
+   "annualized1y": 11507079,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 26201743,
+   "average1y": 31526.24383561644,
+   "monthlyAverage1y": 959658.8623561644,
+   "defillamaId": "7377",
+   "name": "Holyheld Card",
+   "displayName": "Holyheld Card",
+   "module": "holyheld",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/crypto-card.ts",
+   "slug": "holyheld-card",
+   "id": "7377"
+  },
+  {
+   "total24h": 16829,
+   "total48hto24h": 13206,
+   "total7d": 113943,
+   "total14dto7d": 71367,
+   "total30d": 299974,
+   "total60dto30d": 313050,
+   "total1y": 37527674,
+   "annualized1y": 37527674,
+   "total7DaysAgo": 16039,
+   "total30DaysAgo": 7690,
+   "totalAllTime": 43533413,
+   "average1y": 102815.54520547946,
+   "monthlyAverage1y": 3129705.196054795,
+   "change_1d": 27.43,
+   "change_7d": 4.93,
+   "change_1m": 118.84,
+   "change_7dover7d": 59.66,
+   "change_30dover30d": -4.18,
+   "defillamaId": "7379",
+   "name": "Bitget Wallet Card",
+   "displayName": "Bitget Wallet Card",
+   "module": "bitget-wallet-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/bitget-wallet-card.ts",
+   "slug": "bitget-wallet-card",
+   "id": "7379"
+  },
+  {
+   "total24h": 536,
+   "total48hto24h": 313,
+   "total7d": 6703,
+   "total14dto7d": 6909,
+   "total30d": 168986,
+   "total60dto30d": 3938291.07,
+   "total1y": 22980370.98,
+   "total7DaysAgo": 416,
+   "total30DaysAgo": 66352,
+   "totalAllTime": 22980906.98,
+   "average1y": 97374.45330508475,
+   "monthlyAverage1y": 2964078.35860678,
+   "change_1d": 71.25,
+   "change_7d": 28.85,
+   "change_1m": -99.19,
+   "change_7dover7d": -2.98,
+   "change_30dover30d": -95.71,
+   "defillamaId": "7436",
+   "name": "Alphix",
+   "displayName": "Alphix",
+   "module": "alphix",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/alphix.ts",
+   "slug": "alphix",
+   "doublecounted": true,
+   "id": "7436"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 56.68,
+   "total60dto30d": 43.74,
+   "total1y": 116044.53000000001,
+   "annualized1y": 119650.43347457629,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 5.57,
+   "totalAllTime": 116044.53000000001,
+   "average1y": 327.80940677966106,
+   "monthlyAverage1y": 9978.518342372883,
+   "change_1m": -100,
+   "change_30dover30d": 29.58,
+   "defillamaId": "7447",
+   "name": "Printr",
+   "displayName": "Printr",
+   "module": "printr-protocol",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/printr-protocol",
+   "slug": "printr",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Printr charges a 1% fee on all bonding curve swaps."
+    },
+    "Revenue": {
+     "Protocol Fees": "10% of trading fees go to the Printr team.",
+     "Token Buy Back": "40% of trading fees are used for buybacks, benefiting token holders.",
+     "Memecoin Reserve": "25% of trading fees go to the protocol-controlled memecoin reserve fund (allocated via community voting for liquidity, listings, and growth)."
+    },
+    "ProtocolRevenue": {
+     "Protocol Fees": "10% of trading fees go to the Printr team.",
+     "Memecoin Reserve": "25% of trading fees go to the protocol-controlled memecoin reserve fund (allocated via community voting for liquidity, listings, and growth)."
+    },
+    "HoldersRevenue": {
+     "Token Buy Back": "40% of trading fees are used for buybacks, benefiting token holders."
+    },
+    "SupplySideRevenue": {
+     "Creator Fees": "25% of trading fees go to token creators."
+    }
+   },
+   "id": "7447"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "7508",
+   "name": "Kaliber",
+   "displayName": "Kaliber",
+   "module": "aptos-caliber-prop-amm",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/aptos-caliber-prop-amm",
+   "slug": "kaliber",
+   "id": "7508"
+  },
+  {
+   "total24h": 251038,
+   "total48hto24h": 138771,
+   "total7d": 2151786,
+   "total14dto7d": 2043834,
+   "total30d": 8651543,
+   "total60dto30d": 9982992,
+   "total1y": 66463719,
+   "annualized1y": 66463719,
+   "total7DaysAgo": 285588,
+   "total30DaysAgo": 334558,
+   "totalAllTime": 87013891,
+   "average1y": 182092.38082191782,
+   "monthlyAverage1y": 5542892.072219179,
+   "change_1d": 80.9,
+   "change_7d": -12.1,
+   "change_1m": -24.96,
+   "change_7dover7d": 5.28,
+   "change_30dover30d": -13.34,
+   "defillamaId": "7519",
+   "name": "RedotPay Card",
+   "displayName": "RedotPay Card",
+   "module": "redotpay",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/crypto-card.ts",
+   "slug": "redotpay-card",
+   "id": "7519"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 49493,
+   "total1y": 14773220,
+   "annualized1y": 14773220,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 29345605,
+   "average1y": 40474.57534246575,
+   "monthlyAverage1y": 1232046.0734246576,
+   "change_30dover30d": -100,
+   "defillamaId": "7520",
+   "name": "Cypher Card",
+   "displayName": "Cypher Card",
+   "module": "cypher-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/crypto-card.ts",
+   "slug": "cypher-card",
+   "id": "7520"
+  },
+  {
+   "total24h": 114782,
+   "total48hto24h": 124746,
+   "total7d": 1200128,
+   "total14dto7d": 1068343,
+   "total30d": 4428574,
+   "total60dto30d": 4480574,
+   "total1y": 35399689,
+   "annualized1y": 35399689,
+   "total7DaysAgo": 94304,
+   "total30DaysAgo": 119824,
+   "totalAllTime": 42032445,
+   "average1y": 96985.44931506849,
+   "monthlyAverage1y": 2952237.077150685,
+   "change_1d": -7.99,
+   "change_7d": 21.71,
+   "change_1m": -4.21,
+   "change_7dover7d": 12.34,
+   "change_30dover30d": -1.16,
+   "defillamaId": "7521",
+   "name": "Bleap Card",
+   "displayName": "Bleap Card",
+   "module": "bleap-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/crypto-card.ts",
+   "slug": "bleap-card",
+   "id": "7521"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 1999582,
+   "total14dto7d": 1299779,
+   "total30d": 5598744,
+   "total60dto30d": 4788826,
+   "total1y": 102869446.01,
+   "annualized1y": 102869446.01,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 269296931.01,
+   "average1y": 281834.0986575343,
+   "monthlyAverage1y": 8579029.963135343,
+   "change_7dover7d": 53.84,
+   "change_30dover30d": 16.91,
+   "defillamaId": "7522",
+   "name": "Nexo Card",
+   "displayName": "Nexo Card",
+   "module": "nexo-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/crypto-card.ts",
+   "slug": "nexo-card",
+   "id": "7522"
+  },
+  {
+   "total24h": 2049,
+   "total48hto24h": 6372,
+   "total7d": 47463,
+   "total14dto7d": 73223,
+   "total30d": 221594,
+   "total60dto30d": 256049,
+   "total1y": 3880378,
+   "annualized1y": 3880378,
+   "total7DaysAgo": 22269,
+   "total30DaysAgo": 3538,
+   "totalAllTime": 13957626,
+   "average1y": 10631.172602739725,
+   "monthlyAverage1y": 323612.89402739727,
+   "change_1d": -67.84,
+   "change_7d": -90.8,
+   "change_1m": -42.09,
+   "change_7dover7d": -35.18,
+   "change_30dover30d": -13.46,
+   "defillamaId": "7523",
+   "name": "Spritz Card",
+   "displayName": "Spritz Card",
+   "module": "spritz-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/spritz-card.ts",
+   "slug": "spritz-card",
+   "id": "7523"
+  },
+  {
+   "total24h": 3285790,
+   "total48hto24h": 2005355,
+   "total7d": 20493115,
+   "total14dto7d": 57049886,
+   "total30d": 302899001,
+   "total60dto30d": 362441128,
+   "total1y": 1314104527,
+   "annualized1y": 2220593297.939815,
+   "total7DaysAgo": 3496180,
+   "total30DaysAgo": 13972372,
+   "totalAllTime": 1317390317,
+   "average1y": 6055781.230414746,
+   "monthlyAverage1y": 184337980.6538249,
+   "change_1d": 63.85,
+   "change_7d": -6.02,
+   "change_1m": -76.48,
+   "change_7dover7d": -64.08,
+   "change_30dover30d": -16.43,
+   "defillamaId": "7648",
+   "name": "Metric V2",
+   "displayName": "Metric V2",
+   "module": "metric",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/metric",
+   "parentProtocol": "parent#metric",
+   "slug": "metric-v2",
+   "id": "7648"
+  },
+  {
+   "total24h": 0.01,
+   "total48hto24h": 22,
+   "total7d": 24.09,
+   "total14dto7d": 224.51000000000002,
+   "total30d": 327.88999999999993,
+   "total60dto30d": 35391.35,
+   "total1y": 37906.42,
+   "annualized1y": 41674.226807228915,
+   "total7DaysAgo": 0.21,
+   "total30DaysAgo": 6.55,
+   "totalAllTime": 37906.42,
+   "average1y": 103.85320547945204,
+   "monthlyAverage1y": 3161.2915747945203,
+   "change_1d": -99.95,
+   "change_7d": -95.24,
+   "change_1m": -99.85,
+   "change_7dover7d": -89.27,
+   "change_30dover30d": -99.07,
+   "defillamaId": "7767",
+   "name": "x402",
+   "displayName": "x402",
+   "module": "x402",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/x402",
+   "slug": "x402",
+   "id": "7767"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0.27,
+   "total30d": 174.61,
+   "total60dto30d": 1613,
+   "total1y": 466058.61000000004,
+   "annualized1y": 762831.3571748879,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 466058.61000000004,
+   "average1y": 1429.62763803681,
+   "monthlyAverage1y": 43517.865301840495,
+   "change_7dover7d": -100,
+   "change_30dover30d": -89.17,
+   "defillamaId": "7986",
+   "name": "Uniswap Auctions",
+   "displayName": "Uniswap Auctions",
+   "module": "uniswap-auctions",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-auctions.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-auctions",
+   "id": "7986"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 410,
+   "total30d": 1366,
+   "total60dto30d": 7580.98,
+   "total1y": 43537.98,
+   "annualized1y": 182659.34137931035,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 43537.98,
+   "average1y": 365.86537815126053,
+   "monthlyAverage1y": 11136.94211092437,
+   "change_7dover7d": -100,
+   "change_30dover30d": -81.98,
+   "defillamaId": "8023",
+   "name": "BrownFi V3",
+   "displayName": "BrownFi V3",
+   "module": "brownfi-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/brownfi-v3",
+   "parentProtocol": "parent#brownfi",
+   "slug": "brownfi-v3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Fees from swap transactions."
+    },
+    "Revenue": {
+     "Swap Fees to Protocol": "Protocol share from swap fees."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees to Protocol": "Protocol share from swap fees."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees to Liquidity Providers": "Liquidity providers share from swap fees."
+    }
+   },
+   "id": "8023"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 1326.69,
+   "annualized1y": 1952.5881048387098,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1326.69,
+   "average1y": 4.020272727272728,
+   "monthlyAverage1y": 122.37710181818184,
+   "defillamaId": "8057",
+   "name": "Ramses Legacy V2",
+   "displayName": "Ramses Legacy V2",
+   "module": "ramses-legacy-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ramses-legacy-v2.ts",
+   "parentProtocol": "parent#ramses-exchange-hl",
+   "slug": "ramses-legacy-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Fees are collected from users on each swap.",
+     "Bribes": "Bribes paid by protocols"
+    },
+    "Revenue": {
+     "Swap Fees to protocol": "Revenue going to the protocol.",
+     "Swap Fees to holders": "User fees are distributed among holders.",
+     "Bribes to holders": "Bribes paid by protocols to holders"
+    },
+    "ProtocolRevenue": {
+     "Swap Fees to protocol": "Revenue going to the protocol.",
+     "Sarcophagus fee reclassification": "Subtracts delayed Sarcophagus funding already accrued as protocol revenue."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees to LPs": "Fees distributed to LPs (from gauged pools)."
+    },
+    "HoldersRevenue": {
+     "Swap Fees to holders": "User fees are distributed among holders.",
+     "Bribes to holders": "Bribes paid by protocols to holders",
+     "Sarcophagus fee reclassification": "Reclassifies fees already accrued as protocol revenue into holder revenue when funded to Sarcophagus."
+    }
+   },
+   "id": "8057"
+  },
+  {
+   "total24h": 64053,
+   "total48hto24h": 53045,
+   "total7d": 222021,
+   "total14dto7d": 165037,
+   "total30d": 773857,
+   "total60dto30d": 726375,
+   "total1y": 15942611,
+   "annualized1y": 22041867.481060605,
+   "total7DaysAgo": 12936,
+   "total30DaysAgo": 25310,
+   "totalAllTime": 16006664,
+   "average1y": 48310.94242424242,
+   "monthlyAverage1y": 1470585.0873939393,
+   "change_1d": 20.75,
+   "change_7d": 395.15,
+   "change_1m": 153.07,
+   "change_7dover7d": 34.53,
+   "change_30dover30d": 6.54,
+   "defillamaId": "8058",
+   "name": "Ramses CL V2",
+   "displayName": "Ramses CL V2",
+   "module": "ramses-cl-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ramses-cl-v2.ts",
+   "parentProtocol": "parent#ramses-exchange-hl",
+   "slug": "ramses-cl-v2",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Fees are collected from users on each swap.",
+     "Bribes": "Bribes paid by protocols"
+    },
+    "Revenue": {
+     "Swap Fees to protocol": "Revenue going to the protocol.",
+     "Swap Fees to holders": "User fees are distributed among holders.",
+     "Bribes to holders": "Bribes paid by protocols to holders"
+    },
+    "ProtocolRevenue": {
+     "Swap Fees to protocol": "Revenue going to the protocol.",
+     "Sarcophagus fee reclassification": "Subtracts delayed Sarcophagus funding already accrued as protocol revenue."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees to LPs": "Fees distributed to LPs (from gauged pools)."
+    },
+    "HoldersRevenue": {
+     "Swap Fees to holders": "User fees are distributed among holders.",
+     "Bribes to holders": "Bribes paid by protocols to holders",
+     "Sarcophagus fee reclassification": "Reclassifies fees already accrued as protocol revenue into holder revenue when funded to Sarcophagus."
+    }
+   },
+   "id": "8058"
+  },
+  {
+   "total24h": 13200,
+   "total48hto24h": 6706,
+   "total7d": 81799,
+   "total14dto7d": 41801,
+   "total30d": 211787,
+   "total60dto30d": 181660,
+   "total1y": 10740429,
+   "annualized1y": 10740429,
+   "total7DaysAgo": 6311,
+   "total30DaysAgo": 7682,
+   "totalAllTime": 12436941,
+   "average1y": 29425.832876712328,
+   "monthlyAverage1y": 895722.3527671233,
+   "change_1d": 96.84,
+   "change_7d": 109.16,
+   "change_1m": 71.83,
+   "change_7dover7d": 95.69,
+   "change_30dover30d": 16.58,
+   "defillamaId": "8104",
+   "name": "SafePal Card",
+   "displayName": "SafePal Card",
+   "module": "safepal-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/safepal-card.ts",
+   "slug": "safepal-card",
+   "id": "8104"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 1.29,
+   "total7d": 20.13,
+   "total14dto7d": 2104,
+   "total30d": 2130.36,
+   "total60dto30d": 20,
+   "total1y": 2280.25,
+   "annualized1y": 8406.982323232323,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 2280.25,
+   "average1y": 23.032828282828284,
+   "monthlyAverage1y": 701.119292929293,
+   "change_1d": -100,
+   "change_7dover7d": -99.04,
+   "change_30dover30d": 10551.8,
+   "defillamaId": "8126",
+   "name": "DashsWallet",
+   "displayName": "DashsWallet",
+   "module": "dashswallet",
+   "category": "Portfolio Tracker",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dashswallet.ts",
+   "slug": "dashswallet",
+   "breakdownMethodology": {
+    "Fees": {
+     "Swap Surplus": "Difference between actual swap output and the user's minimum accepted amount across DashsWallet swaps."
+    },
+    "Revenue": {
+     "Swap Surplus To Treasury": "Portion of surplus retained by the DashsWallet treasury after deducting cashback."
+    },
+    "SupplySideRevenue": {
+     "Swap Surplus Cashback To User": "Portion of surplus returned to the swap-initiating user as cashback."
+    },
+    "ProtocolRevenue": {
+     "Swap Surplus To Treasury": "Portion of surplus retained by the DashsWallet treasury after deducting cashback (the treasury is the protocol; no holder split)."
+    }
+   },
+   "id": "8126"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 536127,
+   "total14dto7d": 596795,
+   "total30d": 4445353,
+   "total60dto30d": 11101702,
+   "total1y": 61768070,
+   "annualized1y": 61768070,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 61768182,
+   "average1y": 169227.5890410959,
+   "monthlyAverage1y": 5151287.81041096,
+   "change_7dover7d": -10.17,
+   "change_30dover30d": -59.96,
+   "defillamaId": "8131",
+   "name": "Kolo Card",
+   "displayName": "Kolo Card",
+   "module": "kolo-card",
+   "category": "Crypto Card Issuer",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/rainCard.ts",
+   "slug": "kolo-card",
+   "id": "8131"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 21.87,
+   "total14dto7d": 15.39,
+   "total30d": 107.17000000000002,
+   "total60dto30d": 4144.86,
+   "total1y": 8796.020000000004,
+   "annualized1y": 10127.909463722403,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 8796.020000000004,
+   "average1y": 27.747697160883295,
+   "monthlyAverage1y": 844.6399015772876,
+   "change_7dover7d": 42.11,
+   "change_30dover30d": -97.41,
+   "defillamaId": "8209",
+   "name": "1inch Aqua",
+   "displayName": "1inch Aqua",
+   "module": "1inch-aqua",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/1inch-aqua",
+   "parentProtocol": "parent#1inch",
+   "slug": "1inch-aqua",
+   "id": "8209"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 4.96,
+   "total7d": 1035.81,
+   "total14dto7d": 29299.910000000003,
+   "total30d": 391678.61999999994,
+   "total60dto30d": 1471499,
+   "total1y": 2629025.620000001,
+   "annualized1y": 12302491.683333337,
+   "total7DaysAgo": 4.97,
+   "total30DaysAgo": 46875,
+   "totalAllTime": 2629025.620000001,
+   "average1y": 33705.45666666668,
+   "monthlyAverage1y": 1025994.1009333337,
+   "change_1d": -100,
+   "change_7d": -100,
+   "change_1m": -100,
+   "change_7dover7d": -96.46,
+   "change_30dover30d": -73.38,
+   "defillamaId": "8269",
+   "name": "AutoRange",
+   "displayName": "AutoRange",
+   "module": "autorange",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/autorange.ts",
+   "slug": "autorange",
+   "id": "8269"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "8298",
+   "name": "AxiumPass",
+   "displayName": "AxiumPass",
+   "module": "axiumpass",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/axiumpass.ts",
+   "slug": "axiumpass",
+   "id": "8298"
+  },
+  {
+   "total24h": 4711222,
+   "total48hto24h": 2459242,
+   "total7d": 28362922,
+   "total14dto7d": 33704198,
+   "total30d": 69469590,
+   "total60dto30d": 0.17,
+   "total1y": 69469590.17,
+   "annualized1y": 478422649.2839623,
+   "total7DaysAgo": 5954071,
+   "total30DaysAgo": 0,
+   "totalAllTime": 74180812.17,
+   "average1y": 857649.2613580247,
+   "monthlyAverage1y": 26106843.51573827,
+   "change_1d": 91.57,
+   "change_7d": -20.87,
+   "change_7dover7d": -15.85,
+   "change_30dover30d": 40864464605.88,
+   "defillamaId": "8306",
+   "name": "Metric V1",
+   "displayName": "Metric V1",
+   "module": "metric-v1",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/metric-v1",
+   "parentProtocol": "parent#metric",
+   "slug": "metric-v1",
+   "id": "8306"
+  },
+  {
+   "total24h": 2237,
+   "total48hto24h": 2105,
+   "total7d": 131575,
+   "total14dto7d": 384389,
+   "total30d": 848383,
+   "total60dto30d": 536143,
+   "total1y": 3868446.3200000003,
+   "annualized1y": 6854285.955339806,
+   "total7DaysAgo": 30148,
+   "total30DaysAgo": 4056,
+   "totalAllTime": 3870683.3200000003,
+   "average1y": 18778.86563106796,
+   "monthlyAverage1y": 571628.6698097087,
+   "change_1d": 6.27,
+   "change_7d": -92.58,
+   "change_1m": -44.85,
+   "change_7dover7d": -65.77,
+   "change_30dover30d": 58.24,
+   "defillamaId": "8823",
+   "name": "PancakeSwap X",
+   "displayName": "PancakeSwap X",
+   "module": "pancakeswap-x",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/pancakeswap-x",
+   "parentProtocol": "parent#pancakeswap",
+   "slug": "pancakeswap-x",
+   "id": "8823"
+  },
+  {
+   "total24h": 0.1,
+   "total48hto24h": 0.1,
+   "total7d": 0.2,
+   "total14dto7d": 0,
+   "total30d": 0.2,
+   "total1y": 0.2,
+   "annualized1y": 36.5,
+   "total7DaysAgo": 0,
+   "totalAllTime": 0.30000000000000004,
+   "average1y": 0.006896551724137932,
+   "change_1d": 0,
+   "defillamaId": "8865",
+   "name": "Adexto",
+   "displayName": "Adexto",
+   "module": "adexto",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/adexto.ts",
+   "slug": "adexto",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid on ADEXTO bonding curves, read from the fee legs every Swap event carries."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by traders on ADEXTO bonding curves."
+    },
+    "Revenue": {
+     "Swap Fees To Protocol": "The protocol leg, accrued on each curve and claimable only to the immutable ADEXTO protocol treasury."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Protocol": "The protocol leg, accrued on each curve and claimable only to the immutable ADEXTO protocol treasury."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Creators": "The creator leg, claimable only to the market's immutable creator. Launch presets: 0.70% of each trade on factory 1.0.0 and 0.12.0 markets, 0.10% on factory 0.11.0 markets; actual amounts are read from each Swap event.",
+     "Swap Fees To Curve Reserves": "The depth leg, which stays in the market's curve reserve and raises its price floor.",
+     "Swap Fees To Token Buyback And Burn": "The buyback leg, spent only on buying and burning the market's own token."
+    }
+   },
+   "id": "8865"
+  }
+ ]
+}

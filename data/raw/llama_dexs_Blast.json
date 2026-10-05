@@ -1,0 +1,2365 @@
+{
+ "totalDataChart": [
+  [
+   1756684800,
+   1994630
+  ],
+  [
+   1756771200,
+   2065551
+  ],
+  [
+   1756857600,
+   1359599
+  ],
+  [
+   1756944000,
+   1457437
+  ],
+  [
+   1757030400,
+   2076176
+  ],
+  [
+   1757116800,
+   395197
+  ],
+  [
+   1757203200,
+   835379
+  ],
+  [
+   1757289600,
+   2120163
+  ],
+  [
+   1757376000,
+   1126378
+  ],
+  [
+   1757462400,
+   1830078
+  ],
+  [
+   1757548800,
+   1281227
+  ],
+  [
+   1757635200,
+   1295531
+  ],
+  [
+   1757721600,
+   865975
+  ],
+  [
+   1757808000,
+   843495
+  ],
+  [
+   1757894400,
+   1295331
+  ],
+  [
+   1757980800,
+   929718
+  ],
+  [
+   1758067200,
+   2564962
+  ],
+  [
+   1758153600,
+   753673
+  ],
+  [
+   1758240000,
+   924074
+  ],
+  [
+   1758326400,
+   340594
+  ],
+  [
+   1758412800,
+   390962
+  ],
+  [
+   1758499200,
+   1933103
+  ],
+  [
+   1758585600,
+   1067048
+  ],
+  [
+   1758672000,
+   708545
+  ],
+  [
+   1758758400,
+   2419015
+  ],
+  [
+   1758844800,
+   1465642
+  ],
+  [
+   1758931200,
+   1369239
+  ],
+  [
+   1759017600,
+   1041766
+  ],
+  [
+   1759104000,
+   1874750
+  ],
+  [
+   1759190400,
+   1164305
+  ],
+  [
+   1759276800,
+   1188732
+  ],
+  [
+   1759363200,
+   1808245
+  ],
+  [
+   1759449600,
+   1972335
+  ],
+  [
+   1759536000,
+   559055
+  ],
+  [
+   1759622400,
+   1434040
+  ],
+  [
+   1759708800,
+   1342710
+  ],
+  [
+   1759795200,
+   1974136
+  ],
+  [
+   1759881600,
+   1272150
+  ],
+  [
+   1759968000,
+   1601990
+  ],
+  [
+   1760054400,
+   2934777
+  ],
+  [
+   1760140800,
+   1462366
+  ],
+  [
+   1760227200,
+   1570955
+  ],
+  [
+   1760313600,
+   833786.17
+  ],
+  [
+   1760400000,
+   1200720
+  ],
+  [
+   1760486400,
+   734971
+  ],
+  [
+   1760572800,
+   925558.24
+  ],
+  [
+   1760659200,
+   1329334.04
+  ],
+  [
+   1760745600,
+   599928.28
+  ],
+  [
+   1760832000,
+   1172463
+  ],
+  [
+   1760918400,
+   539819.12
+  ],
+  [
+   1761004800,
+   972485.77
+  ],
+  [
+   1761091200,
+   1005744.59
+  ],
+  [
+   1761177600,
+   579628
+  ],
+  [
+   1761264000,
+   757976
+  ],
+  [
+   1761350400,
+   232647.06
+  ],
+  [
+   1761436800,
+   640320.67
+  ],
+  [
+   1761523200,
+   577505.01
+  ],
+  [
+   1761609600,
+   614071
+  ],
+  [
+   1761696000,
+   833973.05
+  ],
+  [
+   1761782400,
+   907457
+  ],
+  [
+   1761868800,
+   592301
+  ],
+  [
+   1761955200,
+   419948
+  ],
+  [
+   1762041600,
+   267771
+  ],
+  [
+   1762128000,
+   1354709.97
+  ],
+  [
+   1762214400,
+   2060609.18
+  ],
+  [
+   1762300800,
+   1130552.72
+  ],
+  [
+   1762387200,
+   856786
+  ],
+  [
+   1762473600,
+   1207705.62
+  ],
+  [
+   1762560000,
+   400333
+  ],
+  [
+   1762646400,
+   531855.02
+  ],
+  [
+   1762732800,
+   594623
+  ],
+  [
+   1762819200,
+   1099017
+  ],
+  [
+   1762905600,
+   702161
+  ],
+  [
+   1762992000,
+   1340415.51
+  ],
+  [
+   1763078400,
+   1378378.95
+  ],
+  [
+   1763164800,
+   398936.7
+  ],
+  [
+   1763251200,
+   695330
+  ],
+  [
+   1763337600,
+   883142.7
+  ],
+  [
+   1763424000,
+   790834.65
+  ],
+  [
+   1763510400,
+   1009971
+  ],
+  [
+   1763596800,
+   1233862.73
+  ],
+  [
+   1763683200,
+   1042648
+  ],
+  [
+   1763769600,
+   221520
+  ],
+  [
+   1763856000,
+   574142.12
+  ],
+  [
+   1763942400,
+   1072611.1400000001
+  ],
+  [
+   1764028800,
+   721272
+  ],
+  [
+   1764115200,
+   239583
+  ],
+  [
+   1764201600,
+   224130
+  ],
+  [
+   1764288000,
+   480234
+  ],
+  [
+   1764374400,
+   154513
+  ],
+  [
+   1764460800,
+   147315.89
+  ],
+  [
+   1764547200,
+   444712
+  ],
+  [
+   1764633600,
+   1131207
+  ],
+  [
+   1764720000,
+   624766
+  ],
+  [
+   1764806400,
+   513396
+  ],
+  [
+   1764892800,
+   520415
+  ],
+  [
+   1764979200,
+   142283
+  ],
+  [
+   1765065600,
+   548904
+  ],
+  [
+   1765152000,
+   532612.21
+  ],
+  [
+   1765238400,
+   618879.33
+  ],
+  [
+   1765324800,
+   586685
+  ],
+  [
+   1765411200,
+   590589
+  ],
+  [
+   1765497600,
+   433548.62
+  ],
+  [
+   1765584000,
+   97841
+  ],
+  [
+   1765670400,
+   265074.55
+  ],
+  [
+   1765756800,
+   603493
+  ],
+  [
+   1765843200,
+   344060.65
+  ],
+  [
+   1765929600,
+   465167.81
+  ],
+  [
+   1766016000,
+   674413.65
+  ],
+  [
+   1766102400,
+   605818
+  ],
+  [
+   1766188800,
+   136132
+  ],
+  [
+   1766275200,
+   193407
+  ],
+  [
+   1766361600,
+   462294.9
+  ],
+  [
+   1766448000,
+   265831
+  ],
+  [
+   1766534400,
+   178391
+  ],
+  [
+   1766620800,
+   155776
+  ],
+  [
+   1766707200,
+   331023
+  ],
+  [
+   1766793600,
+   64416
+  ],
+  [
+   1766880000,
+   61129.18
+  ],
+  [
+   1766966400,
+   411485.45
+  ],
+  [
+   1767052800,
+   220074
+  ],
+  [
+   1767139200,
+   200066
+  ],
+  [
+   1767225600,
+   169916
+  ],
+  [
+   1767312000,
+   414576.42
+  ],
+  [
+   1767398400,
+   94388
+  ],
+  [
+   1767484800,
+   173014
+  ],
+  [
+   1767571200,
+   447832
+  ],
+  [
+   1767657600,
+   490729.16000000003
+  ],
+  [
+   1767744000,
+   228344
+  ],
+  [
+   1767830400,
+   312924.24
+  ],
+  [
+   1767916800,
+   360757
+  ],
+  [
+   1768003200,
+   64631.17
+  ],
+  [
+   1768089600,
+   150026
+  ],
+  [
+   1768176000,
+   350734
+  ],
+  [
+   1768262400,
+   488476.71
+  ],
+  [
+   1768348800,
+   317794.8
+  ],
+  [
+   1768435200,
+   411889
+  ],
+  [
+   1768521600,
+   218977
+  ],
+  [
+   1768608000,
+   131346
+  ],
+  [
+   1768694400,
+   134330
+  ],
+  [
+   1768780800,
+   340369
+  ],
+  [
+   1768867200,
+   309553.47
+  ],
+  [
+   1768953600,
+   386736.15
+  ],
+  [
+   1769040000,
+   262227.63
+  ],
+  [
+   1769126400,
+   317205
+  ],
+  [
+   1769212800,
+   47674.38
+  ],
+  [
+   1769299200,
+   187143
+  ],
+  [
+   1769385600,
+   405291
+  ],
+  [
+   1769472000,
+   4447750
+  ],
+  [
+   1769558400,
+   151980.38
+  ],
+  [
+   1769644800,
+   303259
+  ],
+  [
+   1769731200,
+   226332.23
+  ],
+  [
+   1769817600,
+   166414
+  ],
+  [
+   1769904000,
+   94788.33
+  ],
+  [
+   1769990400,
+   185012
+  ],
+  [
+   1770076800,
+   176893
+  ],
+  [
+   1770163200,
+   121910
+  ],
+  [
+   1770249600,
+   191395
+  ],
+  [
+   1770336000,
+   309475
+  ],
+  [
+   1770422400,
+   155825
+  ],
+  [
+   1770508800,
+   131875
+  ],
+  [
+   1770595200,
+   151167
+  ],
+  [
+   1770681600,
+   59818
+  ],
+  [
+   1770768000,
+   420520.88
+  ],
+  [
+   1770854400,
+   96273
+  ],
+  [
+   1770940800,
+   178103
+  ],
+  [
+   1771027200,
+   181975
+  ],
+  [
+   1771113600,
+   111225.35
+  ],
+  [
+   1771200000,
+   102117.46
+  ],
+  [
+   1771286400,
+   112755
+  ],
+  [
+   1771372800,
+   245345
+  ],
+  [
+   1771459200,
+   92124
+  ],
+  [
+   1771545600,
+   93820
+  ],
+  [
+   1771632000,
+   36788
+  ],
+  [
+   1771718400,
+   50054.16
+  ],
+  [
+   1771804800,
+   132240
+  ],
+  [
+   1771891200,
+   55724
+  ],
+  [
+   1771977600,
+   122181
+  ],
+  [
+   1772064000,
+   203217
+  ],
+  [
+   1772150400,
+   60617
+  ],
+  [
+   1772236800,
+   107692
+  ],
+  [
+   1772323200,
+   213297
+  ],
+  [
+   1772409600,
+   137952
+  ],
+  [
+   1772496000,
+   97337.19
+  ],
+  [
+   1772582400,
+   181966.74
+  ],
+  [
+   1772668800,
+   100940
+  ],
+  [
+   1772755200,
+   101056.09
+  ],
+  [
+   1772841600,
+   20012.74
+  ],
+  [
+   1772928000,
+   61589
+  ],
+  [
+   1773014400,
+   111143
+  ],
+  [
+   1773100800,
+   68585
+  ],
+  [
+   1773187200,
+   127825.07
+  ],
+  [
+   1773273600,
+   100838
+  ],
+  [
+   1773360000,
+   135553
+  ],
+  [
+   1773446400,
+   20357
+  ],
+  [
+   1773532800,
+   105742
+  ],
+  [
+   1773619200,
+   227630
+  ],
+  [
+   1773705600,
+   48090
+  ],
+  [
+   1773792000,
+   102312.23
+  ],
+  [
+   1773878400,
+   82117
+  ],
+  [
+   1773964800,
+   97973.03
+  ],
+  [
+   1774051200,
+   30577
+  ],
+  [
+   1774137600,
+   61126
+  ],
+  [
+   1774224000,
+   164099.59
+  ],
+  [
+   1774310400,
+   67789
+  ],
+  [
+   1774396800,
+   41702.48
+  ],
+  [
+   1774483200,
+   66372
+  ],
+  [
+   1774569600,
+   69024
+  ],
+  [
+   1774656000,
+   47917
+  ],
+  [
+   1774742400,
+   55186
+  ],
+  [
+   1774828800,
+   100911.32
+  ],
+  [
+   1774915200,
+   346364
+  ],
+  [
+   1775001600,
+   133404.76
+  ],
+  [
+   1775088000,
+   15179581
+  ],
+  [
+   1775174400,
+   41378
+  ],
+  [
+   1775260800,
+   108733
+  ],
+  [
+   1775347200,
+   83408
+  ],
+  [
+   1775433600,
+   88556
+  ],
+  [
+   1775520000,
+   212473
+  ],
+  [
+   1775606400,
+   54623
+  ],
+  [
+   1775692800,
+   50692.64
+  ],
+  [
+   1775779200,
+   42180
+  ],
+  [
+   1775865600,
+   147336
+  ],
+  [
+   1775952000,
+   74894.59
+  ],
+  [
+   1776038400,
+   164539
+  ],
+  [
+   1776124800,
+   86230
+  ],
+  [
+   1776211200,
+   60502
+  ],
+  [
+   1776297600,
+   54552
+  ],
+  [
+   1776384000,
+   57216
+  ],
+  [
+   1776470400,
+   47776.3
+  ],
+  [
+   1776556800,
+   231160.58
+  ],
+  [
+   1776643200,
+   189409.11
+  ],
+  [
+   1776729600,
+   133355
+  ],
+  [
+   1776816000,
+   53646.8
+  ],
+  [
+   1776902400,
+   79643
+  ],
+  [
+   1776988800,
+   35390.47
+  ],
+  [
+   1777075200,
+   13172
+  ],
+  [
+   1777161600,
+   46142
+  ],
+  [
+   1777248000,
+   94834
+  ],
+  [
+   1777334400,
+   56088
+  ],
+  [
+   1777420800,
+   167434
+  ],
+  [
+   1777507200,
+   196874.34
+  ],
+  [
+   1777593600,
+   73756
+  ],
+  [
+   1777680000,
+   26463
+  ],
+  [
+   1777766400,
+   40533.05
+  ],
+  [
+   1777852800,
+   92073
+  ],
+  [
+   1777939200,
+   17017.759999999995
+  ],
+  [
+   1778025600,
+   65383.53
+  ],
+  [
+   1778112000,
+   95004.29000000001
+  ],
+  [
+   1778198400,
+   63469.73
+  ],
+  [
+   1778284800,
+   25661.45
+  ],
+  [
+   1778371200,
+   50171.99
+  ],
+  [
+   1778457600,
+   100194.73000000001
+  ],
+  [
+   1778544000,
+   238187.30000000002
+  ],
+  [
+   1778630400,
+   311905.58999999997
+  ],
+  [
+   1778716800,
+   57272.75
+  ],
+  [
+   1778803200,
+   55092.520000000004
+  ],
+  [
+   1778889600,
+   27364.49
+  ],
+  [
+   1778976000,
+   46928.61
+  ],
+  [
+   1779062400,
+   505957.8
+  ],
+  [
+   1779148800,
+   80197.03
+  ],
+  [
+   1779235200,
+   13343.710000000001
+  ],
+  [
+   1779321600,
+   111712.72
+  ],
+  [
+   1779408000,
+   37283.96
+  ],
+  [
+   1779494400,
+   30030.300000000003
+  ],
+  [
+   1779580800,
+   116659.11
+  ],
+  [
+   1779667200,
+   64934.73
+  ],
+  [
+   1779753600,
+   126544.20000000001
+  ],
+  [
+   1779840000,
+   35944.380000000005
+  ],
+  [
+   1779926400,
+   50641.01000000001
+  ],
+  [
+   1780012800,
+   16422.190000000002
+  ],
+  [
+   1780099200,
+   30376.53
+  ],
+  [
+   1780185600,
+   61295.89
+  ],
+  [
+   1780272000,
+   45582.72
+  ],
+  [
+   1780358400,
+   34938.52
+  ],
+  [
+   1780444800,
+   40277.590000000004
+  ],
+  [
+   1780531200,
+   131220.77000000002
+  ],
+  [
+   1780617600,
+   133267.84
+  ],
+  [
+   1780704000,
+   49889.19
+  ],
+  [
+   1780790400,
+   99772.83000000002
+  ],
+  [
+   1780876800,
+   178945.26
+  ],
+  [
+   1780963200,
+   59222.14
+  ],
+  [
+   1781049600,
+   72873.99
+  ],
+  [
+   1781136000,
+   140498.2
+  ],
+  [
+   1781222400,
+   87248.86
+  ],
+  [
+   1781308800,
+   17093.62
+  ],
+  [
+   1781395200,
+   30804.670000000002
+  ],
+  [
+   1781481600,
+   78451.23
+  ],
+  [
+   1781568000,
+   74445.06999999999
+  ],
+  [
+   1781654400,
+   75868.26000000001
+  ],
+  [
+   1781740800,
+   46219.340000000004
+  ],
+  [
+   1781827200,
+   51027.74
+  ],
+  [
+   1781913600,
+   25958.32
+  ],
+  [
+   1782000000,
+   19443.339999999997
+  ],
+  [
+   1782086400,
+   36141.829999999994
+  ],
+  [
+   1782172800,
+   56255.409999999996
+  ],
+  [
+   1782259200,
+   141612.56
+  ],
+  [
+   1782345600,
+   69516.34999999999
+  ],
+  [
+   1782432000,
+   58460.829999999994
+  ],
+  [
+   1782518400,
+   38953.200000000004
+  ],
+  [
+   1782604800,
+   28661
+  ],
+  [
+   1782691200,
+   89201.75
+  ],
+  [
+   1782777600,
+   62084.7
+  ],
+  [
+   1782864000,
+   14682.080000000002
+  ],
+  [
+   1782950400,
+   37037.04
+  ],
+  [
+   1783036800,
+   17451.06
+  ],
+  [
+   1783123200,
+   21331.04
+  ],
+  [
+   1783209600,
+   17398.08
+  ],
+  [
+   1783296000,
+   113965.02
+  ],
+  [
+   1783382400,
+   28604.13
+  ],
+  [
+   1783468800,
+   63793.06
+  ],
+  [
+   1783555200,
+   37311.02
+  ],
+  [
+   1783641600,
+   26724.48
+  ],
+  [
+   1783728000,
+   3964.8
+  ],
+  [
+   1783814400,
+   51053
+  ],
+  [
+   1783900800,
+   24900.05
+  ],
+  [
+   1783987200,
+   2801233.2
+  ],
+  [
+   1784073600,
+   20548.17
+  ],
+  [
+   1784160000,
+   7092.37
+  ],
+  [
+   1784246400,
+   16290.369999999999
+  ],
+  [
+   1784332800,
+   12154
+  ],
+  [
+   1784419200,
+   5957.25
+  ],
+  [
+   1784505600,
+   11464.47
+  ],
+  [
+   1784592000,
+   8290.189999999999
+  ],
+  [
+   1784678400,
+   11090.640000000001
+  ],
+  [
+   1784764800,
+   9764.09
+  ],
+  [
+   1784851200,
+   5984.7300000000005
+  ],
+  [
+   1784937600,
+   1173.57
+  ],
+  [
+   1785024000,
+   22310.13
+  ],
+  [
+   1785110400,
+   39323.229999999996
+  ],
+  [
+   1785196800,
+   11265.36
+  ],
+  [
+   1785283200,
+   9266.330000000002
+  ],
+  [
+   1785369600,
+   4623.54
+  ],
+  [
+   1785456000,
+   10925.859999999999
+  ],
+  [
+   1785542400,
+   7273.150000000001
+  ],
+  [
+   1785628800,
+   7191.95
+  ],
+  [
+   1785715200,
+   7494.72
+  ],
+  [
+   1785801600,
+   2437.7900000000004
+  ],
+  [
+   1785888000,
+   7942.510000000001
+  ],
+  [
+   1785974400,
+   28233.95
+  ],
+  [
+   1786060800,
+   1558.9099999999999
+  ],
+  [
+   1786147200,
+   2923.67
+  ],
+  [
+   1786233600,
+   3544.1300000000006
+  ],
+  [
+   1786320000,
+   13091.22
+  ],
+  [
+   1786406400,
+   3730.25
+  ],
+  [
+   1786492800,
+   6859.55
+  ],
+  [
+   1786579200,
+   3216.7
+  ],
+  [
+   1786665600,
+   1004.82
+  ],
+  [
+   1786752000,
+   11902.779999999999
+  ],
+  [
+   1786838400,
+   1667.18
+  ],
+  [
+   1786924800,
+   4560.85
+  ],
+  [
+   1787011200,
+   4107.73
+  ],
+  [
+   1787097600,
+   75397.79000000001
+  ],
+  [
+   1787184000,
+   20790.47
+  ],
+  [
+   1787270400,
+   74148.66
+  ],
+  [
+   1787356800,
+   43466
+  ],
+  [
+   1787443200,
+   27735.58
+  ],
+  [
+   1787529600,
+   36511.2
+  ],
+  [
+   1787616000,
+   40248.7
+  ],
+  [
+   1787702400,
+   15388.18
+  ],
+  [
+   1787788800,
+   30318.78
+  ],
+  [
+   1787875200,
+   24636.98
+  ],
+  [
+   1787961600,
+   2399.35
+  ],
+  [
+   1788048000,
+   41029.82
+  ],
+  [
+   1788134400,
+   9445.99
+  ],
+  [
+   1788220800,
+   17906.520000000004
+  ],
+  [
+   1788307200,
+   13135.369999999999
+  ],
+  [
+   1788393600,
+   25549.45
+  ],
+  [
+   1788480000,
+   23817.59
+  ],
+  [
+   1788566400,
+   2790.2500000000005
+  ],
+  [
+   1788652800,
+   10813.060000000001
+  ],
+  [
+   1788739200,
+   11016.029999999999
+  ],
+  [
+   1788825600,
+   33802.2
+  ],
+  [
+   1788912000,
+   14154.23
+  ],
+  [
+   1788998400,
+   32905.22
+  ],
+  [
+   1789084800,
+   109712
+  ],
+  [
+   1789171200,
+   72589.17
+  ],
+  [
+   1789257600,
+   39691.04
+  ],
+  [
+   1789344000,
+   79324.23
+  ],
+  [
+   1789430400,
+   70253.81
+  ],
+  [
+   1789516800,
+   18403
+  ],
+  [
+   1789603200,
+   14894.18
+  ],
+  [
+   1789689600,
+   63541.770000000004
+  ],
+  [
+   1789776000,
+   41239
+  ],
+  [
+   1789862400,
+   34809.020000000004
+  ],
+  [
+   1789948800,
+   108503.25
+  ],
+  [
+   1790035200,
+   45711.88
+  ],
+  [
+   1790121600,
+   103048.15
+  ],
+  [
+   1790208000,
+   38285.270000000004
+  ],
+  [
+   1790294400,
+   54092
+  ],
+  [
+   1790380800,
+   55565.13
+  ],
+  [
+   1790467200,
+   38393.89
+  ],
+  [
+   1790553600,
+   66811
+  ],
+  [
+   1790640000,
+   44537.85
+  ],
+  [
+   1790726400,
+   36547.07
+  ],
+  [
+   1790812800,
+   21906.79
+  ],
+  [
+   1790899200,
+   729852.67
+  ],
+  [
+   1790985600,
+   622079.45
+  ],
+  [
+   1791072000,
+   94164.7
+  ],
+  [
+   1791158400,
+   82647.76000000001
+  ]
+ ],
+ "totalDataChartBreakdown": [],
+ "breakdown24h": null,
+ "breakdown30d": null,
+ "chain": "Blast",
+ "total24h": 94164.7,
+ "total48hto24h": 622079.45,
+ "total7d": 1615899.53,
+ "total14dto7d": 443599.5699999999,
+ "total30d": 2709437.31,
+ "total60dto30d": 608328.17,
+ "total1y": 113533615.67999993,
+ "total7DaysAgo": 38393.89,
+ "total30DaysAgo": 23817.59,
+ "totalAllTime": 135486111262.44,
+ "change_1d": -84.86,
+ "change_7d": 145.26,
+ "change_1m": 295.36,
+ "change_7dover7d": 264.27,
+ "change_30dover30d": 345.39,
+ "protocols": [
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 4134.629999999999,
+   "annualized1y": 4157.410330578511,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 7170.63,
+   "average1y": 11.390165289256196,
+   "monthlyAverage1y": 346.7166314049586,
+   "defillamaId": "119",
+   "name": "SushiSwap",
+   "displayName": "SushiSwap",
+   "module": "sushiswap-classic",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-classic.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushiswap",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap Classic pools."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap Classic pools."
+    },
+    "Revenue": {
+     "Swap Fees To xSUSHI Stakers": "The 1/6 protocol fee share from SushiSwap Classic swaps."
+    },
+    "HoldersRevenue": {
+     "Swap Fees To xSUSHI Stakers": "The 1/6 protocol fee share from SushiSwap Classic swaps."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "The 5/6 fee share retained by liquidity providers."
+    }
+   },
+   "id": "119"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 46013,
+   "defillamaId": "2197",
+   "name": "Uniswap V2",
+   "displayName": "Uniswap V2",
+   "module": "uniswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v2.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v2",
+   "id": "2197"
+  },
+  {
+   "total24h": 436,
+   "total48hto24h": 11586,
+   "total7d": 39189.92,
+   "total14dto7d": 2007.4099999999999,
+   "total30d": 43919.33,
+   "total60dto30d": 5083.45,
+   "total1y": 372624.97,
+   "annualized1y": 419778.1297839506,
+   "total7DaysAgo": 305,
+   "total30DaysAgo": 72,
+   "totalAllTime": 5557426.970000002,
+   "average1y": 1020.8903287671233,
+   "monthlyAverage1y": 31075.901607671232,
+   "change_1d": -96.24,
+   "change_7d": 42.95,
+   "change_1m": 505.56,
+   "change_7dover7d": 1852.26,
+   "change_30dover30d": 763.97,
+   "defillamaId": "2198",
+   "name": "Uniswap V3",
+   "displayName": "Uniswap V3",
+   "module": "uniswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v3.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v3",
+   "id": "2198"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0.95,
+   "total7d": 0.95,
+   "total14dto7d": 0,
+   "total30d": 89.17,
+   "total60dto30d": 47,
+   "total1y": 9562.970000000005,
+   "annualized1y": 9615.658539944909,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 1428433.9700000004,
+   "average1y": 26.344269972451805,
+   "monthlyAverage1y": 801.919577961433,
+   "change_1d": -100,
+   "change_30dover30d": 89.72,
+   "defillamaId": "2776",
+   "name": "SushiSwap V3",
+   "displayName": "SushiSwap V3",
+   "module": "sushiswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sushiswap-v3.ts",
+   "parentProtocol": "parent#sushi",
+   "slug": "sushiswap-v3",
+   "breakdownMethodology": {
+    "Fees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap V3 pools. Fee rates vary by pool, from 0.01% to 1% on most chains and up to 4% on Katana."
+    },
+    "UserFees": {
+     "Token Swap Fees": "Swap fees paid by users on SushiSwap V3 pools. Fee rates vary by pool, from 0.01% to 1% on most chains and up to 4% on Katana."
+    },
+    "Revenue": {
+     "Swap Fees To Treasury": "The part of each swap fee Sushi keeps - 25% where the protocol fee is switched on, 50% on Katana.",
+     "Swap Fees To xSUSHI Stakers": "Protocol fee share routed to xSUSHI stakers through the SushiBar flow (Negligible since Mid of October 2025)."
+    },
+    "ProtocolRevenue": {
+     "Swap Fees To Treasury": "The part of each swap fee Sushi keeps, collected into a Sushi-controlled treasury wallet on each chain."
+    },
+    "SupplySideRevenue": {
+     "Swap Fees To Liquidity Providers": "Swap fees retained by liquidity providers after protocol fees."
+    },
+    "HoldersRevenue": {
+     "Swap Fees To xSUSHI Stakers": "Protocol fee share routed to xSUSHI stakers through the SushiBar flow (Negligible since Mid of October 2025)."
+    }
+   },
+   "id": "2776"
+  },
+  {
+   "total24h": 1381,
+   "total48hto24h": 28136,
+   "total7d": 56929,
+   "total14dto7d": 28398,
+   "total30d": 116119,
+   "total60dto30d": 34385.2,
+   "total1y": 5336334.74,
+   "annualized1y": 5336334.74,
+   "total7DaysAgo": 3630,
+   "total30DaysAgo": 1960,
+   "totalAllTime": 1522251756.7400002,
+   "average1y": 14620.095178082192,
+   "monthlyAverage1y": 445035.697220822,
+   "change_1d": -95.09,
+   "change_7d": -61.96,
+   "change_1m": -29.54,
+   "change_7dover7d": 100.47,
+   "change_30dover30d": 237.7,
+   "defillamaId": "3104",
+   "name": "Ambient",
+   "displayName": "Ambient",
+   "module": "ambient",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ambient",
+   "slug": "ambient",
+   "id": "3104"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 23,
+   "total14dto7d": 0,
+   "total30d": 23,
+   "total60dto30d": 139,
+   "total1y": 703,
+   "annualized1y": 703,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 3658,
+   "average1y": 1.926027397260274,
+   "monthlyAverage1y": 58.62827397260274,
+   "change_30dover30d": -83.45,
+   "defillamaId": "3308",
+   "name": "Sablier Lockup",
+   "displayName": "Sablier Lockup",
+   "module": "sablier-lockup",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sablier-lockup.ts",
+   "parentProtocol": "parent#sablier-finance",
+   "slug": "sablier-lockup",
+   "id": "3308"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "3336",
+   "name": "Banana Gun",
+   "displayName": "Banana Gun",
+   "module": "banana-gun-trading",
+   "category": "Telegram Bot",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/banana-gun-trading.ts",
+   "slug": "banana-gun",
+   "doublecounted": true,
+   "id": "3336"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 771096,
+   "defillamaId": "3345",
+   "name": "DackieSwap V3",
+   "displayName": "DackieSwap V3",
+   "module": "dackieswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/dackieswap",
+   "parentProtocol": "parent#dackieswap",
+   "slug": "dackieswap-v3",
+   "id": "3345"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 981,
+   "defillamaId": "3515",
+   "name": "DackieSwap V2",
+   "displayName": "DackieSwap V2",
+   "module": "dackieswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#dackieswap",
+   "slug": "dackieswap-v2",
+   "id": "3515"
+  },
+  {
+   "total24h": 3.74,
+   "total48hto24h": 72.28,
+   "total7d": 413.47999999999996,
+   "total14dto7d": 194.18,
+   "total30d": 954.27,
+   "total60dto30d": 3048.8100000000004,
+   "total1y": 15509.779999999995,
+   "annualized1y": 20812.75624999999,
+   "total7DaysAgo": 14.5,
+   "total30DaysAgo": 39,
+   "totalAllTime": 30599.52,
+   "average1y": 57.02124999999998,
+   "monthlyAverage1y": 1735.7268499999996,
+   "change_1d": -94.83,
+   "change_7d": -74.21,
+   "change_1m": -90.41,
+   "change_7dover7d": 112.94,
+   "change_30dover30d": -68.7,
+   "defillamaId": "3837",
+   "name": "DyorSwap AMM",
+   "displayName": "DyorSwap AMM",
+   "module": "dyorswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#dyorswap",
+   "slug": "dyorswap-amm",
+   "id": "3837"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 530,
+   "defillamaId": "3940",
+   "name": "Archly V2",
+   "displayName": "Archly V2",
+   "module": "archly-finance-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#archly-finance",
+   "slug": "archly-v2",
+   "id": "3940"
+  },
+  {
+   "total24h": 76419,
+   "total48hto24h": 542823,
+   "total7d": 1307865,
+   "total14dto7d": 361368,
+   "total30d": 2164004,
+   "total60dto30d": 400198,
+   "total1y": 96399818,
+   "annualized1y": 96399818,
+   "total7DaysAgo": 29290,
+   "total30DaysAgo": 16533,
+   "totalAllTime": 8785840369,
+   "average1y": 264109.0904109589,
+   "monthlyAverage1y": 8039480.71210959,
+   "change_1d": -85.92,
+   "change_7d": 160.9,
+   "change_1m": 362.22,
+   "change_7dover7d": 261.92,
+   "change_30dover30d": 440.73,
+   "defillamaId": "4199",
+   "name": "Thruster V3",
+   "displayName": "Thruster V3",
+   "module": "thruster-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#thruster",
+   "slug": "thruster-v3",
+   "id": "4199"
+  },
+  {
+   "total24h": 359,
+   "total48hto24h": 4893,
+   "total7d": 11706.18,
+   "total14dto7d": 4541.67,
+   "total30d": 33786.16,
+   "total60dto30d": 25343.34,
+   "total1y": 507568.74,
+   "annualized1y": 507568.74,
+   "total7DaysAgo": 315,
+   "total30DaysAgo": 338,
+   "totalAllTime": 15730229.739999998,
+   "average1y": 1390.5992876712328,
+   "monthlyAverage1y": 42329.842316712326,
+   "change_1d": -92.66,
+   "change_7d": 13.97,
+   "change_1m": 6.21,
+   "change_7dover7d": 157.75,
+   "change_30dover30d": 33.31,
+   "defillamaId": "4206",
+   "name": "BladeSwap AMM",
+   "displayName": "BladeSwap AMM",
+   "module": "bladeswap-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/bladeswap-v2.ts",
+   "parentProtocol": "parent#bladeswap",
+   "slug": "bladeswap-amm",
+   "id": "4206"
+  },
+  {
+   "total24h": 670,
+   "total48hto24h": 5617,
+   "total7d": 15385.68,
+   "total14dto7d": 2528.14,
+   "total30d": 44539.82,
+   "total60dto30d": 24000.13,
+   "total1y": 2090526.74,
+   "annualized1y": 2090526.74,
+   "total7DaysAgo": 88.39,
+   "total30DaysAgo": 904,
+   "totalAllTime": 181382938.73999998,
+   "average1y": 5727.470520547945,
+   "monthlyAverage1y": 174344.20264547944,
+   "change_1d": -88.07,
+   "change_7d": 658,
+   "change_1m": -25.88,
+   "change_7dover7d": 508.58,
+   "change_30dover30d": 85.58,
+   "defillamaId": "4207",
+   "name": "Thruster V2",
+   "displayName": "Thruster V2",
+   "module": "thruster-v2",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#thruster",
+   "slug": "thruster-v2",
+   "id": "4207"
+  },
+  {
+   "total24h": 364,
+   "total48hto24h": 4020,
+   "total7d": 56810,
+   "total14dto7d": 4462,
+   "total30d": 72989,
+   "total60dto30d": 25565.019999999997,
+   "total1y": 2970780.1599999997,
+   "annualized1y": 2970780.1599999997,
+   "total7DaysAgo": 316,
+   "total30DaysAgo": 532,
+   "totalAllTime": 435919389.1600001,
+   "average1y": 8139.1237260273965,
+   "monthlyAverage1y": 247754.92622027395,
+   "change_1d": -90.95,
+   "change_7d": 15.19,
+   "change_1m": -31.58,
+   "change_7dover7d": 1173.2,
+   "change_30dover30d": 185.5,
+   "defillamaId": "4222",
+   "name": "Ring Swap",
+   "displayName": "Ring Swap",
+   "module": "ring-dex",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/ring-dex.ts",
+   "parentProtocol": "parent#ring-protocol",
+   "slug": "ring-swap",
+   "id": "4222"
+  },
+  {
+   "total24h": 1465,
+   "total48hto24h": 12047,
+   "total7d": 23700,
+   "total14dto7d": 8621,
+   "total30d": 64351.51,
+   "total60dto30d": 65759,
+   "total1y": 4168236.57,
+   "annualized1y": 4168236.57,
+   "total7DaysAgo": 691,
+   "total30DaysAgo": 1826,
+   "totalAllTime": 281650661.57,
+   "average1y": 11419.826219178081,
+   "monthlyAverage1y": 347619.51011178084,
+   "change_1d": -87.84,
+   "change_7d": 112.01,
+   "change_1m": -19.77,
+   "change_7dover7d": 174.91,
+   "change_30dover30d": -2.14,
+   "defillamaId": "4296",
+   "name": "Blasterswap V2",
+   "displayName": "Blasterswap V2",
+   "module": "blasterswap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#blasterswap",
+   "slug": "blasterswap-v2",
+   "id": "4296"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "totalAllTime": 11039868,
+   "defillamaId": "4505",
+   "name": "Fjord V2",
+   "displayName": "Fjord V2",
+   "module": "fjord-foundry-v2",
+   "category": "Launchpad",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/fjord-foundry-v2.ts",
+   "parentProtocol": "parent#fjord-foundry",
+   "slug": "fjord-v2",
+   "id": "4505"
+  },
+  {
+   "total24h": 0.02,
+   "total48hto24h": 3.22,
+   "total7d": 3.91,
+   "total14dto7d": 0.04,
+   "total30d": 3.95,
+   "total60dto30d": 40,
+   "total1y": 1331.51,
+   "annualized1y": 1331.51,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 232772948.53000003,
+   "average1y": 3.647972602739726,
+   "monthlyAverage1y": 111.04428602739726,
+   "change_1d": -99.38,
+   "change_7dover7d": 9675,
+   "change_30dover30d": -90.12,
+   "defillamaId": "4563",
+   "name": "Fenix Concentrated Liquidity",
+   "displayName": "Fenix Concentrated Liquidity",
+   "module": "fenix-finance",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV2.ts",
+   "parentProtocol": "parent#fenix-finance",
+   "slug": "fenix-concentrated-liquidity",
+   "id": "4563"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": 0,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 123065251754,
+   "defillamaId": "4610",
+   "name": "Mangrove",
+   "displayName": "Mangrove",
+   "module": "mangrove",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/mangrove",
+   "slug": "mangrove",
+   "id": "4610"
+  },
+  {
+   "total24h": 586,
+   "total48hto24h": 11444,
+   "total7d": 28003,
+   "total14dto7d": 4487,
+   "total30d": 38996.58,
+   "total60dto30d": 4287.4400000000005,
+   "total1y": 912953.7200000008,
+   "annualized1y": 912953.7200000008,
+   "total7DaysAgo": 531,
+   "total30DaysAgo": 226,
+   "totalAllTime": 146661675.72000006,
+   "average1y": 2501.243068493153,
+   "monthlyAverage1y": 76137.83900493158,
+   "change_1d": -94.88,
+   "change_7d": 10.36,
+   "change_1m": 159.29,
+   "change_7dover7d": 524.09,
+   "change_30dover30d": 809.55,
+   "defillamaId": "4728",
+   "name": "Blasterswap V3",
+   "displayName": "Blasterswap V3",
+   "module": "blasterswap-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#blasterswap",
+   "slug": "blasterswap-v3",
+   "id": "4728"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 438312307.45810056,
+   "totalAllTime": 214953159,
+   "defillamaId": "4746",
+   "name": "BladeSwap CL",
+   "displayName": "BladeSwap CL",
+   "module": "bladeswap-CL",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/bladeswap-CL.ts",
+   "parentProtocol": "parent#bladeswap",
+   "slug": "bladeswap-cl",
+   "id": "4746"
+  },
+  {
+   "total24h": 788,
+   "total48hto24h": 671,
+   "total7d": 12413.63,
+   "total14dto7d": 2871.13,
+   "total30d": 17803.71,
+   "total60dto30d": 2109.93,
+   "total1y": 544660.7000000002,
+   "annualized1y": 544660.7000000002,
+   "total7DaysAgo": 568,
+   "total30DaysAgo": 25.59,
+   "totalAllTime": 358502101.7000001,
+   "average1y": 1492.2210958904116,
+   "monthlyAverage1y": 45423.21015890413,
+   "change_1d": 17.44,
+   "change_7d": 38.73,
+   "change_1m": 2979.33,
+   "change_7dover7d": 332.36,
+   "change_30dover30d": 743.81,
+   "defillamaId": "4775",
+   "name": "Fenix Standard Pools",
+   "displayName": "Fenix Standard Pools",
+   "module": "fenix-finance-v3",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/factory/uniV3.ts",
+   "parentProtocol": "parent#fenix-finance",
+   "slug": "fenix-standard-pools",
+   "id": "4775"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "annualized1y": 104373363.1364562,
+   "totalAllTime": 140403620,
+   "defillamaId": "5127",
+   "name": "Blitz AMM",
+   "displayName": "Blitz AMM",
+   "module": "blitz-swap",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/1e8620166b5772c02e5e68e9dcd2cbb818724d69/dead/dexs/blitz-swap.ts",
+   "parentProtocol": "parent#Edge",
+   "slug": "blitz-amm",
+   "id": "5127"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 136,
+   "annualized1y": 4512.727272727273,
+   "totalAllTime": 85622476,
+   "average1y": 0.41590214067278286,
+   "monthlyAverage1y": 12.660061162079511,
+   "defillamaId": "5129",
+   "name": "Predict Fun",
+   "displayName": "Predict Fun",
+   "module": "predict-fun",
+   "category": "Prediction Market",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/predict-fun",
+   "slug": "predict-fun",
+   "id": "5129"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "5399",
+   "name": "Mach",
+   "displayName": "Mach",
+   "module": "mach",
+   "category": "DEX Aggregator",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/mach",
+   "slug": "mach",
+   "id": "5399"
+  },
+  {
+   "total24h": 176,
+   "total48hto24h": 766,
+   "total7d": 63455.78,
+   "total14dto7d": 24121,
+   "total30d": 111857.81,
+   "total60dto30d": 18321.85,
+   "total1y": 198733.45000000004,
+   "annualized1y": 198733.45000000004,
+   "total7DaysAgo": 2645,
+   "total30DaysAgo": 1362,
+   "totalAllTime": 204063.45,
+   "average1y": 544.4752054794521,
+   "monthlyAverage1y": 16573.825254794523,
+   "change_1d": -77.02,
+   "change_7d": -93.35,
+   "change_1m": -87.08,
+   "change_7dover7d": 163.07,
+   "change_30dover30d": 510.52,
+   "defillamaId": "5690",
+   "name": "Uniswap V4",
+   "displayName": "Uniswap V4",
+   "module": "uniswap-v4",
+   "category": "Dexs",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/uniswap-v4.ts",
+   "parentProtocol": "parent#uniswap",
+   "slug": "uniswap-v4",
+   "id": "5690"
+  },
+  {
+   "total24h": 0,
+   "total48hto24h": 0,
+   "total7d": 0,
+   "total14dto7d": 0,
+   "total30d": 0,
+   "total60dto30d": 0,
+   "total1y": 0,
+   "annualized1y": null,
+   "total7DaysAgo": 0,
+   "total30DaysAgo": 0,
+   "totalAllTime": 0,
+   "defillamaId": "6060",
+   "name": "Sablier Flow",
+   "displayName": "Sablier Flow",
+   "module": "sablier-flow",
+   "category": "Payments",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/master/dexs/sablier-flow.ts",
+   "parentProtocol": "parent#sablier-finance",
+   "slug": "sablier-flow",
+   "id": "6060"
+  },
+  {
+   "total24h": null,
+   "total48hto24h": null,
+   "total1y": 0,
+   "annualized1y": 0,
+   "totalAllTime": 78342,
+   "defillamaId": "6092",
+   "name": "Swaps.io",
+   "displayName": "Swaps.io",
+   "module": "swaps-io",
+   "category": "Bridge",
+   "protocolType": "protocol",
+   "methodologyURL": "https://github.com/DefiLlama/dimension-adapters/blob/f87f9543a7906b671a14395ef1e44db86a181100/dexs/swaps-io",
+   "slug": "swaps.io",
+   "id": "6092"
+  }
+ ]
+}

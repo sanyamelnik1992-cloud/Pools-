@@ -1,0 +1,485 @@
+{
+ "aero_staked": {
+  "8453:0x1ef035205f94c7734827961c438474d089a334a0": {
+   "pair": "XDP/USDC",
+   "liquidity": "1327719167826645138272",
+   "staked": "1327693946866811928288",
+   "share": 0.999981004296357
+  },
+  "8453:0x3fe04a59ebd38cf06080a6f60a98d124eb59392a": {
+   "pair": "WETH/USDC",
+   "liquidity": "23234972428210521722",
+   "staked": "21978048237691511477",
+   "share": 0.945903779554611
+  },
+  "8453:0x42d4a22cad0f5a49681a5715ce994af73a43b76b": {
+   "pair": "WETH/CBBTC",
+   "liquidity": "1359827020316965488",
+   "staked": "1304831873352688666",
+   "share": 0.9595572479862491
+  },
+  "8453:0x4e506648d493c8870f55e870480f92f2f33ece51": {
+   "pair": "WETH/AERO",
+   "liquidity": "2283534781117421942285472",
+   "staked": "2163373950740257666628998",
+   "share": 0.947379461276099
+  },
+  "8453:0xbe00ff35af70e8415d0eb605a286d8a45466a4c1": {
+   "pair": "USDC/AERO",
+   "liquidity": "41688070215325399521",
+   "staked": "40915897162247820723",
+   "share": 0.9814773615307885
+  },
+  "8453:0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59": {
+   "pair": "WETH/USDC",
+   "liquidity": "5019466181974678113",
+   "staked": "4132901671820047110",
+   "share": 0.8233747418523591
+  },
+  "8453:0xa135b59fe221c0c8d441294f97f96fbc37bc9fbe": {
+   "pair": "WETH/VVV",
+   "liquidity": "1149616293419539044874382",
+   "staked": "1123742627603115448714743",
+   "share": 0.9774936507384893
+  },
+  "8453:0xb5f0b4ae66c14f7efaa9aa1468e8fc536a3e288c": {
+   "pair": "WETH/MORPHO",
+   "liquidity": "371334659917152721421707",
+   "staked": "362160077228171279615568",
+   "share": 0.9752929535556192
+  },
+  "8453:0x0392b12a1ceb0cd13af5ea448cf5586ea609852d": {
+   "pair": "WETH/ZEN",
+   "liquidity": "579812205666270858308789",
+   "staked": "569735060483977646539542",
+   "share": 0.9826199843952691
+  },
+  "8453:0xdfe5f275020def30993f042174fc2d335678b626": {
+   "pair": "AERO/CBBTC",
+   "liquidity": "1256687951977775082",
+   "staked": "1123667016556849181",
+   "share": 0.8941495896323526
+  },
+  "8453:0xef7e596aef9e4c6301b4d1f1e88f8ffe8c306222": {
+   "pair": "WETH/DRV",
+   "liquidity": "804659650986569794285062",
+   "staked": "763945541493324993858060",
+   "share": 0.9494020739783255
+  },
+  "8453:0x70acdf2ad0bf2402c957154f944c19ef4e1cbae1": {
+   "pair": "WETH/CBBTC",
+   "liquidity": "589348854160967505",
+   "staked": "542247445575052207",
+   "share": 0.9200789002076339
+  },
+  "8453:0x160d7e9d948b16c163332a277b393c288408eb12": {
+   "pair": "USDC/CBBTC",
+   "liquidity": "4182018545595",
+   "staked": "3855267914443",
+   "share": 0.9218677230649365
+  },
+  "8453:0x99cf3e8bfb02c300312c53aac5d0b082e3d5975c": {
+   "pair": "USDC/LAPTOP",
+   "liquidity": "59978232014962866075",
+   "staked": "59603107769426670642",
+   "share": 0.9937456601681321
+  },
+  "8453:0x47f9e291bb766fc307ad7bba4f29f3eab6a97101": {
+   "pair": "CBBTC/ZEN",
+   "liquidity": "331009066233862055",
+   "staked": "329898311718550527",
+   "share": 0.9966443380903447
+  },
+  "8453:0x3dfdecc334a8f2618321c78a9de0e9428438f871": {
+   "pair": "USDC/BLUECHIP",
+   "liquidity": "49168542529818503165",
+   "staked": "48853931103699809130",
+   "share": 0.9936013676645409
+  },
+  "8453:0x4e962bb3889bf030368f56810a9c96b83cb3e778": {
+   "pair": "USDC/CBBTC",
+   "liquidity": "6820479091357",
+   "staked": "6509740985477",
+   "share": 0.9544404283456024
+  },
+  "8453:0x8b27f626ab668197000bc722a1012022caed10e2": {
+   "pair": "USDC/MSTRC",
+   "liquidity": "36870192440186",
+   "staked": "31741658052975",
+   "share": 0.8609029666571187
+  },
+  "8453:0x5a8236f575471e7bfca2c8462a200c28f737246e": {
+   "pair": "USDC/SNDKC",
+   "liquidity": "15485922630557",
+   "staked": "13882717955338",
+   "share": 0.8964734156649125
+  },
+  "8453:0xd03bc8c7f2faedce2aac81bf0444aea08ea06e9b": {
+   "pair": "USDC/AMZNC",
+   "liquidity": "190504734307460",
+   "staked": "179101008580063",
+   "share": 0.9401394103466623
+  },
+  "8453:0x7c7420dd105e2779316423ba3e973f434315efa9": {
+   "pair": "WETH/CBBTC",
+   "liquidity": "281772992370568091",
+   "staked": "268547910021565241",
+   "share": 0.9530647623899662
+  },
+  "8453:0x9785ef59e2b499fb741674ecf6faf912df7b3c1b": {
+   "pair": "WETH/USDT",
+   "liquidity": "1255510664368395532",
+   "staked": "1242645495886271368",
+   "share": 0.9897530392634329
+  },
+  "8453:0xaa5fe7dcc07dcb8b7afcd1b93874e7cb1e0ab50b": {
+   "pair": "WETH/EURC",
+   "liquidity": "950793079178431393",
+   "staked": "945548392069138837",
+   "share": 0.9944838816939807
+  },
+  "8453:0x0fc47c17af86078d809358db1b4db2debc988566": {
+   "pair": "USDC/CBZEC",
+   "liquidity": "11057362258898",
+   "staked": "10949073842619",
+   "share": 0.9902066683044721
+  },
+  "8453:0x7103eb3c9590d1281f7dc03b2a9ee27c39df5d54": {
+   "pair": "USDC/MSFTC",
+   "liquidity": "137008476613765",
+   "staked": "131579677972682",
+   "share": 0.9603761841948867
+  },
+  "8453:0x0bf58fe0fac935ac69595c19b12ba0d75e3f8c0e": {
+   "pair": "USDC/SPCXC",
+   "liquidity": "161073307874660",
+   "staked": "156531271480408",
+   "share": 0.9718014334331148
+  },
+  "8453:0xfba22a6b7629a2fec052cc2a6eddd2c9d6da5ea5": {
+   "pair": "WETH/BASECAT",
+   "liquidity": "168117152423192075095404",
+   "staked": "163148573827591089670866",
+   "share": 0.9704457366545571
+  },
+  "8453:0xeaf57753bc382e0324a1d43f72e7027705a2273e": {
+   "pair": "USDC/METAC",
+   "liquidity": "53005376183359",
+   "staked": "39899188517339",
+   "share": 0.7527385218306464
+  },
+  "8453:0x853f5f1b92b16714fe6cda67caad0856b83c7ab9": {
+   "pair": "USDC/NVDAC",
+   "liquidity": "61325116403851",
+   "staked": "52320790236258",
+   "share": 0.8531706632516468
+  },
+  "8453:0x46d398a5b33709877f50c8918a7ee96f1be1d7dd": {
+   "pair": "WETH/VVV",
+   "liquidity": "225269636050622921774535",
+   "staked": "221558615551621673969806",
+   "share": 0.9835263173321446
+  },
+  "8453:0x469337fdcc5e8f38e2e4b670b04f57865d13a7bb": {
+   "pair": "USDC/TSLAC",
+   "liquidity": "33540958979121",
+   "staked": "28318018842278",
+   "share": 0.8442817290914597
+  },
+  "8453:0x8d479a4c680a76d4ae03f10203569558405ddfff": {
+   "pair": "O/USDC",
+   "liquidity": "47554547802539792100",
+   "staked": "47529775067809395493",
+   "share": 0.9994790669688783
+  },
+  "8453:0x1131db5977242a03ebead1acd18f80a9a29e5922": {
+   "pair": "SOL/USDC",
+   "liquidity": "55074686411073",
+   "staked": "49891180698229",
+   "share": 0.9058822473512653
+  },
+  "8453:0x7501bc8bb51616f79bfa524e464fb7b41f0b10fb": {
+   "pair": "MSUSD/USDC",
+   "liquidity": "194510029885522543458",
+   "staked": "194510009530052114879",
+   "share": 0.9999998953500215
+  },
+  "8453:0x3e66e55e97ce60096f74b7c475e8249f2d31a9fb": {
+   "pair": "USDC/CBBTC",
+   "liquidity": "1198824342287",
+   "staked": "1178633266609",
+   "share": 0.9831576028565774
+  },
+  "8453:0xb1987cad1682841b4b641d50e520777ec5ab5542": {
+   "pair": "USDC/GOOGLC",
+   "liquidity": "80654578956691",
+   "staked": "65940193880248",
+   "share": 0.8175629298822058
+  },
+  "8453:0xccfa472815563ff9eb2de95c7b2be1ccf91f7f31": {
+   "pair": "SOL/CBBTC",
+   "liquidity": "8268502453515",
+   "staked": "8173439446027",
+   "share": 0.9885029957936835
+  },
+  "8453:0x650cc267aa248191978013d5ae421e5dc2a6e242": {
+   "pair": "USDC/PLTRC",
+   "liquidity": "34499553666661",
+   "staked": "27015160641071",
+   "share": 0.7830582651037998
+  },
+  "8453:0x17e1beb2cd65493da73ed4bbbc7becaaa0f91c73": {
+   "pair": "USDC/MUC",
+   "liquidity": "7847939187037",
+   "staked": "7832186447207",
+   "share": 0.9979927546003389
+  },
+  "8453:0xa3b1e3f9747065e2073722ff4c9027d3ea4994f0": {
+   "pair": "USDC/AAPLC",
+   "liquidity": "165767913824971",
+   "staked": "158046031102315",
+   "share": 0.9534175067751092
+  },
+  "8453:0x0e4409f7a8eba3213f336daf608985302e79328c": {
+   "pair": "WETH/TIBBIR",
+   "liquidity": "95831437636517279574489",
+   "staked": "94742477006173049020658",
+   "share": 0.9886367077735535
+  },
+  "8453:0xcdd442e2de893c07146b2f1072f8e077559f9aa4": {
+   "pair": "BNKR/WETH",
+   "liquidity": "3461112442958847650765650",
+   "staked": "3116155943209389612129910",
+   "share": 0.9003336339299741
+  },
+  "8453:0x4a79b0168296c0ef7b8f314973b82ad406a29f1b": {
+   "pair": "WETH/AAVE",
+   "liquidity": "37542340134825066970965",
+   "staked": "36753427203266488394525",
+   "share": 0.9789860480533347
+  },
+  "8453:0x8bb9eaf3c5a906d20c4cc10ea2f73a3ac2d5d41a": {
+   "pair": "CBETH/CBBTC",
+   "liquidity": "70282600718663092",
+   "staked": "70276360851705436",
+   "share": 0.9999112174721219
+  }
+ },
+ "42161:0xc6962004f452be9203591991d15f6b388e09e8d0": {
+  "pair": "WETH/USDC",
+  "protocol": "uniswapv3",
+  "liquidity": "3990560698322947377",
+  "bal0": 6348.2730212820625,
+  "bal1": 19759313.315107,
+  "onchain_usd": 37019081.3956597,
+  "krystal_tvl": 37096104.750623
+ },
+ "42161:0x2f5e87c9312fa29aed5c179e456625d79015299c": {
+  "pair": "WBTC/WETH",
+  "protocol": "uniswapv3",
+  "liquidity": "271866249514519436",
+  "bal0": 227.53144478,
+  "bal1": 6221.22682596512,
+  "onchain_usd": 36447461.70859735,
+  "krystal_tvl": 36435974.017664
+ },
+ "42161:0x0e4831319a50228b9e450861297ab92dee15b44f": {
+  "pair": "WBTC/USDC",
+  "protocol": "uniswapv3",
+  "liquidity": "2348350731027",
+  "bal0": 39.61374191,
+  "bal1": 4639411.647914,
+  "onchain_usd": 8040170.251980997,
+  "krystal_tvl": 8037861.079307
+ },
+ "42161:0x641c00a822e8b671738d32a431a4fb6074e5c79d": {
+  "pair": "WETH/USD₮0",
+  "protocol": "uniswapv3",
+  "liquidity": "436207839520715114",
+  "bal0": 1454.7848444154138,
+  "bal1": 2487350.323597,
+  "onchain_usd": 6442088.069020414,
+  "krystal_tvl": 6444291.054483
+ },
+ "42161:0xc473e2aee3441bf9240be85eb122abb059a3b57c": {
+  "pair": "WETH/USDC",
+  "protocol": "uniswapv3",
+  "liquidity": "488563591762259256",
+  "bal0": 750.9985646403395,
+  "bal1": 3663277.936686,
+  "onchain_usd": 5705102.699273556,
+  "krystal_tvl": 5705323.513293
+ },
+ "42161:0x5969efdde3cf5c0d9a88ae51e47d721096a97203": {
+  "pair": "WBTC/USD₮0",
+  "protocol": "uniswapv3",
+  "liquidity": "785085179876",
+  "bal0": 21.62325055,
+  "bal1": 2309422.551386,
+  "onchain_usd": 4165223.293521541,
+  "krystal_tvl": 4164592.373085
+ },
+ "42161:0x80a9ae39310abf666a87c743d6ebbd0e8c42158e": {
+  "pair": "WETH/GMX",
+  "protocol": "uniswapv3",
+  "liquidity": "233367570326961374342",
+  "bal0": 169.15937347353506,
+  "bal1": 278195.7033790707,
+  "onchain_usd": 2817306.3911699685,
+  "krystal_tvl": 2817269.856349
+ },
+ "42161:0xc6f780497a95e246eb9449f5e4770916dcd6396a": {
+  "pair": "WETH/ARB",
+  "protocol": "uniswapv3",
+  "liquidity": "434114339855128326585327",
+  "bal0": 330.1255267708308,
+  "bal1": 5574509.264757708,
+  "onchain_usd": 2040199.427109232,
+  "krystal_tvl": 2042632.476394
+ },
+ "42161:0x468b88941e7cc0b88c1869d68ab6b570bcef62ff": {
+  "pair": "WETH/LINK",
+  "protocol": "uniswapv3",
+  "liquidity": "29991584955504106656278",
+  "bal0": 201.7647696496045,
+  "bal1": 55762.21872904722,
+  "onchain_usd": 1333348.7079416811,
+  "krystal_tvl": 1333305.13105
+ },
+ "42161:0x9b42809aaae8d088ee01fe637e948784730f0386": {
+  "pair": "WBTC/CBBTC",
+  "protocol": "uniswapv3",
+  "liquidity": "2346307943124",
+  "bal0": 8.66066572,
+  "bal1": 6.28444183,
+  "onchain_usd": 1284986.5579870287,
+  "krystal_tvl": 1288811.928409
+ },
+ "42161:0x4bfc22a4da7f31f8a912a79a7e44a822398b4390": {
+  "pair": "WBTC/WETH",
+  "protocol": "pancakev3",
+  "liquidity": "11899007988380644",
+  "bal0": 6.45113393,
+  "bal1": 246.1084905842649,
+  "onchain_usd": 1222939.631403181,
+  "krystal_tvl": 1222600.001321
+ },
+ "42161:0xdbaeb7f0dfe3a0aafd798ccecb5b22e708f7852c": {
+  "pair": "PENDLE/WETH",
+  "protocol": "uniswapv3",
+  "liquidity": "34157547881867379551999",
+  "bal0": 338225.3090262654,
+  "bal1": 122.88358131910634,
+  "onchain_usd": 1168705.328309738,
+  "krystal_tvl": 1168947.806163
+ },
+ "8453:0x6c561b446416e1a00e8e93e221854d6ea4171372": {
+  "pair": "WETH/USDC",
+  "protocol": "uniswapv3",
+  "liquidity": "44463347449649753747",
+  "bal0": 26184.658887000955,
+  "bal1": 91838357.287218,
+  "onchain_usd": 163014949.54273444,
+  "krystal_tvl": 163067768.867821
+ },
+ "8453:0xe2b8c33ae97658cead06afd47c7f3857e5851871": {
+  "pair": "JITOSOL/CBBTC",
+  "protocol": "uniswapv3",
+  "liquidity": "679155846843",
+  "bal0": 50237.707314828,
+  "bal1": 91.91565286,
+  "onchain_usd": 15790510.39141053,
+  "krystal_tvl": 15805978.231406
+ },
+ "8453:0x70acdf2ad0bf2402c957154f944c19ef4e1cbae1": {
+  "pair": "WETH/CBBTC",
+  "protocol": "aerodromecl",
+  "liquidity": "488059898810035684",
+  "bal0": 2116.6062984599357,
+  "bal1": 125.30840017,
+  "onchain_usd": 16517027.388363346,
+  "krystal_tvl": 15783940.117581
+ },
+ "8453:0x7aea2e8a3843516afa07293a10ac8e49906dabd1": {
+  "pair": "WETH/CBBTC",
+  "protocol": "uniswapv3",
+  "liquidity": "216399461339704032",
+  "bal0": 3721.6003137935886,
+  "bal1": 51.11656972,
+  "onchain_usd": 14506999.829663182,
+  "krystal_tvl": 14498572.359732
+ },
+ "8453:0x3fe04a59ebd38cf06080a6f60a98d124eb59392a": {
+  "pair": "WETH/USDC",
+  "protocol": "aerodromecl3",
+  "liquidity": "7163426291060084925",
+  "bal0": 1382.800959368435,
+  "bal1": 5267629.956635,
+  "onchain_usd": 9026426.766745683,
+  "krystal_tvl": 12279890.854137
+ },
+ "8453:0x8c7080564b5a792a33ef2fd473fba6364d5495e5": {
+  "pair": "WETH/CBBTC",
+  "protocol": "uniswapv3",
+  "liquidity": "99652900957202760",
+  "bal0": 2181.3562926867507,
+  "bal1": 66.53574541,
+  "onchain_usd": 11644677.82301027,
+  "krystal_tvl": 11649702.280637
+ },
+ "8453:0xd0b53d9277642d899df5c87a3966a349a798f224": {
+  "pair": "WETH/USDC",
+  "protocol": "uniswapv3",
+  "liquidity": "1553115361135151536",
+  "bal0": 1834.7221100285526,
+  "bal1": 5071082.299488,
+  "onchain_usd": 10058325.711412393,
+  "krystal_tvl": 10060511.434283
+ },
+ "8453:0x42d4a22cad0f5a49681a5715ce994af73a43b76b": {
+  "pair": "WETH/CBBTC",
+  "protocol": "aerodromecl3",
+  "liquidity": "1040337226120844309",
+  "bal0": 1908.8578767533552,
+  "bal1": 49.13996769,
+  "onchain_usd": 9409706.333426582,
+  "krystal_tvl": 9383565.027211
+ },
+ "8453:0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59": {
+  "pair": "WETH/USDC",
+  "protocol": "aerodromecl",
+  "liquidity": "3474245044478764777",
+  "bal0": 1390.5735688773302,
+  "bal1": 4671529.672601,
+  "onchain_usd": 8451454.367842464,
+  "krystal_tvl": 8562745.065349
+ },
+ "8453:0xfbb6eed8e7aa03b138556eedaf5d271a5e1e43ef": {
+  "pair": "USDC/CBBTC",
+  "protocol": "uniswapv3",
+  "liquidity": "2173496560991",
+  "bal0": 5793921.807767,
+  "bal1": 31.56760363,
+  "onchain_usd": 8505471.553215086,
+  "krystal_tvl": 8506440.807863
+ },
+ "8453:0x01271a205e3f37cbfc9b353170d726060e193c0d": {
+  "pair": "VVV/DIEM",
+  "protocol": "aerodromecl3",
+  "liquidity": "129953193914202698785432",
+  "bal0": 97572.14451610994,
+  "bal1": 2175.107438458893,
+  "onchain_usd": 7471739.251376146,
+  "krystal_tvl": 7471648.533727
+ },
+ "8453:0x3e66e55e97ce60096f74b7c475e8249f2d31a9fb": {
+  "pair": "USDC/CBBTC",
+  "protocol": "aerodromecl",
+  "liquidity": "1198824342287",
+  "bal0": 5281964.988641,
+  "bal1": 24.13333423,
+  "onchain_usd": 7354936.28716494,
+  "krystal_tvl": 7355675.077588
+ },
+ "blast_block": 41191925
+}
