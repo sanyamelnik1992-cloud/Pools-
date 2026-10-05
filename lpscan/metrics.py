@@ -104,11 +104,18 @@ def krystal_auto_fee(fee_pct: float) -> float:
     return 0.0005
 
 
+def slice_hist(hist: list[dict], start_ts: int | None = None, end_ts: int | None = None) -> list[dict]:
+    """Почасовая история в окне [start_ts, end_ts]."""
+    return [x for x in hist if (start_ts is None or x["timestamp"] >= start_ts)
+            and (end_ts is None or x["timestamp"] <= end_ts)]
+
+
 def backtest_cl(hist: list[dict], L_now: float, tvl_now: float, width: float | None,
                 fee_pct: float, invert: bool, quote_usd: dict | None = None,
                 rebalance: bool = False, reward_usd_day: float = 0.0, earn_fees: bool = True,
                 v0: float = 10_000.0, gas_usd: float = 0.10, slippage: float = 0.0002,
-                window_days: int | None = None, staked_share: float = 1.0) -> dict:
+                window_days: int | None = None, staked_share: float = 1.0,
+                range_abs: tuple[float, float] | None = None) -> dict:
     """Бэктест позиции концентрированной ликвидности по почасовой истории.
 
     width  — полуширина диапазона в долях (0.05 = ±5%), None = полный диапазон.
@@ -118,6 +125,8 @@ def backtest_cl(hist: list[dict], L_now: float, tvl_now: float, width: float | N
     reward_usd_day — эмиссия (Aerodrome gauge), распределяется на застейканную активную
     ликвидность (staked_share — её доля в активной, по ончейн stakedLiquidity()).
     earn_fees=False — застейканная позиция Aerodrome (комиссии уходят veAERO-голосующим).
+    range_abs — фиксированные границы первого диапазона (в ориентации цены price()),
+    например чтобы промоделировать уже открытую позицию пользователя.
     """
     pts = [x for x in hist if x.get("poolPrice") and x.get("tvlUsd")]
     if window_days:
@@ -140,7 +149,7 @@ def backtest_cl(hist: list[dict], L_now: float, tvl_now: float, width: float | N
         return P / (1 + width), P * (1 + width)
 
     P0 = price(pts[0])
-    pa, pb = make_range(P0)
+    pa, pb = range_abs if range_abs else make_range(P0)
     q0 = qusd(pts[0])
     v_quote = v0 / q0
     L = v_quote / value_per_L(P0, pa, pb)
@@ -159,8 +168,10 @@ def backtest_cl(hist: list[dict], L_now: float, tvl_now: float, width: float | N
             in_range_h += 1
             if earn_fees:
                 fees_usd += (x["fee24h"] / 24) * L / (L_pool + L)
-            # эмиссия делится только между застейканной активной ликвидностью
-            rewards_usd += reward_usd_day / 24 * L / (L_pool * staked_share + L)
+            # эмиссия делится только между застейканной активной ликвидностью; её объём в $/день
+            # масштабируется с TVL пула (постоянная APR наград): голоса и TVL движутся вместе
+            rew_day = reward_usd_day * x["tvlUsd"] / tvl_now if tvl_now > 0 else reward_usd_day
+            rewards_usd += rew_day / 24 * L / (L_pool * staked_share + L)
         elif rebalance and width is not None:
             a0, a1 = amounts_for_L(L, P, pa, pb)
             v = (a0 * P + a1) * q
@@ -189,4 +200,87 @@ def backtest_cl(hist: list[dict], L_now: float, tvl_now: float, width: float | N
         "net_vs_hodl_apr": (total - v_hold) / v0 * ann * 100,
         "net_usd_apr": (total - v0) / v0 * ann * 100,
         "hodl_usd_apr": (v_hold - v0) / v0 * ann * 100,
+    }
+
+
+def backtest_hedged(hist: list[dict], L_now: float, tvl_now: float, width: float | None,
+                    fee_pct: float, invert: bool, funding: dict[int, float],
+                    rebalance: bool = False, hedge_band: float = 0.05, perp_fee: float = 0.00035,
+                    leverage: float = 2.0, reward_usd_day: float = 0.0, earn_fees: bool = True,
+                    staked_share: float = 1.0, v0: float = 10_000.0, gas_usd: float = 0.10,
+                    slippage: float = 0.0002) -> dict:
+    """Дельта-нейтральная LP: позиция X/USD плюс шорт перпа X на объём X в позиции.
+
+    Шорт подстраивается, когда расхождение с дельтой LP превышает hedge_band от стоимости позиции.
+    funding — {час (unix, кратно 3600): ставка за час}; положительная ставка = шорты получают.
+    Маржа под шорт = notional / leverage и входит в задействованный капитал.
+    Результат — доходность в долларах на весь капитал (LP + маржа), без направленного риска X.
+    """
+    pts = [x for x in hist if x.get("poolPrice") and x.get("tvlUsd")]
+    if len(pts) < 48:
+        return {}
+
+    def price(x):
+        return 1 / x["poolPrice"] if invert else x["poolPrice"]
+
+    def make_range(P):
+        if width is None:
+            return P * 1e-6, P * 1e6
+        return P / (1 + width), P * (1 + width)
+
+    P0 = price(pts[0])
+    pa, pb = make_range(P0)
+    L = v0 / value_per_L(P0, pa, pb)
+    h = amounts_for_L(L, P0, pa, pb)[0]          # шорт, в единицах X
+    margin = h * P0 / leverage
+    fees = rewards = lp_costs = 0.0
+    perp_costs = h * P0 * perp_fee
+    perp_pnl = fund = 0.0
+    prevP = P0
+    in_range_h = n_reb = n_hedge = 0
+    for x in pts[1:]:
+        P = price(x)
+        perp_pnl += h * (prevP - P)
+        fund += h * P * funding.get(x["timestamp"] // 3600 * 3600, 0.0)
+        prevP = P
+        L_pool = L_now * x["tvlUsd"] / tvl_now if tvl_now > 0 else L_now
+        if pa <= P <= pb:
+            in_range_h += 1
+            if earn_fees:
+                fees += (x["fee24h"] / 24) * L / (L_pool + L)
+            rew_day = reward_usd_day * x["tvlUsd"] / tvl_now if tvl_now > 0 else reward_usd_day
+            rewards += rew_day / 24 * L / (L_pool * staked_share + L)
+        elif rebalance and width is not None:
+            a0, a1 = amounts_for_L(L, P, pa, pb)
+            v = a0 * P + a1
+            cost = v * (0.5 * (fee_pct / 100 + slippage) + krystal_auto_fee(fee_pct)) + gas_usd
+            lp_costs += cost
+            pa, pb = make_range(P)
+            L = (v - cost) / value_per_L(P, pa, pb)
+            n_reb += 1
+        a0, a1 = amounts_for_L(L, P, pa, pb)
+        v_lp = a0 * P + a1
+        if abs(a0 - h) * P > hedge_band * v_lp:
+            perp_costs += abs(a0 - h) * P * perp_fee
+            h = a0
+            n_hedge += 1
+            margin = max(margin, h * P / leverage)
+    P = price(pts[-1])
+    a0, a1 = amounts_for_L(L, P, pa, pb)
+    v_lp = a0 * P + a1
+    perp_costs += h * P * perp_fee  # закрытие шорта
+    days = (pts[-1]["timestamp"] - pts[0]["timestamp"]) / 86400
+    ann = 365 / days
+    capital = v0 + margin
+    total = v_lp + fees + rewards + perp_pnl + fund - perp_costs
+    return {
+        "days": days, "capital": capital,
+        "time_in_range": in_range_h / max(1, len(pts) - 1) * 100,
+        "rebalances": n_reb, "hedge_adjustments": n_hedge,
+        "fee_apr": fees / capital * ann * 100,
+        "reward_apr": rewards / capital * ann * 100,
+        "funding_apr": fund / capital * ann * 100,
+        "lp_price_pnl_apr": (v_lp + lp_costs - v0 + perp_pnl) / capital * ann * 100,  # IL/гамма после хеджа
+        "cost_apr": (lp_costs + perp_costs) / capital * ann * 100,
+        "net_usd_apr": (total - v0) / capital * ann * 100,
     }

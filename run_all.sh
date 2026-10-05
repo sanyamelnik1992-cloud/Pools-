@@ -5,4 +5,5 @@ cd "$(dirname "$0")"
 python3 collect.py "$@"
 python3 analyze.py
 python3 build_report.py
+python3 strategies.py
 echo "Готово: report/index.html, data/processed/pools.csv, data/processed/backtests.csv"

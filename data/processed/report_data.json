@@ -70156,11 +70156,11 @@
    "time_in_range": 2.7777777777777777,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 8.125457699799396,
+   "reward_apr": 8.572886346659908,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -26.30308047333425,
-   "net_vs_hodl_apr": -98.54814644205615,
-   "net_usd_apr": 9.136824461416342,
+   "net_vs_hodl_apr": -98.10071779519565,
+   "net_usd_apr": 9.584253108276839,
    "hodl_usd_apr": 107.68497090347249
   },
   {
@@ -70179,11 +70179,11 @@
    "time_in_range": 7.12962962962963,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 8.476390956279053,
+   "reward_apr": 8.928749499648044,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -25.93131675064691,
-   "net_vs_hodl_apr": -96.68950475467788,
-   "net_usd_apr": 10.99546614879342,
+   "net_vs_hodl_apr": -96.23714621130885,
+   "net_usd_apr": 11.447824692162442,
    "hodl_usd_apr": 107.68497090347131
   },
   {
@@ -70202,11 +70202,11 @@
    "time_in_range": 13.981481481481481,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 8.433950549810678,
+   "reward_apr": 8.924824830463809,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -25.317704749140397,
-   "net_vs_hodl_apr": -94.24340759948095,
-   "net_usd_apr": 13.44156330399021,
+   "net_vs_hodl_apr": -93.75253331882783,
+   "net_usd_apr": 13.93243758464334,
    "hodl_usd_apr": 107.68497090347115
   },
   {
@@ -70225,11 +70225,11 @@
    "time_in_range": 47.4537037037037,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 14.169420543149844,
+   "reward_apr": 15.695655165436184,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -24.11201617043049,
-   "net_vs_hodl_apr": -83.6182005924849,
-   "net_usd_apr": 24.066770310985813,
+   "net_vs_hodl_apr": -82.09196597019857,
+   "net_usd_apr": 25.59300493327215,
    "hodl_usd_apr": 107.68497090347071
   },
   {
@@ -70248,11 +70248,11 @@
    "time_in_range": 48.24074074074074,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 7.700818451110098,
+   "reward_apr": 8.52464136886913,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -21.780202828421388,
-   "net_vs_hodl_apr": -80.6300041308211,
-   "net_usd_apr": 27.054966772649458,
+   "net_vs_hodl_apr": -79.80618121306206,
+   "net_usd_apr": 27.878789690408496,
    "hodl_usd_apr": 107.68497090347056
   },
   {
@@ -70271,11 +70271,11 @@
    "time_in_range": 69.86111111111111,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 6.341198716970872,
+   "reward_apr": 6.947327456513124,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -17.39166074794177,
-   "net_vs_hodl_apr": -64.19164764968183,
-   "net_usd_apr": 43.493323253788596,
+   "net_vs_hodl_apr": -63.585518910139626,
+   "net_usd_apr": 44.09945199333079,
    "hodl_usd_apr": 107.68497090347043
   },
   {
@@ -70294,11 +70294,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 1.420547961381127,
+   "reward_apr": 1.5416247818085678,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.8197065375436434,
-   "net_vs_hodl_apr": -10.014928551990323,
-   "net_usd_apr": 97.67004235148009,
+   "net_vs_hodl_apr": -9.893851731562899,
+   "net_usd_apr": 97.79111917190751,
    "hodl_usd_apr": 107.68497090347043
   },
   {
@@ -70317,11 +70317,11 @@
    "time_in_range": 90.32407407407408,
    "rebalances": 209,
    "fee_apr": 0.0,
-   "reward_apr": 158.35369402879925,
+   "reward_apr": 172.96329976559252,
    "cost_apr": 43.719494174283085,
    "il_vs_hodl_pct": -75.91362588547553,
-   "net_vs_hodl_apr": -193.23772734769008,
-   "net_usd_apr": -85.55275644421756,
+   "net_vs_hodl_apr": -178.62812161089684,
+   "net_usd_apr": -70.94315070742434,
    "hodl_usd_apr": 107.68497090347249
   },
   {
@@ -70340,11 +70340,11 @@
    "time_in_range": 97.45370370370371,
    "rebalances": 55,
    "fee_apr": 0.0,
-   "reward_apr": 86.6434576752176,
+   "reward_apr": 94.36757133817713,
    "cost_apr": 14.765345818630104,
    "il_vs_hodl_pct": -51.32956343143432,
-   "net_vs_hodl_apr": -136.29178428200728,
-   "net_usd_apr": -28.60681337853599,
+   "net_vs_hodl_apr": -128.56767061904773,
+   "net_usd_apr": -20.882699715576408,
    "hodl_usd_apr": 107.68497090347131
   },
   {
@@ -70363,11 +70363,11 @@
    "time_in_range": 99.44444444444444,
    "rebalances": 12,
    "fee_apr": 0.0,
-   "reward_apr": 53.68055143810455,
+   "reward_apr": 58.32428946146136,
    "cost_apr": 3.850942230874658,
    "il_vs_hodl_pct": -22.464474038671376,
-   "net_vs_hodl_apr": -41.276313282937416,
-   "net_usd_apr": 66.40865762053375,
+   "net_vs_hodl_apr": -36.63257525958056,
+   "net_usd_apr": 71.05239564389059,
    "hodl_usd_apr": 107.68497090347115
   },
   {
@@ -70386,11 +70386,11 @@
    "time_in_range": 99.81481481481481,
    "rebalances": 4,
    "fee_apr": 0.0,
-   "reward_apr": 28.75171934856331,
+   "reward_apr": 31.22961811414859,
    "cost_apr": 1.3315257433460663,
    "il_vs_hodl_pct": -15.946292593821218,
-   "net_vs_hodl_apr": -37.250881914168836,
-   "net_usd_apr": 70.43408898930188,
+   "net_vs_hodl_apr": -34.772983148583535,
+   "net_usd_apr": 72.91198775488719,
    "hodl_usd_apr": 107.68497090347071
   },
   {
@@ -70409,11 +70409,11 @@
    "time_in_range": 99.9074074074074,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 15.60160599332438,
+   "reward_apr": 16.951705686696872,
    "cost_apr": 0.6726022603951048,
    "il_vs_hodl_pct": -16.279483445045972,
-   "net_vs_hodl_apr": -51.09334579420162,
-   "net_usd_apr": 56.59162510926895,
+   "net_vs_hodl_apr": -49.74324610082915,
+   "net_usd_apr": 57.941724802641424,
    "hodl_usd_apr": 107.68497090347056
   },
   {
@@ -70432,11 +70432,11 @@
    "time_in_range": 99.9537037037037,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 8.77533852858312,
+   "reward_apr": 9.530972327120823,
    "cost_apr": 0.3422842231461286,
    "il_vs_hodl_pct": -13.501212981195257,
-   "net_vs_hodl_apr": -46.3218650071882,
-   "net_usd_apr": 61.363105896282214,
+   "net_vs_hodl_apr": -45.566231208650535,
+   "net_usd_apr": 62.118739694819894,
    "hodl_usd_apr": 107.68497090347043
   },
   {
@@ -70754,11 +70754,11 @@
    "time_in_range": 15.833333333333332,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 36.292443150336716,
+   "reward_apr": 41.56226696883641,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -4.998218277967208,
-   "net_vs_hodl_apr": -24.51921256493089,
-   "net_usd_apr": 39.32654343520064,
+   "net_vs_hodl_apr": -19.24938874643124,
+   "net_usd_apr": 44.59636725370028,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -70777,11 +70777,11 @@
    "time_in_range": 36.666666666666664,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 34.606807243503944,
+   "reward_apr": 39.02770634576733,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -4.626454555280834,
-   "net_vs_hodl_apr": -21.681723179079622,
-   "net_usd_apr": 42.16403282105145,
+   "net_vs_hodl_apr": -17.26082407681612,
+   "net_usd_apr": 46.58493192331496,
    "hodl_usd_apr": 63.84575600013108
   },
   {
@@ -70800,11 +70800,11 @@
    "time_in_range": 45.27777777777778,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 21.733379221738257,
+   "reward_apr": 24.558938960048415,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -4.012842553774298,
-   "net_vs_hodl_apr": -27.089538515849082,
-   "net_usd_apr": 36.756217484282224,
+   "net_vs_hodl_apr": -24.263978777538853,
+   "net_usd_apr": 39.58177722259244,
    "hodl_usd_apr": 63.8457560001313
   },
   {
@@ -70823,11 +70823,11 @@
    "time_in_range": 85.41666666666666,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 22.10791148198942,
+   "reward_apr": 24.002783865292454,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.8071539750647028,
-   "net_vs_hodl_apr": -12.045795214631191,
-   "net_usd_apr": 51.79996078550033,
+   "net_vs_hodl_apr": -10.15092283132799,
+   "net_usd_apr": 53.694833168803534,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -70846,11 +70846,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 13.897218265303973,
+   "reward_apr": 15.012608932983518,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.5024005943128214,
-   "net_vs_hodl_apr": -4.381988965501953,
-   "net_usd_apr": 59.46376703462957,
+   "net_vs_hodl_apr": -3.266598297822572,
+   "net_usd_apr": 60.57915770230895,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -70869,11 +70869,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 7.820641222048651,
+   "reward_apr": 8.448306811495158,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8453752962955696,
-   "net_vs_hodl_apr": -2.4647582162141406,
-   "net_usd_apr": 61.38099778391738,
+   "net_vs_hodl_apr": -1.8370926267676078,
+   "net_usd_apr": 62.008663373363916,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -70892,11 +70892,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 1.2123590464897653,
+   "reward_apr": 1.3096568174954701,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.13103380159056544,
-   "net_vs_hodl_apr": -0.38188553952870274,
-   "net_usd_apr": 63.4638704606026,
+   "net_vs_hodl_apr": -0.2845877685230486,
+   "net_usd_apr": 63.56116823160826,
    "hodl_usd_apr": 63.8457560001313
   },
   {
@@ -70915,11 +70915,11 @@
    "time_in_range": 89.86111111111111,
    "rebalances": 73,
    "fee_apr": 0.0,
-   "reward_apr": 178.78104130906218,
+   "reward_apr": 195.22305205861386,
    "cost_apr": 58.531744742029915,
    "il_vs_hodl_pct": -28.705218760472302,
-   "net_vs_hodl_apr": -228.99753168538064,
-   "net_usd_apr": -165.15177568524913,
+   "net_vs_hodl_apr": -212.55552093582907,
+   "net_usd_apr": -148.70976493569754,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -70938,11 +70938,11 @@
    "time_in_range": 97.5,
    "rebalances": 18,
    "fee_apr": 0.0,
-   "reward_apr": 85.9636589502229,
+   "reward_apr": 93.24770124994154,
    "cost_apr": 15.755807069195917,
    "il_vs_hodl_pct": -15.720432410647046,
-   "net_vs_hodl_apr": -121.05740911517881,
-   "net_usd_apr": -57.21165311504773,
+   "net_vs_hodl_apr": -113.77336681546,
+   "net_usd_apr": -49.927610815328926,
    "hodl_usd_apr": 63.84575600013108
   },
   {
@@ -70961,11 +70961,11 @@
    "time_in_range": 99.44444444444444,
    "rebalances": 4,
    "fee_apr": 0.0,
-   "reward_apr": 47.9736287692327,
+   "reward_apr": 51.88029608769836,
    "cost_apr": 3.7376265565715174,
    "il_vs_hodl_pct": -6.144420514407921,
-   "net_vs_hodl_apr": -30.521114045968474,
-   "net_usd_apr": 33.32464195416283,
+   "net_vs_hodl_apr": -26.614446727502877,
+   "net_usd_apr": 37.23130927262842,
    "hodl_usd_apr": 63.8457560001313
   },
   {
@@ -70984,11 +70984,11 @@
    "time_in_range": 99.86111111111111,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 25.631797645351345,
+   "reward_apr": 27.713658811227855,
    "cost_apr": 0.9643847256678822,
    "il_vs_hodl_pct": -2.843279682227494,
-   "net_vs_hodl_apr": -9.925823214084375,
-   "net_usd_apr": 53.91993278604714,
+   "net_vs_hodl_apr": -7.843962048207996,
+   "net_usd_apr": 56.00179395192353,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -71007,11 +71007,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 13.897218265303973,
+   "reward_apr": 15.012608932983518,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.5024005943128214,
-   "net_vs_hodl_apr": -4.381988965501953,
-   "net_usd_apr": 59.46376703462957,
+   "net_vs_hodl_apr": -3.266598297822572,
+   "net_usd_apr": 60.57915770230895,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -71030,11 +71030,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 7.820641222048651,
+   "reward_apr": 8.448306811495158,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8453752962955696,
-   "net_vs_hodl_apr": -2.4647582162141406,
-   "net_usd_apr": 61.38099778391738,
+   "net_vs_hodl_apr": -1.8370926267676078,
+   "net_usd_apr": 62.008663373363916,
    "hodl_usd_apr": 63.84575600013152
   },
   {
@@ -71352,11 +71352,11 @@
    "time_in_range": 5.092592592592593,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 7.308646047542997,
+   "reward_apr": 2.7693746602767306,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -8.289613966743055,
-   "net_vs_hodl_apr": -26.310343928692692,
-   "net_usd_apr": 154.38379749603754,
+   "net_vs_hodl_apr": -30.84961531595897,
+   "net_usd_apr": 149.84452610877128,
    "hodl_usd_apr": 180.69414142473025
   },
   {
@@ -71375,11 +71375,11 @@
    "time_in_range": 8.88888888888889,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 4.812893948142499,
+   "reward_apr": 1.957387179845183,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -7.784289904136567,
-   "net_vs_hodl_apr": -26.756726218633574,
-   "net_usd_apr": 153.93741520609655,
+   "net_vs_hodl_apr": -29.612232986930913,
+   "net_usd_apr": 151.0819084377992,
    "hodl_usd_apr": 180.6941414247301
   },
   {
@@ -71398,11 +71398,11 @@
    "time_in_range": 25.64814814814815,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 5.453682120489576,
+   "reward_apr": 2.8768598366338063,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -6.950230821596561,
-   "net_vs_hodl_apr": -22.733365100429815,
-   "net_usd_apr": 157.96077632430044,
+   "net_vs_hodl_apr": -25.310187384285566,
+   "net_usd_apr": 155.3839540404447,
    "hodl_usd_apr": 180.69414142473025
   },
   {
@@ -71421,11 +71421,11 @@
    "time_in_range": 50.138888888888886,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 4.75659179285979,
+   "reward_apr": 2.912856223850765,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -5.311384926604933,
-   "net_vs_hodl_apr": -16.784024853926887,
-   "net_usd_apr": 163.91011657080347,
+   "net_vs_hodl_apr": -18.62776042293589,
+   "net_usd_apr": 162.06638100179444,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71444,11 +71444,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 3.969399565196984,
+   "reward_apr": 3.10324024179494,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.9582922221136507,
-   "net_vs_hodl_apr": -8.028118891152786,
-   "net_usd_apr": 172.66602253357757,
+   "net_vs_hodl_apr": -8.89427821455487,
+   "net_usd_apr": 171.79986321017546,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71467,11 +71467,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 2.233572969832319,
+   "reward_apr": 1.7461809524290033,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.6645807870849967,
-   "net_vs_hodl_apr": -4.517226888901269,
-   "net_usd_apr": 176.17691453582907,
+   "net_vs_hodl_apr": -5.00461890630461,
+   "net_usd_apr": 175.68952251842575,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71490,11 +71490,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.3462154629336516,
+   "reward_apr": 0.2706661550449195,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.2580112638045648,
-   "net_vs_hodl_apr": -0.7001635513848598,
-   "net_usd_apr": 179.99397787334547,
+   "net_vs_hodl_apr": -0.7757128592735908,
+   "net_usd_apr": 179.91842856545674,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71513,11 +71513,11 @@
    "time_in_range": 96.3425925925926,
    "rebalances": 79,
    "fee_apr": 0.0,
-   "reward_apr": 59.46619971203578,
+   "reward_apr": 44.696830927136425,
    "cost_apr": 14.962555152484306,
    "il_vs_hodl_pct": -40.87651177543427,
-   "net_vs_hodl_apr": -121.27331986304304,
-   "net_usd_apr": 59.420821561687234,
+   "net_vs_hodl_apr": -136.0426886479424,
+   "net_usd_apr": 44.65145277678783,
    "hodl_usd_apr": 180.69414142473025
   },
   {
@@ -71536,11 +71536,11 @@
    "time_in_range": 99.12037037037037,
    "rebalances": 19,
    "fee_apr": 0.0,
-   "reward_apr": 26.580254451359448,
+   "reward_apr": 20.42982273321456,
    "cost_apr": 4.050229207712679,
    "il_vs_hodl_pct": -20.698804233593766,
-   "net_vs_hodl_apr": -61.415125259261295,
-   "net_usd_apr": 119.2790161654688,
+   "net_vs_hodl_apr": -67.56555697740619,
+   "net_usd_apr": 113.12858444732392,
    "hodl_usd_apr": 180.6941414247301
   },
   {
@@ -71559,11 +71559,11 @@
    "time_in_range": 99.9074074074074,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 14.029972555991478,
+   "reward_apr": 10.914924348329295,
    "cost_apr": 0.40249388487653953,
    "il_vs_hodl_pct": -6.04089858556792,
-   "net_vs_hodl_apr": -10.871721148132691,
-   "net_usd_apr": 169.82242027659757,
+   "net_vs_hodl_apr": -13.986769355794909,
+   "net_usd_apr": 166.70737206893534,
    "hodl_usd_apr": 180.69414142473025
   },
   {
@@ -71582,11 +71582,11 @@
    "time_in_range": 99.9537037037037,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 7.316276155447666,
+   "reward_apr": 5.686099658682594,
    "cost_apr": 0.2083363213985251,
    "il_vs_hodl_pct": -6.050633971730531,
-   "net_vs_hodl_apr": -17.430742384635817,
-   "net_usd_apr": 163.26339904009453,
+   "net_vs_hodl_apr": -19.060918881400912,
+   "net_usd_apr": 161.63322254332942,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71605,11 +71605,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 3.969399565196984,
+   "reward_apr": 3.10324024179494,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.9582922221136507,
-   "net_vs_hodl_apr": -8.028118891152786,
-   "net_usd_apr": 172.66602253357757,
+   "net_vs_hodl_apr": -8.89427821455487,
+   "net_usd_apr": 171.79986321017546,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71628,11 +71628,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 2.233572969832319,
+   "reward_apr": 1.7461809524290033,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.6645807870849967,
-   "net_vs_hodl_apr": -4.517226888901269,
-   "net_usd_apr": 176.17691453582907,
+   "net_vs_hodl_apr": -5.00461890630461,
+   "net_usd_apr": 175.68952251842575,
    "hodl_usd_apr": 180.69414142473033
   },
   {
@@ -71950,11 +71950,11 @@
    "time_in_range": 2.5,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 1.0168641365746482,
+   "reward_apr": 1.0336186097021143,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.0668247846051417,
-   "net_vs_hodl_apr": -11.962837409454512,
-   "net_usd_apr": 104.40993722654251,
+   "net_vs_hodl_apr": -11.946082936327192,
+   "net_usd_apr": 104.42669169966983,
    "hodl_usd_apr": 116.37277463599702
   },
   {
@@ -71973,11 +71973,11 @@
    "time_in_range": 21.52777777777778,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 3.4203801152283115,
+   "reward_apr": 3.60107152978359,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.6645661439162177,
-   "net_vs_hodl_apr": -4.665174635752431,
-   "net_usd_apr": 111.70760000024416,
+   "net_vs_hodl_apr": -4.484483221197076,
+   "net_usd_apr": 111.8882914147995,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -71996,11 +71996,11 @@
    "time_in_range": 89.58333333333334,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 6.939698714700825,
+   "reward_apr": 7.630447035949134,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.3383617975881862,
-   "net_vs_hodl_apr": 2.822963510711321,
-   "net_usd_apr": 119.19573814670834,
+   "net_vs_hodl_apr": 3.51371183195959,
+   "net_usd_apr": 119.88648646795663,
    "hodl_usd_apr": 116.37277463599702
   },
   {
@@ -72019,11 +72019,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 4.03164402091461,
+   "reward_apr": 4.4112103593675975,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.17522450232376285,
-   "net_vs_hodl_apr": 1.89974590930874,
-   "net_usd_apr": 118.27252054530533,
+   "net_vs_hodl_apr": 2.2793122477618577,
+   "net_usd_apr": 118.65208688375843,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72042,11 +72042,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 2.1534375604243685,
+   "reward_apr": 2.3561762193123785,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.09359097442093116,
-   "net_vs_hodl_apr": 1.0147473716363553,
-   "net_usd_apr": 117.38752200763294,
+   "net_vs_hodl_apr": 1.2174860305244661,
+   "net_usd_apr": 117.59026066652105,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72065,11 +72065,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 1.2117180872107567,
+   "reward_apr": 1.3257969705116752,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.05266205167328735,
-   "net_vs_hodl_apr": 0.5709964585190724,
-   "net_usd_apr": 116.94377109451565,
+   "net_vs_hodl_apr": 0.6850753418200202,
+   "net_usd_apr": 117.0578499778166,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72088,11 +72088,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.18781979401115176,
+   "reward_apr": 0.2055023223211764,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.008162657296161342,
-   "net_vs_hodl_apr": 0.08850746357456045,
-   "net_usd_apr": 116.46128209957114,
+   "net_vs_hodl_apr": 0.10618999188458778,
+   "net_usd_apr": 116.47896462788117,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72111,11 +72111,11 @@
    "time_in_range": 96.25,
    "rebalances": 27,
    "fee_apr": 0.0,
-   "reward_apr": 34.02651036324612,
+   "reward_apr": 37.20738098134188,
    "cost_apr": 14.672418492434582,
    "il_vs_hodl_pct": -11.093172249104027,
-   "net_vs_hodl_apr": -115.61283715995421,
-   "net_usd_apr": 0.7599374760428266,
+   "net_vs_hodl_apr": -112.43196654185832,
+   "net_usd_apr": 3.9408080941387045,
    "hodl_usd_apr": 116.37277463599702
   },
   {
@@ -72134,11 +72134,11 @@
    "time_in_range": 98.88888888888889,
    "rebalances": 8,
    "fee_apr": 0.0,
-   "reward_apr": 14.538826198038436,
+   "reward_apr": 15.900155135994845,
    "cost_apr": 4.4588857895691785,
    "il_vs_hodl_pct": -6.868535081238715,
-   "net_vs_hodl_apr": -73.48723641326836,
-   "net_usd_apr": 42.88553822272821,
+   "net_vs_hodl_apr": -72.12590747531195,
+   "net_usd_apr": 44.24686716068464,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72157,11 +72157,11 @@
    "time_in_range": 99.72222222222223,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 7.552471469000651,
+   "reward_apr": 8.262353993902966,
    "cost_apr": 1.081194081266758,
    "il_vs_hodl_pct": -3.948044621724839,
-   "net_vs_hodl_apr": -41.56326550991837,
-   "net_usd_apr": 74.80950912607865,
+   "net_vs_hodl_apr": -40.85338298501601,
+   "net_usd_apr": 75.51939165098102,
    "hodl_usd_apr": 116.37277463599702
   },
   {
@@ -72180,11 +72180,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 4.03164402091461,
+   "reward_apr": 4.4112103593675975,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.17522450232376285,
-   "net_vs_hodl_apr": 1.89974590930874,
-   "net_usd_apr": 118.27252054530533,
+   "net_vs_hodl_apr": 2.2793122477618577,
+   "net_usd_apr": 118.65208688375843,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72203,11 +72203,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 2.1534375604243685,
+   "reward_apr": 2.3561762193123785,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.09359097442093116,
-   "net_vs_hodl_apr": 1.0147473716363553,
-   "net_usd_apr": 117.38752200763294,
+   "net_vs_hodl_apr": 1.2174860305244661,
+   "net_usd_apr": 117.59026066652105,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -72226,11 +72226,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 1.2117180872107567,
+   "reward_apr": 1.3257969705116752,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.05266205167328735,
-   "net_vs_hodl_apr": 0.5709964585190724,
-   "net_usd_apr": 116.94377109451565,
+   "net_vs_hodl_apr": 0.6850753418200202,
+   "net_usd_apr": 117.0578499778166,
    "hodl_usd_apr": 116.37277463599658
   },
   {
@@ -73100,11 +73100,11 @@
    "time_in_range": 18.6623012160898,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.3096970486269085,
+   "reward_apr": 0.11968923971220949,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.3526256340014334,
-   "net_vs_hodl_apr": -1.1203958003789265,
-   "net_usd_apr": 212.98287455665124,
+   "net_vs_hodl_apr": -1.3104036092935751,
+   "net_usd_apr": 212.79286674773664,
    "hodl_usd_apr": 214.1032703570302
   },
   {
@@ -73123,11 +73123,11 @@
    "time_in_range": 44.48082319925163,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.24508378888225663,
+   "reward_apr": 0.11428823393132778,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.2955248698348805,
-   "net_vs_hodl_apr": -0.9534337387814047,
-   "net_usd_apr": 213.14983661824894,
+   "net_vs_hodl_apr": -1.084229293732361,
+   "net_usd_apr": 213.01904106329798,
    "hodl_usd_apr": 214.10327035703034
   },
   {
@@ -73146,11 +73146,11 @@
    "time_in_range": 90.36482694106641,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.19635220340325407,
+   "reward_apr": 0.11632341057585488,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.20045177746640547,
-   "net_vs_hodl_apr": -0.616591116321608,
-   "net_usd_apr": 213.48667924070867,
+   "net_vs_hodl_apr": -0.6966199091490378,
+   "net_usd_apr": 213.40665044788122,
    "hodl_usd_apr": 214.10327035703028
   },
   {
@@ -73169,11 +73169,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.10569722583423577,
+   "reward_apr": 0.06460623327880366,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.10066175173362353,
-   "net_vs_hodl_apr": -0.3025421006409963,
-   "net_usd_apr": 213.8007282563895,
+   "net_vs_hodl_apr": -0.34363309319643726,
+   "net_usd_apr": 213.75963726383404,
    "hodl_usd_apr": 214.10327035703048
   },
   {
@@ -73192,11 +73192,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.05324231916364974,
+   "reward_apr": 0.03254367072329543,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.05070462381114339,
-   "net_vs_hodl_apr": -0.1523930996259939,
-   "net_usd_apr": 213.95087725740427,
+   "net_vs_hodl_apr": -0.17309174806635383,
+   "net_usd_apr": 213.93017860896393,
    "hodl_usd_apr": 214.10327035703028
   },
   {
@@ -73215,11 +73215,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.000525105263135325,
+   "reward_apr": 0.00032096278349179536,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0005000651921909594,
-   "net_vs_hodl_apr": -0.0015029369051697155,
-   "net_usd_apr": 214.10176742012527,
+   "net_vs_hodl_apr": -0.001707079384873901,
+   "net_usd_apr": 214.1015632776456,
    "hodl_usd_apr": 214.10327035703048
   },
   {
@@ -73238,11 +73238,11 @@
    "time_in_range": 99.76613657623948,
    "rebalances": 5,
    "fee_apr": 0.0,
-   "reward_apr": 1.0460094940968323,
+   "reward_apr": 0.6392492244625817,
    "cost_apr": 0.6601848730681819,
    "il_vs_hodl_pct": -0.23643425168795146,
-   "net_vs_hodl_apr": -0.5730476219280444,
-   "net_usd_apr": 213.53022273510214,
+   "net_vs_hodl_apr": -0.9798078915623308,
+   "net_usd_apr": 213.12346246546787,
    "hodl_usd_apr": 214.1032703570302
   },
   {
@@ -73261,11 +73261,11 @@
    "time_in_range": 99.90645463049579,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 0.41986398200903835,
+   "reward_apr": 0.2565601354871623,
    "cost_apr": 0.264113173065438,
    "il_vs_hodl_pct": -0.20471618614008547,
-   "net_vs_hodl_apr": -0.6744870570689716,
-   "net_usd_apr": 213.42878329996137,
+   "net_vs_hodl_apr": -0.8377909035908263,
+   "net_usd_apr": 213.26547945343953,
    "hodl_usd_apr": 214.10327035703034
   },
   {
@@ -73284,11 +73284,11 @@
    "time_in_range": 99.9532273152479,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 0.2104969192393166,
+   "reward_apr": 0.12864484465343284,
    "cost_apr": 0.1551530860529462,
    "il_vs_hodl_pct": -0.19285893604446755,
-   "net_vs_hodl_apr": -0.7268062963273203,
-   "net_usd_apr": 213.37646406070294,
+   "net_vs_hodl_apr": -0.8086583709132286,
+   "net_usd_apr": 213.29461198611705,
    "hodl_usd_apr": 214.10327035703028
   },
   {
@@ -73307,11 +73307,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.10569722583423577,
+   "reward_apr": 0.06460623327880366,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.10066175173362353,
-   "net_vs_hodl_apr": -0.3025421006409963,
-   "net_usd_apr": 213.8007282563895,
+   "net_vs_hodl_apr": -0.34363309319643726,
+   "net_usd_apr": 213.75963726383404,
    "hodl_usd_apr": 214.10327035703048
   },
   {
@@ -73330,11 +73330,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.05324231916364974,
+   "reward_apr": 0.03254367072329543,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.05070462381114339,
-   "net_vs_hodl_apr": -0.1523930996259939,
-   "net_usd_apr": 213.95087725740427,
+   "net_vs_hodl_apr": -0.17309174806635383,
+   "net_usd_apr": 213.93017860896393,
    "hodl_usd_apr": 214.10327035703028
   },
   {
@@ -73606,11 +73606,11 @@
    "time_in_range": 40.416666666666664,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.21126102241705333,
+   "reward_apr": 0.19001103692499963,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.061986490169310855,
-   "net_vs_hodl_apr": -0.5429079413094647,
-   "net_usd_apr": 131.00245415471656,
+   "net_vs_hodl_apr": -0.5641579268015964,
+   "net_usd_apr": 130.98120416922444,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73629,11 +73629,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.2104776447134161,
+   "reward_apr": 0.1882865776918825,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.02907272379470669,
-   "net_vs_hodl_apr": -0.14324049478890932,
-   "net_usd_apr": 131.40212160123716,
+   "net_vs_hodl_apr": -0.16543156181049198,
+   "net_usd_apr": 131.37993053421556,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73652,11 +73652,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.10544005668690218,
+   "reward_apr": 0.09432325668193436,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.014563549624253939,
-   "net_vs_hodl_apr": -0.0717497970748233,
-   "net_usd_apr": 131.47361229895122,
+   "net_vs_hodl_apr": -0.0828665970799011,
+   "net_usd_apr": 131.46249549894614,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73675,11 +73675,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.05291785042661858,
+   "reward_apr": 0.04733858102417881,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.007308945683707862,
-   "net_vs_hodl_apr": -0.03600765539188918,
-   "net_usd_apr": 131.50935444063393,
+   "net_vs_hodl_apr": -0.041586924794270695,
+   "net_usd_apr": 131.50377517123155,
    "hodl_usd_apr": 131.5453620960258
   },
   {
@@ -73698,11 +73698,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.02665568271307381,
+   "reward_apr": 0.02384530018815717,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0036816102935517845,
-   "net_vs_hodl_apr": -0.01813724252509625,
-   "net_usd_apr": 131.52722485350094,
+   "net_vs_hodl_apr": -0.020947625050048373,
+   "net_usd_apr": 131.524414470976,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73721,11 +73721,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.0002628896138063134,
+   "reward_apr": 0.00023517240172053018,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -3.630921639341977e-05,
-   "net_vs_hodl_apr": -0.00017887251890291129,
-   "net_usd_apr": 131.5451832235071,
+   "net_vs_hodl_apr": -0.00020658973111191395,
+   "net_usd_apr": 131.54515550629492,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73744,11 +73744,11 @@
    "time_in_range": 99.86111111111111,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 0.5245350485857616,
+   "reward_apr": 0.4693161753184843,
    "cost_apr": 0.31008723024984036,
    "il_vs_hodl_pct": -0.04461985764673955,
-   "net_vs_hodl_apr": -0.3284271163660439,
-   "net_usd_apr": 131.21693497965998,
+   "net_vs_hodl_apr": -0.3836459896334054,
+   "net_usd_apr": 131.16171610639265,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73767,11 +73767,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.2104776447134161,
+   "reward_apr": 0.1882865776918825,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.02907272379470669,
-   "net_vs_hodl_apr": -0.14324049478890932,
-   "net_usd_apr": 131.40212160123716,
+   "net_vs_hodl_apr": -0.16543156181049198,
+   "net_usd_apr": 131.37993053421556,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73790,11 +73790,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.10544005668690218,
+   "reward_apr": 0.09432325668193436,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.014563549624253939,
-   "net_vs_hodl_apr": -0.0717497970748233,
-   "net_usd_apr": 131.47361229895122,
+   "net_vs_hodl_apr": -0.0828665970799011,
+   "net_usd_apr": 131.46249549894614,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -73813,11 +73813,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.05291785042661858,
+   "reward_apr": 0.04733858102417881,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.007308945683707862,
-   "net_vs_hodl_apr": -0.03600765539188918,
-   "net_usd_apr": 131.50935444063393,
+   "net_vs_hodl_apr": -0.041586924794270695,
+   "net_usd_apr": 131.50377517123155,
    "hodl_usd_apr": 131.5453620960258
   },
   {
@@ -73836,11 +73836,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.02665568271307381,
+   "reward_apr": 0.02384530018815717,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0036816102935517845,
-   "net_vs_hodl_apr": -0.01813724252509625,
-   "net_usd_apr": 131.52722485350094,
+   "net_vs_hodl_apr": -0.020947625050048373,
+   "net_usd_apr": 131.524414470976,
    "hodl_usd_apr": 131.54536209602603
   },
   {
@@ -74112,11 +74112,11 @@
    "time_in_range": 19.434137291280148,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.1901685201005516,
+   "reward_apr": 0.22971066366557508,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.41513140199373083,
-   "net_vs_hodl_apr": -1.4934199435407016,
-   "net_usd_apr": 216.0332837204686,
+   "net_vs_hodl_apr": -1.4538777999756813,
+   "net_usd_apr": 216.0728258640336,
    "hodl_usd_apr": 217.52670366400926
   },
   {
@@ -74135,11 +74135,11 @@
    "time_in_range": 42.02226345083488,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.13583879077131322,
+   "reward_apr": 0.19909149211510252,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.3577378564612263,
-   "net_vs_hodl_apr": -1.3149869604325157,
-   "net_usd_apr": 216.21171670357654,
+   "net_vs_hodl_apr": -1.2517342590887235,
+   "net_usd_apr": 216.2749694049203,
    "hodl_usd_apr": 217.52670366400903
   },
   {
@@ -74158,11 +74158,11 @@
    "time_in_range": 89.10018552875695,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.15257879214285872,
+   "reward_apr": 0.21150875332147365,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.26217728144645663,
-   "net_vs_hodl_apr": -0.9106957381677654,
-   "net_usd_apr": 216.61600792584125,
+   "net_vs_hodl_apr": -0.8517657769891513,
+   "net_usd_apr": 216.6749378870198,
    "hodl_usd_apr": 217.526703664009
   },
   {
@@ -74181,11 +74181,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.08916620141606142,
+   "reward_apr": 0.11914847717329731,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.13481715218416868,
-   "net_vs_hodl_apr": -0.45759224910861324,
-   "net_usd_apr": 217.06911141490048,
+   "net_vs_hodl_apr": -0.4276099733514103,
+   "net_usd_apr": 217.09909369065764,
    "hodl_usd_apr": 217.52670366400903
   },
   {
@@ -74204,11 +74204,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.04491718235374911,
+   "reward_apr": 0.060020445117745465,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.06790913993707363,
-   "net_vs_hodl_apr": -0.23049210739108172,
-   "net_usd_apr": 217.29621155661798,
+   "net_vs_hodl_apr": -0.21538884462707253,
+   "net_usd_apr": 217.31131481938198,
    "hodl_usd_apr": 217.52670366400903
   },
   {
@@ -74227,11 +74227,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.0004430174890435594,
+   "reward_apr": 0.0005919786532118781,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0006697416243514453,
-   "net_vs_hodl_apr": -0.0022731568763750447,
-   "net_usd_apr": 217.52443050713262,
+   "net_vs_hodl_apr": -0.0021241957122462435,
+   "net_usd_apr": 217.52457946829676,
    "hodl_usd_apr": 217.526703664009
   },
   {
@@ -74250,11 +74250,11 @@
    "time_in_range": 99.76808905380335,
    "rebalances": 5,
    "fee_apr": 0.0,
-   "reward_apr": 0.8811388928811713,
+   "reward_apr": 1.1779800201081834,
    "cost_apr": 0.6225837030495345,
    "il_vs_hodl_pct": -0.2593056246587912,
-   "net_vs_hodl_apr": -0.7930731768400913,
-   "net_usd_apr": 216.7336304871692,
+   "net_vs_hodl_apr": -0.4962320496131138,
+   "net_usd_apr": 217.03047161439616,
    "hodl_usd_apr": 217.52670366400926
   },
   {
@@ -74273,11 +74273,11 @@
    "time_in_range": 99.90723562152134,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 0.3539498333492938,
+   "reward_apr": 0.4730174805830272,
    "cost_apr": 0.24737461648832046,
    "il_vs_hodl_pct": -0.2181155808444055,
-   "net_vs_hodl_apr": -0.7780046387857955,
-   "net_usd_apr": 216.7486990252233,
+   "net_vs_hodl_apr": -0.6589369915520608,
+   "net_usd_apr": 216.86776667245704,
    "hodl_usd_apr": 217.52670366400903
   },
   {
@@ -74296,11 +74296,11 @@
    "time_in_range": 99.95361781076066,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 0.17750161072915943,
+   "reward_apr": 0.23723226208326137,
    "cost_apr": 0.14486720181586665,
    "il_vs_hodl_pct": -0.20081048664917037,
-   "net_vs_hodl_apr": -0.7817636758305697,
-   "net_usd_apr": 216.74493998817846,
+   "net_vs_hodl_apr": -0.7220330244764783,
+   "net_usd_apr": 216.80467063953253,
    "hodl_usd_apr": 217.526703664009
   },
   {
@@ -74319,11 +74319,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.08916620141606142,
+   "reward_apr": 0.11914847717329731,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.13481715218416868,
-   "net_vs_hodl_apr": -0.45759224910861324,
-   "net_usd_apr": 217.06911141490048,
+   "net_vs_hodl_apr": -0.4276099733514103,
+   "net_usd_apr": 217.09909369065764,
    "hodl_usd_apr": 217.52670366400903
   },
   {
@@ -74342,11 +74342,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.04491718235374911,
+   "reward_apr": 0.060020445117745465,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.06790913993707363,
-   "net_vs_hodl_apr": -0.23049210739108172,
-   "net_usd_apr": 217.29621155661798,
+   "net_vs_hodl_apr": -0.21538884462707253,
+   "net_usd_apr": 217.31131481938198,
    "hodl_usd_apr": 217.52670366400903
   },
   {
@@ -74618,11 +74618,11 @@
    "time_in_range": 53.19444444444444,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.4116851149166106,
+   "reward_apr": 0.455365584582492,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.09998465802387728,
-   "net_vs_hodl_apr": -0.8047948910404831,
-   "net_usd_apr": 133.3851537469664,
+   "net_vs_hodl_apr": -0.7611144213745713,
+   "net_usd_apr": 133.4288342166323,
    "hodl_usd_apr": 134.18994863800688
   },
   {
@@ -74641,11 +74641,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.31351115148190317,
+   "reward_apr": 0.343027487274671,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.058862534680556564,
-   "net_vs_hodl_apr": -0.4026496871315552,
-   "net_usd_apr": 133.78729895087488,
+   "net_vs_hodl_apr": -0.3731333513388502,
+   "net_usd_apr": 133.81681528666758,
    "hodl_usd_apr": 134.18994863800643
   },
   {
@@ -74664,11 +74664,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.15708458848952211,
+   "reward_apr": 0.17187312561283713,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.029486313387205882,
-   "net_vs_hodl_apr": -0.2016655577214715,
-   "net_usd_apr": 133.9882830802854,
+   "net_vs_hodl_apr": -0.1868770205982067,
+   "net_usd_apr": 134.00307161740866,
    "hodl_usd_apr": 134.18994863800688
   },
   {
@@ -74687,11 +74687,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.07884435703408069,
+   "reward_apr": 0.08626691065610301,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.014798168614142923,
-   "net_vs_hodl_apr": -0.10120002777138626,
-   "net_usd_apr": 134.08874861023506,
+   "net_vs_hodl_apr": -0.0937774741491982,
+   "net_usd_apr": 134.09617116385724,
    "hodl_usd_apr": 134.18994863800643
   },
   {
@@ -74710,11 +74710,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.03971718600979417,
+   "reward_apr": 0.04345619701188144,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.007454028563461179,
-   "net_vs_hodl_apr": -0.0509734948455601,
-   "net_usd_apr": 134.13897514316088,
+   "net_vs_hodl_apr": -0.04723448384354621,
+   "net_usd_apr": 134.1427141541629,
    "hodl_usd_apr": 134.18994863800643
   },
   {
@@ -74733,11 +74733,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.000391726028710515,
+   "reward_apr": 0.0004286030830923685,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -7.351401009145775e-05,
-   "net_vs_hodl_apr": -0.0005026944275020166,
-   "net_usd_apr": 134.1894459435794,
+   "net_vs_hodl_apr": -0.0004658173730816391,
+   "net_usd_apr": 134.1894828206338,
    "hodl_usd_apr": 134.18994863800688
   },
   {
@@ -74756,11 +74756,11 @@
    "time_in_range": 99.72222222222223,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 0.7797523747120888,
+   "reward_apr": 0.8533656383427837,
    "cost_apr": 0.6416271690646529,
    "il_vs_hodl_pct": -0.07380411007410657,
-   "net_vs_hodl_apr": -0.7598248002542913,
-   "net_usd_apr": 133.4301238377526,
+   "net_vs_hodl_apr": -0.6862115366235291,
+   "net_usd_apr": 133.50373710138334,
    "hodl_usd_apr": 134.18994863800688
   },
   {
@@ -74779,11 +74779,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.31351115148190317,
+   "reward_apr": 0.343027487274671,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.058862534680556564,
-   "net_vs_hodl_apr": -0.4026496871315552,
-   "net_usd_apr": 133.78729895087488,
+   "net_vs_hodl_apr": -0.3731333513388502,
+   "net_usd_apr": 133.81681528666758,
    "hodl_usd_apr": 134.18994863800643
   },
   {
@@ -74802,11 +74802,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.15708458848952211,
+   "reward_apr": 0.17187312561283713,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.029486313387205882,
-   "net_vs_hodl_apr": -0.2016655577214715,
-   "net_usd_apr": 133.9882830802854,
+   "net_vs_hodl_apr": -0.1868770205982067,
+   "net_usd_apr": 134.00307161740866,
    "hodl_usd_apr": 134.18994863800688
   },
   {
@@ -74825,11 +74825,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.07884435703408069,
+   "reward_apr": 0.08626691065610301,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.014798168614142923,
-   "net_vs_hodl_apr": -0.10120002777138626,
-   "net_usd_apr": 134.08874861023506,
+   "net_vs_hodl_apr": -0.0937774741491982,
+   "net_usd_apr": 134.09617116385724,
    "hodl_usd_apr": 134.18994863800643
   },
   {
@@ -74848,11 +74848,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.03971718600979417,
+   "reward_apr": 0.04345619701188144,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.007454028563461179,
-   "net_vs_hodl_apr": -0.0509734948455601,
-   "net_usd_apr": 134.13897514316088,
+   "net_vs_hodl_apr": -0.04723448384354621,
+   "net_usd_apr": 134.1427141541629,
    "hodl_usd_apr": 134.18994863800643
   },
   {
@@ -75124,11 +75124,11 @@
    "time_in_range": 4.4609665427509295,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 12.747127753618722,
+   "reward_apr": 25.3710179009984,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.9306678126361293,
-   "net_vs_hodl_apr": 8.97275273570551,
-   "net_usd_apr": 5.148645515837842,
+   "net_vs_hodl_apr": 21.596642883085217,
+   "net_usd_apr": 17.772535663217546,
    "hodl_usd_apr": -3.8241072198676695
   },
   {
@@ -75147,11 +75147,11 @@
    "time_in_range": 9.014869888475836,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 14.681573765041017,
+   "reward_apr": 29.215759486880316,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.9184081417060588,
-   "net_vs_hodl_apr": 10.956918523677588,
-   "net_usd_apr": 7.132811303810657,
+   "net_vs_hodl_apr": 25.491104245516834,
+   "net_usd_apr": 21.6669970256499,
    "hodl_usd_apr": -3.824107219866932
   },
   {
@@ -75170,11 +75170,11 @@
    "time_in_range": 17.843866171003718,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 12.992942965129062,
+   "reward_apr": 25.231591115268063,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8816474885524258,
-   "net_vs_hodl_apr": 9.417372594888693,
-   "net_usd_apr": 5.5932653750218355,
+   "net_vs_hodl_apr": 21.656020745027664,
+   "net_usd_apr": 17.831913525160804,
    "hodl_usd_apr": -3.824107219866858
   },
   {
@@ -75193,11 +75193,11 @@
    "time_in_range": 32.295539033457246,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 14.28751756624205,
+   "reward_apr": 23.472679236843582,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8204407950105087,
-   "net_vs_hodl_apr": 10.960174342032783,
-   "net_usd_apr": 7.13606712216585,
+   "net_vs_hodl_apr": 20.14533601263429,
+   "net_usd_apr": 16.321228792767357,
    "hodl_usd_apr": -3.824107219866932
   },
   {
@@ -75216,11 +75216,11 @@
    "time_in_range": 55.250929368029745,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 13.000708821511928,
+   "reward_apr": 20.524651766665624,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.6982553664319857,
-   "net_vs_hodl_apr": 10.168895390982177,
-   "net_usd_apr": 6.344788171115541,
+   "net_vs_hodl_apr": 17.692838336135924,
+   "net_usd_apr": 13.868731116269286,
    "hodl_usd_apr": -3.824107219866637
   },
   {
@@ -75239,11 +75239,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.1150392439231588,
+   "reward_apr": 0.1883179969566382,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.004492502112589136,
-   "net_vs_hodl_apr": 0.09681965202213683,
-   "net_usd_apr": -3.727287567844647,
+   "net_vs_hodl_apr": 0.17009840505555074,
+   "net_usd_apr": -3.6540088148112333,
    "hodl_usd_apr": -3.824107219866785
   },
   {
@@ -75262,11 +75262,11 @@
    "time_in_range": 76.53345724907064,
    "rebalances": 505,
    "fee_apr": 0.0,
-   "reward_apr": 221.6559158597029,
+   "reward_apr": 378.51524296005823,
    "cost_apr": 44.860376532923524,
    "il_vs_hodl_pct": -13.418878129342101,
-   "net_vs_hodl_apr": 122.37453358000312,
-   "net_usd_apr": 118.55042636013546,
+   "net_vs_hodl_apr": 279.23386068035836,
+   "net_usd_apr": 275.40975346049066,
    "hodl_usd_apr": -3.8241072198676695
   },
   {
@@ -75285,11 +75285,11 @@
    "time_in_range": 90.4275092936803,
    "rebalances": 206,
    "fee_apr": 0.0,
-   "reward_apr": 160.31799184680045,
+   "reward_apr": 268.3374476133644,
    "cost_apr": 19.461426077929094,
    "il_vs_hodl_pct": -9.13704128461455,
-   "net_vs_hodl_apr": 103.80078722571227,
-   "net_usd_apr": 99.97668000584532,
+   "net_vs_hodl_apr": 211.8202429922763,
+   "net_usd_apr": 207.99613577240933,
    "hodl_usd_apr": -3.824107219866932
   },
   {
@@ -75308,11 +75308,11 @@
    "time_in_range": 97.44423791821562,
    "rebalances": 55,
    "fee_apr": 0.0,
-   "reward_apr": 80.10745885939433,
+   "reward_apr": 132.39835292651668,
    "cost_apr": 5.403568613792929,
    "il_vs_hodl_pct": -4.99519264977942,
-   "net_vs_hodl_apr": 54.44560894371826,
-   "net_usd_apr": 50.6215017238514,
+   "net_vs_hodl_apr": 106.73650301084056,
+   "net_usd_apr": 102.9123957909737,
    "hodl_usd_apr": -3.824107219866858
   },
   {
@@ -75331,11 +75331,11 @@
    "time_in_range": 99.2100371747212,
    "rebalances": 17,
    "fee_apr": 0.0,
-   "reward_apr": 43.28686414290034,
+   "reward_apr": 71.22727583131353,
    "cost_apr": 1.6986887439929061,
    "il_vs_hodl_pct": -2.6368487699764773,
-   "net_vs_hodl_apr": 30.89428872066951,
-   "net_usd_apr": 27.070181500802583,
+   "net_vs_hodl_apr": 58.834700409082686,
+   "net_usd_apr": 55.010593189215754,
    "hodl_usd_apr": -3.824107219866932
   },
   {
@@ -75354,11 +75354,11 @@
    "time_in_range": 99.72118959107806,
    "rebalances": 6,
    "fee_apr": 0.0,
-   "reward_apr": 22.476011235830672,
+   "reward_apr": 36.903145369106966,
    "cost_apr": 0.6018738491216411,
    "il_vs_hodl_pct": -1.6592734382782872,
-   "net_vs_hodl_apr": 15.144861775913729,
-   "net_usd_apr": 11.320754556047092,
+   "net_vs_hodl_apr": 29.571995909189997,
+   "net_usd_apr": 25.747888689323357,
    "hodl_usd_apr": -3.824107219866637
   },
   {
@@ -75630,11 +75630,11 @@
    "time_in_range": 8.75,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 27.165634244269544,
+   "reward_apr": 48.23639463006897,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.692816449970469,
-   "net_vs_hodl_apr": 6.56970076962893,
-   "net_usd_apr": -14.17311197760123,
+   "net_vs_hodl_apr": 27.64046115542828,
+   "net_usd_apr": 6.8976484081981235,
    "hodl_usd_apr": -20.742812747230158
   },
   {
@@ -75653,11 +75653,11 @@
    "time_in_range": 11.944444444444445,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 21.68905003587632,
+   "reward_apr": 37.858919516011234,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.680747197183209,
-   "net_vs_hodl_apr": 1.2399591368140408,
-   "net_usd_apr": -19.502853610416118,
+   "net_vs_hodl_apr": 17.40982861694876,
+   "net_usd_apr": -3.332984130281395,
    "hodl_usd_apr": -20.742812747230158
   },
   {
@@ -75676,11 +75676,11 @@
    "time_in_range": 28.333333333333332,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 23.358381853886463,
+   "reward_apr": 39.55983206780347,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.644557513315631,
-   "net_vs_hodl_apr": 3.349598775212856,
-   "net_usd_apr": -17.393213972020398,
+   "net_vs_hodl_apr": 19.551048989130027,
+   "net_usd_apr": -1.1917637581032279,
    "hodl_usd_apr": -20.74281274723326
   },
   {
@@ -75699,11 +75699,11 @@
    "time_in_range": 30.416666666666664,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 13.184060915051024,
+   "reward_apr": 22.036958920892637,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.5843014868404681,
-   "net_vs_hodl_apr": -6.09160717484124,
-   "net_usd_apr": -26.8344199220745,
+   "net_vs_hodl_apr": 2.761290831000327,
+   "net_usd_apr": -17.98152191623293,
    "hodl_usd_apr": -20.74281274723326
   },
   {
@@ -75722,11 +75722,11 @@
    "time_in_range": 41.80555555555556,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 10.109528515786396,
+   "reward_apr": 15.45856111977884,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.464013851726395,
-   "net_vs_hodl_apr": -7.702640013551385,
-   "net_usd_apr": -28.445452760785077,
+   "net_vs_hodl_apr": -2.353607409558996,
+   "net_usd_apr": -23.096420156792693,
    "hodl_usd_apr": -20.742812747233696
   },
   {
@@ -75745,11 +75745,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.14660685511464702,
+   "reward_apr": 0.1875394168539142,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.014801214007729869,
-   "net_vs_hodl_apr": -0.03347458197948678,
-   "net_usd_apr": -20.776287329212963,
+   "net_vs_hodl_apr": 0.0074579797597986415,
+   "net_usd_apr": -20.73535476747368,
    "hodl_usd_apr": -20.742812747233476
   },
   {
@@ -75768,11 +75768,11 @@
    "time_in_range": 74.58333333333333,
    "rebalances": 183,
    "fee_apr": 0.0,
-   "reward_apr": 275.33290060746884,
+   "reward_apr": 368.04974067421034,
    "cost_apr": 52.6728555726285,
    "il_vs_hodl_pct": -5.218373211432245,
-   "net_vs_hodl_apr": 159.16983762908131,
-   "net_usd_apr": 138.4270248818511,
+   "net_vs_hodl_apr": 251.8866776958228,
+   "net_usd_apr": 231.14386494859266,
    "hodl_usd_apr": -20.742812747230158
   },
   {
@@ -75791,11 +75791,11 @@
    "time_in_range": 90.0,
    "rebalances": 72,
    "fee_apr": 0.0,
-   "reward_apr": 204.3546383571058,
+   "reward_apr": 266.48117682902887,
    "cost_apr": 21.155746244831114,
    "il_vs_hodl_pct": -3.480763857808215,
-   "net_vs_hodl_apr": 140.84959850894148,
-   "net_usd_apr": 120.10678576171132,
+   "net_vs_hodl_apr": 202.97613698086448,
+   "net_usd_apr": 182.2333242336343,
    "hodl_usd_apr": -20.742812747230158
   },
   {
@@ -75814,11 +75814,11 @@
    "time_in_range": 97.36111111111111,
    "rebalances": 19,
    "fee_apr": 0.0,
-   "reward_apr": 102.3914951159956,
+   "reward_apr": 132.0246402851863,
    "cost_apr": 5.652824776465014,
    "il_vs_hodl_pct": -1.9067521987269722,
-   "net_vs_hodl_apr": 73.53985192168578,
-   "net_usd_apr": 52.79703917445253,
+   "net_vs_hodl_apr": 103.17299709087642,
+   "net_usd_apr": 82.43018434364316,
    "hodl_usd_apr": -20.74281274723326
   },
   {
@@ -75837,11 +75837,11 @@
    "time_in_range": 99.16666666666667,
    "rebalances": 6,
    "fee_apr": 0.0,
-   "reward_apr": 55.12510551258839,
+   "reward_apr": 70.77961798254117,
    "cost_apr": 1.7931995151962556,
    "il_vs_hodl_pct": -0.9476738951339575,
-   "net_vs_hodl_apr": 41.80187360659564,
-   "net_usd_apr": 21.05906085936239,
+   "net_vs_hodl_apr": 57.45638607654831,
+   "net_usd_apr": 36.71357332931507,
    "hodl_usd_apr": -20.74281274723326
   },
   {
@@ -75860,11 +75860,11 @@
    "time_in_range": 99.58333333333333,
    "rebalances": 3,
    "fee_apr": 0.0,
-   "reward_apr": 28.513225332227076,
+   "reward_apr": 36.55789126403084,
    "cost_apr": 0.8953467940673933,
    "il_vs_hodl_pct": -0.9291195621130283,
-   "net_vs_hodl_apr": 16.313590532451098,
-   "net_usd_apr": -4.4292222147826,
+   "net_vs_hodl_apr": 24.35825646425489,
+   "net_usd_apr": 3.6154437170211953,
    "hodl_usd_apr": -20.742812747233696
   },
   {
@@ -76136,11 +76136,11 @@
    "time_in_range": 68.30398517145505,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.5513721928041672,
+   "reward_apr": 0.6704329885100107,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.020088385054968967,
-   "net_vs_hodl_apr": 0.4699026311923555,
-   "net_usd_apr": 0.3377779874112568,
+   "net_vs_hodl_apr": 0.5889634268981808,
+   "net_usd_apr": 0.45683878311708215,
    "hodl_usd_apr": -0.1321246437810987
   },
   {
@@ -76159,11 +76159,11 @@
    "time_in_range": 90.31510658016683,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.3879006102334541,
+   "reward_apr": 0.444031755417848,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.010625124865910038,
-   "net_vs_hodl_apr": 0.34480982605502297,
-   "net_usd_apr": 0.2126851822739243,
+   "net_vs_hodl_apr": 0.40094097123943145,
+   "net_usd_apr": 0.26881632745833284,
    "hodl_usd_apr": -0.1321246437810987
   },
   {
@@ -76182,11 +76182,11 @@
    "time_in_range": 99.95366079703429,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.1788805930861758,
+   "reward_apr": 0.19697234722317528,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.004254826277992833,
-   "net_vs_hodl_apr": 0.16162490873655164,
-   "net_usd_apr": 0.029500264955379156,
+   "net_vs_hodl_apr": 0.1797166628735653,
+   "net_usd_apr": 0.04759201909239285,
    "hodl_usd_apr": -0.13212464378117247
   },
   {
@@ -76205,11 +76205,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.08970205051687508,
+   "reward_apr": 0.09874891333934992,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0021313920938155206,
-   "net_vs_hodl_apr": 0.08105807146976278,
-   "net_usd_apr": -0.0510665723114097,
+   "net_vs_hodl_apr": 0.0901049342922397,
+   "net_usd_apr": -0.04201970948893278,
    "hodl_usd_apr": -0.13212464378117247
   },
   {
@@ -76228,11 +76228,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.04502636117200261,
+   "reward_apr": 0.049566927640487056,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0010696725349589543,
-   "net_vs_hodl_apr": 0.04068824478020057,
-   "net_usd_apr": -0.0914363990009719,
+   "net_vs_hodl_apr": 0.04522881124873493,
+   "net_usd_apr": -0.08689583253243756,
    "hodl_usd_apr": -0.13212464378117247
   },
   {
@@ -76251,11 +76251,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.0002237207079348187,
+   "reward_apr": 0.0002462785093222267,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -5.313895235303789e-06,
-   "net_vs_hodl_apr": 0.00020216991058077838,
-   "net_usd_apr": -0.13192247387051792,
+   "net_vs_hodl_apr": 0.00022472771196892916,
+   "net_usd_apr": -0.13189991606912976,
    "hodl_usd_apr": -0.1321246437810987
   },
   {
@@ -76274,11 +76274,11 @@
    "time_in_range": 99.21223354958295,
    "rebalances": 17,
    "fee_apr": 0.0,
-   "reward_apr": 0.8794569026210635,
+   "reward_apr": 0.9702671794974546,
    "cost_apr": 1.4731594317110526,
    "il_vs_hodl_pct": -0.5010197592675831,
-   "net_vs_hodl_apr": -2.6256159972306947,
-   "net_usd_apr": -2.7577406410117935,
+   "net_vs_hodl_apr": -2.534805720354327,
+   "net_usd_apr": -2.666930364135425,
    "hodl_usd_apr": -0.1321246437810987
   },
   {
@@ -76297,11 +76297,11 @@
    "time_in_range": 99.67562557924003,
    "rebalances": 7,
    "fee_apr": 0.0,
-   "reward_apr": 0.4439227221685651,
+   "reward_apr": 0.48928468750716014,
    "cost_apr": 0.6073949692647584,
    "il_vs_hodl_pct": -0.34054852048393514,
-   "net_vs_hodl_apr": -1.5445856912810842,
-   "net_usd_apr": -1.6767103350621828,
+   "net_vs_hodl_apr": -1.4992237259424532,
+   "net_usd_apr": -1.631348369723552,
    "hodl_usd_apr": -0.1321246437810987
   },
   {
@@ -76320,11 +76320,11 @@
    "time_in_range": 99.90732159406858,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 0.17871953187962525,
+   "reward_apr": 0.19681504830947857,
    "cost_apr": 0.17356750521808018,
    "il_vs_hodl_pct": -0.16721947961868863,
-   "net_vs_hodl_apr": -0.673015862903113,
-   "net_usd_apr": -0.8051405066842855,
+   "net_vs_hodl_apr": -0.654920346473306,
+   "net_usd_apr": -0.7870449902544785,
    "hodl_usd_apr": -0.13212464378117247
   },
   {
@@ -76343,11 +76343,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.08970205051687508,
+   "reward_apr": 0.09874891333934992,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0021313920938155206,
-   "net_vs_hodl_apr": 0.08105807146976278,
-   "net_usd_apr": -0.0510665723114097,
+   "net_vs_hodl_apr": 0.0901049342922397,
+   "net_usd_apr": -0.04201970948893278,
    "hodl_usd_apr": -0.13212464378117247
   },
   {
@@ -76366,11 +76366,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.04502636117200261,
+   "reward_apr": 0.049566927640487056,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0010696725349589543,
-   "net_vs_hodl_apr": 0.04068824478020057,
-   "net_usd_apr": -0.0914363990009719,
+   "net_vs_hodl_apr": 0.04522881124873493,
+   "net_usd_apr": -0.08689583253243756,
    "hodl_usd_apr": -0.13212464378117247
   },
   {
@@ -76642,11 +76642,11 @@
    "time_in_range": 8.762169680111267,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.10781418868491749,
+   "reward_apr": 0.08590628057005802,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.045287748784321596,
-   "net_vs_hodl_apr": -0.44318675485755493,
-   "net_usd_apr": 0.25987851659355027,
+   "net_vs_hodl_apr": -0.4650946629725119,
+   "net_usd_apr": 0.2379706084785933,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76665,11 +76665,11 @@
    "time_in_range": 38.38664812239222,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.23501327281446296,
+   "reward_apr": 0.18868122681322005,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.03279243356550069,
-   "net_vs_hodl_apr": -0.16396133556578205,
-   "net_usd_apr": 0.5391039358853231,
+   "net_vs_hodl_apr": -0.2102933815669591,
+   "net_usd_apr": 0.49277188988414605,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76688,11 +76688,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.22452381441596023,
+   "reward_apr": 0.19711687073456938,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.01337428522969276,
-   "net_vs_hodl_apr": 0.06180334412133258,
-   "net_usd_apr": 0.7648686155726592,
+   "net_vs_hodl_apr": 0.03439640043990039,
+   "net_usd_apr": 0.7374616718912269,
    "hodl_usd_apr": 0.7030652714513266
   },
   {
@@ -76711,11 +76711,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.11252042726143147,
+   "reward_apr": 0.09878395845681365,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.00669964974753384,
-   "net_vs_hodl_apr": 0.031008021999684086,
-   "net_usd_apr": 0.7340732934507893,
+   "net_vs_hodl_apr": 0.017271553195211405,
+   "net_usd_apr": 0.7203368246463165,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76734,11 +76734,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.056482332208831296,
+   "reward_apr": 0.04958661995809586,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0033623242525391106,
-   "net_vs_hodl_apr": 0.01557405380292342,
-   "net_usd_apr": 0.7186393252540286,
+   "net_vs_hodl_apr": 0.008678341552249547,
+   "net_usd_apr": 0.7117436130033546,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76757,11 +76757,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.00028065240691243316,
+   "reward_apr": 0.00024638682413883234,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.6703278997738377e-05,
-   "net_vs_hodl_apr": 7.742917900941392e-05,
-   "net_usd_apr": 0.7031427006301146,
+   "net_vs_hodl_apr": 4.316359633776301e-05,
+   "net_usd_apr": 0.703108435047443,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76780,11 +76780,11 @@
    "time_in_range": 98.88734353268428,
    "rebalances": 8,
    "fee_apr": 0.0,
-   "reward_apr": 1.1000742558791905,
+   "reward_apr": 0.9672373614493177,
    "cost_apr": 2.084542800080367,
    "il_vs_hodl_pct": -0.2960594039123316,
-   "net_vs_hodl_apr": -4.586524625134528,
-   "net_usd_apr": -3.883459353683423,
+   "net_vs_hodl_apr": -4.719361519564351,
+   "net_usd_apr": -4.016296248113246,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76803,11 +76803,11 @@
    "time_in_range": 99.58275382475661,
    "rebalances": 3,
    "fee_apr": 0.0,
-   "reward_apr": 0.556353278574746,
+   "reward_apr": 0.48875296723013245,
    "cost_apr": 0.7818566647053417,
    "il_vs_hodl_pct": -0.22559491702006199,
-   "net_vs_hodl_apr": -2.970241543208118,
-   "net_usd_apr": -2.2671762717570134,
+   "net_vs_hodl_apr": -3.0378418545526378,
+   "net_usd_apr": -2.334776583101532,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76826,11 +76826,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.22452381441596023,
+   "reward_apr": 0.19711687073456938,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.01337428522969276,
-   "net_vs_hodl_apr": 0.06180334412133258,
-   "net_usd_apr": 0.7648686155726592,
+   "net_vs_hodl_apr": 0.03439640043990039,
+   "net_usd_apr": 0.7374616718912269,
    "hodl_usd_apr": 0.7030652714513266
   },
   {
@@ -76849,11 +76849,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.11252042726143147,
+   "reward_apr": 0.09878395845681365,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.00669964974753384,
-   "net_vs_hodl_apr": 0.031008021999684086,
-   "net_usd_apr": 0.7340732934507893,
+   "net_vs_hodl_apr": 0.017271553195211405,
+   "net_usd_apr": 0.7203368246463165,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -76872,11 +76872,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.056482332208831296,
+   "reward_apr": 0.04958661995809586,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.0033623242525391106,
-   "net_vs_hodl_apr": 0.01557405380292342,
-   "net_usd_apr": 0.7186393252540286,
+   "net_vs_hodl_apr": 0.008678341552249547,
+   "net_usd_apr": 0.7117436130033546,
    "hodl_usd_apr": 0.7030652714511052
   },
   {
@@ -77194,11 +77194,11 @@
    "time_in_range": 0.42036431574030825,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 2.726514645695632,
+   "reward_apr": 3.351390232190301,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -3.0203482394555974,
-   "net_vs_hodl_apr": -9.522675436540927,
-   "net_usd_apr": 192.43521163006346,
+   "net_vs_hodl_apr": -8.897799850046315,
+   "net_usd_apr": 193.0600872165581,
    "hodl_usd_apr": 201.95788706660437
   },
   {
@@ -77217,11 +77217,11 @@
    "time_in_range": 1.3078000934142924,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 3.9128823992133612,
+   "reward_apr": 4.238126082159192,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.476040175126982,
-   "net_vs_hodl_apr": -6.1288360888016395,
-   "net_usd_apr": 195.82905097780267,
+   "net_vs_hodl_apr": -5.8035924058557775,
+   "net_usd_apr": 196.15429466074855,
    "hodl_usd_apr": 201.9578870666043
   },
   {
@@ -77240,11 +77240,11 @@
    "time_in_range": 3.7365716954694066,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 5.533881670482169,
+   "reward_apr": 6.178479690948575,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.5876025685698731,
-   "net_vs_hodl_apr": -0.9047287464956388,
-   "net_usd_apr": 201.05315832010865,
+   "net_vs_hodl_apr": -0.26013072602924897,
+   "net_usd_apr": 201.69775634057507,
    "hodl_usd_apr": 201.9578870666043
   },
   {
@@ -77263,11 +77263,11 @@
    "time_in_range": 9.715086408220458,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 8.290452323013648,
+   "reward_apr": 8.32636279647442,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8221580330536562,
-   "net_vs_hodl_apr": 4.956144744518281,
-   "net_usd_apr": 206.9140318111224,
+   "net_vs_hodl_apr": 4.992055217979053,
+   "net_usd_apr": 206.94994228458313,
    "hodl_usd_apr": 201.95788706660412
   },
   {
@@ -77286,11 +77286,11 @@
    "time_in_range": 17.98225128444652,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 8.798154976048126,
+   "reward_apr": 8.235995593419897,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.43913134533735504,
-   "net_vs_hodl_apr": 7.017233408846615,
-   "net_usd_apr": 208.9751204754507,
+   "net_vs_hodl_apr": 6.4550740262184085,
+   "net_usd_apr": 208.41296109282248,
    "hodl_usd_apr": 201.95788706660412
   },
   {
@@ -77309,11 +77309,11 @@
    "time_in_range": 36.99205978514713,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 10.960102417681874,
+   "reward_apr": 9.53593273991257,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.24709174941923265,
-   "net_vs_hodl_apr": 9.958008100592737,
-   "net_usd_apr": 211.91589516719685,
+   "net_vs_hodl_apr": 8.533838422823472,
+   "net_usd_apr": 210.49172548942758,
    "hodl_usd_apr": 201.95788706660412
   },
   {
@@ -77332,11 +77332,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 4.727254590780459,
+   "reward_apr": 3.9970696219127544,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.03829940549472667,
-   "net_vs_hodl_apr": 4.57192922405186,
-   "net_usd_apr": 206.52981629065587,
+   "net_vs_hodl_apr": 3.8417442551841456,
+   "net_usd_apr": 205.79963132178815,
    "hodl_usd_apr": 201.95788706660403
   },
   {
@@ -77355,11 +77355,11 @@
    "time_in_range": 77.25361980382999,
    "rebalances": 487,
    "fee_apr": 0.0,
-   "reward_apr": 253.51270191759613,
+   "reward_apr": 193.23326810488805,
    "cost_apr": 82.19312054666905,
    "il_vs_hodl_pct": -125.25067172537152,
-   "net_vs_hodl_apr": -336.64147618196847,
-   "net_usd_apr": -134.6835891153641,
+   "net_vs_hodl_apr": -396.92090999467655,
+   "net_usd_apr": -194.9630229280722,
    "hodl_usd_apr": 201.95788706660437
   },
   {
@@ -77378,11 +77378,11 @@
    "time_in_range": 93.0873423633816,
    "rebalances": 148,
    "fee_apr": 0.0,
-   "reward_apr": 202.08393964421995,
+   "reward_apr": 159.7012872902946,
    "cost_apr": 43.76615182158336,
    "il_vs_hodl_pct": -112.22720572620972,
-   "net_vs_hodl_apr": -296.8258798447694,
-   "net_usd_apr": -94.86799277816515,
+   "net_vs_hodl_apr": -339.20853219869474,
+   "net_usd_apr": -137.25064513209048,
    "hodl_usd_apr": 201.9578870666043
   },
   {
@@ -77401,11 +77401,11 @@
    "time_in_range": 97.61793554413826,
    "rebalances": 51,
    "fee_apr": 0.0,
-   "reward_apr": 139.9240342300095,
+   "reward_apr": 113.93404054676361,
    "cost_apr": 21.389259901696764,
    "il_vs_hodl_pct": -81.98067992850636,
-   "net_vs_hodl_apr": -213.94242760396307,
-   "net_usd_apr": -11.984540537358756,
+   "net_vs_hodl_apr": -239.93242128720897,
+   "net_usd_apr": -37.97453422060466,
    "hodl_usd_apr": 201.9578870666043
   },
   {
@@ -77424,11 +77424,11 @@
    "time_in_range": 99.29939280709948,
    "rebalances": 15,
    "fee_apr": 0.0,
-   "reward_apr": 85.15010078217105,
+   "reward_apr": 70.69053792403129,
    "cost_apr": 7.7444262407393785,
    "il_vs_hodl_pct": -53.24447853872388,
-   "net_vs_hodl_apr": -138.53026619894854,
-   "net_usd_apr": 63.42762086765554,
+   "net_vs_hodl_apr": -152.98982905708826,
+   "net_usd_apr": 48.96805800951581,
    "hodl_usd_apr": 201.95788706660412
   },
   {
@@ -77447,11 +77447,11 @@
    "time_in_range": 99.7197571228398,
    "rebalances": 6,
    "fee_apr": 0.0,
-   "reward_apr": 47.935838428906614,
+   "reward_apr": 40.02781542375744,
    "cost_apr": 3.305212932816157,
    "il_vs_hodl_pct": -37.993435344803366,
-   "net_vs_hodl_apr": -109.45386229116762,
-   "net_usd_apr": 92.50402477543645,
+   "net_vs_hodl_apr": -117.36188529631681,
+   "net_usd_apr": 84.59600177028727,
    "hodl_usd_apr": 201.95788706660412
   },
   {
@@ -77470,11 +77470,11 @@
    "time_in_range": 99.90658570761326,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 28.21455766028455,
+   "reward_apr": 23.69342817791856,
    "cost_apr": 1.1998528010284915,
    "il_vs_hodl_pct": -24.252337003154626,
-   "net_vs_hodl_apr": -71.34199520909323,
-   "net_usd_apr": 130.61589185751086,
+   "net_vs_hodl_apr": -75.86312469145926,
+   "net_usd_apr": 126.09476237514482,
    "hodl_usd_apr": 201.95788706660412
   },
   {
@@ -77792,11 +77792,11 @@
    "time_in_range": 0.8344923504867872,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 6.158735305082805,
+   "reward_apr": 6.079243119634411,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -27.651040551583154,
-   "net_vs_hodl_apr": -330.2622580725122,
-   "net_usd_apr": 142.15982849844795,
+   "net_vs_hodl_apr": -330.34175025796065,
+   "net_usd_apr": 142.08033631299955,
    "hodl_usd_apr": 472.4220865709602
   },
   {
@@ -77815,11 +77815,11 @@
    "time_in_range": 1.2517385257301807,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 3.7954976169293198,
+   "reward_apr": 3.710947173708117,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -27.238748606221396,
-   "net_vs_hodl_apr": -327.6092770920977,
-   "net_usd_apr": 144.81280947885895,
+   "net_vs_hodl_apr": -327.69382753531875,
+   "net_usd_apr": 144.72825903563788,
    "hodl_usd_apr": 472.4220865709567
   },
   {
@@ -77838,11 +77838,11 @@
    "time_in_range": 9.735744089012517,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 15.971340934085717,
+   "reward_apr": 14.724352659875642,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -26.558243031418172,
-   "net_vs_hodl_apr": -307.153949281502,
-   "net_usd_apr": 165.26813728945024,
+   "net_vs_hodl_apr": -308.400937555712,
+   "net_usd_apr": 164.0211490152402,
    "hodl_usd_apr": 472.42208657095216
   },
   {
@@ -77861,11 +77861,11 @@
    "time_in_range": 33.79694019471488,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 29.46549626238164,
+   "reward_apr": 26.49892439358592,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -25.22111501359461,
-   "net_vs_hodl_apr": -277.3914030696861,
-   "net_usd_apr": 195.03068350126617,
+   "net_vs_hodl_apr": -280.35797493848185,
+   "net_usd_apr": 192.06411163247037,
    "hodl_usd_apr": 472.42208657095216
   },
   {
@@ -77884,11 +77884,11 @@
    "time_in_range": 53.68567454798331,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 23.61981052537951,
+   "reward_apr": 22.49636898703643,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -22.635096528396225,
-   "net_vs_hodl_apr": -251.77386390344125,
-   "net_usd_apr": 220.64822266751122,
+   "net_vs_hodl_apr": -252.89730544178434,
+   "net_usd_apr": 219.5247811291681,
    "hodl_usd_apr": 472.42208657095244
   },
   {
@@ -77907,11 +77907,11 @@
    "time_in_range": 71.7663421418637,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 17.213567685652578,
+   "reward_apr": 16.926256078948406,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -17.768132805899985,
-   "net_vs_hodl_apr": -198.9653814527972,
-   "net_usd_apr": 273.456705118155,
+   "net_vs_hodl_apr": -199.25269305950147,
+   "net_usd_apr": 273.1693935114508,
    "hodl_usd_apr": 472.42208657095216
   },
   {
@@ -77930,11 +77930,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 3.499118725807356,
+   "reward_apr": 3.6567816743839194,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.840880396352713,
-   "net_vs_hodl_apr": -31.06492609648394,
-   "net_usd_apr": 441.357160474468,
+   "net_vs_hodl_apr": -30.907263147907383,
+   "net_usd_apr": 441.5148234230447,
    "hodl_usd_apr": 472.422086570952
   },
   {
@@ -77953,11 +77953,11 @@
    "time_in_range": 69.68011126564673,
    "rebalances": 218,
    "fee_apr": 0.0,
-   "reward_apr": 233.55904530421725,
+   "reward_apr": 235.95422110331845,
    "cost_apr": 198.60891793197516,
    "il_vs_hodl_pct": -98.3462338431133,
-   "net_vs_hodl_apr": -1161.5957177189696,
-   "net_usd_apr": -689.1736311480093,
+   "net_vs_hodl_apr": -1159.2005419198686,
+   "net_usd_apr": -686.7784553489082,
    "hodl_usd_apr": 472.4220865709602
   },
   {
@@ -77976,11 +77976,11 @@
    "time_in_range": 90.26425591098747,
    "rebalances": 70,
    "fee_apr": 0.0,
-   "reward_apr": 164.5727948714848,
+   "reward_apr": 169.38290503179007,
    "cost_apr": 91.92329128455906,
    "il_vs_hodl_pct": -75.18083575596816,
-   "net_vs_hodl_apr": -842.0506647773534,
-   "net_usd_apr": -369.6285782063968,
+   "net_vs_hodl_apr": -837.2405546170481,
+   "net_usd_apr": -364.8184680460915,
    "hodl_usd_apr": 472.4220865709567
   },
   {
@@ -77999,11 +77999,11 @@
    "time_in_range": 96.80111265646731,
    "rebalances": 23,
    "fee_apr": 0.0,
-   "reward_apr": 112.21889159305856,
+   "reward_apr": 115.98416354785262,
    "cost_apr": 37.436960677462,
    "il_vs_hodl_pct": -47.76636859788792,
-   "net_vs_hodl_apr": -506.37555369203983,
-   "net_usd_apr": -33.95346712108761,
+   "net_vs_hodl_apr": -502.6102817372458,
+   "net_usd_apr": -30.188195166293614,
    "hodl_usd_apr": 472.42208657095216
   },
   {
@@ -78022,11 +78022,11 @@
    "time_in_range": 98.74826147426981,
    "rebalances": 9,
    "fee_apr": 0.0,
-   "reward_apr": 63.17932981552205,
+   "reward_apr": 65.56790180342644,
    "cost_apr": 15.784029447954598,
    "il_vs_hodl_pct": -35.57568200574087,
-   "net_vs_hodl_apr": -385.44216403561313,
-   "net_usd_apr": 86.97992253533911,
+   "net_vs_hodl_apr": -383.05359204770866,
+   "net_usd_apr": 89.36849452324354,
    "hodl_usd_apr": 472.42208657095216
   },
   {
@@ -78045,11 +78045,11 @@
    "time_in_range": 99.72183588317107,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 37.632994093303466,
+   "reward_apr": 39.261220267386044,
    "cost_apr": 3.9180533072452395,
    "il_vs_hodl_pct": -16.251600995001628,
-   "net_vs_hodl_apr": -164.0128713197949,
-   "net_usd_apr": 308.40921525115755,
+   "net_vs_hodl_apr": -162.38464514571228,
+   "net_usd_apr": 310.03744142524016,
    "hodl_usd_apr": 472.42208657095244
   },
   {
@@ -78068,11 +78068,11 @@
    "time_in_range": 99.86091794158554,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 22.022371852892668,
+   "reward_apr": 22.930504631948033,
    "cost_apr": 2.071422095802905,
    "il_vs_hodl_pct": -13.995035112849655,
-   "net_vs_hodl_apr": -150.32197744924773,
-   "net_usd_apr": 322.1001091217045,
+   "net_vs_hodl_apr": -149.41384467019233,
+   "net_usd_apr": 323.0082419007599,
    "hodl_usd_apr": 472.42208657095216
   },
   {
@@ -78390,11 +78390,11 @@
    "time_in_range": 7.183098591549296,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 204.32851274490318,
+   "reward_apr": 66.78898355144845,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -57.98724423032372,
-   "net_vs_hodl_apr": -30.841977744743104,
-   "net_usd_apr": 421.56560092275754,
+   "net_vs_hodl_apr": -168.3815069381977,
+   "net_usd_apr": 284.02607172930294,
    "hodl_usd_apr": 452.4075786675007
   },
   {
@@ -78413,11 +78413,11 @@
    "time_in_range": 19.718309859154928,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 213.6003453193075,
+   "reward_apr": 77.32276191446752,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -57.41776427761067,
-   "net_vs_hodl_apr": -19.2605875843357,
-   "net_usd_apr": 433.14699108316495,
+   "net_vs_hodl_apr": -155.53817098917574,
+   "net_usd_apr": 296.8694076783249,
    "hodl_usd_apr": 452.4075786675007
   },
   {
@@ -78436,11 +78436,11 @@
    "time_in_range": 32.72300469483568,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 186.05580989973615,
+   "reward_apr": 66.11571386972186,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -56.47781314123528,
-   "net_vs_hodl_apr": -42.99309895082905,
-   "net_usd_apr": 409.4144797166731,
+   "net_vs_hodl_apr": -162.93319498084338,
+   "net_usd_apr": 289.47438368665865,
    "hodl_usd_apr": 452.4075786675021
   },
   {
@@ -78459,11 +78459,11 @@
    "time_in_range": 53.239436619718305,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 156.52085021133803,
+   "reward_apr": 56.05729066656764,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -54.630899542917575,
-   "net_vs_hodl_apr": -65.03779793493887,
-   "net_usd_apr": 387.3697807325628,
+   "net_vs_hodl_apr": -165.50135747970918,
+   "net_usd_apr": 286.9062211877925,
    "hodl_usd_apr": 452.40757866750164
   },
   {
@@ -78482,11 +78482,11 @@
    "time_in_range": 69.06103286384977,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 106.33000608142773,
+   "reward_apr": 38.96353209599586,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -51.05895082735109,
-   "net_vs_hodl_apr": -100.74240560727392,
-   "net_usd_apr": 351.66517306022774,
+   "net_vs_hodl_apr": -168.10887959270582,
+   "net_usd_apr": 284.2986990747958,
    "hodl_usd_apr": 452.40757866750164
   },
   {
@@ -78505,11 +78505,11 @@
    "time_in_range": 70.14084507042253,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 60.939915247414476,
+   "reward_apr": 22.300939998728815,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -44.33643708014337,
-   "net_vs_hodl_apr": -118.86896846650028,
-   "net_usd_apr": 333.5386102010014,
+   "net_vs_hodl_apr": -157.507943715186,
+   "net_usd_apr": 294.89963495231564,
    "hodl_usd_apr": 452.40757866750164
   },
   {
@@ -78528,11 +78528,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 12.041579430644699,
+   "reward_apr": 4.936561748874807,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -8.219893178407329,
-   "net_vs_hodl_apr": -21.294654015118375,
-   "net_usd_apr": 431.1129246523832,
+   "net_vs_hodl_apr": -28.399671696888213,
+   "net_usd_apr": 424.0079069706132,
    "hodl_usd_apr": 452.40757866750147
   },
   {
@@ -78551,11 +78551,11 @@
    "time_in_range": 67.41784037558686,
    "rebalances": 694,
    "fee_apr": 0.0,
-   "reward_apr": 389.6969202748292,
+   "reward_apr": 136.94124479279557,
    "cost_apr": 98.73314692462193,
    "il_vs_hodl_pct": -186.92630190182814,
-   "net_vs_hodl_apr": -467.1262288072067,
-   "net_usd_apr": -14.718650139706115,
+   "net_vs_hodl_apr": -719.8819042892404,
+   "net_usd_apr": -267.4743256217398,
    "hodl_usd_apr": 452.4075786675007
   },
   {
@@ -78574,11 +78574,11 @@
    "time_in_range": 88.16901408450704,
    "rebalances": 252,
    "fee_apr": 0.0,
-   "reward_apr": 342.23891972141047,
+   "reward_apr": 123.74737900365159,
    "cost_apr": 66.66810472954813,
    "il_vs_hodl_pct": -188.0142895690743,
-   "net_vs_hodl_apr": -486.9315815938278,
-   "net_usd_apr": -34.5240029263272,
+   "net_vs_hodl_apr": -705.4231223115869,
+   "net_usd_apr": -253.0155436440861,
    "hodl_usd_apr": 452.4075786675007
   },
   {
@@ -78597,11 +78597,11 @@
    "time_in_range": 95.58685446009389,
    "rebalances": 94,
    "fee_apr": 0.0,
-   "reward_apr": 280.8049776487938,
+   "reward_apr": 105.47901396595579,
    "cost_apr": 43.134192319040395,
    "il_vs_hodl_pct": -166.5441041266533,
-   "net_vs_hodl_apr": -437.7580814061184,
-   "net_usd_apr": 14.64949726138376,
+   "net_vs_hodl_apr": -613.0840450889563,
+   "net_usd_apr": -160.6764664214542,
    "hodl_usd_apr": 452.4075786675021
   },
   {
@@ -78620,11 +78620,11 @@
    "time_in_range": 98.96713615023475,
    "rebalances": 22,
    "fee_apr": 0.0,
-   "reward_apr": 201.71827448540282,
+   "reward_apr": 79.06296746342919,
    "cost_apr": 16.22711365294679,
    "il_vs_hodl_pct": -108.0400288456501,
-   "net_vs_hodl_apr": -252.67117837490258,
-   "net_usd_apr": 199.73640029259906,
+   "net_vs_hodl_apr": -375.32648539687625,
+   "net_usd_apr": 77.0810932706254,
    "hodl_usd_apr": 452.40757866750164
   },
   {
@@ -78643,11 +78643,11 @@
    "time_in_range": 99.5774647887324,
    "rebalances": 9,
    "fee_apr": 0.0,
-   "reward_apr": 118.43835426168864,
+   "reward_apr": 46.990648496812554,
    "cost_apr": 7.377915841914125,
    "il_vs_hodl_pct": -79.86194111150644,
-   "net_vs_hodl_apr": -212.824100532446,
-   "net_usd_apr": 239.58347813505566,
+   "net_vs_hodl_apr": -284.2718062973221,
+   "net_usd_apr": 168.13577237017955,
    "hodl_usd_apr": 452.40757866750164
   },
   {
@@ -78666,11 +78666,11 @@
    "time_in_range": 99.9530516431925,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 75.73816495980378,
+   "reward_apr": 30.781225392637847,
    "cost_apr": 1.0908470382449929,
    "il_vs_hodl_pct": -32.998691696568784,
-   "net_vs_hodl_apr": -59.180709514525766,
-   "net_usd_apr": 393.2268691529759,
+   "net_vs_hodl_apr": -104.13764908169165,
+   "net_usd_apr": 348.26992958581,
    "hodl_usd_apr": 452.40757866750164
   },
   {
@@ -78988,11 +78988,11 @@
    "time_in_range": 0.5578800557880056,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 7.19609727550255,
+   "reward_apr": 3.6288254706014653,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -27.296673799729103,
-   "net_vs_hodl_apr": -324.91343395453475,
-   "net_usd_apr": 143.19719046890188,
+   "net_vs_hodl_apr": -328.4807057594359,
+   "net_usd_apr": 139.62991866400074,
    "hodl_usd_apr": 468.11062442343666
   },
   {
@@ -79011,11 +79011,11 @@
    "time_in_range": 2.510460251046025,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 16.12286569376005,
+   "reward_apr": 6.703633817114025,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -26.88438185437002,
-   "net_vs_hodl_apr": -310.9704468677418,
-   "net_usd_apr": 157.14017755569836,
+   "net_vs_hodl_apr": -320.389678744388,
+   "net_usd_apr": 147.72094567905222,
    "hodl_usd_apr": 468.11062442344024
   },
   {
@@ -79034,11 +79034,11 @@
    "time_in_range": 4.602510460251046,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 15.557013660090313,
+   "reward_apr": 6.300827806736792,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -26.2038762795675,
-   "net_vs_hodl_apr": -303.256814407981,
-   "net_usd_apr": 164.85381001545767,
+   "net_vs_hodl_apr": -312.51300026133435,
+   "net_usd_apr": 155.59762416210427,
    "hodl_usd_apr": 468.1106244234387
   },
   {
@@ -79057,11 +79057,11 @@
    "time_in_range": 10.320781032078104,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 17.33988537214337,
+   "reward_apr": 7.3451034868053116,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -24.866748261743908,
-   "net_vs_hodl_apr": -285.2055518124074,
-   "net_usd_apr": 182.90507261103153,
+   "net_vs_hodl_apr": -295.2003336977455,
+   "net_usd_apr": 172.91029072569336,
    "hodl_usd_apr": 468.1106244234389
   },
   {
@@ -79080,11 +79080,11 @@
    "time_in_range": 12.133891213389122,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 10.800806654832195,
+   "reward_apr": 4.620595601986368,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -22.280729776545723,
-   "net_vs_hodl_apr": -260.28140562647405,
-   "net_usd_apr": 207.82921879696485,
+   "net_vs_hodl_apr": -266.46161667931983,
+   "net_usd_apr": 201.64900774411905,
    "hodl_usd_apr": 468.1106244234389
   },
   {
@@ -79103,11 +79103,11 @@
    "time_in_range": 50.906555090655516,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 23.486756958380333,
+   "reward_apr": 10.918288515645463,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -17.413766054049592,
-   "net_vs_hodl_apr": -188.3807300325563,
-   "net_usd_apr": 279.72989439088303,
+   "net_vs_hodl_apr": -200.94919847529113,
+   "net_usd_apr": 267.1614259481482,
    "hodl_usd_apr": 468.11062442343933
   },
   {
@@ -79126,11 +79126,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 6.040894336779281,
+   "reward_apr": 3.3274097516522043,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.775744406684098,
-   "net_vs_hodl_apr": -27.730662611210565,
-   "net_usd_apr": 440.3799618122283,
+   "net_vs_hodl_apr": -30.444147196337624,
+   "net_usd_apr": 437.6664772271012,
    "hodl_usd_apr": 468.1106244234389
   },
   {
@@ -79149,11 +79149,11 @@
    "time_in_range": 58.85634588563459,
    "rebalances": 295,
    "fee_apr": 0.0,
-   "reward_apr": 198.95981115582146,
+   "reward_apr": 94.50358210028148,
    "cost_apr": 199.68104810397733,
    "il_vs_hodl_pct": -115.79211324623226,
-   "net_vs_hodl_apr": -1409.5252814439816,
-   "net_usd_apr": -941.414657020545,
+   "net_vs_hodl_apr": -1513.9815104995216,
+   "net_usd_apr": -1045.8708860760848,
    "hodl_usd_apr": 468.11062442343666
   },
   {
@@ -79172,11 +79172,11 @@
    "time_in_range": 82.56624825662483,
    "rebalances": 125,
    "fee_apr": 0.0,
-   "reward_apr": 160.36821861260643,
+   "reward_apr": 79.60914649820168,
    "cost_apr": 135.17047676783548,
    "il_vs_hodl_pct": -105.64884056867787,
-   "net_vs_hodl_apr": -1260.1964850741429,
-   "net_usd_apr": -792.0858606507027,
+   "net_vs_hodl_apr": -1340.9555571885476,
+   "net_usd_apr": -872.8449327651074,
    "hodl_usd_apr": 468.11062442344024
   },
   {
@@ -79195,11 +79195,11 @@
    "time_in_range": 93.30543933054393,
    "rebalances": 48,
    "fee_apr": 0.0,
-   "reward_apr": 138.79503278588362,
+   "reward_apr": 72.55227740227616,
    "cost_apr": 78.22408857774288,
    "il_vs_hodl_pct": -79.0892736869455,
-   "net_vs_hodl_apr": -901.6818856496961,
-   "net_usd_apr": -433.5712612262575,
+   "net_vs_hodl_apr": -967.9246410333036,
+   "net_usd_apr": -499.81401660986495,
    "hodl_usd_apr": 468.1106244234387
   },
   {
@@ -79218,11 +79218,11 @@
    "time_in_range": 98.60529986052998,
    "rebalances": 10,
    "fee_apr": 0.0,
-   "reward_apr": 101.02779522843063,
+   "reward_apr": 54.39030727406298,
    "cost_apr": 21.059540041659357,
    "il_vs_hodl_pct": -45.639894486711256,
-   "net_vs_hodl_apr": -475.3171277348825,
-   "net_usd_apr": -7.206503311443529,
+   "net_vs_hodl_apr": -521.9546156892501,
+   "net_usd_apr": -53.84399126581124,
    "hodl_usd_apr": 468.1106244234389
   },
   {
@@ -79241,11 +79241,11 @@
    "time_in_range": 99.442119944212,
    "rebalances": 4,
    "fee_apr": 0.0,
-   "reward_apr": 58.082482043790165,
+   "reward_apr": 31.653462461216243,
    "cost_apr": 8.846343020558527,
    "il_vs_hodl_pct": -29.39815962192317,
-   "net_vs_hodl_apr": -308.44146971016687,
-   "net_usd_apr": 159.66915471327206,
+   "net_vs_hodl_apr": -334.8704892927408,
+   "net_usd_apr": 133.2401351306981,
    "hodl_usd_apr": 468.1106244234389
   },
   {
@@ -79264,11 +79264,11 @@
    "time_in_range": 99.86052998605301,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 35.99840071706116,
+   "reward_apr": 19.77408552753534,
    "cost_apr": 2.3780979323662947,
    "il_vs_hodl_pct": -14.598259166994884,
-   "net_vs_hodl_apr": -143.99185041374272,
-   "net_usd_apr": 324.11877400969666,
+   "net_vs_hodl_apr": -160.2161656032686,
+   "net_usd_apr": 307.8944588201707,
    "hodl_usd_apr": 468.11062442343933
   },
   {
@@ -79586,11 +79586,11 @@
    "time_in_range": 2.825382121352478,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 13.809717954999245,
+   "reward_apr": 4.568415975248616,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -26.290327495708425,
-   "net_vs_hodl_apr": -92.81216577759604,
-   "net_usd_apr": 14.821084716619565,
+   "net_vs_hodl_apr": -102.05346775734665,
+   "net_usd_apr": 5.579782736868945,
    "hodl_usd_apr": 107.63325049421559
   },
   {
@@ -79609,11 +79609,11 @@
    "time_in_range": 7.13293191292265,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 14.067722942351175,
+   "reward_apr": 4.678705994186813,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -25.918563773021543,
-   "net_vs_hodl_apr": -91.04645235934733,
-   "net_usd_apr": 16.58679813486819,
+   "net_vs_hodl_apr": -100.43546930751165,
+   "net_usd_apr": 7.197781186703861,
    "hodl_usd_apr": 107.63325049421553
   },
   {
@@ -79632,11 +79632,11 @@
    "time_in_range": 14.126910606762392,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 13.459904739932457,
+   "reward_apr": 4.722824176176935,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -25.304951771515533,
-   "net_vs_hodl_apr": -89.16573300010275,
-   "net_usd_apr": 18.467517494113288,
+   "net_vs_hodl_apr": -97.90281356385833,
+   "net_usd_apr": 9.730436930357717,
    "hodl_usd_apr": 107.63325049421604
   },
   {
@@ -79655,11 +79655,11 @@
    "time_in_range": 47.47568318666049,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 20.60022529066203,
+   "reward_apr": 8.223753897064915,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -24.099263192805847,
-   "net_vs_hodl_apr": -77.13567543571726,
-   "net_usd_apr": 30.49757505849871,
+   "net_vs_hodl_apr": -89.51214682931436,
+   "net_usd_apr": 18.121103664901593,
    "hodl_usd_apr": 107.63325049421594
   },
   {
@@ -79678,11 +79678,11 @@
    "time_in_range": 48.263084761463645,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 11.18569811735511,
+   "reward_apr": 4.466249410562612,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -21.76744985079691,
-   "net_vs_hodl_apr": -77.09340405532126,
-   "net_usd_apr": 30.539846438894635,
+   "net_vs_hodl_apr": -83.81285276211375,
+   "net_usd_apr": 23.820397732102133,
    "hodl_usd_apr": 107.63325049421589
   },
   {
@@ -79701,11 +79701,11 @@
    "time_in_range": 69.9397869383974,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 8.275309171661485,
+   "reward_apr": 3.642222210596157,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -17.37890777031731,
-   "net_vs_hodl_apr": -62.20581678573651,
-   "net_usd_apr": 45.42743370847936,
+   "net_vs_hodl_apr": -66.83890374680182,
+   "net_usd_apr": 40.79434674741408,
    "hodl_usd_apr": 107.63325049421589
   },
   {
@@ -79724,11 +79724,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 1.6305013516596185,
+   "reward_apr": 0.8072745631215363,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.817258178980701,
-   "net_vs_hodl_apr": -9.79504570753986,
-   "net_usd_apr": 97.83820478667603,
+   "net_vs_hodl_apr": -10.618272496077957,
+   "net_usd_apr": 97.01497799813794,
    "hodl_usd_apr": 107.63325049421589
   },
   {
@@ -79747,11 +79747,11 @@
    "time_in_range": 90.5511811023622,
    "rebalances": 204,
    "fee_apr": 0.0,
-   "reward_apr": 201.91231994007927,
+   "reward_apr": 92.4684622196606,
    "cost_apr": 40.40610825588129,
    "il_vs_hodl_pct": -75.41115126184052,
-   "net_vs_hodl_apr": -144.32790176659964,
-   "net_usd_apr": -36.69465127238406,
+   "net_vs_hodl_apr": -253.7717594870183,
+   "net_usd_apr": -146.13850899280268,
    "hodl_usd_apr": 107.63325049421559
   },
   {
@@ -79770,11 +79770,11 @@
    "time_in_range": 97.59147753589625,
    "rebalances": 52,
    "fee_apr": 0.0,
-   "reward_apr": 104.70097926870929,
+   "reward_apr": 49.662640108691036,
    "cost_apr": 13.044737422422958,
    "il_vs_hodl_pct": -51.2022870597702,
-   "net_vs_hodl_apr": -115.99747789611507,
-   "net_usd_apr": -8.364227401899546,
+   "net_vs_hodl_apr": -171.03581705613334,
+   "net_usd_apr": -63.40256656191781,
    "hodl_usd_apr": 107.63325049421553
   },
   {
@@ -79793,11 +79793,11 @@
    "time_in_range": 99.44418712366836,
    "rebalances": 12,
    "fee_apr": 0.0,
-   "reward_apr": 62.69310637120111,
+   "reward_apr": 30.5602235065918,
    "cost_apr": 3.591836086406571,
    "il_vs_hodl_pct": -22.31011459922047,
-   "net_vs_hodl_apr": -31.378638923155133,
-   "net_usd_apr": 76.2546115710609,
+   "net_vs_hodl_apr": -63.511521787764444,
+   "net_usd_apr": 44.12172870645159,
    "hodl_usd_apr": 107.63325049421604
   },
   {
@@ -79816,11 +79816,11 @@
    "time_in_range": 99.81472904122278,
    "rebalances": 4,
    "fee_apr": 0.0,
-   "reward_apr": 33.410483353349946,
+   "reward_apr": 16.3592389373633,
    "cost_apr": 1.2429599471170403,
    "il_vs_hodl_pct": -15.926166268234956,
-   "net_vs_hodl_apr": -32.42192868160886,
-   "net_usd_apr": 75.2113218126071,
+   "net_vs_hodl_apr": -49.47317309759545,
+   "net_usd_apr": 58.160077396620515,
    "hodl_usd_apr": 107.63325049421594
   },
   {
@@ -79839,11 +79839,11 @@
    "time_in_range": 99.9073645206114,
    "rebalances": 2,
    "fee_apr": 0.0,
-   "reward_apr": 18.126352403363207,
+   "reward_apr": 8.880667245177069,
    "cost_apr": 0.6278263261135142,
    "il_vs_hodl_pct": -16.259617041786658,
-   "net_vs_hodl_apr": -48.44325414777402,
-   "net_usd_apr": 59.189996346441866,
+   "net_vs_hodl_apr": -57.68893930596008,
+   "net_usd_apr": 49.9443111882558,
    "hodl_usd_apr": 107.63325049421589
   },
   {
@@ -79862,11 +79862,11 @@
    "time_in_range": 99.9536822603057,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 10.180896981468713,
+   "reward_apr": 4.991197106961204,
    "cost_apr": 0.3194847776213716,
    "il_vs_hodl_pct": -13.50259967348935,
-   "net_vs_hodl_apr": -44.899130916415004,
-   "net_usd_apr": 62.73411957780088,
+   "net_vs_hodl_apr": -50.08883079092256,
+   "net_usd_apr": 57.54441970329333,
    "hodl_usd_apr": 107.63325049421589
   },
   {
@@ -80184,11 +80184,11 @@
    "time_in_range": 15.416666666666668,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 34.794055885969314,
+   "reward_apr": 21.247044042237004,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -5.00612822927751,
-   "net_vs_hodl_apr": -26.113837570240378,
-   "net_usd_apr": 37.82815617081059,
+   "net_vs_hodl_apr": -39.66084941397268,
+   "net_usd_apr": 24.28114432707829,
    "hodl_usd_apr": 63.941993741050965
   },
   {
@@ -80207,11 +80207,11 @@
    "time_in_range": 36.94444444444444,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 33.56006672117671,
+   "reward_apr": 20.621774972271904,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -4.634364506589427,
-   "net_vs_hodl_apr": -22.824701442327974,
-   "net_usd_apr": 41.11729229872211,
+   "net_vs_hodl_apr": -35.76299319123275,
+   "net_usd_apr": 28.179000549817335,
    "hodl_usd_apr": 63.94199374105008
   },
   {
@@ -80230,11 +80230,11 @@
    "time_in_range": 45.416666666666664,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 20.902970473172466,
+   "reward_apr": 12.91321869609528,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -4.020752505083001,
-   "net_vs_hodl_apr": -28.016185005337274,
-   "net_usd_apr": 35.925808735713034,
+   "net_vs_hodl_apr": -36.005936782414594,
+   "net_usd_apr": 27.936056958635707,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80253,11 +80253,11 @@
    "time_in_range": 85.27777777777777,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 18.29503681645598,
+   "reward_apr": 12.559658678046222,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -2.815063926373241,
-   "net_vs_hodl_apr": -15.954907621085212,
-   "net_usd_apr": 47.98708611996509,
+   "net_vs_hodl_apr": -21.69028575949495,
+   "net_usd_apr": 42.251707981555356,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80276,11 +80276,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 11.28230938135127,
+   "reward_apr": 7.86731050326558,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.506822730623462,
-   "net_vs_hodl_apr": -7.050700507900941,
-   "net_usd_apr": 56.89129323314936,
+   "net_vs_hodl_apr": -10.46569938598645,
+   "net_usd_apr": 53.47629435506386,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80299,11 +80299,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 6.348695485341893,
+   "reward_apr": 4.427025437661294,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8478635572880193,
-   "net_vs_hodl_apr": -3.966977794995716,
-   "net_usd_apr": 59.97501594605459,
+   "net_vs_hodl_apr": -5.888647842676267,
+   "net_usd_apr": 58.05334589837403,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80322,11 +80322,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 0.9841084290454876,
+   "reward_apr": 0.6862299047201158,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.13141948390068137,
-   "net_vs_hodl_apr": -0.6148286250795566,
-   "net_usd_apr": 63.32716511597075,
+   "net_vs_hodl_apr": -0.9127071494049172,
+   "net_usd_apr": 63.02928659164538,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80345,11 +80345,11 @@
    "time_in_range": 90.0,
    "rebalances": 72,
    "fee_apr": 0.0,
-   "reward_apr": 148.7981719085983,
+   "reward_apr": 103.00211855360266,
    "cost_apr": 54.087993282706556,
    "il_vs_hodl_pct": -28.587264720018148,
-   "net_vs_hodl_apr": -253.10154213432904,
-   "net_usd_apr": -189.1595483932781,
+   "net_vs_hodl_apr": -298.89759548932466,
+   "net_usd_apr": -234.9556017482737,
    "hodl_usd_apr": 63.941993741050965
   },
   {
@@ -80368,11 +80368,11 @@
    "time_in_range": 98.05555555555556,
    "rebalances": 14,
    "fee_apr": 0.0,
-   "reward_apr": 73.02359757073059,
+   "reward_apr": 50.708173721445014,
    "cost_apr": 11.62054323079898,
    "il_vs_hodl_pct": -12.971284037491113,
-   "net_vs_hodl_apr": -96.41423478287692,
-   "net_usd_apr": -32.472241041826834,
+   "net_vs_hodl_apr": -118.72965863216251,
+   "net_usd_apr": -54.78766489111243,
    "hodl_usd_apr": 63.94199374105008
   },
   {
@@ -80391,11 +80391,11 @@
    "time_in_range": 99.44444444444444,
    "rebalances": 4,
    "fee_apr": 0.0,
-   "reward_apr": 39.07976395137574,
+   "reward_apr": 27.21119562705514,
    "cost_apr": 3.4823169453583,
    "il_vs_hodl_pct": -5.970101568671216,
-   "net_vs_hodl_apr": -37.038788746149045,
-   "net_usd_apr": 26.90320499490126,
+   "net_vs_hodl_apr": -48.90735707046965,
+   "net_usd_apr": 15.034636670580651,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80414,11 +80414,11 @@
    "time_in_range": 99.86111111111111,
    "rebalances": 1,
    "fee_apr": 0.0,
-   "reward_apr": 20.861858358460374,
+   "reward_apr": 14.525337013893697,
    "cost_apr": 0.9001972517954168,
    "il_vs_hodl_pct": -2.844525623636764,
-   "net_vs_hodl_apr": -14.6467339809155,
-   "net_usd_apr": 49.295259760134805,
+   "net_vs_hodl_apr": -20.98325532548219,
+   "net_usd_apr": 42.958738415568114,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80437,11 +80437,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 11.28230938135127,
+   "reward_apr": 7.86731050326558,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -1.506822730623462,
-   "net_vs_hodl_apr": -7.050700507900941,
-   "net_usd_apr": 56.89129323314936,
+   "net_vs_hodl_apr": -10.46569938598645,
+   "net_usd_apr": 53.47629435506386,
    "hodl_usd_apr": 63.941993741050304
   },
   {
@@ -80460,11 +80460,11 @@
    "time_in_range": 100.0,
    "rebalances": 0,
    "fee_apr": 0.0,
-   "reward_apr": 6.348695485341893,
+   "reward_apr": 4.427025437661294,
    "cost_apr": 0.0,
    "il_vs_hodl_pct": -0.8478635572880193,
-   "net_vs_hodl_apr": -3.966977794995716,
-   "net_usd_apr": 59.97501594605459,
+   "net_vs_hodl_apr": -5.888647842676267,
+   "net_usd_apr": 58.05334589837403,
    "hodl_usd_apr": 63.941993741050304
   }
  ],

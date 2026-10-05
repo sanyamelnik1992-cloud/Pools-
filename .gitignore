@@ -5,3 +5,4 @@ __pycache__/
 data/raw/krystal_history_*.json
 data/raw/krystal_ticks_*.json
 data/raw/llama_pools.json
+data/private/
