@@ -147,13 +147,67 @@ def position_report(p: dict, chain_id: int) -> dict:
         "performance": p.get("performance"), "fee_apr_now": now_apr, "pool_tvl": tvl_now,
         "pool_fee_7d_day": fee7, "share_of_active_liquidity": L_pos / (L_act + L_pos) * 100,
         "sigma_90d": sigma, "scenarios": scen, "alternatives": alts, "value_with_fees": v_new, "value": value,
+        "L_pos": L_pos, "fees_pending_amounts": [sum(tok_amount(x) for x in p["tradingFee"]["pending"]
+                                                     if x["token"]["symbol"] == s) for s in (t0["symbol"], t1["symbol"])],
     }
+
+
+STABLE_SYMS = {"USDC", "USDT", "USD₮0", "USDT0", "DAI", "USDC.E", "USDBC"}
+
+
+def wallet_value_at(out: dict, P: float, extra_eth: float = 0.0) -> float:
+    """Стоимость кошелька при цене ETH = P: нативный ETH, ETH/стейбл-позиции по формулам CL,
+    несобранные комиссии; прочие токены — по текущей цене."""
+    w = out["wallet_overview"]
+    v = (sum(x or 0 for x in w["native_eth"].values()) + extra_eth) * P
+    v += sum(t["value"] or 0 for t in w["tokens"])
+    for r in out["positions"]:
+        s0, s1 = r["symbols"]
+        if s0 in ("WETH", "ETH") and s1.upper() in STABLE_SYMS:
+            a0, a1 = amounts_for_L(r["L_pos"], P, *r["range"])
+            f0, f1 = r["fees_pending_amounts"]
+            v += (a0 + f0) * P + a1 + f1
+        else:
+            v += r["value_with_fees"]
+    return v
+
+
+def breakeven_price(out: dict, invested: float, extra_eth: float = 0.0) -> float | None:
+    lo, hi = 1.0, 1e6
+    if wallet_value_at(out, hi, extra_eth) < invested:
+        return None
+    for _ in range(100):
+        mid = (lo + hi) / 2
+        if wallet_value_at(out, mid, extra_eth) < invested:
+            lo = mid
+        else:
+            hi = mid
+    return hi
+
+
+def plan_projection(out: dict, invested: float, stake_apr: float) -> dict:
+    """План «нативный ETH в стейкинг + комиссии LP в ETH»: сколько ETH добавится за год
+    при текущей цене и доходности, и как сдвинется цена безубыточности."""
+    w = out["wallet_overview"]
+    P = w["eth_price"]
+    native = sum(x or 0 for x in w["native_eth"].values())
+    staking_eth = native * stake_apr / 100
+    fee_usd = sum(r["lp_value"] * (r["fee_apr_now"]["fee_apr_7d"] + r["fee_apr_now"]["fee_apr_30d"]) / 2 / 100
+                  for r in out["positions"] if r["in_range"])
+    fees_eth = fee_usd / P
+    now_value = wallet_value_at(out, P)
+    return {"value_now": now_value, "invested": invested, "pnl_now": now_value - invested,
+            "breakeven_eth_now": breakeven_price(out, invested),
+            "eth_per_year_staking": staking_eth, "eth_per_year_fees": fees_eth, "fee_usd_per_year": fee_usd,
+            "breakeven_eth_after_1y": breakeven_price(out, invested, staking_eth + fees_eth)}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--wallet", required=True)
     ap.add_argument("--chain", type=int, default=42161)
+    ap.add_argument("--invested", type=float, help="сколько всего вложено в кошелёк, $ — для расчёта безубыточности")
+    ap.add_argument("--stake-apr", type=float, default=2.2, help="доходность стейкинга ETH, %% годовых (Lido)")
     a = ap.parse_args()
     H = krystal_headers()
     lst = get_json(f"{KRYSTAL_BASE}/v1/positions", headers=H, cache_ttl=600,
@@ -165,6 +219,8 @@ def main():
         det = get_json(f"{KRYSTAL_BASE}/v1/positions/{a.chain}/{p['id']}", headers=H, cache_ttl=600,
                        params={"wallet": a.wallet})
         out["positions"].append(position_report(det, a.chain))
+    if a.invested:
+        out["plan"] = plan_projection(out, a.invested, a.stake_apr)
     PRIVATE.mkdir(parents=True, exist_ok=True)
     save(PRIVATE / f"positions_{a.wallet.lower()[:10]}.json", out)
     for r in out["positions"]:
@@ -190,6 +246,12 @@ def main():
     for t in w["tokens"]:
         print(f"  {t['chain']:10s} {t['symbol']:8s} {t['amount']:,.4f} ≈ ${t['value'] or 0:,.2f}")
     print(f"  спам-токенов скрыто: {w['spam_tokens']}")
+    if out.get("plan"):
+        pl = out["plan"]
+        print(f"\n=== безубыточность: стоимость ${pl['value_now']:,.0f} при вложенных ${pl['invested']:,.0f} "
+              f"({pl['pnl_now']:+,.0f}); портфель выходит в ноль при ETH ≈ ${pl['breakeven_eth_now']:,.0f}")
+        print(f"  план на год: стейкинг +{pl['eth_per_year_staking']:.3f} ETH, комиссии LP ≈ ${pl['fee_usd_per_year']:,.0f}"
+              f" (+{pl['eth_per_year_fees']:.3f} ETH) → цена безубыточности через год ≈ ${pl['breakeven_eth_after_1y']:,.0f}")
 
 
 if __name__ == "__main__":
