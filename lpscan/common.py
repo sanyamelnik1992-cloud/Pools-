@@ -34,7 +34,7 @@ STABLES = {
     "USDC", "USDC.E", "USDBC", "USDT", "USD₮0", "USDT0", "DAI", "USDS", "FRAX", "LUSD",
     "GHO", "USDE", "SUSDE", "EURC", "USDB", "AXLUSDC", "PYUSD", "CRVUSD", "USDZ",
     "USD+", "OUSD", "RLUSD", "FDUSD", "TUSD", "DOLA", "MIM", "USDA", "SUSDS", "USDM",
-    "EUSD", "BOLD", "MSUSD", "USR", "AUSD", "USDF", "FRXUSD", "SCUSD",
+    "EUSD", "BOLD", "MSUSD", "USR", "AUSD", "USDF", "FRXUSD", "SCUSD", "USDG", "USD1",
 }
 EUR_STABLES = {"EURC", "EURA", "EURE"}
 ETH_LIKE = {
@@ -43,7 +43,7 @@ ETH_LIKE = {
     "SUPEROETH", "WSUPEROETHB", "AGETH", "PZETH", "OSETH", "TETH", "YETH",
 }
 BTC_LIKE = {"WBTC", "CBBTC", "TBTC", "LBTC", "SOLVBTC", "BTC", "UBTC", "FBTC",
-            "EBTC", "UNIBTC", "SOLVBTC.BBN", "CBBTC.E", "BTC.B"}
+            "EBTC", "UNIBTC", "SOLVBTC.BBN", "CBBTC.E", "BTC.B", "BTCB"}
 # Крупные ликвидные альты (не мемы): риск выше ETH/BTC, но токены «настоящие».
 MAJORS = {"ARB", "AERO", "GMX", "LINK", "UNI", "PENDLE", "VIRTUAL", "OP", "CRV", "AAVE",
           "ZRO", "CAKE", "SUSHI", "GRAIL", "MORPHO", "COMP", "LDO", "WLD", "SOL", "ZORA",
