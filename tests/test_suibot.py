@@ -98,7 +98,8 @@ def test_sui_count_and_simulation():
     r = simulate(s, pc, [0.0, 300.0, 600.0], [1.2, 1.2, 1.2], [0.0, 0.0, 0.0], NOCOST, 10)
     assert math.isclose(r["value_sui"], 1000) and math.isclose(r["vs_hold_sui_count"], 0, abs_tol=1e-9)
     # цена ушла вверх за диапазон: позиция в USDC, SUI-эквивалент меньше стартового; с доходом — больше, чем без него
-    up = simulate(s, pc, [0.0, 300.0], [1.2, 1.5], [0.0, 0.0], NOCOST, 10)
+    passive = Strategy("t", "p", 1000, 0.05, 0.05, rebalance="none")
+    up = simulate(passive, pc, [0.0, 300.0], [1.2, 1.5], [0.0, 0.0], NOCOST, 10)
     assert up["value_sui"] < 1000 and up["sui_share"] < 1e-6
     fee = simulate(s, pc, [0.0, 300.0, 600.0], [1.2, 1.2, 1.2], [0.0, 1e-4, 1e-4], NOCOST, 10)
     assert fee["value_sui"] > 1000 and fee["fees_usd"] > 0
