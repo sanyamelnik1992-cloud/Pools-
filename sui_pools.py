@@ -16,12 +16,18 @@ fr — доход единицы ликвидности за год в % от с
 Бэктест: позиция ±w на $10k открывается в начале каждого из трёх 30-дневных окон; комиссии и награды
 начисляются по фактическому дневному доходу единицы ликвидности, пока цена в диапазоне.
 
+Режим --narrow: узкие диапазоны на часовых ценах (GeckoTerminal) для самого глубокого пула — позиция из SUI
+(половина меняется на USDC) с пересборкой вокруг текущей цены при выходе из диапазона и без неё, против
+холда SUI и холда 50/50; каждое 30-дневное окно начинается заново.
+
 Запуск:  python3 sui_pools.py [--days 90]
-Результат: data/processed/sui_pools.json
+         python3 sui_pools.py --narrow [--days 150] [--usd 4000]
+Результат: data/processed/sui_pools.json, data/processed/sui_narrow.json
 """
 from __future__ import annotations
 
 import argparse
+import bisect
 import math
 import statistics as st
 import time
@@ -30,6 +36,7 @@ from datetime import datetime
 import requests
 
 from lpscan.common import PROC, get_json, save
+from lpscan.metrics import amounts_for_L, value_per_L
 
 GQL = "https://graphql.mainnet.sui.io/graphql"   # история объектов; публичный JSON-RPC Mysten отключён
 GECKO = "https://api.geckoterminal.com/api/v2/networks/sui-network"
@@ -59,6 +66,10 @@ POOLS = {
     "Momentum SUI/USDC 0.175%": ("0x455cf8d2ac91e7cb883f515874af750ed3cd18195c970b7a2d46235ac2b0c388", "momentum", True),
 }
 WIDTHS = (0.1, 0.2, 0.3, 0.5, None)   # None — полный диапазон
+NARROW_POOL = "Cetus USDC/SUI 0.25%"   # самый глубокий пул SUI/USDC
+NARROW_WIDTHS = (0.02, 0.05, 0.1, 0.2, 0.3)
+SWAP_COST = 0.001   # комиссия лучшего маршрута и проскальзывание на обмениваемую сумму при пересборке
+GAS_USD = 0.02      # транзакция в Sui стоит доли цента — берём с запасом
 
 
 def log(*a):
@@ -223,29 +234,136 @@ def current_reward_apr(p: dict, prices: dict) -> tuple[float, list]:
     return total, info
 
 
+def pool_history(oid: str, dex: str, a_is_sui: bool, cps: list[tuple[int, float]]) -> tuple[list[dict], dict]:
+    """Состояние пула на каждый чекпоинт и доход единицы ликвидности за следующие сутки: y_fee и y_rew —
+    доля стоимости полнодиапазонной позиции (комиссии уже без доли протокола, награды по ценам дня)."""
+    raw = pool_states(oid, [n for n, _ in cps])
+    pts = [dict(parse(js, dex, a_is_sui), t=t) for js, (_, t) in zip(raw, cps) if js]
+    prices = reward_prices({k for p in pts for k in p["rew"]}, pts[0]["t"])
+    for p, q in zip(pts, pts[1:]):
+        fee = ((q["fa"] - p["fa"]) % U128 * q["ua"] + (q["fb"] - p["fb"]) % U128 * q["ub"]) / Q64
+        rew = 0.0
+        for t, g in q["rew"].items():
+            dg = (g - p["rew"].get(t, g)) % U128
+            if not dg:
+                continue
+            px, dec = (q["sui"], 9) if t == SUI else (price_at(prices.get(t), q["t"]), (prices.get(t) or {}).get("dec", 9))
+            rew += dg / Q64 * (px or 0) / 10 ** dec
+        v_full = 1 / q["sq"] * q["ua"] + q["sq"] * q["ub"]   # $ полного диапазона на единицу ликвидности
+        p["y_fee"], p["y_rew"] = fee / v_full, rew / v_full
+    return pts, prices
+
+
+def gecko_hourly(oid: str, a_is_sui: bool, since: float) -> list[tuple[float, float, float]]:
+    """Часовые свечи пула (GeckoTerminal) с since: начало часа, цена SUI на закрытии, объём.
+    Часы без сделок дописываются с прежней ценой и нулевым объёмом."""
+    rows, before = {}, None
+    while True:
+        params = {"aggregate": 1, "limit": 1000, "currency": "usd", "token": "base" if a_is_sui else "quote"}
+        if before:
+            params["before_timestamp"] = before
+        lst = []
+        for a in range(6):
+            try:
+                r = requests.get(f"{GECKO}/pools/{oid}/ohlcv/hour", params=params, timeout=60)
+                if r.status_code == 200:
+                    lst = r.json()["data"]["attributes"]["ohlcv_list"]
+                    break
+            except (requests.RequestException, ValueError, KeyError):
+                pass
+            time.sleep(10 * (a + 1))
+        time.sleep(2.5)
+        rows.update({x[0]: (x[4], x[5]) for x in lst})
+        if not lst or min(x[0] for x in lst) <= since:
+            break
+        before = min(x[0] for x in lst)
+    ts_ = sorted(t for t in rows if t >= since - 3600)
+    out, last = [], rows[ts_[0]][0]
+    for t in range(ts_[0], ts_[-1] + 1, 3600):
+        c, v = rows.get(t, (last, 0.0))
+        out.append((t, c, v))
+        last = c
+    return out
+
+
+def backtest_hourly(hours: list[tuple], days: list[dict], w: float | None, rebalance: bool, usd: float) -> dict:
+    """Позиция ±w из SUI на usd (половина меняется на USDC) на часовых ценах. Доход — фактический дневной доход
+    единицы ликвидности, разнесённый по часам пропорционально объёму, пока цена в диапазоне. rebalance — как только
+    цена закрытия часа вышла из диапазона, позиция пересобирается вокруг текущей цены (своп до 50/50 с издержками)."""
+    day_t = [d["t"] for d in days]
+    idx = [bisect.bisect_right(day_t, t) - 1 for t, _, _ in hours]
+    vol_day: dict[int, float] = {}
+    for i, (_, _, v) in zip(idx, hours):
+        vol_day[i] = vol_day.get(i, 0.0) + v
+
+    def open_at(V, P):
+        pa, pb = (P / (1 + w), P * (1 + w)) if w else (P * 1e-6, P * 1e6)
+        return V / value_per_L(P, pa, pb), pa, pb
+
+    P0 = prev = hours[0][1]
+    cost = usd / 2 * SWAP_COST + GAS_USD
+    L, pa, pb = open_at(usd - cost, P0)
+    inc = inr = 0.0
+    n_reb = 0
+    for (_, P, v), i in zip(hours[1:], idx[1:]):
+        if 0 <= i < len(days) - 1:
+            d = days[i]
+            share = v / vol_day[i] if vol_day[i] else 1 / 24
+            k = ((pa <= prev <= pb) + (pa <= P <= pb)) / 2
+            inc += k * (d["y_fee"] + d["y_rew"]) * share * 2 * L * math.sqrt(math.sqrt(prev * P))
+            inr += k
+        if rebalance and not pa <= P <= pb:
+            x, y = amounts_for_L(L, P, pa, pb)
+            V = x * P + y
+            c = abs(x * P - V / 2) * SWAP_COST + GAS_USD
+            cost += c
+            L, pa, pb = open_at(V - c, P)
+            n_reb += 1
+        prev = P
+    x, y = amounts_for_L(L, prev, pa, pb)
+    end = x * prev + y + inc
+    return {"income": inc, "costs": cost, "rebalances": n_reb, "in_range_pct": inr / (len(hours) - 1) * 100,
+            "end_value": end, "sui_share_end": x * prev / (x * prev + y) * 100,
+            "vs_sui": end - usd * prev / P0, "vs_hold50": end - usd / 2 * (1 + prev / P0)}
+
+
+def narrow(days: int, usd: float):
+    """Узкие диапазоны с пересборкой и без неё на часовых ценах; окна по 30 дней и весь период целиком."""
+    oid, dex, a_is_sui = POOLS[NARROW_POOL]
+    cps = daily_checkpoints(days)
+    pts, _ = pool_history(oid, dex, a_is_sui, cps)
+    hours = [h for h in gecko_hourly(oid, a_is_sui, pts[0]["t"]) if pts[0]["t"] <= h[0] <= pts[-1]["t"]]
+    log(f"{NARROW_POOL}: {len(pts)} дней истории пула, {len(hours)} часовых свечей")
+    spans = [(pts[i * 30]["t"], pts[(i + 1) * 30]["t"]) for i in range((len(pts) - 1) // 30)] + [(pts[0]["t"], pts[-1]["t"])]
+    out = {"generated_at": int(time.time()), "pool": NARROW_POOL, "usd": usd, "swap_cost": SWAP_COST, "periods": []}
+    for a, b in spans:
+        hs = [h for h in hours if a <= h[0] <= b]
+        per = {"start": a, "end": b, "sui_change": hs[-1][1] / hs[0][1] - 1, "results": {}}
+        for w in NARROW_WIDTHS + (None,):
+            for reb in ((False, True) if w else (False,)):
+                per["results"][f"{'±%g%%' % (w * 100) if w else 'полный'}{' пересборка' if reb else ''}"] = \
+                    backtest_hourly(hs, pts, w, reb, usd)
+        out["periods"].append(per)
+        log(f"{datetime.utcfromtimestamp(a):%d.%m}–{datetime.utcfromtimestamp(b):%d.%m} SUI {per['sui_change']:+.0%}: " +
+            " | ".join(f"{k} {r['vs_sui']:+.0f}$ (доход {r['income']:.0f}$, пересборок {r['rebalances']})"
+                       for k, r in per["results"].items() if k.endswith("пересборка") or k == "полный"))
+    save(PROC / "sui_narrow.json", out)
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--days", type=int, default=90, help="глубина истории, кратна 30")
+    ap.add_argument("--days", type=int, default=None, help="глубина истории, кратна 30 (90, для --narrow 150)")
+    ap.add_argument("--narrow", action="store_true", help="узкие диапазоны с пересборкой на часовых ценах")
+    ap.add_argument("--usd", type=float, default=4000, help="размер позиции для --narrow")
     a = ap.parse_args()
-    days = a.days // 30 * 30
+    days = (a.days or (150 if a.narrow else 90)) // 30 * 30
+    if a.narrow:
+        return narrow(days, a.usd)
     cps = daily_checkpoints(days)
     log(f"чекпоинты: {len(cps)} с {datetime.utcfromtimestamp(cps[0][1]):%Y-%m-%d %H:%M} UTC")
     out = {"generated_at": int(time.time()), "days": days, "pools": {}}
     for name, (oid, dex, a_is_sui) in POOLS.items():
-        raw = pool_states(oid, [n for n, _ in cps])
-        pts = [dict(parse(js, dex, a_is_sui), t=t) for js, (_, t) in zip(raw, cps) if js]
-        prices = reward_prices({k for p in pts for k in p["rew"]}, pts[0]["t"])
-        for p, q in zip(pts, pts[1:]):   # доход единицы ликвидности за сутки, $ и доля полного диапазона
-            fee = ((q["fa"] - p["fa"]) % U128 * q["ua"] + (q["fb"] - p["fb"]) % U128 * q["ub"]) / Q64
-            rew = 0.0
-            for t, g in q["rew"].items():
-                dg = (g - p["rew"].get(t, g)) % U128
-                if not dg:
-                    continue
-                px, dec = (q["sui"], 9) if t == SUI else (price_at(prices.get(t), q["t"]), (prices.get(t) or {}).get("dec", 9))
-                rew += dg / Q64 * (px or 0) / 10 ** dec
-            v_full = 1 / q["sq"] * q["ua"] + q["sq"] * q["ub"]   # $ полного диапазона на единицу ликвидности
-            p["y_fee"], p["y_rew"] = fee / v_full, rew / v_full
+        pts, prices = pool_history(oid, dex, a_is_sui, cps)
         rets = [math.log(q["sui"] / p["sui"]) for p, q in zip(pts, pts[1:])]
         sigma = st.pstdev(rets) * math.sqrt(365)
         lvr = sigma ** 2 / 8 * 100
