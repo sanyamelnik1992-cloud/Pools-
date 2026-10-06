@@ -3,11 +3,11 @@
 //
 //   node cli.mjs status --pool <id> [--position <id>]              кошелёк, цена пула, позиции кошелька в пуле
 //                                                                 (и есть ли ещё у кошелька позиция <id>)
-//   node cli.mjs open   --pool <id> --tick-lower N --tick-upper N --amount-a X --amount-b Y [--band 0.0015]
+//   node cli.mjs open   --pool <id> --tick-lower N --tick-upper N --amount-a X --amount-b Y [--band 0.001]
 //                                                                 открыть позицию; X и Y — потолки в минимальных
 //                                                                 единицах: больше них не возьмётся, даже если цена
 //                                                                 сдвинется в пределах ±band до исполнения
-//   node cli.mjs close  --pool <id> --position <id> [--band 0.0015]
+//   node cli.mjs close  --pool <id> --position <id> [--band 0.001]
 //                                                                 снять всю ликвидность, комиссии и награды, закрыть
 //   node cli.mjs swap   --from <тип монеты> --to <тип> --amount X [--slippage 0.005]
 //                                                                 обмен через агрегатор Cetus (лучший маршрут по Sui)
@@ -48,8 +48,9 @@ function keypair() {
 }
 
 const json = (o) => JSON.stringify(o, (k, v) => (typeof v === 'bigint' ? v.toString() : BN.isBN(v) ? v.toString() : v))
+let sending = false     // true — транзакция ушла в сеть (её судьба неизвестна, пока нет ответа)
 const fail = (msg) => {
-  console.log(json({ ok: false, error: String(msg) }))
+  console.log(json({ ok: false, error: String(msg), sent: sending }))
   process.exit(1)
 }
 
@@ -60,30 +61,34 @@ const simulate = Boolean(a.simulate) || !kp
 const address = kp ? kp.getPublicKey().toSuiAddress() : a.address || process.env.SUI_ADDRESS
 if (!address) fail('нужен SUI_PRIVATE_KEY или адрес для симуляции (--address / SUI_ADDRESS)')
 const slippage = Number(a.slippage ?? 0.005)
-const band = Number(a.band ?? 0.0015)      // насколько цена может сдвинуться между расчётом и исполнением
+const band = Number(a.band ?? 0.001)      // насколько цена может сдвинуться между расчётом и исполнением
 const same = (x, y) => String(x).toLowerCase() === String(y).toLowerCase()
 
 const sdk = CetusClmmSDK.createSDK(process.env.SUI_RPC ? { env: 'mainnet', full_rpc_url: process.env.SUI_RPC } : { env: 'mainnet' })
 sdk.setSenderAddress(address)
 
-async function run(tx) {
-  // симуляция или подпись и отправка; возвращает статус, изменения балансов этого кошелька и созданные позиции
+async function run(tx, types) {
+  // симуляция или подпись и отправка; возвращает статус, изменения балансов этого кошелька и созданные позиции.
+  // Симуляция также сообщает балансы кошелька перед отправкой — по ним бот разберётся, если ответ потеряется.
   const include = { effects: true, balanceChanges: true, objectTypes: true }
   tx.setSender(address)
-  let r
-  if (simulate) r = await sdk.FullClient.simulateTransaction({ transaction: tx, include })
-  else {
+  let r, wallet
+  if (simulate) {
+    r = await sdk.FullClient.simulateTransaction({ transaction: tx, include })
+    wallet = await balances([SUI, ...types])
+  } else {
+    sending = true
     r = await sdk.FullClient.signAndExecuteTransaction({ transaction: tx, signer: kp, include })
     const d = (r?.Transaction ?? r?.FailedTransaction)?.digest
     if (d) await sdk.FullClient.waitForTransaction({ digest: d }).catch(() => null)
   }
   const t = r?.Transaction ?? r?.FailedTransaction ?? {}
-  const types = t.objectTypes ?? {}
+  const types_ = t.objectTypes ?? {}
   const created = (t.effects?.changedObjects ?? [])
-    .filter((c) => c.idOperation === 'Created' && /::position::Position$/.test(types[c.objectId] ?? ''))
+    .filter((c) => c.idOperation === 'Created' && /::position::Position$/.test(types_[c.objectId] ?? ''))
     .map((c) => c.objectId)
-  return { simulated: simulate, ok: r?.$kind === 'Transaction' && t.effects?.status?.success !== false,
-           digest: t.digest, status: t.effects?.status, gas: t.effects?.gasUsed,
+  return { simulated: simulate, sent: !simulate, ok: r?.$kind === 'Transaction' && t.effects?.status?.success !== false,
+           digest: t.digest, status: t.effects?.status, gas: t.effects?.gasUsed, wallet,
            balance_changes: (t.balanceChanges ?? []).filter((c) => !c.address || same(c.address, address)),
            created_positions: created }
 }
@@ -169,7 +174,7 @@ async function open() {
     tick_lower: String(lower), tick_upper: String(upper), fix_amount_a: fix_a, amount_a, amount_b,
     slippage: 0, is_open: true, pos_id: '', rewarder_coin_types: [], collect_fee: false,
   })
-  const res = await run(tx)
+  const res = await run(tx, [pool.coin_type_a, pool.coin_type_b])
   let position = null
   if (res.created_positions.length === 1) {
     // позиция — из эффектов самой транзакции; ликвидность — с объекта (если узел ещё не успел — оценка)
@@ -201,7 +206,7 @@ async function close() {
     min_amount_a: min('coin_amount_a').toString(), min_amount_b: min('coin_amount_b').toString(),
     rewarder_coin_types: pool.rewarder_infos.map((r) => r.coin_type), collect_fee: true,
   })
-  return { ...(await run(tx)), expected_a: at[0].coin_amount_a?.toString(), expected_b: at[0].coin_amount_b?.toString() }
+  return { ...(await run(tx, [pool.coin_type_a, pool.coin_type_b])), expected_a: at[0].coin_amount_a?.toString(), expected_b: at[0].coin_amount_b?.toString() }
 }
 
 async function swap() {
@@ -210,7 +215,7 @@ async function swap() {
   if (!route || route.insufficientLiquidity) fail('агрегатор не нашёл маршрут')
   const tx = new Transaction()
   await agg.fastRouterSwap({ router: route, txb: tx, slippage })
-  return { ...(await run(tx)), amount_in: route.amountIn.toString(), amount_out: route.amountOut.toString() }
+  return { ...(await run(tx, [a.from, a.to])), amount_in: route.amountIn.toString(), amount_out: route.amountOut.toString() }
 }
 
 try {

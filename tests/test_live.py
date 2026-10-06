@@ -38,6 +38,9 @@ class FakeChain:
         self.calls = []
         self.lose = set()
         self.fail = set()
+        self.abort = set()        # транзакция исполнилась с ошибкой: списан только газ
+        self.hide = 0             # столько опросов новые позиции не видны в списке (отстающий узел)
+        self.read_down = False    # чтение кошелька недоступно
 
     def changes(self, sui=0.0, usdc=0.0):
         return [{"coinType": SUI_LONG, "address": ADDR, "amount": str(int(sui))},
@@ -63,9 +66,13 @@ class FakeChain:
         self.calls.append((cmd, simulate))
         st = self.st
         if cmd == "status":
+            if self.read_down:
+                raise live.ExecError("fetch failed")
+            listed = {k: v for k, v in self.pos.items() if not (self.hide and k == f"pos{self.n}")}
+            self.hide = max(0, self.hide - 1)
             out = {"ok": True, "address": ADDR,
                    "positions": [{"id": k, "liquidity": str(L), "tick_lower": tl, "tick_upper": th}
-                                 for k, (L, tl, th) in self.pos.items()],
+                                 for k, (L, tl, th) in listed.items()],
                    "balances": {SUI_LONG: str(int(self.w["sui"])), USDC: str(int(self.w["usdc"]))}}
             if "--position" in kv:
                 pid = kv["--position"]
@@ -79,7 +86,12 @@ class FakeChain:
         if cmd == "close" and kv["--position"] not in self.pos:
             raise live.ExecError("Object not found")
         if simulate:
-            return {"ok": True, "simulated": True}
+            return {"ok": True, "simulated": True,
+                    "wallet": {SUI_LONG: str(int(self.w["sui"])), USDC: str(int(self.w["usdc"]))}}
+        if cmd in self.abort:
+            self.w["sui"] -= GAS
+            raise live.ExecError("MoveAbort", {"ok": False, "sent": True, "digest": "d", "status": {"success": False},
+                                               "balance_changes": self.changes(-GAS, 0)})
         if cmd == "swap":
             amt = float(kv["--amount"])
             if kv["--from"] == USDC:
@@ -276,7 +288,9 @@ def test_position_closed_by_hand():
         chain.w["sui"] += b
         h.tick(1.20)
         bot = h.bot
-        assert bot.paused and bot.pos_id is None and not chain.pos         # бот не открывает сам — пауза
+        assert not bot.paused and bot.pos_id == "pos1"                     # один ответ узла — ещё не повод
+        h.tick(1.20)
+        assert bot.paused and bot.pos_id is None and not chain.pos         # подтвердилось: бот не открывает сам — пауза
         h.cmd("resume")
         h.tick(1.20)
         assert not bot.paused and len(chain.pos) == 1
@@ -395,6 +409,128 @@ def test_watch_rules_changed():
     assert len(w.dq) == 1 and not w.dq[0] and w.q[0]                   # добавили правило — наблюдение с нуля
     w = RallyWatch([[72, 0.15], [24, 0.1]], {"rise": [[[0, 1.0]]]})
     assert len(w.q) == 2 and not w.q[0]
+
+
+def test_pause_after_errors_is_quiet():
+    """После паузы из-за ошибок бот больше ничего не отправляет и не шлёт сообщений, пока не будет /resume."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        chain.abort.add("swap")                                            # обмен проходит симуляцию, но падает в сети
+        h.cmd("usdc")
+        for _ in range(5):
+            h.tick(1.20, dt=1800)
+        assert h.bot.paused and h.bot.errors == 4
+        calls, sent = len(chain.calls), len(h.sent)
+        for _ in range(10):
+            h.tick(1.20, dt=30)
+        assert len(chain.calls) == calls and len(h.sent) == sent
+
+
+def test_read_errors_do_not_pause():
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        chain.read_down = True
+        n = len(h.sent)
+        for _ in range(10):
+            h.tick(1.20, dt=1800)
+        assert not h.bot.paused and len(h.sent) == n + 1                   # одно сообщение «нет связи», без паузы
+        chain.read_down = False
+        h.tick(1.20, dt=1800)
+        assert h.bot.errors == 0 and len(chain.pos) == 1
+
+
+def test_resume_after_failed_manual_keeps_pause():
+    """/usdc сорвался, пользователь нажал /resume: бот доводит /usdc до конца и остаётся на паузе, а не идёт в пул."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        chain.fail.add("swap")
+        h.cmd("usdc")
+        h.tick(1.20)
+        chain.fail.clear()
+        h.cmd("resume")
+        h.tick(1.20)
+        b = h.bot.book
+        assert h.bot.paused and b.mode == "hold" and not chain.pos and b.idle_b < 0.1e9
+
+
+def test_lost_response_on_resume_does_not_exit_again():
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        h.tick(1.42)                                                       # выход в SUI
+        chain.lose.add("open")
+        h.tick(1.25)                                                       # возврат в пул, ответ потерян
+        h.tick(1.25)
+        b = h.bot.book
+        assert b.mode == "lp" and len(b.exits) == 1 and len(b.resumes) == 1 and len(chain.pos) == 1
+
+
+def test_failed_open_on_resume_no_swap_pingpong():
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        h.tick(1.42)
+        swaps = sum(1 for c, sim in chain.calls if c == "swap" and not sim)
+        chain.fail.add("open")
+        for _ in range(3):
+            h.tick(1.25)
+        assert sum(1 for c, sim in chain.calls if c == "swap" and not sim) - swaps <= 1   # один обмен к доле, не туда-обратно
+        chain.fail.clear()
+        h.tick(1.25)
+        b = h.bot.book
+        assert b.mode == "lp" and len(chain.pos) == 1 and len(b.exits) == 1
+
+
+def test_lost_swap_does_not_take_user_coins():
+    """Ответ на обмен при выходе в SUI потерян, а в кошельке $1000 USDC пользователя: бот их не трогает."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=1000)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        usdc_before = chain.w["usdc"]
+        chain.lose.add("swap")
+        h.tick(1.42)
+        st = h.tick(1.42)
+        b = h.bot.book
+        assert b.mode == "sui" and b.idle_a < 1e6                          # у бота почти нет USDC
+        assert chain.w["usdc"] > usdc_before - 1e6 and abs(bot_value(b, st) - 200) < 10   # USDC пользователя на месте
+
+
+def test_position_hidden_by_lagging_node():
+    """Открытие прошло, ответ потерян, а список позиций узла отстаёт: бот ждёт, а не открывает вторую."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=500, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        h.tick(1.28)
+        chain.lose.add("open")
+        chain.hide = 2
+        for _ in range(4):
+            h.tick(1.28, dt=4 * 3600)
+        assert len(chain.pos) == 1 and h.bot.pos_id in chain.pos and not h.bot.foreign
+
+
+def test_unsent_close_keeps_fee_estimate_once():
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=500, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        b = h.bot.book
+        b.fees_a += 5e6                                                    # оценка комиссий $5
+        st = h.tick(1.20)
+        before = bot_value(b, st)
+        h.bot.pending = {"op": "close", "id": h.bot.pos_id}                # отправка не случилась
+        h.bot.need_sync = True
+        st = h.tick(1.20)
+        assert bot_value(b, st) <= before + 0.5
 
 
 if __name__ == "__main__":

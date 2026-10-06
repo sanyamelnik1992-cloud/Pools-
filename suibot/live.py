@@ -56,7 +56,13 @@ MANUAL = {"sui": "вручную: всё в SUI", "usdc": "вручную: вс�
 
 
 class ExecError(RuntimeError):
-    pass
+    def __init__(self, msg: str, out: dict | None = None):
+        super().__init__(msg)
+        self.out = out or {}      # ответ исполнителя: sent=false — до сети не дошло; digest — исполнилась с ошибкой
+
+
+class ReadError(ExecError):
+    """Не удалось прочитать кошелёк (сеть) — бот повторяет без паузы: денег это не касается."""
 
 
 def norm(t: str) -> str:
@@ -80,7 +86,7 @@ def executor(*args, simulate: bool, address: str | None = None) -> dict:
     if not out.get("ok"):
         status = out.get("status")
         raise ExecError(out.get("error") or (json.dumps(status, ensure_ascii=False) if status else "")
-                        or (r.stderr or "")[-600:] or "исполнитель не ответил")
+                        or (r.stderr or "")[-600:] or "исполнитель не ответил", out)
     return out
 
 
@@ -96,6 +102,10 @@ class Live:
         self.dir.mkdir(parents=True, exist_ok=True)
         self.dry = self.lc.dry_run
         self.path = self.dir / ("state_dry.json" if self.dry else "state_real.json")   # режимы не смешиваются
+        old = self.dir / "state.json"                  # прежняя версия хранила оба режима в одном файле
+        if not self.dry and old.exists() and not self.path.exists() and json.loads(old.read_text()).get("pos_id"):
+            raise SystemExit(f"найден {old} от прежней версии с реальной позицией: снимите её в Cetus (или прежней "
+                             "версией /close), затем удалите этот файл и запустите снова")
         st = json.loads(self.path.read_text()) if self.path.exists() else {}
         self.book = Book(**st["book"]) if st.get("book") else None
         self.pos_id = st.get("pos_id")
@@ -109,6 +119,7 @@ class Live:
         self.manual = st.get("manual")                 # ручная команда, которую надо довести до конца
         self.collected = st.get("collected", {})       # собранные награды (CETUS и т.п.), мин. единицы
         self.errors = st.get("errors", 0)
+        self.missing = st.get("missing", 0)            # сколько сверок подряд позиция бота не найдена
         self.retry_at = st.get("retry_at")
         self.last_sync = st.get("last_sync", 0.0)
         self.need_sync = not self.dry                  # после каждого запуска — сверка с кошельком
@@ -123,7 +134,7 @@ class Live:
             "book": asdict(self.book) if self.book else None, "pos_id": self.pos_id, "paused": self.paused,
             "prev": self.prev, "tg_offset": self.tg_offset, "last_report_day": self.last_report_day,
             "address": self.address, "foreign": sorted(self.foreign), "pending": self.pending, "manual": self.manual,
-            "collected": self.collected, "errors": self.errors, "retry_at": self.retry_at,
+            "collected": self.collected, "errors": self.errors, "missing": self.missing, "retry_at": self.retry_at,
             "last_sync": self.last_sync, "watch": self.watch.dump()}, ensure_ascii=False))
         tmp.replace(self.path)
 
@@ -157,15 +168,21 @@ class Live:
                 f"издержки ${r['costs_usd']:,.2f}, пересборок {r['rebalances']}, дней {r['days']:.1f}")
 
     # --- реальные транзакции -----------------------------------------------------------------------------
-    def ex(self, op: dict, *args) -> dict:
+    def ex(self, st, op: dict, *args) -> dict:
         """Реальная транзакция: симуляция, затем подпись и отправка. Пока ответа нет, в состоянии записано, что
-        отправлялось (pending) — если ответ потеряется, сверка с кошельком разберётся, что произошло."""
-        executor(*args, simulate=True)
-        self.pending = op
+        отправлялось и сколько было в кошельке перед отправкой (pending) — если ответ потеряется, сверка с
+        кошельком посчитает точную разницу. Снимается pending в apply_changes, когда изменения учтены."""
+        sim = executor(*args, simulate=True)
+        self.pending = {**op, "before": sim.get("wallet")}
         self.save()
-        res = executor(*args, simulate=False)
-        self.pending = None
-        return res
+        try:
+            return executor(*args, simulate=False)
+        except ExecError as e:
+            if e.out.get("sent") is False:                 # до сети не дошло — ничего не изменилось
+                self.pending = None
+            elif e.out.get("digest") and e.out.get("status"):   # исполнилась с ошибкой: списан только газ
+                self.apply_changes(e.out, st)
+            raise
 
     def apply_changes(self, res: dict, st, swap: bool = False):
         """Изменения балансов кошелька из транзакции → свои монеты бота вне позиции; награды — отдельно."""
@@ -188,13 +205,14 @@ class Live:
         gas_sui = (int(g.get("computationCost", 0)) + int(g.get("storageCost", 0))
                    - int(g.get("storageRebate", 0))) / 1e9
         b.costs_usd += -self.usd(da, db, st) if swap else gas_sui * st["sui"]   # обмен: потеря стоимости вместе с газом
+        self.pending = None
         self.save()
 
     def close_real(self, st):
         if not self.pos_id:
             return
         b = self.book
-        res = self.ex({"op": "close", "id": self.pos_id}, "close", "--pool", self.pc.object, "--position", self.pos_id,
+        res = self.ex(st, {"op": "close", "id": self.pos_id}, "close", "--pool", self.pc.object, "--position", self.pos_id,
                       "--band", self.lc.price_band)
         self.forget_position()
         self.apply_changes(res, st)                    # оценка комиссий и наград заменяется фактом
@@ -215,7 +233,7 @@ class Live:
         if amount <= 0:
             return
         frm, to = (self.type_a, self.type_b) if from_a else (self.type_b, self.type_a)
-        res = self.ex({"op": "swap"}, "swap", "--from", frm, "--to", to, "--amount", amount,
+        res = self.ex(st, {"op": "swap"}, "swap", "--from", frm, "--to", to, "--amount", amount,
                       "--slippage", self.lc.slippage)
         self.apply_changes(res, st, swap=True)
 
@@ -266,12 +284,12 @@ class Live:
         amt_b = int(max(b.idle_b - (0 if b.a_is_sui else gas), 0))
         if self.usd(amt_a, amt_b, st) < 1:
             raise ExecError("у бота нет монет для позиции")
-        res = self.ex({"op": "open", "tl": tl, "th": th}, "open", "--pool", self.pc.object, "--tick-lower", tl,
+        res = self.ex(st, {"op": "open", "tl": tl, "th": th}, "open", "--pool", self.pc.object, "--tick-lower", tl,
                       "--tick-upper", th, "--amount-a", amt_a, "--amount-b", amt_b, "--band", self.lc.price_band)
         pos = res.get("position") or {}
         if not pos.get("id"):
             # транзакция прошла, но позиция не опознана: монеты не списываем — сверка найдёт позицию по границам
-            self.pending = {"op": "open", "tl": tl, "th": th}
+            self.need_sync = True                     # pending остаётся: сверка найдёт позицию по границам
             self.save()
             raise ExecError("позиция открыта, но не опознана — бот сверится с кошельком")
         self.set_position(pos["id"], pos["liquidity"], tl, th)
@@ -279,7 +297,10 @@ class Live:
 
     def status(self) -> dict:
         args = ["status", "--pool", self.pc.object] + (["--position", self.pos_id] if self.pos_id else [])
-        return executor(*args, simulate=False)
+        try:
+            return executor(*args, simulate=False)
+        except (ExecError, subprocess.TimeoutExpired) as e:
+            raise ReadError(f"не удалось прочитать кошелёк: {e}") from None
 
     def available(self, w: dict) -> tuple[float, float]:
         """Монеты кошелька a и b за вычетом резерва на газ."""
@@ -288,23 +309,33 @@ class Live:
         usdc = bal.get(norm(USDC), 0)
         return (sui, usdc) if self.pc.a_is_sui else (usdc, sui)
 
+    def wallet(self, balances: dict) -> tuple[int, int]:
+        bal = {norm(k): int(v) for k, v in (balances or {}).items()}
+        return bal.get(norm(self.type_a), 0), bal.get(norm(self.type_b), 0)
+
     def sync(self, st):
         """Сверка с кошельком: есть ли позиция бота, не появилась ли новая, сколько монет на самом деле."""
         b = self.book
         w = self.status()
         self.address = w["address"]
         budget = self.usd(*b.holdings(st), st)          # стоимость бота до сверки — больше он не возьмёт
-        pend, self.pending = self.pending, None
-        uncertain = pend is not None
+        pend = self.pending
+        vanished = False
         if self.pos_id and not w.get("position_owned"):
             if not (pend and pend.get("op") == "close"):
+                self.missing += 1
+                if self.missing < 2:                        # один ответ узла может отставать — перепроверка
+                    self.need_sync = True
+                    raise ExecError(f"позиция {self.pos_id[:10]}… не найдена в кошельке — перепроверка")
                 self.paused = True
                 self.event(st["t"], "позиция закрыта не ботом", st["sui"],
                            f"позиции {self.pos_id[:10]}… больше нет в кошельке — бот на паузе; /resume — продолжить")
             self.forget_position()
-            uncertain = True
+            vanished = True
         elif self.pos_id and w.get("position"):
             b.L = float(w["position"]["liquidity"])
+        self.missing = 0
+        adopted = False
         known = self.foreign | ({self.pos_id} if self.pos_id else set())
         for p in w.get("positions", []):
             if p["id"] in known:
@@ -312,19 +343,31 @@ class Live:
             if (pend and pend.get("op") == "open" and not self.pos_id
                     and (int(p["tick_lower"]), int(p["tick_upper"])) == (pend["tl"], pend["th"])):
                 self.set_position(p["id"], p["liquidity"], pend["tl"], pend["th"])
+                adopted = True
                 self.event(st["t"], "позиция найдена", st["sui"], f"открытие прошло, позиция {p['id'][:10]}…")
             else:
                 self.foreign.add(p["id"])
                 notify.send(f"[{self.label}] в кошельке новая позиция {p['id'][:10]}… — бот её не трогает")
         avail_a, avail_b = self.available(w)
-        if uncertain:     # своё вне позиции — по кошельку, но не больше, чем было у бота
+        if pend and pend.get("before"):
+            # точная разница балансов с момента перед отправкой — результат потерянной транзакции
+            now_a, now_b = self.wallet(w["balances"])
+            was_a, was_b = self.wallet(pend["before"])
+            da, db = now_a - was_a, now_b - was_b
+            if pend["op"] == "open" and not adopted and not self.pos_id and self.usd(-da, -db, st) > 1:
+                self.need_sync = True                       # монеты ушли, а позиции ещё не видно — ждём узел
+                raise ExecError("открытие прошло, позиция ещё не видна в кошельке — перепроверка")
+            b.idle_a, b.idle_b = b.idle_a + da, b.idle_b + db
+        elif pend or vanished:
+            # разницы нет (позицию закрыли не через бота): своё — по кошельку, но не больше, чем было у бота
             pos = amounts(b.L, st["sq"], *b.sqrt_bounds()) if b.L else (0.0, 0.0)
-            free = budget - self.usd(*pos, st)
+            free = budget - self.usd(pos[0] + b.fees_a, pos[1] + b.fees_b, st)
             val = self.usd(avail_a, avail_b, st)
             k = min(1.0, max(0.0, free) / val) if val else 0.0
             b.idle_a, b.idle_b = avail_a * k, avail_b * k
-        else:             # бот не может иметь больше, чем есть в кошельке
-            b.idle_a, b.idle_b = min(b.idle_a, avail_a), min(b.idle_b, avail_b)
+        # бот не может иметь больше, чем есть в кошельке
+        b.idle_a, b.idle_b = min(max(b.idle_a, 0.0), avail_a), min(max(b.idle_b, 0.0), avail_b)
+        self.pending = None
         self.need_sync, self.last_sync = False, st["t"]
         self.save()
 
@@ -407,6 +450,8 @@ class Live:
             note = {"sui": f"бот в SUI после роста — вернётся в пул после отката на {self.s.resume_drop_pct or 0:.0%}",
                     "usdc": f"бот в USDC после падения — вернётся в пул после отскока на {self.s.resume_rise_pct or 0:.0%}",
                     }.get(mode, "позиция откроется, если её нет")
+            if self.manual:
+                note = f"сначала будет завершена команда /{self.manual}, после неё бот снова встанет на паузу"
             self.event(st["t"], "продолжение", st["sui"], f"по команде; {note}")
         elif not self.book:
             notify.send(f"[{self.label}] позиция ещё не открыта")
@@ -426,7 +471,7 @@ class Live:
             self.save()
             if what in ("sui", "usdc"):
                 self.to_coin(st, what)
-            self.manual = None
+            self.manual, self.paused = None, True         # пауза — даже если между сбоем и повтором был /resume
             self.event(st["t"], MANUAL[what], st["sui"], f"пауза до /resume; {self.report(st).splitlines()[1]}")
         elif b.mode in ("sui", "usdc") and not self.dry:
             if self.pos_id:
@@ -439,6 +484,14 @@ class Live:
         b, s, p, t = self.book, self.s, st["sui"], st["t"]
         old = list(b.range_usd)
         costs = self.cfg.costs
+        if kind == "resume":
+            # возврат в пул отмечается до открытия: если открытие сорвётся, бот откроет позицию заново,
+            # а не будет менять монеты туда-обратно и не выйдет снова по старому максимуму/минимуму
+            b.mode = "lp"
+            b.resumes.append(t)
+            self.watch.reset()
+            self.watch.add(t, p)
+            self.save()
         if kind in ("rebalance", "reopen", "resume"):
             if self.dry:
                 if kind == "rebalance":
@@ -451,10 +504,6 @@ class Live:
                 self.open_real(st, *s.target_range(p))
                 if kind == "rebalance":
                     b.rebalances.append(t)
-            if kind == "resume":
-                b.resumes.append(t)
-                self.watch.reset()
-                self.watch.add(t, p)
         elif kind in ("exit", "crash"):
             to = "sui" if kind == "exit" else "usdc"
             if self.dry:
@@ -472,13 +521,15 @@ class Live:
         self.event(t, name, p, f"{detail}; {self.report(st).splitlines()[1]}")
 
     def step(self, st):
-        if self.retry_at and st["t"] < self.retry_at:
+        if self.retry_at and st["t"] < self.retry_at and not self.manual:   # ручную команду не откладываем
             return
         if self.book is None:
             if not self.paused:
                 (self.start_dry if self.dry else self.start_real)(st)
                 self.watch.add(st["t"], st["sui"])
             self.errors, self.retry_at = 0, None
+            return
+        if self.paused and self.errors > len(RETRY_MINUTES):   # пауза после ошибок — ждём /resume
             return
         b = self.book
         if not self.dry and (self.need_sync or self.pending or st["t"] - self.last_sync > SYNC_MINUTES * 60):
@@ -500,9 +551,18 @@ class Live:
         self.errors, self.retry_at = 0, None
 
     def failed(self, st, e: Exception):
-        self.errors += 1
         self.need_sync = not self.dry
         text = str(e) or type(e).__name__
+        if isinstance(e, ReadError):                    # нет связи: повторять без паузы, сообщить один раз
+            self.errors = min(self.errors + 1, len(RETRY_MINUTES))
+            m = RETRY_MINUTES[self.errors - 1]
+            self.retry_at = st["t"] + m * 60
+            if self.errors == 1:
+                self.event(st["t"], "нет связи", st["sui"], f"{text} — повтор через {m} мин")
+            else:
+                log(f"{text} — повтор через {m} мин")
+            return
+        self.errors += 1
         if not isinstance(e, (ExecError, subprocess.TimeoutExpired)):
             log(traceback.format_exc())
         if self.errors <= len(RETRY_MINUTES):
@@ -537,7 +597,10 @@ class Live:
                     notify.send(self.report(st))
                 except Exception:  # noqa: BLE001
                     log(traceback.format_exc())
-            self.save()
+            try:
+                self.save()
+            except OSError as e:
+                log(f"не удалось сохранить состояние: {e}")
 
     def run(self, ticks: int | None = None):
         if not self.dry and not self.has_key:
@@ -548,6 +611,10 @@ class Live:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except OSError:
             raise SystemExit("бот уже запущен в другом окне — второй экземпляр не нужен") from None
+        ctl = self.dir / "control.txt"
+        if ctl.exists():                               # команды, отданные, пока бот не работал, не выполняются
+            log(f"пропущены старые команды: {' '.join(ctl.read_text().split())}")
+            ctl.unlink()
         log(f"боевой режим [{self.label}]: «{self.s.name}», до ${self.lc.max_capital_usd:,.0f}, опрос каждые "
             f"{self.cfg.poll_seconds} с; команды — Telegram или python3 bot.py control <команда>")
         n = 0

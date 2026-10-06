@@ -2,8 +2,11 @@
 from __future__ import annotations
 
 import os
+import time
 
 import requests
+
+STALE_SECONDS = 600       # команды старше 10 минут пропускаются
 
 
 def send(text: str):
@@ -36,6 +39,8 @@ def commands(offset: int | None) -> tuple[list[str], int | None]:
             text = (m.get("text") or "").strip()
             if str(m.get("chat", {}).get("id")) != str(chat) or str(m.get("from", {}).get("id")) != str(chat):
                 continue
+            if m.get("date") and time.time() - float(m["date"]) > STALE_SECONDS:
+                continue   # команда, отправленная, пока бот не работал, — не выполняется
             words = text[1:].split("@")[0].split() if text.startswith("/") else []
             if words:
                 out.append(words[0].lower())
