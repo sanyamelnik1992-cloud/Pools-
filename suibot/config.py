@@ -17,7 +17,8 @@ class LiveCfg:
     strategy: str
     max_capital_usd: float = 200.0      # бот использует не больше этой суммы из кошелька
     gas_reserve_sui: float = 1.0        # столько SUI всегда остаётся в кошельке на газ
-    slippage: float = 0.005
+    slippage: float = 0.005             # допустимое проскальзывание обмена через агрегатор
+    price_band: float = 0.0015          # на сколько цена может сдвинуться, пока открывается/закрывается позиция
     min_swap_usd: float = 1.0           # меньшие обмены не делаются
     dry_run: bool = True                # true — только симуляция, ничего не отправляется
     address: str | None = None          # адрес кошелька для симуляции без ключа

@@ -16,9 +16,11 @@ class RallyWatch:
         if isinstance(state, list):                       # старый формат: только очереди роста
             state = {"rise": state}
         state = state or {}
-        self.q = [deque(tuple(x) for x in qs) for qs in state["rise"]] if state.get("rise") else \
+        rise, drop = state.get("rise") or [], state.get("drop") or []
+        # очереди сохраняются по порядку правил; если правила поменяли — наблюдение начинается заново
+        self.q = [deque(tuple(x) for x in qs) for qs in rise] if len(rise) == len(self.rules) else \
             [deque() for _ in self.rules]
-        self.dq = [deque(tuple(x) for x in qs) for qs in state["drop"]] if state.get("drop") else \
+        self.dq = [deque(tuple(x) for x in qs) for qs in drop] if len(drop) == len(self.drop_rules) else \
             [deque() for _ in self.drop_rules]
         self.min_step = min_step          # не чаще раза в min_step секунд (бумажный режим опрашивает часто)
         self.last_t = max((q[-1][0] for q in self.q + self.dq if q), default=0.0)

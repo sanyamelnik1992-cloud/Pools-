@@ -18,7 +18,8 @@ def send(text: str):
 
 
 def commands(offset: int | None) -> tuple[list[str], int | None]:
-    """Новые команды из Telegram (сообщения, начинающиеся с «/») — только из своего чата TG_CHAT."""
+    """Новые команды из Telegram (сообщения, начинающиеся с «/») — только из личного чата TG_CHAT и только от его
+    владельца (в личном чате id чата совпадает с id пользователя)."""
     token, chat = os.environ.get("TG_TOKEN"), os.environ.get("TG_CHAT")
     if not token or not chat:
         return [], offset
@@ -28,10 +29,16 @@ def commands(offset: int | None) -> tuple[list[str], int | None]:
     except (requests.RequestException, ValueError):
         return [], offset
     out = []
-    for u in r.get("result", []):
-        offset = u["update_id"] + 1
-        m = u.get("message") or {}
-        text = (m.get("text") or "").strip()
-        if str(m.get("chat", {}).get("id")) == str(chat) and text.startswith("/"):
-            out.append(text[1:].split("@")[0].split()[0].lower())
+    for u in r.get("result") or []:
+        try:
+            offset = int(u["update_id"]) + 1
+            m = u.get("message") or {}
+            text = (m.get("text") or "").strip()
+            if str(m.get("chat", {}).get("id")) != str(chat) or str(m.get("from", {}).get("id")) != str(chat):
+                continue
+            words = text[1:].split("@")[0].split() if text.startswith("/") else []
+            if words:
+                out.append(words[0].lower())
+        except (KeyError, TypeError, ValueError, AttributeError):
+            continue   # странное сообщение не должно ронять бота
     return out, offset
