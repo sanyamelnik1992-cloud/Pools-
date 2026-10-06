@@ -22,10 +22,12 @@ import statistics as st
 import time
 
 from collect import active_liquidity
-from lpscan.common import (CHAINS, KRYSTAL_BASE, ROOT, get_json, krystal_headers, rpc_call, save)
+from lpscan.common import (CHAINS, ETH_LIKE, KRYSTAL_BASE, ROOT, get_json, krystal_headers, rpc_call, save)
 from lpscan.metrics import amounts_for_L, backtest_cl, human_L, slice_hist, value_per_L
 
 RPCS = {1: "https://ethereum-rpc.publicnode.com", 42161: CHAINS[42161]["rpc"], 8453: CHAINS[8453]["rpc"]}
+LLAMA_CHAIN = {1: "ethereum", 42161: "arbitrum", 8453: "base", 10: "optimism", 137: "polygon", 56: "bsc",
+               43114: "avax", 146: "sonic", 80094: "berachain", 999: "hyperliquid", 2020: "ronin"}
 SPAM_HINTS = ("claim", "visit", "http", "www.", ".com", ".xyz", ".io", "t.me", "airdrop", "voucher",
               "reward", "access", "distribution", "invite", "|", "[")
 PRIVATE = ROOT / "data" / "private"
@@ -45,7 +47,7 @@ def wallet_overview(wallet: str) -> dict:
             native[cid] = None
     bal = get_json(f"{KRYSTAL_BASE}/v1/balances/{wallet}", headers=H, cache_ttl=600,
                    params={"includeDustToken": "true"})
-    tokens, spam = [], 0
+    tokens, spam, unverified = [], 0, []
     for ch in bal:
         for b in ch["balances"]:
             t = b["token"]
@@ -53,12 +55,29 @@ def wallet_overview(wallet: str) -> dict:
             if any(h in text for h in SPAM_HINTS) or b.get("price") is None:
                 spam += 1
                 continue
-            tokens.append({"chain": ch["chain"]["name"], "symbol": t["symbol"],
-                           "amount": int(b["balance"]) / 10 ** t["decimals"], "price": b.get("price"),
-                           "value": b.get("value")})
+            tokens.append({"chain": ch["chain"]["name"], "chain_id": ch["chain"]["id"], "symbol": t["symbol"],
+                           "address": t["address"].lower(), "amount": int(b["balance"]) / 10 ** t["decimals"],
+                           "price": b.get("price"), "value": b.get("value")})
+    # цену сверяем с DefiLlama по адресу контракта: скам-токены с «нарисованной» ценой там отсутствуют
+    keys = {f'{LLAMA_CHAIN.get(t["chain_id"], "?")}:{t["address"]}': t for t in tokens}
+    if keys:
+        known = get_json("https://coins.llama.fi/prices/current/" + ",".join(keys), cache_ttl=600,
+                         params={"searchWidth": "4h"}).get("coins", {})
+        checked = []
+        for k, t in keys.items():
+            if k in known and (known[k].get("confidence") or 0) >= 0.5:
+                t["price"] = known[k]["price"]
+                t["value"] = t["amount"] * t["price"]
+                checked.append(t)
+            else:
+                unverified.append(t)
+        tokens = checked
+    for t in tokens:
+        t["eth_like"] = t["symbol"].upper() in ETH_LIKE | {"EARNETH", "STRETH"}
     eth = get_json("https://coins.llama.fi/prices/current/coingecko:ethereum", cache_ttl=600)
     eth_px = eth["coins"]["coingecko:ethereum"]["price"]
-    return {"native_eth": native, "eth_price": eth_px, "tokens": tokens, "spam_tokens": spam}
+    return {"native_eth": native, "eth_price": eth_px, "tokens": tokens, "spam_tokens": spam,
+            "unverified_tokens": unverified}
 
 
 def position_report(p: dict, chain_id: int) -> dict:
@@ -160,7 +179,8 @@ def wallet_value_at(out: dict, P: float, extra_eth: float = 0.0) -> float:
     несобранные комиссии; прочие токены — по текущей цене."""
     w = out["wallet_overview"]
     v = (sum(x or 0 for x in w["native_eth"].values()) + extra_eth) * P
-    v += sum(t["value"] or 0 for t in w["tokens"])
+    # stETH/wstETH/WETH/earnETH меняются вместе с ETH, прочие токены — по текущей цене
+    v += sum((t["value"] or 0) * (P / w["eth_price"] if t.get("eth_like") else 1) for t in w["tokens"])
     for r in out["positions"]:
         s0, s1 = r["symbols"]
         if s0 in ("WETH", "ETH") and s1.upper() in STABLE_SYMS:
@@ -191,7 +211,9 @@ def plan_projection(out: dict, invested: float, stake_apr: float) -> dict:
     w = out["wallet_overview"]
     P = w["eth_price"]
     native = sum(x or 0 for x in w["native_eth"].values())
-    staking_eth = native * stake_apr / 100
+    staked = sum((t["value"] or 0) / P for t in w["tokens"] if t.get("eth_like") and t["symbol"].upper() != "WETH")
+    # доход стейкинга: уже застейканный ETH (stETH и т.п.) плюс нативный, если его тоже застейкать
+    staking_eth = (staked + native) * stake_apr / 100
     fee_usd = sum(r["lp_value"] * (r["fee_apr_now"]["fee_apr_7d"] + r["fee_apr_now"]["fee_apr_30d"]) / 2 / 100
                   for r in out["positions"] if r["in_range"])
     fees_eth = fee_usd / P
@@ -246,6 +268,8 @@ def main():
     for t in w["tokens"]:
         print(f"  {t['chain']:10s} {t['symbol']:8s} {t['amount']:,.4f} ≈ ${t['value'] or 0:,.2f}")
     print(f"  спам-токенов скрыто: {w['spam_tokens']}")
+    for t in w.get("unverified_tokens", []):
+        print(f"  не учтён (нет цены в DefiLlama, вероятно скам): {t['symbol']} на {t['chain']}, Krystal оценивает в ${t['value'] or 0:,.0f}")
     if out.get("plan"):
         pl = out["plan"]
         print(f"\n=== безубыточность: стоимость ${pl['value_now']:,.0f} при вложенных ${pl['invested']:,.0f} "
