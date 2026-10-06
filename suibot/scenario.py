@@ -61,8 +61,13 @@ def run(cfg: Config, multiple: float = 2.0, days: int = 60, paths: int = 100, mi
             "vs_split_median": st.median(r["vs_split"] for r in rows), "fees_median": st.median(r["fees_usd"] for r in rows),
             "rebalances_median": st.median(r["rebalances"] for r in rows),
             "in_range_median": st.median(r["in_range_pct"] for r in rows),
-            "exited_share": sum(r["exits"] > 0 for r in rows) / len(rows)}
+            "exited_share": sum(r["exits"] > 0 for r in rows) / len(rows),
+            "sui_amount_median": st.median(r["sui_amount"] for r in rows),
+            "usdc_amount_median": st.median(r["usdc_amount"] for r in rows),
+            "split": (rows[0]["split_sui"], rows[0]["split_usdc"]),
+            "vs_split_share": sum(r["vs_split"] > 0 for r in rows) / len(rows)}
     print(table(out, cfg.staking_apy))
+    print("\n" + split_table(out))
     return out
 
 
@@ -81,4 +86,18 @@ def table(out: dict, staking_apy: float) -> str:
     stake = cap * (1 + staking_apy * d / 365)
     lines.append(f"{'стейкинг SUI':28s} {stake:>21,.0f} {'':15s} {stake - cap:>+13,.0f} "
                  f"${stake * out['start_price'] * m:>9,.0f}")
+    return "\n".join(lines)
+
+
+def split_table(out: dict) -> str:
+    """Что лежит в конце (SUI и USDC) против «обменять ту же долю на USDC и держать»: на росте пул копит USDC,
+    на падении — SUI; вклад самого пула — разница в стоимости."""
+    p = out["start_price"] * out["multiple"]
+    lines = [f"{'Стратегия':28s} {'В конце: SUI + USDC':>22s} {'Та же доля: SUI + USDC':>24s} "
+             f"{'Пул к той же доле':>18s} {'в SUI':>7s} {'лучше в':>8s}"]
+    for name, r in out["strategies"].items():
+        ss, su = r["split"]
+        lines.append(f"{name[:28]:28s} {r['sui_amount_median']:>9,.0f} + ${r['usdc_amount_median']:>9,.0f} "
+                     f"{ss:>10,.0f} + ${su:>9,.0f} {r['vs_split_median']:>+17,.0f}$ {r['vs_split_median'] / p:>+7,.0f} "
+                     f"{r['vs_split_share']:>7.0%}")
     return "\n".join(lines)

@@ -215,7 +215,9 @@ def summary(book: Book, st: dict, price_of) -> dict:
             "in_range_now": book.in_range(st["sq"]), "sui_share": sui_part / pos * 100 if pos else 0.0,
             "in_range_pct": book.in_range_s / book.total_s * 100 if book.total_s else 100.0,
             "days": (st["t"] - s0["t"]) / 86400, "gap_h": book.gap_s / 3600, "stopped": book.stopped,
-            "mode": book.mode, "exits": len(book.exits), "resumes": len(book.resumes)}
+            "mode": book.mode, "exits": len(book.exits), "resumes": len(book.resumes),
+            "sui_amount": sui_part / p, "usdc_amount": value - sui_part,
+            "split_sui": s0["split_sui"], "split_usdc": s0["split_usdc"]}
 
 
 def check_stop(book: Book, s: Strategy, summ: dict) -> bool:
