@@ -1,0 +1,77 @@
+# Бот-ребалансер пулов SUI/USDC на Cetus — бумажный и тестовый режимы (ключи и деньги не нужны).
+# Все стратегии ведутся параллельно на одних и тех же данных пула и сравниваются с двумя вариантами:
+#   «холд SUI»     — просто держать стартовые SUI;
+#   «та же доля»   — обменять ту же долю SUI на USDC, что ушла в пул, и просто держать (вклад самого пула).
+
+poll_seconds = 30          # как часто читать пул
+snapshot_minutes = 15      # как часто писать снимок в snapshots.csv
+report_hour_utc = 6        # ежедневный отчёт в Telegram (если заданы TG_TOKEN и TG_CHAT)
+state_dir = "data/private/bot"
+
+[costs]
+swap_fee = 0.0005          # комиссия маршрута при обмене во время пересборки
+slippage = 0.0005          # проскальзывание
+gas_sui = 0.02             # газ на одну пересборку (снять, обменять, добавить), SUI
+
+[pools.cetus_025]          # Cetus USDC/SUI 0.25%, шаг тиков 60 (~0.6%) — самый глубокий пул
+object = "0xb8d7d9e66a60c239e7a60110efcf8de6c705580ed924d0dde141f4a0e2c90105"
+dex = "cetus"
+a_is_sui = false
+
+[pools.cetus_005]          # Cetus USDC/SUI 0.05%, шаг тиков 10 (~0.1%) — для узких диапазонов
+object = "0x51e883ba7c0b566a26cbc8a94cd33eb0abd418a77cc1e60ad22fd9b1f29cd2ab"
+dex = "cetus"
+a_is_sui = false
+
+# Параметры стратегии:
+#   capital_sui        стартовый капитал в SUI (нужная доля меняется на USDC при открытии)
+#   range_down/up      границы диапазона от цены: цена × (1 − down) … цена × (1 + up)
+#   initial_range      первая позиция в $ за SUI, например [1.20, 1.30]; дальше — range_down/up
+#   rebalance          both — пересобирать в обе стороны; down — только когда цена ниже
+#                      (выше всё уже продано в USDC — так и остаётся); up — только вверх; none — никогда
+#   out_minutes        сколько минут цена должна пробыть вне диапазона до пересборки
+#   cooldown_minutes   пауза после пересборки;  max_per_day — не больше пересборок за сутки
+#   stop_vs_split_pct  прекратить пересборки, если пул отстал от «той же доли» на столько %
+
+[[strategy]]
+name = "±2%, сразу"
+pool = "cetus_005"
+capital_sui = 3370
+range_down = 0.02
+range_up = 0.02
+rebalance = "both"
+
+[[strategy]]
+name = "±5%, через 30 мин"
+pool = "cetus_005"
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+rebalance = "both"
+out_minutes = 30
+
+[[strategy]]
+name = "±10%, через 2 ч"
+pool = "cetus_025"
+capital_sui = 3370
+range_down = 0.10
+range_up = 0.10
+rebalance = "both"
+out_minutes = 120
+
+[[strategy]]
+name = "1.20–1.30 без пересборки"      # как ваша позиция
+pool = "cetus_025"
+capital_sui = 3370
+initial_range = [1.1997, 1.3048]
+rebalance = "none"
+
+[[strategy]]
+name = "1.20–1.30, вниз следом"        # ниже диапазона — переставить вниз; выше — остаться в USDC
+pool = "cetus_025"
+capital_sui = 3370
+initial_range = [1.1997, 1.3048]
+range_down = 0.001
+range_up = 0.0876
+rebalance = "down"
+out_minutes = 360

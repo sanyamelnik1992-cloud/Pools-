@@ -1,0 +1,99 @@
+"""Проверки математики и учёта бота без сети:  python3 tests/test_suibot.py  (или pytest)."""
+import math
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from suibot.book import Costs, accrue_growth, init_book, rebalance, summary, update_out  # noqa: E402
+from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
+from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
+from suibot.strategy import Strategy  # noqa: E402
+
+NOCOST = Costs(0.0, 0.0, 0.0)
+
+
+def st(price, a_is_sui=False, t=0.0, spacing=10, fa=0, fb=0, rew=None):
+    return dict(state_from_price(price, a_is_sui), t=t, spacing=spacing, fa=fa, fb=fb, rew=rew or {})
+
+
+def no_price(_t):
+    return 0.0, 9
+
+
+def test_price_conversions():
+    for a_is_sui in (False, True):
+        for p in (0.5, 1.2, 3.0):
+            assert math.isclose(raw_to_usd(usd_to_raw(p, a_is_sui), a_is_sui), p)
+
+
+def test_snap_nearest_tick():
+    lo, hi = snap_ticks(800.0, 900.0, 60)
+    step = 1.0001 ** 30                                   # полшага сетки
+    assert 800 / step <= sqrt_of_tick(lo) ** 2 <= 800 * step and 900 / step <= sqrt_of_tick(hi) ** 2 <= 900 * step
+    assert lo % 60 == 0 and hi % 60 == 0
+    a, b = snap_ticks(1000.0, 1000.1, 60)                 # уже одного шага — расширяется до шага
+    assert b - a == 60
+
+
+def test_growth_wraps():
+    assert growth_delta(5, U128 - 5) == 10
+
+
+def test_open_conserves_value_and_split():
+    for a_is_sui in (False, True):
+        s = Strategy("t", "p", capital_sui=1000, range_down=0.1, range_up=0.1)
+        p0 = st(1.2, a_is_sui)
+        b = init_book(s, PoolCfg("p", "0x0", a_is_sui=a_is_sui), p0, NOCOST)
+        r = summary(b, p0, no_price)
+        assert math.isclose(r["value"], 1200, rel_tol=1e-9)
+        assert abs(r["sui_share"] - 50) < 3                  # симметричный диапазон — почти 50/50
+        assert abs(b.range_usd[0] / 1.08 - 1) < 0.002 and abs(b.range_usd[1] / 1.32 - 1) < 0.002
+
+
+def test_out_of_range_is_one_token():
+    s = Strategy("t", "p", 1000, 0.05, 0.05)
+    b = init_book(s, PoolCfg("p", "0x0"), st(1.2), NOCOST)
+    assert summary(b, st(1.5), no_price)["sui_share"] < 1e-6   # выше диапазона — всё в USDC
+    assert summary(b, st(1.0), no_price)["sui_share"] > 99.99  # ниже — всё в SUI
+
+
+def test_accrual_only_in_range():
+    s = Strategy("t", "p", 1000, 0.05, 0.05)
+    g = 10 ** 18
+    b = init_book(s, PoolCfg("p", "0x0"), st(1.2), NOCOST)
+    assert accrue_growth(b, st(1.2, t=0), st(1.2, t=30, fa=g, fb=g), no_price) > 0
+    assert math.isclose(b.fees_a, g * b.L / Q64) and b.in_range_s == 30
+    b = init_book(s, PoolCfg("p", "0x0"), st(1.2), NOCOST)
+    assert accrue_growth(b, st(1.5, t=0), st(1.5, t=30, fa=g, fb=g), no_price) == 0 and b.in_range_s == 0
+
+
+def test_rebalance_rules_and_value():
+    s = Strategy("t", "p", 1000, 0.05, 0.05, rebalance="down", out_minutes=10)
+    b = init_book(s, PoolCfg("p", "0x0"), st(1.2), NOCOST)
+    update_out(b, st(1.5, t=60))
+    assert s.rebalance_reason(b, 1.5, 60 + 3600) is None       # выше диапазона: «down» не пересобирает
+    b.out_since = None
+    update_out(b, st(1.0, t=100))
+    assert s.rebalance_reason(b, 1.0, 100) is None             # ещё не прошло 10 минут
+    assert s.rebalance_reason(b, 1.0, 700) == "цена ниже диапазона"
+    before = summary(b, st(1.0, t=700), no_price)["value"]
+    rebalance(b, st(1.0, t=700), s, NOCOST)
+    assert b.range_usd[0] < 1.0 < b.range_usd[1]
+    assert math.isclose(summary(b, st(1.0, t=700), no_price)["value"], before, rel_tol=1e-9)
+
+
+def test_costs_are_charged():
+    s = Strategy("t", "p", 1000, 0.05, 0.05)
+    costs = Costs(0.0005, 0.0005, 0.02)
+    b = init_book(s, PoolCfg("p", "0x0"), st(1.2), costs)
+    # из 1000 SUI половина меняется на USDC: 600 × 0.1% + газ 0.02 SUI
+    assert math.isclose(b.costs_usd, 600 * 0.001 + 0.02 * 1.2, rel_tol=0.05)
+
+
+if __name__ == "__main__":
+    tests = [(n, f) for n, f in globals().items() if n.startswith("test_")]
+    for n, f in tests:
+        f()
+        print("ok", n)
+    print(f"все проверки пройдены: {len(tests)}")

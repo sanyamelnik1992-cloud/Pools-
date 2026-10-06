@@ -258,18 +258,19 @@ def pool_history(oid: str, dex: str, a_is_sui: bool, cps: list[tuple[int, float]
     return pts, prices
 
 
-def gecko_hourly(oid: str, a_is_sui: bool, since: float) -> list[tuple[float, float, float]]:
-    """Часовые свечи пула (GeckoTerminal) с since: начало часа, цена SUI на закрытии, объём.
-    Часы без сделок дописываются с прежней ценой и нулевым объёмом."""
+def gecko_candles(oid: str, a_is_sui: bool, since: float, minutes: int = 60) -> list[tuple[float, float, float]]:
+    """Свечи пула (GeckoTerminal) с since: начало свечи, цена SUI на закрытии, объём; шаг minutes (5, 15, 60…).
+    Свечи без сделок дописываются с прежней ценой и нулевым объёмом."""
+    frame, agg = ("minute", minutes) if minutes < 60 else ("hour", minutes // 60)
     rows, before = {}, None
     while True:
-        params = {"aggregate": 1, "limit": 1000, "currency": "usd", "token": "base" if a_is_sui else "quote"}
+        params = {"aggregate": agg, "limit": 1000, "currency": "usd", "token": "base" if a_is_sui else "quote"}
         if before:
             params["before_timestamp"] = before
         lst = []
         for a in range(6):
             try:
-                r = requests.get(f"{GECKO}/pools/{oid}/ohlcv/hour", params=params, timeout=60)
+                r = requests.get(f"{GECKO}/pools/{oid}/ohlcv/{frame}", params=params, timeout=60)
                 if r.status_code == 200:
                     lst = r.json()["data"]["attributes"]["ohlcv_list"]
                     break
@@ -281,9 +282,9 @@ def gecko_hourly(oid: str, a_is_sui: bool, since: float) -> list[tuple[float, fl
         if not lst or min(x[0] for x in lst) <= since:
             break
         before = min(x[0] for x in lst)
-    ts_ = sorted(t for t in rows if t >= since - 3600)
+    ts_ = sorted(t for t in rows if t >= since - minutes * 60)
     out, last = [], rows[ts_[0]][0]
-    for t in range(ts_[0], ts_[-1] + 1, 3600):
+    for t in range(ts_[0], ts_[-1] + 1, minutes * 60):
         c, v = rows.get(t, (last, 0.0))
         out.append((t, c, v))
         last = c
@@ -344,7 +345,7 @@ def narrow(days: int, usd: float):
     oid, dex, a_is_sui = POOLS[NARROW_POOL]
     cps = daily_checkpoints(days)
     pts, _ = pool_history(oid, dex, a_is_sui, cps)
-    hours = [h for h in gecko_hourly(oid, a_is_sui, pts[0]["t"]) if pts[0]["t"] <= h[0] <= pts[-1]["t"]]
+    hours = [h for h in gecko_candles(oid, a_is_sui, pts[0]["t"]) if pts[0]["t"] <= h[0] <= pts[-1]["t"]]
     log(f"{NARROW_POOL}: {len(pts)} дней истории пула, {len(hours)} часовых свечей")
     spans = [(pts[i * 30]["t"], pts[(i + 1) * 30]["t"]) for i in range((len(pts) - 1) // 30)] + [(pts[0]["t"], pts[-1]["t"])]
     out = {"generated_at": int(time.time()), "pool": NARROW_POOL, "usd": usd, "swap_cost": SWAP_COST, "periods": []}
@@ -367,7 +368,7 @@ def range_rolling(days: int, usd: float, low: float, high: float, step_days: int
     """Диапазон low–high (USDC за SUI) относительно текущей цены на скользящих 30-дневных окнах с шагом step_days."""
     oid, dex, a_is_sui = POOLS[NARROW_POOL]
     pts, _ = pool_history(oid, dex, a_is_sui, daily_checkpoints(days))
-    hours = [h for h in gecko_hourly(oid, a_is_sui, pts[0]["t"]) if pts[0]["t"] <= h[0] <= pts[-1]["t"]]
+    hours = [h for h in gecko_candles(oid, a_is_sui, pts[0]["t"]) if pts[0]["t"] <= h[0] <= pts[-1]["t"]]
     P = pts[-1]["sui"]
     lo, hi = low / P, high / P
     policies = {"без пересборки": (False, 1), "пересборка сразу": (True, 1), "пересборка через сутки": (True, 24)}
