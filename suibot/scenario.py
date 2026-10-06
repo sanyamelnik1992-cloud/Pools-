@@ -60,7 +60,8 @@ def run(cfg: Config, multiple: float = 2.0, days: int = 60, paths: int = 100, mi
             "sui_p90": _q(sui, 0.9), "value_median": st.median(r["value"] for r in rows),
             "vs_split_median": st.median(r["vs_split"] for r in rows), "fees_median": st.median(r["fees_usd"] for r in rows),
             "rebalances_median": st.median(r["rebalances"] for r in rows),
-            "in_range_median": st.median(r["in_range_pct"] for r in rows)}
+            "in_range_median": st.median(r["in_range_pct"] for r in rows),
+            "exited_share": sum(r["exits"] > 0 for r in rows) / len(rows)}
     print(table(out, cfg.staking_apy))
     return out
 
@@ -70,11 +71,11 @@ def table(out: dict, staking_apy: float) -> str:
     lines = [f"Сценарий: SUI ×{m:g} за {d} дней (${out['start_price']:.3f} → ${out['start_price'] * m:.3f}), "
              f"{out['paths']} путей из реальной истории (куски по {out['block_days']} дн.)\n",
              f"{'Стратегия':28s} {'SUI в конце: медиана':>21s} {'10%–90%':>15s} {'К холду, SUI':>13s} "
-             f"{'Стоимость':>10s} {'Комиссии':>9s} {'Пересб.':>7s} {'В диап.':>7s}"]
+             f"{'Стоимость':>10s} {'Комиссии':>9s} {'Пересб.':>7s} {'В диап.':>7s} {'Выход в SUI':>12s}"]
     for name, r in out["strategies"].items():
         lines.append(f"{name[:28]:28s} {r['sui_median']:>21,.0f} {r['sui_p10']:>7,.0f}–{r['sui_p90']:<7,.0f} "
                      f"{r['sui_median'] - r['capital_sui']:>+13,.0f} ${r['value_median']:>9,.0f} ${r['fees_median']:>8,.0f} "
-                     f"{r['rebalances_median']:>7.0f} {r['in_range_median']:>6.0f}%")
+                     f"{r['rebalances_median']:>7.0f} {r['in_range_median']:>6.0f}% {r['exited_share']:>11.0%}")
     cap = next(iter(out["strategies"].values()))["capital_sui"]
     lines.append(f"{'просто держать SUI':28s} {cap:>21,.0f} {'':15s} {0:>+13,.0f} ${cap * out['start_price'] * m:>9,.0f}")
     stake = cap * (1 + staking_apy * d / 365)

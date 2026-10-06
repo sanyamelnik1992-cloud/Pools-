@@ -34,54 +34,51 @@ a_is_sui = false
 #   out_minutes        сколько минут цена должна пробыть вне диапазона до пересборки
 #   cooldown_minutes   пауза после пересборки;  max_per_day — не больше пересборок за сутки
 #   stop_vs_split_pct  прекратить пересборки, если пул отстал от «той же доли» на столько %
+#   rally_exit         выйти в 100% SUI на сильном росте: [[часов, рост], ...] — например [[72, 0.15]]:
+#                      цена выросла на 15% от минимума за последние 72 часа
+#   resume_drop_pct    вернуться в пул, когда цена упадёт на столько от пика после выхода;
+#                      не задано — после выхода бот больше не работает и просто держит SUI
 
 [[strategy]]
-name = "±2%, сразу"
-pool = "cetus_005"
-capital_sui = 3370
-range_down = 0.02
-range_up = 0.02
-rebalance = "both"
-
-[[strategy]]
-name = "±5%, через 30 мин"
+name = "накопление, возврат −10%"   # основной: выход в SUI при +15% за 72 ч
 pool = "cetus_005"
 capital_sui = 3370
 range_down = 0.05
 range_up = 0.05
-rebalance = "both"
+out_minutes = 30
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+
+[[strategy]]
+name = "накопление, возврат −15%"
+pool = "cetus_005"
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+out_minutes = 30
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.15
+
+[[strategy]]
+name = "выход в SUI и стоп"             # после выхода в SUI бот больше не работает
+pool = "cetus_005"
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+out_minutes = 30
+rally_exit = [[72, 0.15]]
+
+[[strategy]]
+name = "±5% без выхода"                  # для сравнения: пересборка всегда
+pool = "cetus_005"
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
 out_minutes = 30
 
 [[strategy]]
-name = "±10%, через 2 ч"
-pool = "cetus_025"
-capital_sui = 3370
-range_down = 0.10
-range_up = 0.10
-rebalance = "both"
-out_minutes = 120
-
-[[strategy]]
-name = "1.20–1.30 без пересборки"      # как ваша позиция
+name = "1.20–1.30 без пересборки"        # как ваша позиция
 pool = "cetus_025"
 capital_sui = 3370
 initial_range = [1.1997, 1.3048]
-rebalance = "none"
-
-[[strategy]]
-name = "1.20–1.30, вниз следом"        # ниже диапазона — переставить вниз; выше — остаться в USDC
-pool = "cetus_025"
-capital_sui = 3370
-initial_range = [1.1997, 1.3048]
-range_down = 0.001
-range_up = 0.0876
-rebalance = "down"
-out_minutes = 360
-
-[[strategy]]
-name = "±30% без пересборки"           # широкий диапазон, ничего не трогать
-pool = "cetus_025"
-capital_sui = 3370
-range_down = 0.30
-range_up = 0.30
 rebalance = "none"

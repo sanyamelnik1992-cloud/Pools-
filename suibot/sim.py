@@ -1,8 +1,9 @@
 """Прогон одной стратегии по ряду цен и дохода — общий для проверки на истории и сценариев."""
 from __future__ import annotations
 
-from suibot.book import Book, Costs, accrue_usd, check_stop, init_book, rebalance, summary, update_out
+from suibot.book import Book, Costs, accrue_usd, check_stop, init_book, step, summary
 from suibot.chain import PoolCfg, state_from_price
+from suibot.rally import RallyWatch
 from suibot.strategy import Strategy
 
 
@@ -20,14 +21,14 @@ def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], 
     prev = state(times[0], prices[0])
     book: Book = init_book(s, pc, prev, costs, scale)
     stop = s.stop_vs_split_pct is not None
+    watch = RallyWatch(s.rally_exit)
+    watch.add(times[0], prices[0])
     for t, p, y in zip(times[1:], prices[1:], yields[1:]):
         st = state(t, p)
         k = (book.in_range(prev["sq"]) + book.in_range(st["sq"])) / 2
         usd = k * y * (st["ua"] / st["sq"] + st["ub"] * st["sq"]) * book.L if k and y else 0.0
         accrue_usd(book, k, usd, st, t - prev["t"])
-        update_out(book, st)
-        if book.out_since is not None and s.rebalance_reason(book, p, t):
-            rebalance(book, st, s, costs)
+        step(book, s, st, watch, costs)
         if stop:
             check_stop(book, s, summary(book, st, no_price))
         prev = st

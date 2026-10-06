@@ -15,9 +15,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from suibot import notify, report
-from suibot.book import Book, accrue_growth, check_stop, init_book, rebalance, summary, update_out
+from suibot.book import Book, accrue_growth, check_stop, init_book, step, summary
 from suibot.chain import read_pools, token_price
 from suibot.config import Config
+from suibot.rally import RallyWatch
 
 
 def log(*a):
@@ -49,11 +50,20 @@ class Paper:
         self.prev = st.get("prev", {})
         self.last_snapshot = st.get("last_snapshot", 0)
         self.last_report_day = st.get("last_report_day")
+        self.watch_state = st.get("watch", {})
+        self.watches: dict[str, RallyWatch] = {}
+
+    def watch(self, s) -> RallyWatch:
+        """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск)."""
+        if s.name not in self.watches:
+            self.watches[s.name] = RallyWatch(s.rally_exit, self.watch_state.get(s.name), min_step=60)
+        return self.watches[s.name]
 
     def save(self):
         tmp = self.path.with_suffix(".tmp")
         tmp.write_text(json.dumps({"books": {n: asdict(b) for n, b in self.books.items()}, "prev": self.prev,
-                                   "last_snapshot": self.last_snapshot, "last_report_day": self.last_report_day},
+                                   "last_snapshot": self.last_snapshot, "last_report_day": self.last_report_day,
+                                   "watch": {**self.watch_state, **{n: w.dump() for n, w in self.watches.items()}}},
                                   ensure_ascii=False))
         tmp.replace(self.path)
 
@@ -83,6 +93,7 @@ class Paper:
             book = self.books.get(s.name)
             if book is None:
                 book = self.books[s.name] = init_book(s, cfg.pools[s.pool], st, cfg.costs)
+                self.watch(s).add(st["t"], st["sui"])
                 lo, hi = book.range_usd
                 self.event(st["t"], s.name, "открыта", st["sui"],
                            f"{s.capital_sui:,.0f} SUI, диапазон {lo:.4f}–{hi:.4f}, SUI ${st['sui']:.4f}, "
@@ -93,15 +104,9 @@ class Paper:
                 if s.pool in gaps:
                     book.gap_s += gaps[s.pool]
                 accrue_growth(book, prev, st, price_of)
-            update_out(book, st)
-            reason = s.rebalance_reason(book, st["sui"], st["t"])
-            if reason:
-                old = book.range_usd
-                cost = rebalance(book, st, s, cfg.costs)
-                lo, hi = book.range_usd
-                self.event(st["t"], s.name, "пересборка", st["sui"],
-                           f"{reason}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}, "
-                           f"всего пересборок {len(book.rebalances)}")
+            ev = step(book, s, st, self.watch(s), cfg.costs)
+            if ev:
+                self.event(st["t"], s.name, ev[0], st["sui"], ev[1])
             summ = summary(book, st, price_of)
             if check_stop(book, s, summ):
                 self.event(st["t"], s.name, "остановка", st["sui"],
@@ -116,7 +121,7 @@ class Paper:
                          "in_range": int(r["in_range_now"]), "value": round(r["value"], 2),
                          "hold_sui": round(r["hold_sui"], 2), "hold_split": round(r["hold_split"], 2),
                          "fees_usd": round(r["fees_usd"], 2), "costs_usd": round(r["costs_usd"], 2),
-                         "rebalances": r["rebalances"]})
+                         "rebalances": r["rebalances"], "mode": r["mode"]})
         day = datetime.now(timezone.utc)
         if day.hour == cfg.report_hour_utc and self.last_report_day != day.strftime("%Y-%m-%d"):
             self.last_report_day = day.strftime("%Y-%m-%d")

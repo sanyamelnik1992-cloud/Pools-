@@ -9,6 +9,7 @@ from suibot.book import Costs, accrue_growth, init_book, rebalance, summary, upd
 from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
 from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
 from suibot.sim import simulate  # noqa: E402
+from suibot.rally import RallyWatch  # noqa: E402
 from suibot.strategy import Strategy  # noqa: E402
 
 NOCOST = Costs(0.0, 0.0, 0.0)
@@ -103,6 +104,34 @@ def test_sui_count_and_simulation():
     assert up["value_sui"] < 1000 and up["sui_share"] < 1e-6
     fee = simulate(s, pc, [0.0, 300.0, 600.0], [1.2, 1.2, 1.2], [0.0, 1e-4, 1e-4], NOCOST, 10)
     assert fee["value_sui"] > 1000 and fee["fees_usd"] > 0
+
+
+def test_rally_watch():
+    w = RallyWatch([[24, 0.10]])
+    for h, p in enumerate([1.0, 0.95, 1.0, 1.04]):
+        w.add(h * 3600, p)
+    assert w.triggered(1.04) is None                       # от минимума 0.95 рост меньше 10%
+    w.add(4 * 3600, 1.06)
+    assert w.triggered(1.06) is not None                   # +11.6% от минимума за сутки
+    w.add(40 * 3600, 1.06)
+    assert w.triggered(1.06) is None                       # старый минимум вышел из окна
+
+
+def test_rally_exit_and_resume():
+    s = Strategy("t", "p", 1000, 0.05, 0.05, rally_exit=[[24, 0.10]], resume_drop_pct=0.10)
+    plain = Strategy("t", "p", 1000, 0.05, 0.05)
+    pc = PoolCfg("p", "0x0")
+    times = [h * 3600.0 for h in range(8)]
+    up = [1.0, 1.03, 1.06, 1.09, 1.12, 1.20, 1.30, 1.40]
+    r = simulate(s, pc, times, up, [0.0] * 8, NOCOST, 10)
+    r0 = simulate(plain, pc, times, up, [0.0] * 8, NOCOST, 10)
+    assert r["mode"] == "sui" and r["exits"] == 1 and math.isclose(r["sui_share"], 100)
+    assert r["value_sui"] > r0["value_sui"]                 # после выхода рост не продаёт SUI
+    back = simulate(s, pc, times + [8 * 3600.0], up + [1.2], [0.0] * 9, NOCOST, 10)
+    assert back["mode"] == "lp" and back["resumes"] == 1     # откат на 14% от пика — снова в пуле
+    stay = simulate(Strategy("t", "p", 1000, 0.05, 0.05, rally_exit=[[24, 0.10]]), pc, times + [8 * 3600.0],
+                    up + [1.2], [0.0] * 9, NOCOST, 10)
+    assert stay["mode"] == "sui" and stay["resumes"] == 0    # без resume_drop_pct бот остаётся в SUI
 
 
 if __name__ == "__main__":

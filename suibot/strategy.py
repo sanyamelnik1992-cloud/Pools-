@@ -18,6 +18,10 @@ class Strategy:
     cooldown_minutes: float = 0.0      # пауза после пересборки
     max_per_day: int = 48              # не больше пересборок за сутки
     stop_vs_split_pct: float | None = None   # прекратить пересборки, если пул отстал от «держать ту же долю» на N%
+    rally_exit: list | None = None     # выйти в SUI на сильном росте: [[часов, рост], ...], например [[24, 0.10]] —
+                                       # цена выросла на 10% от минимума за последние 24 ч
+    resume_drop_pct: float | None = None   # вернуться в пул, когда цена упадёт на столько от пика после выхода;
+                                           # не задано — после выхода бот больше не работает (держит SUI)
 
     def target_range(self, price: float, first: bool = False, scale: float = 1.0) -> tuple[float, float]:
         """Диапазон в $ за SUI. scale — пересчёт initial_range к другой стартовой цене (проверка на истории)."""
@@ -27,7 +31,7 @@ class Strategy:
 
     def rebalance_reason(self, book, price: float, now: float) -> str | None:
         """Причина пересборки или None."""
-        if self.rebalance == "none" or book.stopped or book.out_since is None:
+        if self.rebalance == "none" or book.stopped or book.mode != "lp" or book.out_since is None:
             return None
         lo, hi = book.range_usd
         side = "down" if price < lo else "up" if price > hi else None

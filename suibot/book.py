@@ -38,6 +38,12 @@ class Book:
     stopped: bool = False
     sa: float = 0.0                 # границы в √сырой цены (кэш, пересчитываются из тиков)
     sb: float = 0.0
+    idle_a: float = 0.0             # монеты вне пула (после выхода в SUI), мин. единицы
+    idle_b: float = 0.0
+    mode: str = "lp"                # lp — в пуле; sui — вышли в SUI на росте
+    peak: float = 0.0               # максимум цены после выхода в SUI
+    exits: list = field(default_factory=list)
+    resumes: list = field(default_factory=list)
 
     def sqrt_bounds(self) -> tuple[float, float]:
         if not self.sa:
@@ -45,13 +51,15 @@ class Book:
         return self.sa, self.sb
 
     def in_range(self, sq: float) -> bool:
+        if self.mode != "lp":
+            return False
         sa, sb = self.sqrt_bounds()
         return sa <= sq <= sb
 
     def holdings(self, st: dict) -> tuple[float, float]:
-        """Монеты a и b позиции вместе с несобранными комиссиями."""
-        a, b = amounts(self.L, st["sq"], *self.sqrt_bounds())
-        return a + self.fees_a, b + self.fees_b
+        """Монеты a и b: позиция, несобранные комиссии и монеты вне пула."""
+        a, b = amounts(self.L, st["sq"], *self.sqrt_bounds()) if self.L else (0.0, 0.0)
+        return a + self.fees_a + self.idle_a, b + self.fees_b + self.idle_b
 
 
 def open_position(book: Book, st: dict, lo_usd: float, hi_usd: float, a: float, b: float, costs: Costs) -> float:
@@ -68,6 +76,8 @@ def open_position(book: Book, st: dict, lo_usd: float, hi_usd: float, a: float, 
     book.L = (value - cost) / per_l
     book.range_usd = sorted([raw_to_usd(sa * sa, book.a_is_sui), raw_to_usd(sb * sb, book.a_is_sui)])
     book.fees_a = book.fees_b = 0.0                       # комиссии реинвестируются
+    book.idle_a = book.idle_b = 0.0
+    book.mode = "lp"
     book.costs_usd += cost
     return cost
 
@@ -133,6 +143,55 @@ def accrue_usd(book: Book, k: float, usd: float, st: dict, dt: float):
         book.fees_usd += usd
 
 
+def exit_to_sui(book: Book, st: dict, costs: Costs) -> float:
+    """Выйти из пула: снять позицию с комиссиями и обменять весь USDC на SUI. Возвращает издержки в $."""
+    a, b = book.holdings(st)
+    sui_raw, usdc_raw = (a, b) if book.a_is_sui else (b, a)
+    usdc = usdc_raw * 1e-6
+    cost = usdc * (costs.swap_fee + costs.slippage) + costs.gas_sui * st["sui"]
+    sui_raw += (usdc - cost) / st["sui"] * 1e9
+    book.L = book.fees_a = book.fees_b = 0.0
+    book.idle_a, book.idle_b = (sui_raw, 0.0) if book.a_is_sui else (0.0, sui_raw)
+    book.mode, book.peak, book.out_since = "sui", st["sui"], None
+    book.exits.append(st["t"])
+    book.costs_usd += cost
+    return cost
+
+
+def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, str] | None:
+    """Решение после начисления дохода: выход в SUI на росте, возврат в пул после отката, пересборка.
+    Возвращает (событие, описание) или None. watch — RallyWatch этой стратегии."""
+    p, t = st["sui"], st["t"]
+    watch.add(t, p)
+    if book.mode == "sui":
+        book.peak = max(book.peak, p)
+        if s.resume_drop_pct is not None and p <= book.peak * (1 - s.resume_drop_pct):
+            a, b = book.holdings(st)
+            cost = open_position(book, st, *s.target_range(p), a, b, costs)
+            book.resumes.append(t)
+            watch.reset()
+            lo, hi = book.range_usd
+            return "возврат в пул", (f"цена на {1 - p / book.peak:.0%} ниже пика {book.peak:.4f}: "
+                                     f"диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}")
+        return None
+    why = watch.triggered(p) if s.rally_exit else None
+    if why:
+        cost = exit_to_sui(book, st, costs)
+        sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
+        return "выход в SUI", (f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
+                               + ("" if s.resume_drop_pct is not None else ", бот больше не работает"))
+    update_out(book, st)
+    if book.out_since is not None:
+        reason = s.rebalance_reason(book, p, t)
+        if reason:
+            old = book.range_usd
+            cost = rebalance(book, st, s, costs)
+            lo, hi = book.range_usd
+            return "пересборка", (f"{reason}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}, "
+                                  f"всего пересборок {len(book.rebalances)}")
+    return None
+
+
 def update_out(book: Book, st: dict):
     if book.in_range(st["sq"]):
         book.out_since = None
@@ -147,16 +206,16 @@ def summary(book: Book, st: dict, price_of) -> dict:
     p, s0 = st["sui"], book.start
     hold_sui = s0["capital_sui"] * p
     hold_split = s0["split_sui"] * p + s0["split_usdc"]
-    pa, pb = amounts(book.L, st["sq"], *book.sqrt_bounds())
-    sui_part = (pa * st["ua"]) if book.a_is_sui else (pb * st["ub"])
-    pos = pa * st["ua"] + pb * st["ub"]
+    sui_part = (a * st["ua"]) if book.a_is_sui else (b * st["ub"])
+    pos = a * st["ua"] + b * st["ub"]
     return {"name": book.name, "price": p, "value": value, "hold_sui": hold_sui, "hold_split": hold_split,
             "vs_sui": value - hold_sui, "vs_split": value - hold_split, "fees_usd": book.fees_usd,
             "capital_sui": s0["capital_sui"], "value_sui": value / p, "vs_hold_sui_count": value / p - s0["capital_sui"],
             "costs_usd": book.costs_usd, "rebalances": len(book.rebalances), "range": book.range_usd,
             "in_range_now": book.in_range(st["sq"]), "sui_share": sui_part / pos * 100 if pos else 0.0,
             "in_range_pct": book.in_range_s / book.total_s * 100 if book.total_s else 100.0,
-            "days": (st["t"] - s0["t"]) / 86400, "gap_h": book.gap_s / 3600, "stopped": book.stopped}
+            "days": (st["t"] - s0["t"]) / 86400, "gap_h": book.gap_s / 3600, "stopped": book.stopped,
+            "mode": book.mode, "exits": len(book.exits), "resumes": len(book.resumes)}
 
 
 def check_stop(book: Book, s: Strategy, summ: dict) -> bool:
