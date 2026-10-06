@@ -159,7 +159,8 @@ def reward_prices(types: set[str], t0: float) -> dict:
             continue
         try:
             c = get_json(f"https://coins.llama.fi/chart/sui:{t}", cache_ttl=3600,
-                         params={"start": int(t0) - 86400, "span": 100, "period": "1d"})["coins"][f"sui:{t}"]
+                         params={"start": int(t0) - 86400, "span": int((time.time() - t0) / 86400) + 3,
+                                 "period": "1d"})["coins"][f"sui:{t}"]
             out[t] = {"dec": c.get("decimals", 9), "prices": [(p["timestamp"], p["price"]) for p in c["prices"]]}
         except (RuntimeError, KeyError):
             out[t] = None                       # нет цены — награда не учитывается

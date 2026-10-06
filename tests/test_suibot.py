@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from suibot.book import Costs, accrue_growth, init_book, rebalance, summary, update_out  # noqa: E402
 from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
 from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
+from suibot.sim import simulate  # noqa: E402
 from suibot.strategy import Strategy  # noqa: E402
 
 NOCOST = Costs(0.0, 0.0, 0.0)
@@ -89,6 +90,18 @@ def test_costs_are_charged():
     b = init_book(s, PoolCfg("p", "0x0"), st(1.2), costs)
     # из 1000 SUI половина меняется на USDC: 600 × 0.1% + газ 0.02 SUI
     assert math.isclose(b.costs_usd, 600 * 0.001 + 0.02 * 1.2, rel_tol=0.05)
+
+
+def test_sui_count_and_simulation():
+    s = Strategy("t", "p", 1000, 0.05, 0.05)
+    pc = PoolCfg("p", "0x0")
+    r = simulate(s, pc, [0.0, 300.0, 600.0], [1.2, 1.2, 1.2], [0.0, 0.0, 0.0], NOCOST, 10)
+    assert math.isclose(r["value_sui"], 1000) and math.isclose(r["vs_hold_sui_count"], 0, abs_tol=1e-9)
+    # цена ушла вверх за диапазон: позиция в USDC, SUI-эквивалент меньше стартового; с доходом — больше, чем без него
+    up = simulate(s, pc, [0.0, 300.0], [1.2, 1.5], [0.0, 0.0], NOCOST, 10)
+    assert up["value_sui"] < 1000 and up["sui_share"] < 1e-6
+    fee = simulate(s, pc, [0.0, 300.0, 600.0], [1.2, 1.2, 1.2], [0.0, 1e-4, 1e-4], NOCOST, 10)
+    assert fee["value_sui"] > 1000 and fee["fees_usd"] > 0
 
 
 if __name__ == "__main__":

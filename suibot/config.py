@@ -19,6 +19,7 @@ class Config:
     poll_seconds: int = 30
     snapshot_minutes: int = 15
     report_hour_utc: int = 6
+    staking_apy: float = 0.014          # стейкинг SUI у валидаторов — ориентир «сколько SUI без риска»
     state_dir: Path = ROOT / "data" / "private" / "bot"
 
     def pools_used(self) -> dict[str, PoolCfg]:

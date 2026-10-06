@@ -149,4 +149,4 @@ class Paper:
         if not self.books:
             print("позиций ещё нет — запустите бумажный режим: python3 bot.py paper")
             return
-        print(report.table(self.rows(read_pools(self.cfg.pools_used()))))
+        print(report.table(self.rows(read_pools(self.cfg.pools_used())), self.cfg.staking_apy))

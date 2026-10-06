@@ -36,10 +36,13 @@ class Book:
     gap_s: float = 0.0              # время, когда бот не работал
     start: dict = field(default_factory=dict)
     stopped: bool = False
+    sa: float = 0.0                 # границы в √сырой цены (кэш, пересчитываются из тиков)
+    sb: float = 0.0
 
     def sqrt_bounds(self) -> tuple[float, float]:
-        sa, sb = sqrt_of_tick(self.tick_lo), sqrt_of_tick(self.tick_hi)
-        return sa, sb
+        if not self.sa:
+            self.sa, self.sb = sqrt_of_tick(self.tick_lo), sqrt_of_tick(self.tick_hi)
+        return self.sa, self.sb
 
     def in_range(self, sq: float) -> bool:
         sa, sb = self.sqrt_bounds()
@@ -55,6 +58,7 @@ def open_position(book: Book, st: dict, lo_usd: float, hi_usd: float, a: float, 
     """Собрать позицию в диапазоне lo–hi ($ за SUI) из монет a и b; вернуть издержки в $."""
     book.tick_lo, book.tick_hi = snap_ticks(usd_to_raw(lo_usd, book.a_is_sui), usd_to_raw(hi_usd, book.a_is_sui),
                                             st["spacing"])
+    book.sa = 0.0
     sa, sb = book.sqrt_bounds()
     a1, b1 = amounts(1.0, st["sq"], sa, sb)
     per_l = a1 * st["ua"] + b1 * st["ub"]
@@ -148,6 +152,7 @@ def summary(book: Book, st: dict, price_of) -> dict:
     pos = pa * st["ua"] + pb * st["ub"]
     return {"name": book.name, "price": p, "value": value, "hold_sui": hold_sui, "hold_split": hold_split,
             "vs_sui": value - hold_sui, "vs_split": value - hold_split, "fees_usd": book.fees_usd,
+            "capital_sui": s0["capital_sui"], "value_sui": value / p, "vs_hold_sui_count": value / p - s0["capital_sui"],
             "costs_usd": book.costs_usd, "rebalances": len(book.rebalances), "range": book.range_usd,
             "in_range_now": book.in_range(st["sq"]), "sui_share": sui_part / pos * 100 if pos else 0.0,
             "in_range_pct": book.in_range_s / book.total_s * 100 if book.total_s else 100.0,
