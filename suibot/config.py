@@ -12,6 +12,18 @@ from suibot.strategy import Strategy
 
 
 @dataclass
+class LiveCfg:
+    """Боевой режим: какая стратегия ведётся на реальные деньги и ограничения."""
+    strategy: str
+    max_capital_usd: float = 200.0      # бот использует не больше этой суммы из кошелька
+    gas_reserve_sui: float = 1.0        # столько SUI всегда остаётся в кошельке на газ
+    slippage: float = 0.005
+    min_swap_usd: float = 1.0           # меньшие обмены не делаются
+    dry_run: bool = True                # true — только симуляция, ничего не отправляется
+    address: str | None = None          # адрес кошелька для симуляции без ключа
+
+
+@dataclass
 class Config:
     pools: dict[str, PoolCfg]
     strategies: list[Strategy]
@@ -21,6 +33,7 @@ class Config:
     report_hour_utc: int = 6
     staking_apy: float = 0.014          # стейкинг SUI у валидаторов — ориентир «сколько SUI без риска»
     state_dir: Path = ROOT / "data" / "private" / "bot"
+    live: LiveCfg | None = None
 
     def pools_used(self) -> dict[str, PoolCfg]:
         return {s.pool: self.pools[s.pool] for s in self.strategies}
@@ -31,6 +44,7 @@ def load(path: str | Path) -> Config:
     pools = {k: PoolCfg(key=k, **v) for k, v in raw.pop("pools").items()}
     strategies = [Strategy(**s) for s in raw.pop("strategy")]
     costs = Costs(**raw.pop("costs", {}))
+    live = LiveCfg(**raw.pop("live")) if "live" in raw else None
     names = [s.name for s in strategies]
     if len(set(names)) != len(names):
         raise SystemExit("названия стратегий должны быть разными")
@@ -42,4 +56,6 @@ def load(path: str | Path) -> Config:
     if "state_dir" in raw:
         sd = Path(raw.pop("state_dir"))
         raw["state_dir"] = sd if sd.is_absolute() else ROOT / sd
-    return Config(pools=pools, strategies=strategies, costs=costs, **raw)
+    if live and live.strategy not in names:
+        raise SystemExit(f"[live] strategy: нет стратегии «{live.strategy}» в списке [[strategy]]")
+    return Config(pools=pools, strategies=strategies, costs=costs, live=live, **raw)

@@ -1,0 +1,14 @@
+{
+  "name": "suibot-executor",
+  "private": true,
+  "type": "module",
+  "description": "Исполнитель транзакций бота на Cetus (Sui): статус, открытие и закрытие позиции, обмен через агрегатор",
+  "dependencies": {
+    "@cetusprotocol/aggregator-sdk": "1.7.3",
+    "@cetusprotocol/common-sdk": "*",
+    "@cetusprotocol/sui-clmm-sdk": "1.4.9",
+    "@mysten/sui": "2.31.2",
+    "blakejs": "*",
+    "bn.js": "^5.2.1"
+  }
+}

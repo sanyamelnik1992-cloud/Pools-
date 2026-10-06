@@ -143,53 +143,81 @@ def accrue_usd(book: Book, k: float, usd: float, st: dict, dt: float):
         book.fees_usd += usd
 
 
-def exit_to_sui(book: Book, st: dict, costs: Costs) -> float:
-    """Выйти из пула: снять позицию с комиссиями и обменять весь USDC на SUI. Возвращает издержки в $."""
+def close_to_idle(book: Book, st: dict, costs: Costs, to: str | None = None) -> float:
+    """Снять позицию вместе с комиссиями; to="sui" / "usdc" — обменять всё в одну монету. Возвращает издержки в $."""
     a, b = book.holdings(st)
     sui_raw, usdc_raw = (a, b) if book.a_is_sui else (b, a)
-    usdc = usdc_raw * 1e-6
-    cost = usdc * (costs.swap_fee + costs.slippage) + costs.gas_sui * st["sui"]
-    sui_raw += (usdc - cost) / st["sui"] * 1e9
+    cost = costs.gas_sui * st["sui"]
+    if to == "sui" and usdc_raw:
+        usdc = usdc_raw * 1e-6
+        cost += usdc * (costs.swap_fee + costs.slippage)
+        sui_raw, usdc_raw = sui_raw + (usdc - cost) / st["sui"] * 1e9, 0.0
+    elif to == "usdc" and sui_raw:
+        usd = sui_raw / 1e9 * st["sui"]
+        cost += usd * (costs.swap_fee + costs.slippage)
+        sui_raw, usdc_raw = 0.0, usdc_raw + (usd - cost) * 1e6
+    else:
+        sui_raw -= costs.gas_sui * 1e9
     book.L = book.fees_a = book.fees_b = 0.0
-    book.idle_a, book.idle_b = (sui_raw, 0.0) if book.a_is_sui else (0.0, sui_raw)
-    book.mode, book.peak, book.out_since = "sui", st["sui"], None
-    book.exits.append(st["t"])
+    book.idle_a, book.idle_b = (sui_raw, usdc_raw) if book.a_is_sui else (usdc_raw, sui_raw)
+    book.out_since = None
     book.costs_usd += cost
     return cost
 
 
-def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, str] | None:
-    """Решение после начисления дохода: выход в SUI на росте, возврат в пул после отката, пересборка.
-    Возвращает (событие, описание) или None. watch — RallyWatch этой стратегии."""
+def exit_to_sui(book: Book, st: dict, costs: Costs) -> float:
+    """Выйти из пула: снять позицию с комиссиями и обменять весь USDC на SUI. Возвращает издержки в $."""
+    cost = close_to_idle(book, st, costs, "sui")
+    book.mode, book.peak = "sui", st["sui"]
+    book.exits.append(st["t"])
+    return cost
+
+
+def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
+    """Решение по правилам стратегии (без исполнения): ("exit" | "resume" | "rebalance", причина) или None.
+    Обновляет наблюдение за ростом, пик после выхода и время выхода цены из диапазона."""
     p, t = st["sui"], st["t"]
     watch.add(t, p)
     if book.mode == "sui":
         book.peak = max(book.peak, p)
         if s.resume_drop_pct is not None and p <= book.peak * (1 - s.resume_drop_pct):
-            a, b = book.holdings(st)
-            cost = open_position(book, st, *s.target_range(p), a, b, costs)
-            book.resumes.append(t)
-            watch.reset()
-            lo, hi = book.range_usd
-            return "возврат в пул", (f"цена на {1 - p / book.peak:.0%} ниже пика {book.peak:.4f}: "
-                                     f"диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}")
+            return "resume", f"цена на {1 - p / book.peak:.0%} ниже пика {book.peak:.4f}"
         return None
     why = watch.triggered(p) if s.rally_exit else None
     if why:
-        cost = exit_to_sui(book, st, costs)
-        sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
-        return "выход в SUI", (f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
-                               + ("" if s.resume_drop_pct is not None else ", бот больше не работает"))
+        return "exit", why
     update_out(book, st)
     if book.out_since is not None:
         reason = s.rebalance_reason(book, p, t)
         if reason:
-            old = book.range_usd
-            cost = rebalance(book, st, s, costs)
-            lo, hi = book.range_usd
-            return "пересборка", (f"{reason}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}, "
-                                  f"всего пересборок {len(book.rebalances)}")
+            return "rebalance", reason
     return None
+
+
+def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, str] | None:
+    """Решение и его виртуальное исполнение (бумага, история, сценарии). Возвращает (событие, описание)."""
+    d = decide(book, s, st, watch)
+    if d is None:
+        return None
+    kind, why = d
+    p, t = st["sui"], st["t"]
+    if kind == "resume":
+        a, b = book.holdings(st)
+        cost = open_position(book, st, *s.target_range(p), a, b, costs)
+        book.resumes.append(t)
+        watch.reset()
+        lo, hi = book.range_usd
+        return "возврат в пул", f"{why}: диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}"
+    if kind == "exit":
+        cost = exit_to_sui(book, st, costs)
+        sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
+        return "выход в SUI", (f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
+                               + ("" if s.resume_drop_pct is not None else ", бот больше не работает"))
+    old = book.range_usd
+    cost = rebalance(book, st, s, costs)
+    lo, hi = book.range_usd
+    return "пересборка", (f"{why}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}, "
+                          f"всего пересборок {len(book.rebalances)}")
 
 
 def update_out(book: Book, st: dict):

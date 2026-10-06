@@ -7,10 +7,13 @@
                                             тестовый режим: те же стратегии на истории
   python3 bot.py scenario [--multiple 2] [--days 60] [--paths 100]
                                             сценарий будущего: цена ×multiple за days дней, пути из реальной истории
+  python3 bot.py live                       боевой режим: стратегия из [live] на реальном кошельке
+                                            (dry_run = true в suibot.toml — только симуляция)
+  python3 bot.py control <команда>          ручное управление работающим ботом: status, pause, resume, sui, usdc, close
 
 Стратегии и издержки — в suibot.toml (можно указать другой файл: --config). Состояние и журналы —
-data/private/bot/ (state.json, events.csv, snapshots.csv; в git не попадают). Уведомления в Telegram —
-если заданы переменные окружения TG_TOKEN и TG_CHAT. Ключей и денег бот не использует.
+data/private/bot/ (в git не попадают). Уведомления и команды в Telegram — если заданы переменные окружения
+TG_TOKEN и TG_CHAT. Ключ кошелька нужен только боевому режиму: переменная SUI_PRIVATE_KEY (suiprivkey1…).
 """
 from __future__ import annotations
 
@@ -19,12 +22,14 @@ import argparse
 from lpscan.common import ROOT
 from suibot import backtest, scenario
 from suibot.config import load
+from suibot.live import Live, control
 from suibot.paper import Paper
 
 
 def main():
     ap = argparse.ArgumentParser(description="Бот-ребалансер SUI/USDC на Cetus")
-    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario"])
+    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "live", "control"])
+    ap.add_argument("command", nargs="?", help="control: status | pause | resume | sui | usdc | close")
     ap.add_argument("--config", default=str(ROOT / "suibot.toml"))
     ap.add_argument("--reset", action="store_true", help="paper: начать заново, удалив сохранённое состояние")
     ap.add_argument("--ticks", type=int, help="paper: сделать N опросов и выйти (для проверки)")
@@ -44,8 +49,12 @@ def main():
         Paper(cfg).show()
     elif a.mode == "backtest":
         backtest.run(cfg, a.days or 30, a.minutes, a.source)
-    else:
+    elif a.mode == "scenario":
         scenario.run(cfg, a.multiple, a.days or 60, a.paths, a.minutes, a.hist_days, a.block_days)
+    elif a.mode == "live":
+        Live(cfg).run(a.ticks)
+    else:
+        control(cfg, (a.command or "").lower())
 
 
 if __name__ == "__main__":
