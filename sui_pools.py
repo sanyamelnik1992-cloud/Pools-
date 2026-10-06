@@ -20,9 +20,13 @@ fr — доход единицы ликвидности за год в % от с
 (половина меняется на USDC) с пересборкой вокруг текущей цены при выходе из диапазона и без неё, против
 холда SUI и холда 50/50; каждое 30-дневное окно начинается заново.
 
+С --range LOW HIGH: свой диапазон (USDC за SUI) относительно текущей цены на скользящих 30-дневных окнах —
+без пересборки, с пересборкой сразу и через сутки вне диапазона — против холда SUI и против «продать ту же долю
+SUI и держать» (это и показывает, что добавляет сам пул).
+
 Запуск:  python3 sui_pools.py [--days 90]
-         python3 sui_pools.py --narrow [--days 150] [--usd 4000]
-Результат: data/processed/sui_pools.json, data/processed/sui_narrow.json
+         python3 sui_pools.py --narrow [--days 150] [--usd 4000] [--range 1.20 1.30]
+Результат: data/processed/sui_pools.json, data/processed/sui_narrow.json, data/processed/sui_range.json
 """
 from __future__ import annotations
 
@@ -286,25 +290,31 @@ def gecko_hourly(oid: str, a_is_sui: bool, since: float) -> list[tuple[float, fl
     return out
 
 
-def backtest_hourly(hours: list[tuple], days: list[dict], w: float | None, rebalance: bool, usd: float) -> dict:
-    """Позиция ±w из SUI на usd (половина меняется на USDC) на часовых ценах. Доход — фактический дневной доход
-    единицы ликвидности, разнесённый по часам пропорционально объёму, пока цена в диапазоне. rebalance — как только
-    цена закрытия часа вышла из диапазона, позиция пересобирается вокруг текущей цены (своп до 50/50 с издержками)."""
+def backtest_hourly(hours: list[tuple], days: list[dict], lo: float, hi: float, rebalance: bool, usd: float,
+                    wait_h: int = 1) -> dict:
+    """Позиция с границами P·lo…P·hi от цены открытия P, собранная из SUI на usd (нужная доля меняется на USDC),
+    на часовых ценах. Доход — фактический дневной доход единицы ликвидности, разнесённый по часам пропорционально
+    объёму, пока цена в диапазоне. rebalance — когда цена закрытия пробыла вне диапазона wait_h часов подряд,
+    позиция пересобирается вокруг текущей цены с теми же относительными границами (своп с издержками)."""
     day_t = [d["t"] for d in days]
     idx = [bisect.bisect_right(day_t, t) - 1 for t, _, _ in hours]
     vol_day: dict[int, float] = {}
     for i, (_, _, v) in zip(idx, hours):
         vol_day[i] = vol_day.get(i, 0.0) + v
 
+    def sui_share(P):                           # доля SUI по стоимости в новой позиции
+        x, y = amounts_for_L(1.0, P, P * lo, P * hi)
+        return x * P / (x * P + y)
+
     def open_at(V, P):
-        pa, pb = (P / (1 + w), P * (1 + w)) if w else (P * 1e-6, P * 1e6)
-        return V / value_per_L(P, pa, pb), pa, pb
+        return V / value_per_L(P, P * lo, P * hi), P * lo, P * hi
 
     P0 = prev = hours[0][1]
-    cost = usd / 2 * SWAP_COST + GAS_USD
+    f0 = sui_share(P0)
+    cost = usd * (1 - f0) * SWAP_COST + GAS_USD
     L, pa, pb = open_at(usd - cost, P0)
     inc = inr = 0.0
-    n_reb = 0
+    n_reb = out_h = 0
     for (_, P, v), i in zip(hours[1:], idx[1:]):
         if 0 <= i < len(days) - 1:
             d = days[i]
@@ -312,19 +322,21 @@ def backtest_hourly(hours: list[tuple], days: list[dict], w: float | None, rebal
             k = ((pa <= prev <= pb) + (pa <= P <= pb)) / 2
             inc += k * (d["y_fee"] + d["y_rew"]) * share * 2 * L * math.sqrt(math.sqrt(prev * P))
             inr += k
-        if rebalance and not pa <= P <= pb:
+        out_h = 0 if pa <= P <= pb else out_h + 1
+        if rebalance and out_h >= wait_h:
             x, y = amounts_for_L(L, P, pa, pb)
             V = x * P + y
-            c = abs(x * P - V / 2) * SWAP_COST + GAS_USD
+            c = abs(x * P - V * sui_share(P)) * SWAP_COST + GAS_USD
             cost += c
             L, pa, pb = open_at(V - c, P)
             n_reb += 1
+            out_h = 0
         prev = P
     x, y = amounts_for_L(L, prev, pa, pb)
     end = x * prev + y + inc
     return {"income": inc, "costs": cost, "rebalances": n_reb, "in_range_pct": inr / (len(hours) - 1) * 100,
-            "end_value": end, "sui_share_end": x * prev / (x * prev + y) * 100,
-            "vs_sui": end - usd * prev / P0, "vs_hold50": end - usd / 2 * (1 + prev / P0)}
+            "end_value": end, "sui_share_end": x * prev / (x * prev + y) * 100, "sui_change": prev / P0 - 1,
+            "vs_sui": end - usd * prev / P0, "vs_split": end - usd * (f0 * prev / P0 + 1 - f0)}
 
 
 def narrow(days: int, usd: float):
@@ -341,8 +353,9 @@ def narrow(days: int, usd: float):
         per = {"start": a, "end": b, "sui_change": hs[-1][1] / hs[0][1] - 1, "results": {}}
         for w in NARROW_WIDTHS + (None,):
             for reb in ((False, True) if w else (False,)):
+                lo, hi = (1 / (1 + w), 1 + w) if w else (1e-6, 1e6)
                 per["results"][f"{'±%g%%' % (w * 100) if w else 'полный'}{' пересборка' if reb else ''}"] = \
-                    backtest_hourly(hs, pts, w, reb, usd)
+                    backtest_hourly(hs, pts, lo, hi, reb, usd)
         out["periods"].append(per)
         log(f"{datetime.utcfromtimestamp(a):%d.%m}–{datetime.utcfromtimestamp(b):%d.%m} SUI {per['sui_change']:+.0%}: " +
             " | ".join(f"{k} {r['vs_sui']:+.0f}$ (доход {r['income']:.0f}$, пересборок {r['rebalances']})"
@@ -350,13 +363,58 @@ def narrow(days: int, usd: float):
     save(PROC / "sui_narrow.json", out)
 
 
+def range_rolling(days: int, usd: float, low: float, high: float, step_days: int = 3):
+    """Диапазон low–high (USDC за SUI) относительно текущей цены на скользящих 30-дневных окнах с шагом step_days."""
+    oid, dex, a_is_sui = POOLS[NARROW_POOL]
+    pts, _ = pool_history(oid, dex, a_is_sui, daily_checkpoints(days))
+    hours = [h for h in gecko_hourly(oid, a_is_sui, pts[0]["t"]) if pts[0]["t"] <= h[0] <= pts[-1]["t"]]
+    P = pts[-1]["sui"]
+    lo, hi = low / P, high / P
+    policies = {"без пересборки": (False, 1), "пересборка сразу": (True, 1), "пересборка через сутки": (True, 24)}
+    H = 30 * 24
+    starts = range(0, len(hours) - H, step_days * 24)
+    out = {"generated_at": int(time.time()), "pool": NARROW_POOL, "price": P, "range": [low, high], "usd": usd,
+           "windows": len(starts), "policies": {}}
+    log(f"SUI ${P:.4f}, диапазон {low}–{high} ({lo - 1:+.1%}/{hi - 1:+.1%}), позиция ${usd:,.0f}, "
+        f"{len(starts)} окон по 30 дней за {days} дней")
+    for name, (reb, wait) in policies.items():
+        rs = [backtest_hourly(hours[s:s + H + 1], pts, lo, hi, reb, usd, wait) for s in starts]
+        whole = backtest_hourly(hours, pts, lo, hi, reb, usd, wait)
+
+        def stats(key, rows):
+            v = sorted(r[key] for r in rows)
+            return {"median": st.median(v), "mean": st.mean(v), "p10": v[len(v) // 10], "p90": v[len(v) * 9 // 10],
+                    "min": v[0], "max": v[-1], "share_positive": sum(x > 0 for x in v) / len(v)} if v else None
+
+        by_dir = {lbl: [r for r in rs if f(r["sui_change"])] for lbl, f in
+                  (("рост >5%", lambda c: c > 0.05), ("боковик", lambda c: -0.05 <= c <= 0.05),
+                   ("падение >5%", lambda c: c < -0.05))}
+        out["policies"][name] = {
+            "vs_sui": stats("vs_sui", rs), "vs_split": stats("vs_split", rs),
+            "income_median": st.median(r["income"] for r in rs), "rebalances_median": st.median(r["rebalances"] for r in rs),
+            "in_range_median": st.median(r["in_range_pct"] for r in rs),
+            "by_direction": {k: {"windows": len(g), "vs_sui": stats("vs_sui", g), "vs_split": stats("vs_split", g)}
+                             for k, g in by_dir.items()},
+            "whole_period": whole}
+        a, b = out["policies"][name]["vs_sui"], out["policies"][name]["vs_split"]
+        log(f"{name:23s} к холду SUI: медиана {a['median']:+5.0f}$, среднее {a['mean']:+5.0f}$, лучше в {a['share_positive']:.0%} | "
+            f"к «продать долю»: медиана {b['median']:+5.0f}$, среднее {b['mean']:+5.0f}$, худшее {b['min']:+5.0f}$, лучше в "
+            f"{b['share_positive']:.0%} | доход за месяц {out['policies'][name]['income_median']:.0f}$ | весь период: "
+            f"{whole['vs_sui']:+.0f}$ к холду SUI, {whole['vs_split']:+.0f}$ к «продать долю»")
+    save(PROC / "sui_range.json", out)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=None, help="глубина истории, кратна 30 (90, для --narrow 150)")
     ap.add_argument("--narrow", action="store_true", help="узкие диапазоны с пересборкой на часовых ценах")
     ap.add_argument("--usd", type=float, default=4000, help="размер позиции для --narrow")
+    ap.add_argument("--range", type=float, nargs=2, metavar=("LOW", "HIGH"),
+                    help="с --narrow: свой диапазон в USDC за SUI, скользящие 30-дневные окна")
     a = ap.parse_args()
     days = (a.days or (150 if a.narrow else 90)) // 30 * 30
+    if a.narrow and a.range:
+        return range_rolling(days, a.usd, *a.range)
     if a.narrow:
         return narrow(days, a.usd)
     cps = daily_checkpoints(days)
