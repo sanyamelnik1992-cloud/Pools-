@@ -21,7 +21,7 @@ def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], 
     prev = state(times[0], prices[0])
     book: Book = init_book(s, pc, prev, costs, scale)
     stop = s.stop_vs_split_pct is not None
-    watch = RallyWatch(s.rally_exit)
+    watch = RallyWatch(s.rally_exit, drop_rules=s.crash_exit)
     watch.add(times[0], prices[0])
     for t, p, y in zip(times[1:], prices[1:], yields[1:]):
         st = state(t, p)

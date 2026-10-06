@@ -40,10 +40,11 @@ class Book:
     sb: float = 0.0
     idle_a: float = 0.0             # монеты вне пула (после выхода в SUI), мин. единицы
     idle_b: float = 0.0
-    mode: str = "lp"                # lp — в пуле; sui — вышли в SUI на росте
-    peak: float = 0.0               # максимум цены после выхода в SUI
+    mode: str = "lp"                # lp — в пуле; sui — вышли в SUI на росте; usdc — в USDC на падении; hold — вручную
+    peak: float = 0.0               # после выхода: максимум цены (в SUI) или минимум (в USDC)
     exits: list = field(default_factory=list)
     resumes: list = field(default_factory=list)
+    crashes: list = field(default_factory=list)   # выходы в USDC на падении
 
     def sqrt_bounds(self) -> tuple[float, float]:
         if not self.sa:
@@ -173,6 +174,14 @@ def exit_to_sui(book: Book, st: dict, costs: Costs) -> float:
     return cost
 
 
+def exit_to_usdc(book: Book, st: dict, costs: Costs) -> float:
+    """Выйти из пула на падении: снять позицию с комиссиями и обменять все SUI на USDC."""
+    cost = close_to_idle(book, st, costs, "usdc")
+    book.mode, book.peak = "usdc", st["sui"]
+    book.crashes.append(st["t"])
+    return cost
+
+
 def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
     """Решение по правилам стратегии (без исполнения): ("exit" | "resume" | "rebalance", причина) или None.
     Обновляет наблюдение за ростом, пик после выхода и время выхода цены из диапазона."""
@@ -183,9 +192,19 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
         if s.resume_drop_pct is not None and p <= book.peak * (1 - s.resume_drop_pct):
             return "resume", f"цена на {1 - p / book.peak:.0%} ниже пика {book.peak:.4f}"
         return None
+    if book.mode == "usdc":
+        book.peak = min(book.peak, p)
+        if s.resume_rise_pct is not None and p >= book.peak * (1 + s.resume_rise_pct):
+            return "resume", f"цена на {p / book.peak - 1:.0%} выше минимума {book.peak:.4f}"
+        return None
+    if book.mode != "lp":
+        return None
     why = watch.triggered(p) if s.rally_exit else None
     if why:
         return "exit", why
+    why = watch.dropped(p) if s.crash_exit else None
+    if why:
+        return "crash", why
     update_out(book, st)
     if book.out_since is not None:
         reason = s.rebalance_reason(book, p, t)
@@ -213,6 +232,11 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
         sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
         return "выход в SUI", (f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
                                + ("" if s.resume_drop_pct is not None else ", бот больше не работает"))
+    if kind == "crash":
+        cost = exit_to_usdc(book, st, costs)
+        usdc = (book.idle_b if book.a_is_sui else book.idle_a) / 1e6
+        return "выход в USDC", (f"{why}: всё в USDC — ${usdc:,.0f}, издержки ${cost:.2f}"
+                                + ("" if s.resume_rise_pct is not None else ", бот больше не работает"))
     old = book.range_usd
     cost = rebalance(book, st, s, costs)
     lo, hi = book.range_usd
@@ -243,7 +267,7 @@ def summary(book: Book, st: dict, price_of) -> dict:
             "in_range_now": book.in_range(st["sq"]), "sui_share": sui_part / pos * 100 if pos else 0.0,
             "in_range_pct": book.in_range_s / book.total_s * 100 if book.total_s else 100.0,
             "days": (st["t"] - s0["t"]) / 86400, "gap_h": book.gap_s / 3600, "stopped": book.stopped,
-            "mode": book.mode, "exits": len(book.exits), "resumes": len(book.resumes),
+            "mode": book.mode, "exits": len(book.exits), "resumes": len(book.resumes), "crashes": len(book.crashes),
             "sui_amount": sui_part / p, "usdc_amount": value - sui_part,
             "split_sui": s0["split_sui"], "split_usdc": s0["split_usdc"]}
 

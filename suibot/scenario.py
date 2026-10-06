@@ -1,10 +1,10 @@
 """Сценарии будущего: цена SUI меняется в multiple раз за days дней (например, ×2 за 60 дней).
 
 Пути строятся блочным бутстрепом из реальной истории: случайные куски по block_days суток (5-минутные
-изменения цены вместе с
-доходом единицы ликвидности за те же свечи) — так сохраняются всплески волатильности, многодневные
-тренды и то, что комиссии растут вместе с волатильностью. К изменениям добавляется постоянный наклон, чтобы каждый путь закончился ровно
-в multiple раз выше старта. Каждая стратегия проходит одни и те же пути.
+изменения цены вместе с доходом единицы ликвидности за те же свечи) — так сохраняются всплески
+волатильности, многодневные тренды и то, что комиссии растут вместе с волатильностью. К изменениям
+добавляется постоянный наклон, чтобы каждый путь закончился ровно в multiple раз выше старта.
+Каждая стратегия проходит одни и те же пути.
 """
 from __future__ import annotations
 
@@ -23,20 +23,18 @@ def _q(v: list[float], f: float) -> float:
     return v[min(len(v) - 1, int(f * (len(v) - 1) + 0.5))]
 
 
-def run(cfg: Config, multiple: float = 2.0, days: int = 60, paths: int = 100, minutes: int = 5,
-        hist_days: int = 180, block_days: int = 5, seed: int = 1) -> dict:
-    pools = cfg.pools_used()
-    now = read_pools(pools)
-    cs, yields = history.load(pools, hist_days, minutes, "binance")
+def make_paths(cs: list, yields: dict, p0: float, multiple: float, days: int, paths: int, minutes: int = 5,
+               block_days: int = 5, seed: int = 1):
+    """Пути цены из случайных кусков истории (вместе с доходом пулов за те же свечи), каждый ровно ×multiple:
+    выдаёт (times, prices, {пул: доход по свечам})."""
     rets = [math.log(b[1] / a[1]) for a, b in zip(cs, cs[1:])]
     per_day = 1440 // minutes
     block = per_day * block_days                       # длинные блоки сохраняют многодневные тренды
     blocks = range(0, len(rets) - block, per_day)
     steps = days * per_day
     drift = math.log(multiple) / steps
-    p0 = next(iter(now.values()))["sui"]
     rng = random.Random(seed)
-    res = {s.name: [] for s in cfg.strategies}
+    times = [j * minutes * 60.0 for j in range(steps + 1)]
     for _ in range(paths):
         picks = [rng.choice(blocks) for _ in range(-(-days // block_days))]
         idx = [b + j for b in picks for j in range(block)][:steps]
@@ -46,11 +44,20 @@ def run(cfg: Config, multiple: float = 2.0, days: int = 60, paths: int = 100, mi
         for x in r:
             lp += x + adj
             prices.append(math.exp(lp))
-        times = [j * minutes * 60.0 for j in range(steps + 1)]
+        yield times, prices, {k: [0.0] + [y[i + 1] for i in idx] for k, y in yields.items()}
+
+
+def run(cfg: Config, multiple: float = 2.0, days: int = 60, paths: int = 100, minutes: int = 5,
+        hist_days: int = 180, block_days: int = 5, seed: int = 1) -> dict:
+    pools = cfg.pools_used()
+    now = read_pools(pools)
+    cs, yields = history.load(pools, hist_days, minutes, "binance")
+    p0 = next(iter(now.values()))["sui"]
+    res = {s.name: [] for s in cfg.strategies}
+    for times, prices, ys in make_paths(cs, yields, p0, multiple, days, paths, minutes, block_days, seed):
         for s in cfg.strategies:
-            y = yields[s.pool]
-            ys = [0.0] + [y[i + 1] for i in idx]
-            res[s.name].append(simulate(s, cfg.pools[s.pool], times, prices, ys, cfg.costs, now[s.pool]["spacing"]))
+            res[s.name].append(simulate(s, cfg.pools[s.pool], times, prices, ys[s.pool], cfg.costs,
+                                        now[s.pool]["spacing"]))
     out = {"multiple": multiple, "days": days, "paths": paths, "block_days": block_days, "start_price": p0,
            "strategies": {}}
     for name, rows in res.items():

@@ -56,7 +56,8 @@ class Paper:
     def watch(self, s) -> RallyWatch:
         """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск)."""
         if s.name not in self.watches:
-            self.watches[s.name] = RallyWatch(s.rally_exit, self.watch_state.get(s.name), min_step=60)
+            self.watches[s.name] = RallyWatch(s.rally_exit, self.watch_state.get(s.name), min_step=60,
+                                              drop_rules=s.crash_exit)
         return self.watches[s.name]
 
     def save(self):

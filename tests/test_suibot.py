@@ -134,6 +134,30 @@ def test_rally_exit_and_resume():
     assert stay["mode"] == "sui" and stay["resumes"] == 0    # без resume_drop_pct бот остаётся в SUI
 
 
+def test_crash_exit_and_resume():
+    s = Strategy("t", "p", 1000, 0.05, 0.05, crash_exit=[[24, 0.10]], resume_rise_pct=0.10)
+    pc = PoolCfg("p", "0x0")
+    times = [h * 3600.0 for h in range(8)]
+    down = [1.0, 0.97, 0.94, 0.91, 0.88, 0.80, 0.70, 0.60]
+    r = simulate(s, pc, times, down, [0.0] * 8, NOCOST, 10)
+    plain = simulate(Strategy("t", "p", 1000, 0.05, 0.05), pc, times, down, [0.0] * 8, NOCOST, 10)
+    assert r["mode"] == "usdc" and r["crashes"] == 1 and r["sui_share"] < 1e-6
+    assert r["value"] > plain["value"]                      # после выхода падение не съедает капитал
+    back = simulate(s, pc, times + [8 * 3600.0], down + [0.67], [0.0] * 9, NOCOST, 10)
+    assert back["mode"] == "lp" and back["resumes"] == 1     # +12% от минимума — снова в пуле
+
+
+def test_watch_drop_and_old_state():
+    w = RallyWatch([[24, 0.10]], drop_rules=[[24, 0.10]])
+    for h, p in enumerate([1.0, 1.05, 1.0]):
+        w.add(h * 3600, p)
+    assert w.dropped(0.95) is None and w.triggered(1.0) is None
+    w.add(3 * 3600, 0.94)
+    assert w.dropped(0.94) is not None                      # −10.5% от максимума 1.05
+    old = RallyWatch([[24, 0.10]], state=[[[0.0, 1.0]]])     # состояние старого формата (список очередей роста)
+    assert old.triggered(1.2) is not None and old.dump()["drop"] == []
+
+
 if __name__ == "__main__":
     tests = [(n, f) for n, f in globals().items() if n.startswith("test_")]
     for n, f in tests:

@@ -27,8 +27,8 @@ from datetime import datetime, timezone
 from lpscan.common import ROOT
 from sui_pools import SUI, USDC
 from suibot import notify
-from suibot.book import (Book, accrue_growth, close_to_idle, decide, exit_to_sui, init_book, open_position,
-                         rebalance, summary)
+from suibot.book import (Book, accrue_growth, close_to_idle, decide, exit_to_sui, exit_to_usdc, init_book,
+                         open_position, rebalance, summary)
 from suibot.chain import raw_to_usd, read_pools, token_price, usd_to_raw
 from suibot.clmm import amounts, snap_ticks, sqrt_of_tick
 from suibot.config import Config
@@ -87,7 +87,7 @@ class Live:
         self.prev = st.get("prev")
         self.tg_offset = st.get("tg_offset")
         self.last_report_day = st.get("last_report_day")
-        self.watch = RallyWatch(self.s.rally_exit, st.get("watch"), min_step=60)
+        self.watch = RallyWatch(self.s.rally_exit, st.get("watch"), min_step=60, drop_rules=self.s.crash_exit)
         self.has_key = bool(os.environ.get("SUI_PRIVATE_KEY"))
         self.label = "СИМУЛЯЦИЯ" if self.lc.dry_run else "РЕАЛЬНЫЕ ДЕНЬГИ"
 
@@ -130,9 +130,9 @@ class Live:
             return f"[{self.label}] позиция ещё не открыта"
         r = summary(self.book, st, self.price_of(st))
         lo, hi = r["range"]
-        state = ("пауза, " if self.paused else "") + ("в SUI" if r["mode"] == "sui" else
-                                                       "без позиции" if not self.book.L else
-                                                       "в диапазоне" if r["in_range_now"] else "вне диапазона")
+        state = ("пауза, " if self.paused else "") + ({"sui": "вышел в SUI", "usdc": "вышел в USDC"}.get(r["mode"]) or
+                                                       ("без позиции" if not self.book.L else
+                                                        "в диапазоне" if r["in_range_now"] else "вне диапазона"))
         return (f"[{self.label}] {self.s.name}: SUI ${r['price']:.4f}, диапазон {lo:.4f}–{hi:.4f}, {state}\n"
                 f"стоимость ${r['value']:,.2f} = {r['value_sui']:,.1f} SUI-экв. (старт {r['capital_sui']:,.1f}, "
                 f"{r['vs_hold_sui_count']:+,.1f} SUI к холду), к той же доле {r['vs_split']:+,.2f}$\n"
@@ -268,6 +268,8 @@ class Live:
                 rebalance(b, st, s, self.cfg.costs)
             elif kind == "exit":
                 exit_to_sui(b, st, self.cfg.costs)
+            elif kind == "crash":
+                exit_to_usdc(b, st, self.cfg.costs)
             elif kind == "resume":
                 a, bb = b.holdings(st)
                 open_position(b, st, *s.target_range(p), a, bb, self.cfg.costs)
@@ -286,6 +288,11 @@ class Live:
                 self.to_share(st, 1.0 if b.a_is_sui else 0.0)
                 b.mode, b.peak = "sui", p
                 b.exits.append(t)
+            elif kind == "crash":
+                self.close_real()
+                self.to_share(st, 0.0 if b.a_is_sui else 1.0)
+                b.mode, b.peak = "usdc", p
+                b.crashes.append(t)
             elif kind == "resume":
                 self.open_real(st, *s.target_range(p))
                 b.resumes.append(t)
@@ -298,7 +305,8 @@ class Live:
                     self.to_share(st, 0.0 if b.a_is_sui else 1.0)
                 b.mode = "hold"
         lo, hi = b.range_usd
-        name = ({"rebalance": "пересборка", "exit": "выход в SUI", "resume": "возврат в пул"}.get(kind)
+        name = ({"rebalance": "пересборка", "exit": "выход в SUI", "crash": "выход в USDC",
+                 "resume": "возврат в пул"}.get(kind)
                 or {"sui": "вручную: всё в SUI", "usdc": "вручную: всё в USDC"}.get(why, "вручную: позиция снята"))
         detail = (f"{why}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}" if kind in ("rebalance", "resume")
                   else "пауза до /resume" if kind == "manual" else str(why))

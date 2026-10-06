@@ -7,6 +7,7 @@
                                             тестовый режим: те же стратегии на истории
   python3 bot.py scenario [--multiple 2] [--days 60] [--paths 100]
                                             сценарий будущего: цена ×multiple за days дней, пути из реальной истории
+  python3 bot.py optimize [--paths 30]      подбор стратегии: перебор параметров на кварталах года и сценариях
   python3 bot.py live                       боевой режим: стратегия из [live] на реальном кошельке
                                             (dry_run = true в suibot.toml — только симуляция)
   python3 bot.py control <команда>          ручное управление работающим ботом: status, pause, resume, sui, usdc, close
@@ -20,7 +21,7 @@ from __future__ import annotations
 import argparse
 
 from lpscan.common import ROOT
-from suibot import backtest, scenario
+from suibot import backtest, optimize, scenario
 from suibot.config import load
 from suibot.live import Live, control
 from suibot.paper import Paper
@@ -28,7 +29,7 @@ from suibot.paper import Paper
 
 def main():
     ap = argparse.ArgumentParser(description="Бот-ребалансер SUI/USDC на Cetus")
-    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "live", "control"])
+    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "live", "control"])
     ap.add_argument("command", nargs="?", help="control: status | pause | resume | sui | usdc | close")
     ap.add_argument("--config", default=str(ROOT / "suibot.toml"))
     ap.add_argument("--reset", action="store_true", help="paper: начать заново, удалив сохранённое состояние")
@@ -51,6 +52,8 @@ def main():
         backtest.run(cfg, a.days or 30, a.minutes, a.source)
     elif a.mode == "scenario":
         scenario.run(cfg, a.multiple, a.days or 60, a.paths, a.minutes, a.hist_days, a.block_days)
+    elif a.mode == "optimize":
+        optimize.run(cfg, a.paths if a.paths != 100 else 30)
     elif a.mode == "live":
         Live(cfg).run(a.ticks)
     else:
