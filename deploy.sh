@@ -22,7 +22,7 @@ rsync -az --delete \
   --exclude '__pycache__/' --exclude '*.pyc' --exclude '.DS_Store' \
   ./ "$HOST:$DIR/"
 echo "▸ сервер: пакеты, проверки, перезапуск"
-ssh "$HOST" "bash -s" -- "$DIR" "$RESTART" "$MSG" <<'REMOTE'
+ssh "$HOST" "bash -s -- $(printf '%q ' "$DIR" "$RESTART" "$MSG")" <<'REMOTE'   # %q — описание с пробелами целиком
 set -euo pipefail
 DIR=$1 RESTART=$2 MSG=$3
 chown -R suibot:suibot "$DIR"
