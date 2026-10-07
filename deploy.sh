@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Выкладка бота на сервер: проверки на Mac → копирование кода → npm ci (если менялись пакеты) → проверки на
-# сервере → версия в git на сервере (/root/pools-git, без .env и состояния) → перезапуск службы suibot.
+# сервере → версия в git на сервере (/root/pools-git, без .env и состояния) → перезапуск служб suibot и
+# suibot-paper («тень»).
 # Не трогает на сервере: .env (ключ), data/private (состояние и журнал), node_modules.
 # Адрес сервера — в файле .server (не в git), например: suibot (имя из ~/.ssh/config).
 #   ./deploy.sh "что изменилось"              выложить, записать версию и перезапустить
@@ -60,8 +61,12 @@ if [ -d /root/pools-git/.git ]; then                   # версия кода �
 fi
 if [ "$RESTART" = 1 ] && systemctl is-enabled --quiet suibot 2>/dev/null; then
   systemctl restart suibot
+  if systemctl is-enabled --quiet suibot-paper 2>/dev/null; then   # «тень» читает список стратегий при запуске
+    systemctl restart suibot-paper
+  fi
   sleep 8
   echo "служба suibot: $(systemctl is-active suibot)"
+  if systemctl is-enabled --quiet suibot-paper 2>/dev/null; then echo "служба suibot-paper: $(systemctl is-active suibot-paper)"; fi
 fi
 REMOTE
 echo "✅ готово"

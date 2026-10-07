@@ -77,6 +77,18 @@ crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
 
 [[strategy]]
+name = "оптимальная ±4%, пул 0.25%"      # та же стратегия в пуле 0.25%: если Cetus урежет награды в 0.05%, этот
+pool = "cetus_025"                       # пул может стать выгоднее — «тень» и проверка стратегий покажут это сами
+capital_sui = 3370
+range_down = 0.04
+range_up = 0.04
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+
+[[strategy]]
 name = "±5% те же правила"
 pool = "cetus_005"
 capital_sui = 3370

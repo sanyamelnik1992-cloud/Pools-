@@ -43,6 +43,7 @@ class FakeChain:
         self.abort = set()        # транзакция исполнилась с ошибкой: списан только газ
         self.hide = 0             # столько опросов новые позиции не видны в списке (отстающий узел)
         self.read_down = False    # чтение кошелька недоступно
+        self.pools = []           # (команда, объект пула) реальных вызовов
 
     def changes(self, sui=0.0, usdc=0.0):
         return [{"coinType": SUI_LONG, "address": ADDR, "amount": str(int(sui))},
@@ -66,6 +67,8 @@ class FakeChain:
         a = [str(x) for x in args]
         cmd, kv = a[0], dict(zip(a[1::2], a[2::2]))
         self.calls.append((cmd, simulate))
+        if "--pool" in kv and not simulate:
+            self.pools.append((cmd, kv["--pool"]))
         st = self.st
         if cmd == "status":
             if self.read_down:
@@ -162,11 +165,11 @@ class FakeChain:
         return res
 
 
-def config(tmp: Path, dry=False):
+def config(tmp: Path, dry=False, extra="", strategy="тест"):
     toml = (Path(__file__).resolve().parent.parent / "suibot.toml").read_text()
     head = toml.split("[[strategy]]")[0].replace('state_dir = "data/private/bot"', f'state_dir = "{tmp}"')
     head = re.sub(r"(?m)^dry_run = (true|false)", f"dry_run = {'true' if dry else 'false'}", head)  # любой режим в suibot.toml
-    head = "\n".join('strategy = "тест"' if x.startswith("strategy =") else x for x in head.splitlines())
+    head = "\n".join(f'strategy = "{strategy}"' if x.startswith("strategy =") else x for x in head.splitlines())
     head += '''
 [[strategy]]
 name = "тест"
@@ -179,7 +182,7 @@ rally_exit = [[72, 0.15]]
 resume_drop_pct = 0.10
 crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
-'''
+''' + extra
     p = tmp / "t.toml"
     p.write_text(head)
     return load(p)
@@ -187,7 +190,7 @@ resume_rise_pct = 0.10
 
 def snap(price, t):
     st = dict(state_from_price(price, False), t=t, spacing=10, fa=0, fb=0, rew={})
-    return {"cetus_005": st}
+    return {"cetus_005": st, "cetus_025": st}
 
 
 def bot_value(b, st):
@@ -204,6 +207,7 @@ class Harness:
         notify.send_file = lambda path, caption='', photo=False: self.sent.append(f'FILE {Path(path).name} {photo}')
         notify.commands = lambda offset: ([], offset)
         live.exchange_price = lambda: None                                        # без Binance: сверка не мешает
+        live.history.load = lambda *a, **k: ([], {})                              # без сети: история пустая
         self.bot = live.Live(config(self.d, dry))
 
     def tick(self, price, dt=3600):
@@ -704,6 +708,103 @@ def test_weekly_report_with_shadow_and_chart():
             assert "FILE week.png True" in files
         except ImportError:
             pass
+
+
+POOL_025 = '''
+[[strategy]]
+name = "тест 0.25"
+pool = "cetus_025"
+capital_sui = 100
+range_down = 0.04
+range_up = 0.04
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+'''
+
+
+def test_calibration_lines():
+    real = {"days": 10, "value_sui": 105, "capital_sui": 100, "rebalances": 4, "exits": 0, "crashes": 0,
+            "costs_usd": 1.0, "in_range_pct": 80.0}
+    model = dict(real, value_sui=106, rebalances=5, fees_usd=10.0, in_range_pct=85.0)
+    text = "\n".join(live.calibration_lines(real, 9.0, model, manual=2))
+    assert "90%" in text and "подтверждается" in text and "ручных команд" in text and "в диапазоне" in text
+    assert "ниже модели" in "\n".join(live.calibration_lines(real, 5.0, model))
+    assert "выше модели" in "\n".join(live.calibration_lines(real, 15.0, model))
+    assert "данных пока мало" in "\n".join(live.calibration_lines(dict(real, days=1), 9.0, model))
+
+
+def test_model_vs_fact():
+    """/model: тот же симулятор с запуска бота на ценах и доходе пула этих дней — сравнение с реальным ботом."""
+    import threading
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        prices = [1.20, 1.21, 1.19, 1.22, 1.20, 1.18]
+        for p in prices:
+            h.tick(p)
+        t0 = h.bot.book.start["t"]
+
+        def fake_load(pools, days, minutes=5, source="binance"):
+            assert days >= 1
+            cs = [(t0 + i * 300, prices[min(i // 12, len(prices) - 1)], 1.0) for i in range(12 * len(prices))]
+            return cs, {k: [2e-5] * len(cs) for k in pools}
+        old = live.history.load
+        live.history.load = fake_load
+        try:
+            h.cmd("model")
+            h.tick(1.20, dt=60)
+            for t in threading.enumerate():
+                if t is not threading.current_thread():
+                    t.join(10)
+        finally:
+            live.history.load = old
+        rep = [x for x in h.sent if x.startswith("🔬 <b>Факт против модели")]
+        assert rep and "заработано" in rep[0] and "от модели" in rep[0] and "штук SUI" in rep[0], h.sent[-3:]
+
+
+def test_shadow_includes_other_pool():
+    from dataclasses import asdict
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.bot = live.Live(config(Path(d), extra=POOL_025))
+        h.tick(1.20)
+        b = h.bot.book
+        paper = {"books": {"тест": asdict(b), "тест 0.25": asdict(b)},
+                 "prev": {"cetus_025": {"t": h.t, "sq": h.chain.st["sq"], "fa": 0, "fb": 0, "rew": {}}}}
+        (Path(d) / "state.json").write_text(json.dumps(paper))
+        text = "\n".join(h.bot.shadow_lines(h.chain.st))
+        assert "тест 0.25" in text and "тест (как реальный)" in text
+
+
+def test_pool_switch_only_after_close():
+    """Стратегию переключили на другой пул: бот продолжает в старом пуле, переезжает только после /close и /resume."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        cfg = config(Path(d), extra=POOL_025)
+        h.bot = live.Live(cfg)
+        h.tick(1.20)
+        old_obj, new_obj = cfg.pools["cetus_005"].object, cfg.pools["cetus_025"].object
+        assert ("open", old_obj) in chain.pools
+        h.bot = live.Live(config(Path(d), extra=POOL_025, strategy="тест 0.25"))   # смена стратегии и перезапуск
+        assert h.bot.pc.object == old_obj
+        h.tick(1.20)
+        h.tick(1.28)
+        h.tick(1.28, dt=4 * 3600)                                          # пересборка — всё ещё в старом пуле
+        assert ("close", old_obj) in chain.pools and ("open", new_obj) not in chain.pools
+        assert sum("переход в другой пул" in x.lower() for x in h.sent) == 1   # предупреждение один раз
+        h.cmd("close")
+        h.tick(1.28)
+        assert not chain.pos and h.bot.paused
+        h.cmd("resume")
+        h.tick(1.28)                                                       # книга сброшена
+        h.tick(1.28)                                                       # старт в новом пуле
+        assert ("open", new_obj) in chain.pools and len(chain.pos) == 1 and h.bot.book.pool == "cetus_025"
+        assert h.bot.book.start["capital_sui"] * 1.28 < 205                # не больше лимита капитала
 
 
 if __name__ == "__main__":

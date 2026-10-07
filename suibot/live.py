@@ -43,7 +43,7 @@ from sui_pools import SUI, USDC
 from suibot import charts, history, notify
 from suibot.book import (Book, accrue_growth, close_to_idle, decide, exit_to_sui, exit_to_usdc, init_book,
                          open_position, rebalance, summary)
-from suibot.chain import raw_to_usd, token_price, read_pools, usd_to_raw
+from suibot.chain import raw_to_usd, read_pools, state_from_price, token_price, usd_to_raw
 from suibot.clmm import amounts, snap_ticks, sqrt_of_tick
 from suibot.config import Config
 from suibot.paper import _append, _utc, log
@@ -59,8 +59,8 @@ except ImportError:            # Windows
 GAS_BUFFER_SUI = 0.05      # при открытии позиции столько своих SUI бот оставляет на газ
 RETRY_MINUTES = (2, 6, 18)  # повторы после ошибки; следующая ошибка подряд — пауза до /resume
 SYNC_MINUTES = 30          # плановая сверка с кошельком
-COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "events", "week", "alert", "strategy", "settings",
-            "help")
+COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "events", "week", "alert", "strategy", "model",
+            "settings", "help")
 HELP = ("Команды: /status — отчёт; /pause — пауза; /resume — продолжить; /sui — снять позицию и всё в SUI; "
         "/usdc — снять позицию и всё в USDC; /close — снять позицию, монеты оставить. После /sui, /usdc, /close "
         "бот на паузе; /resume — снова открыть позицию.")
@@ -68,7 +68,8 @@ MANUAL = {"sui": "вручную: всё в SUI", "usdc": "вручную: вс�
 MENU = {"status": "отчёт: позиция, заработок, итог", "pause": "пауза (позиция остаётся)", "resume": "продолжить",
         "sui": "снять позицию, всё в SUI", "usdc": "снять позицию, всё в USDC", "close": "снять позицию",
         "events": "последние события", "week": "недельный отчёт с графиком", "alert": "алерт цены: /alert 1.30 (/alert — список, /alert off — снять)",
-        "strategy": "проверить стратегии на свежих ценах", "settings": "настройки бота с пояснениями",
+        "strategy": "проверить стратегии на свежих ценах", "model": "сверка: реальный бот против модели с запуска",
+        "settings": "настройки бота с пояснениями",
         "help": "список команд"}
 TX_URL = "https://suiscan.xyz/mainnet/tx/"
 OBJ_URL = "https://suiscan.xyz/mainnet/object/"
@@ -79,7 +80,7 @@ ICONS = {"открыта": "✅", "позиция найдена": "🔎", "по
          "выход в USDC": "🛡", "цена вне диапазона": "⚠️", "цена снова в диапазоне": "✅", "нет связи": "📡",
          "ошибка": "❌", "мало SUI на газ": "⛽", "награды обменяны": "🎁", "обмен наград не удался": "🎁",
          "бот был выключен": "💤", "реинвестирование": "♻️", "цена пула расходится с биржей": "🚧",
-         "отставание от «держать SUI»": "📉", "связь восстановлена": "📡"}
+         "отставание от «держать SUI»": "📉", "связь восстановлена": "📡", "переход в другой пул": "🔀"}
 BINANCE_PRICE = "https://data-api.binance.vision/api/v3/ticker/price"
 
 
@@ -174,13 +175,46 @@ def executor(*args, simulate: bool, address: str | None = None) -> dict:
     return out
 
 
+def calibration_lines(real: dict, earned: float, model: dict, manual: int = 0) -> list[str]:
+    """Текст сверки: real — summary реального бота, earned — его комиссии и награды в $, model — summary
+    симулятора за тот же период с тем же капиталом."""
+    days, got = real["days"], model["fees_usd"]
+    ratio = earned / got if got > 0 else None
+    g_real = real["value_sui"] / real["capital_sui"] - 1
+    g_model = model["value_sui"] / model["capital_sui"] - 1
+    lines = [f"🔬 <b>Факт против модели</b> · с запуска, {age(days)}",
+             "<i>модель — тот же симулятор, по которому выбиралась стратегия, на реальных ценах этих дней</i>", "",
+             f"заработано (комиссии + награды): факт <b>{money(earned)}</b> · модель {money(got)}"
+             + (f" → <b>{ratio:.0%}</b> от модели" if ratio is not None else ""),
+             f"штук SUI с запуска: факт {pct(g_real)} · модель {pct(g_model)}",
+             f"пересборок: факт {real['rebalances']} · модель {model['rebalances']}; выходов в SUI/USDC: "
+             f"факт {real['exits'] + real['crashes']} · модель {model['exits'] + model['crashes']}",
+             f"издержки (обмены и газ): факт {money(real['costs_usd'])} · модель {money(model['costs_usd'])}"]
+    if not (real["exits"] + real["crashes"] + model["exits"] + model["crashes"]):
+        lines.append(f"в диапазоне: факт {real['in_range_pct']:.0f}% · модель {model['in_range_pct']:.0f}% времени")
+    if manual:
+        lines.append(f"✋ ручных команд и пауз с запуска: {manual} — модель их не делает, это часть разницы")
+    if days < 3 or ratio is None:
+        verdict = "⏳ данных пока мало — первые выводы после недели работы"
+    elif ratio < 0.7:
+        verdict = ("⚠️ реальный доход заметно ниже модели — бэктесты завышают результат; сумму не увеличивать, "
+                   "журнал — на разбор")
+    elif ratio > 1.3:
+        verdict = "📈 реальный доход выше модели — модель скорее осторожна"
+    else:
+        verdict = "✅ модель подтверждается: реальный доход в пределах ±30% от расчёта"
+    return lines + ["", verdict, "🧠 <i>почему: стратегию и сумму выбирали по этому симулятору; сверка показывает, "
+                                 "насколько ему можно верить на реальных деньгах. Раз в неделю — вместе с недельным "
+                                 "отчётом, по запросу — /model</i>"]
+
+
 class Live:
     def __init__(self, cfg: Config):
         if not cfg.live:
             raise SystemExit("в suibot.toml нет раздела [live]")
         self.cfg, self.lc = cfg, cfg.live
         self.s = next(s for s in cfg.strategies if s.name == self.lc.strategy)
-        self.pc = cfg.pools[self.s.pool]
+        self.pc = cfg.pools[self.s.pool]                # пул исполнения; при смене пула — пока пул книги (ниже)
         self.type_a, self.type_b = (SUI, USDC) if self.pc.a_is_sui else (USDC, SUI)
         self.dir = cfg.state_dir / "live"
         self.dir.mkdir(parents=True, exist_ok=True)
@@ -192,6 +226,9 @@ class Live:
                              "версией /close), затем удалите этот файл и запустите снова")
         st = json.loads(self.path.read_text()) if self.path.exists() else {}
         self.book = Book(**st["book"]) if st.get("book") else None
+        if self.book and self.book.pool != self.s.pool and self.book.pool in cfg.pools:
+            self.pc = cfg.pools[self.book.pool]         # деньги ещё в старом пуле — бот работает там до /close
+        self.switch_noted = st.get("switch_noted", False)
         self.pos_id = st.get("pos_id")
         self.paused = st.get("paused", False)
         self.prev = st.get("prev")
@@ -240,7 +277,7 @@ class Live:
             "last_report_t": self.last_report_t, "alerts": self.alerts, "day_snap": self.day_snap,
             "gas_warned": self.gas_warned, "last_tick_t": self.last_tick_t, "last_reinvest": self.last_reinvest,
             "onchain": self.onchain, "lag_hist": self.lag_hist, "last_snap_t": self.last_snap_t,
-            "last_strategy_check": self.last_strategy_check}, ensure_ascii=False))
+            "last_strategy_check": self.last_strategy_check, "switch_noted": self.switch_noted}, ensure_ascii=False))
         tmp.replace(self.path)
 
     def event(self, t: float, kind: str, price: float, text: str, st=None, why: str | None = None):
@@ -320,6 +357,10 @@ class Live:
                                    "продолжает работать сама",
             "бот был выключен": "пока бот выключен, он не переставляет позицию и не выходит на сильных движениях; "
                                 "держите Mac включённым или перенесите бота на сервер",
+            "переход в другой пул": "в [live] strategy выбрана стратегия в другом пуле; деньги бота ещё в старом пуле, "
+                                    "поэтому бот продолжает работать там по новым правилам, а переезжает только по "
+                                    "вашей команде: /close снимает позицию, /resume открывает её уже в новом пуле "
+                                    f"(не больше max_capital_usd = ${lc.max_capital_usd:g})",
         }.get(kind, "")
 
     def buttons(self) -> list:
@@ -799,6 +840,10 @@ class Live:
         elif c == "strategy":
             notify.send("🧪 Проверяю стратегии на ценах за 30 и 90 дней — это займёт пару минут")
             self.strategy_check()
+        elif c == "model":
+            if self.book and self.book.start:
+                notify.send("🔬 Считаю модель за время работы бота — это займёт пару минут")
+            self.calibration(st)
         elif c not in COMMANDS or c == "help":
             notify.send("ℹ️ <b>Команды</b>\n" + "\n".join(f"/{k} — {esc(v)}" for k, v in MENU.items())
                         + "\n\nПосле /sui, /usdc, /close бот на паузе; /resume — снова открыть позицию.", html=True)
@@ -1053,8 +1098,11 @@ class Live:
                 better = [n for n in gain[30] if n != cur and all(gain[d][n] > gain[d].get(cur, 0) + 0.02 for d in gain)]
                 if better:
                     best = max(better, key=lambda n: gain[30][n] + gain[90][n])
+                    pool = next(x.pool for x in strategies if x.name == best)
+                    move = (f"; она в другом пуле ({pool}): после смены бот продолжит в старом пуле, а переедет "
+                            "после /close и /resume" if pool != self.s.pool else "")
                     lines += ["", f"💡 «{esc(best)}» лучше текущей в обоих периодах больше чем на 2%. Можно "
-                              f"переключить: в suibot.toml [live] strategy = \"{esc(best)}\" — решение за вами"]
+                              f"переключить: в suibot.toml [live] strategy = \"{esc(best)}\"{esc(move)} — решение за вами"]
                 else:
                     lines += ["", "✅ Текущая стратегия не хуже остальных — менять не нужно"]
                 lines.append(f"🧠 <i>почему: раз в strategy_check_days = {self.lc.strategy_check_days:g} дн. бот гоняет "
@@ -1087,21 +1135,35 @@ class Live:
         if not path.exists() or not self.book or not self.book.start:
             return []
         try:
-            books = {n: Book(**d) for n, d in json.loads(path.read_text()).get("books", {}).items()}
+            paper = json.loads(path.read_text())
+            books = {n: Book(**d) for n, d in paper.get("books", {}).items()}
         except (ValueError, TypeError):
             return []
+
+        def pool_state(pool):
+            """Состояние другого пула — по последней цене, которую видела «тень»."""
+            if pool == self.book.pool:
+                return st
+            q = (paper.get("prev") or {}).get(pool)
+            if not q or not q.get("sq"):
+                return None
+            pc = self.cfg.pools[pool]
+            return dict(state_from_price(raw_to_usd(q["sq"] ** 2, pc.a_is_sui), pc.a_is_sui), t=q["t"])
         r = summary(self.book, st, self.price_of(st))
         lines = ["", "🌗 <b>Тень</b> — бумажные копии на тех же ценах (сколько стало штук SUI)",
                  f"▸ <b>реальный бот: {pct(r['value_sui'] / r['capital_sui'] - 1)}</b>"]
         since = None
         for x in self.cfg.strategies:
             bk = books.get(x.name)
-            if not bk or not bk.start or x.pool != self.s.pool or x.rebalance == "none":
+            xs = pool_state(x.pool) if bk and bk.start and x.rebalance != "none" else None
+            if not xs:
                 continue
-            q = summary(bk, st, self.price_of(st))
+            q = summary(bk, xs, self.price_of(xs))
             since = since or bk.start["t"]
+            late = (f" (с {datetime.fromtimestamp(bk.start['t']).strftime('%d.%m')})"
+                    if bk.start["t"] - since > 86400 else "")             # добавлена в suibot.toml позже остальных
             lines.append(f"  {esc(x.name)}{' (как реальный)' if x.name == self.s.name else ''}: "
-                         f"{pct(q['value_sui'] / q['capital_sui'] - 1)}")
+                         f"{pct(q['value_sui'] / q['capital_sui'] - 1)}{late}")
         if since:
             lines.append(f"<i>бумага с {datetime.fromtimestamp(since).strftime('%d.%m')}, реальный бот с "
                          f"{datetime.fromtimestamp(self.book.start['t']).strftime('%d.%m')}; разница реального и "
@@ -1148,6 +1210,48 @@ class Live:
             log(traceback.format_exc())
         if ev.exists():
             notify.send_file(ev, "журнал событий бота (events.csv)")
+        self.calibration(st)
+
+    def manual_count(self, t0: float) -> int:
+        """Ручные команды и паузы с момента t0 — модель их не делает."""
+        ev = self.dir / "events.csv"
+        if not ev.exists():
+            return 0
+        cut = _utc(t0)
+        return sum(1 for x in csv.DictReader(ev.open()) if x["time_utc"] >= cut and x["mode"] == self.label
+                   and (x["event"].startswith("вручную") or x["event"] == "пауза"))
+
+    def calibration(self, st, wait: bool = False):
+        """Сверка «факт против модели»: тот же симулятор, по которому выбиралась стратегия, прогоняется с запуска
+        бота на реальных 5-минутных ценах и доходе пула и сравнивается с тем, что бот получил на деле. В фоне:
+        история грузится минуту-две, бот не останавливается (wait — сразу, для проверок)."""
+        b = self.book
+        if not b or not b.start:
+            notify.send("🔬 Позиция ещё не открыта — сверять пока нечего")
+            return
+        real = summary(b, st, self.price_of(st))
+        earned = self.earned(st, real)
+        t0, now = b.start["t"], st["t"]
+        s = replace(self.s, capital_sui=b.start["capital_sui"])
+        pool, pc, spacing, costs = b.pool, self.cfg.pools[b.pool], st["spacing"], self.cfg.costs
+        manual = self.manual_count(t0)
+
+        def work():
+            try:
+                cs, ys = history.load({pool: pc}, min(365, math.ceil((now - t0) / 86400) + 1), 5)
+                i0 = next((i for i, c in enumerate(cs) if c[0] >= t0), len(cs))
+                if len(cs) - i0 < 12:
+                    notify.send("🔬 Бот работает меньше часа — сверять с моделью пока рано")
+                    return
+                model = simulate(s, pc, [c[0] for c in cs[i0:]], [c[1] for c in cs[i0:]], ys[pool][i0:], costs, spacing)
+                notify.send("\n".join(calibration_lines(real, earned, model, manual)), html=True)
+            except Exception as e:  # noqa: BLE001 — сверка не должна мешать боту
+                notify.send(f"🔬 Сверка с моделью не удалась: {str(e)[:200]}")
+
+        if wait:
+            work()
+        else:
+            threading.Thread(target=work, daemon=True).start()
 
     def ping(self):
         """Отметка «жив» для healthchecks.io раз в healthcheck_minutes (адрес — HEALTHCHECK_URL в .env или файл
@@ -1198,6 +1302,8 @@ class Live:
         if not self.dry and (self.need_sync or self.pending or st["t"] - self.last_sync > SYNC_MINUTES * 60):
             self.sync(st)
         self.finish(st)
+        if b.pool != self.s.pool and self.switch_pool(st):        # стратегия в другом пуле — переезд по команде
+            return
         if not self.paused:
             if b.mode == "hold":                                     # после /sui, /usdc, /close и /resume
                 self.act(st, "resume", "по команде")
@@ -1219,6 +1325,26 @@ class Live:
                 elif now - self.last_reinvest >= self.lc.reinvest_days * 86400:
                     self.reinvest(st)
         self.errors, self.retry_at = 0, None
+
+    def switch_pool(self, st) -> bool:
+        """[live] strategy — в другом пуле, а деньги бота ещё в старом. Бот продолжает работать в старом пуле
+        (по правилам новой стратегии), пока позиция не снята командой; после /close (/sui, /usdc) и /resume
+        начинает заново в новом пуле с монет кошелька. True — книга сброшена, старт на следующем опросе."""
+        b = self.book
+        if b.mode == "hold" and not self.pos_id and not self.manual and not self.paused:
+            old = b.pool
+            self.book, self.pc, self.switch_noted = None, self.cfg.pools[self.s.pool], False
+            self.watch.reset()
+            self.event(st["t"], "переход в другой пул", st["sui"], f"{old} → {self.s.pool}; бот возьмёт свои монеты из "
+                       "кошелька и откроет позицию в новом пуле", why=self.why("переход в другой пул"))
+            self.save()
+            return True
+        if not self.switch_noted:
+            self.switch_noted = True
+            self.event(st["t"], "переход в другой пул", st["sui"], f"стратегия «{self.s.name}» работает в пуле "
+                       f"{self.s.pool}, а позиция бота — в {b.pool}; пока бот продолжает в {b.pool}; чтобы переехать: "
+                       "/close, затем /resume", why=self.why("переход в другой пул"))
+        return False
 
     def failed(self, st, e: Exception):
         self.need_sync = not self.dry
