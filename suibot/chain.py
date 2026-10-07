@@ -35,12 +35,13 @@ def state_from_price(p_usd: float, a_is_sui: bool) -> dict:
     return {"sq": usd_to_raw(p_usd, a_is_sui) ** 0.5, "sui": p_usd, "ua": ua, "ub": ub}
 
 
-def read_pools(pools: dict[str, PoolCfg]) -> dict[str, dict]:
-    """Текущее состояние пулов одним запросом: цена, счётчики комиссий и наград, шаг тиков, время чекпоинта."""
+def read_pools(pools: dict[str, PoolCfg], fast: bool = False) -> dict[str, dict]:
+    """Текущее состояние пулов одним запросом: цена, счётчики комиссий и наград, шаг тиков, время чекпоинта.
+    fast — две быстрые попытки вместо шести терпеливых (боевой бот: при обрыве связи не висеть минутами)."""
     keys = list(pools)
     d = gql("{ checkpoint { timestamp } " + " ".join(
         f'p{i}: object(address:"{pools[k].object}"){{ asMoveObject {{ contents {{ json }} }} }}'
-        for i, k in enumerate(keys)) + "}")
+        for i, k in enumerate(keys)) + "}", *((2, 20) if fast else ()))
     t = ts(d["checkpoint"]["timestamp"])
     out = {}
     for i, k in enumerate(keys):

@@ -22,6 +22,17 @@ class LiveCfg:
     min_swap_usd: float = 1.0           # меньшие обмены не делаются
     dry_run: bool = True                # true — только симуляция, ничего не отправляется
     address: str | None = None          # адрес кошелька для симуляции без ключа
+    report_hours: float = 4.0           # отчёт в Telegram каждые N часов (0 — только утренний)
+    range_notice_minutes: int = 5       # сообщить, если цена вне диапазона дольше N минут
+    gas_warn_sui: float = 0.5           # предупредить, если SUI в кошельке (на газ) меньше этого
+    reinvest_days: float = 7.0          # раз в N дней: забрать комиссии и награды, награды → SUI, всё — в позицию; 0 — нет
+    reward_min_usd: float = 1.0         # награды дешевле этой суммы не меняются: газ и проскальзывание дороже
+    reinvest_min_usd: float = 2.0       # меньше этой суммы в позицию не добавляется
+    price_check_pct: float = 0.01       # не действовать, если цена пула расходится с Binance больше чем на столько
+    lag_warn_pct: float = 0.05          # предупредить, если за 7 дней бот отстал от «держать SUI» больше чем на столько
+    healthcheck_minutes: float = 5.0    # как часто отмечаться в healthchecks.io (если задан адрес)
+    strategy_check_days: float = 7.0    # раз в N дней проверять стратегии на свежих ценах; 0 — не проверять
+    downtime_notice_minutes: int = 10   # после запуска сообщить, если бот не работал дольше N минут
 
 
 @dataclass

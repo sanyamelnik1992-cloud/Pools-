@@ -12,27 +12,31 @@
                                             (dry_run = true в suibot.toml — только симуляция)
   python3 bot.py control <команда>          ручное управление работающим ботом: status, pause, resume, sui, usdc, close
   python3 bot.py status                     состояние боевого режима и последние события (только чтение)
+  python3 bot.py check                      проверка перед запуском: .env, Telegram, кошелёк, настройки
 
 Стратегии и издержки — в suibot.toml (можно указать другой файл: --config). Состояние и журналы —
 data/private/bot/ (в git не попадают). Уведомления и команды в Telegram — если заданы переменные окружения
 TG_TOKEN и TG_CHAT. Ключ кошелька нужен только боевому режиму: переменная SUI_PRIVATE_KEY (suiprivkey1…).
+Боевой режим берёт их и из файла .env в папке проекта (другой файл: --env, например на сервере); см. .env.example.
 """
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 from lpscan.common import ROOT
-from suibot import backtest, optimize, scenario
+from suibot import backtest, env, optimize, scenario
 from suibot.config import load
-from suibot.live import Live, control, show
+from suibot.live import Live, check, control, show
 from suibot.paper import Paper
 
 
 def main():
     ap = argparse.ArgumentParser(description="Бот-ребалансер SUI/USDC на Cetus")
-    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "live", "control", "status"])
+    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "live", "control", "status", "check"])
     ap.add_argument("command", nargs="?", help="control: status | pause | resume | sui | usdc | close")
     ap.add_argument("--config", default=str(ROOT / "suibot.toml"))
+    ap.add_argument("--env", default=str(ROOT / ".env"), help="live, check: файл с SUI_PRIVATE_KEY, TG_TOKEN, TG_CHAT")
     ap.add_argument("--reset", action="store_true", help="paper: начать заново, удалив сохранённое состояние")
     ap.add_argument("--ticks", type=int, help="paper: сделать N опросов и выйти (для проверки)")
     ap.add_argument("--days", type=int, help="backtest: глубина истории (30); scenario: длина сценария (60)")
@@ -56,7 +60,13 @@ def main():
     elif a.mode == "optimize":
         optimize.run(cfg, a.paths if a.paths != 100 else 30)
     elif a.mode == "live":
+        names = env.load(Path(a.env))              # только боевой режим загружает ключ; значения не печатаются
+        if names:
+            print(f"из {a.env} загружены: {', '.join(sorted(names))}")
         Live(cfg).run(a.ticks)
+    elif a.mode == "check":
+        env.load(Path(a.env))                     # ключ загружается, но не печатается
+        check(cfg, a.env)
     elif a.mode == "status":
         show(cfg)
     else:

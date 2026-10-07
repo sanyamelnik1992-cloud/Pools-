@@ -11,6 +11,10 @@
 //                                                                 снять всю ликвидность, комиссии и награды, закрыть
 //   node cli.mjs swap   --from <тип монеты> --to <тип> --amount X [--slippage 0.005]
 //                                                                 обмен через агрегатор Cetus (лучший маршрут по Sui)
+//   node cli.mjs collect --pool <id> --position <id>              забрать комиссии и награды, позиция остаётся
+//   node cli.mjs add    --pool <id> --position <id> --amount-a X --amount-b Y [--band 0.001]
+//                                                                 добавить монеты в открытую позицию (те же потолки,
+//                                                                 что у open)
 //
 // Ключ — переменная окружения SUI_PRIVATE_KEY (формат suiprivkey1…, экспорт из кошелька). Без ключа или с флагом
 // --simulate транзакция только симулируется в сети от имени --address / SUI_ADDRESS: ничего не подписывается
@@ -133,6 +137,16 @@ async function status() {
     if (out.position_owned) {
       const p = await sdk.Position.getPositionById(a.position)
       out.position = { id: a.position, liquidity: p.liquidity, tick_lower: p.tick_lower_index, tick_upper: p.tick_upper_index }
+      try {   // несобранные комиссии и награды — точно, по данным сети (не мешает статусу, если не вышло)
+        const pair = { pool_id: pool.id, position_id: a.position, coin_type_a: pool.coin_type_a, coin_type_b: pool.coin_type_b }
+        const [fee] = await sdk.Position.fetchPosFeeAmount([pair])
+        const [rew] = await sdk.Rewarder.fetchPosRewardersAmount([{ ...pair, rewarder_types: pool.rewarder_infos.map((r) => r.coin_type) }])
+        out.position.fee_a = fee?.fee_owned_a ?? null
+        out.position.fee_b = fee?.fee_owned_b ?? null
+        out.position.rewards = Object.fromEntries((rew?.rewarder_amounts ?? []).map((r) => [r.coin_type, r.amount_owned]))
+      } catch (e) {
+        out.position.fees_error = String(e?.message ?? e).slice(0, 200)
+      }
     }
   }
   return out
@@ -148,6 +162,17 @@ async function open() {
   const lower = Number(a['tick-lower']), upper = Number(a['tick-upper'])
   const sp = Number(pool.tick_spacing)
   if (lower % sp || upper % sp || lower >= upper) fail(`границы должны быть кратны шагу ${sp} и нижняя меньше верхней`)
+  return addLiquidity(pool, lower, upper, '')
+}
+
+async function add() {
+  const pool = await sdk.Pool.getPool(a.pool, true)
+  const pos = await sdk.Position.getPositionById(a.position)
+  return addLiquidity(pool, Number(pos.tick_lower_index), Number(pos.tick_upper_index), pos.pos_object_id)
+}
+
+async function addLiquidity(pool, lower, upper, pos_id) {
+  // pos_id пустой — открыть новую позицию, иначе добавить в существующую
   const have_a = new BN(String(a['amount-a'])), have_b = new BN(String(a['amount-b']))
   const cur = new BN(pool.current_sqrt_price)
   const sqrts = [cur, scaled(cur, 1 - band), scaled(cur, 1 + band)]
@@ -172,13 +197,14 @@ async function open() {
   const tx = await sdk.Position.createAddLiquidityFixTokenPayload({
     coin_type_a: pool.coin_type_a, coin_type_b: pool.coin_type_b, pool_id: pool.id,
     tick_lower: String(lower), tick_upper: String(upper), fix_amount_a: fix_a, amount_a, amount_b,
-    slippage: 0, is_open: true, pos_id: '', rewarder_coin_types: [], collect_fee: false,
+    slippage: 0, is_open: !pos_id, pos_id, rewarder_coin_types: [], collect_fee: false,
   })
   const res = await run(tx, [pool.coin_type_a, pool.coin_type_b])
   let position = null
-  if (res.created_positions.length === 1) {
-    // позиция — из эффектов самой транзакции; ликвидность — с объекта (если узел ещё не успел — оценка)
-    const id = res.created_positions[0]
+  if (pos_id || res.created_positions.length === 1) {
+    // позиция — из эффектов самой транзакции (или та, в которую добавляли); ликвидность — с объекта
+    // (если узел ещё не успел — оценка)
+    const id = pos_id || res.created_positions[0]
     position = { id, liquidity: est.liquidity_amount?.toString?.() ?? null, tick_lower: lower, tick_upper: upper }
     if (!res.simulated && res.ok) {
       for (let i = 0; i < 5; i++) {
@@ -209,6 +235,15 @@ async function close() {
   return { ...(await run(tx, [pool.coin_type_a, pool.coin_type_b])), expected_a: at[0].coin_amount_a?.toString(), expected_b: at[0].coin_amount_b?.toString() }
 }
 
+async function collect() {
+  const pool = await sdk.Pool.getPool(a.pool, true)
+  const tx = await sdk.Rewarder.collectRewarderPayload({
+    pool_id: pool.id, pos_id: a.position, coin_type_a: pool.coin_type_a, coin_type_b: pool.coin_type_b,
+    collect_fee: true, rewarder_coin_types: pool.rewarder_infos.map((r) => r.coin_type),
+  })
+  return run(tx, [pool.coin_type_a, pool.coin_type_b])
+}
+
 async function swap() {
   const agg = new AggregatorClient({ env: Env.Mainnet, signer: address, client: sdk.FullClient })
   const route = await agg.findRouters({ from: a.from, target: a.to, amount: new BN(String(a.amount)), byAmountIn: true })
@@ -219,8 +254,9 @@ async function swap() {
 }
 
 try {
-  const fn = { status, open, close, swap }[cmd]
-  if (!fn) fail('команда: status | open | close | swap')
+  const fn = { status, open, close, swap, collect, add }[cmd]
+  if (!fn) fail('команда: status | open | close | swap | collect | add')
+  if ((cmd === 'collect' || cmd === 'add') && !a.position) fail('нужен --position')
   if (cmd !== 'swap' && !a.pool) fail('нужен --pool')
   console.log(json(await fn()))
 } catch (e) {

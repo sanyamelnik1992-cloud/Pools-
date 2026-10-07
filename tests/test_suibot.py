@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from suibot.book import Costs, accrue_growth, init_book, rebalance, summary, update_out  # noqa: E402
 from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
+from suibot import env  # noqa: E402
 from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
 from suibot.sim import simulate  # noqa: E402
 from suibot.rally import RallyWatch  # noqa: E402
@@ -156,6 +157,31 @@ def test_watch_drop_and_old_state():
     assert w.dropped(0.94) is not None                      # −10.5% от максимума 1.05
     old = RallyWatch([[24, 0.10]], state=[[[0.0, 1.0]]])     # состояние старого формата (список очередей роста)
     assert old.triggered(1.2) is not None and old.dump()["drop"] == []
+
+
+def test_env_file():
+    import os
+    import tempfile
+    text = ('# секреты\nexport TG_TOKEN="123:abc"\nCHAT_ID=42  # мой чат\nPRIVATE_KEY=\'suiprivkey1xyz\'\n'
+            'мусор\nEMPTY=\n')
+    assert env.parse(text) == {"TG_TOKEN": "123:abc", "TG_CHAT": "42", "SUI_PRIVATE_KEY": "suiprivkey1xyz", "EMPTY": ""}
+    names = ("TG_TOKEN", "TG_CHAT", "SUI_PRIVATE_KEY", "EMPTY")
+    saved = {n: os.environ.pop(n, None) for n in names}
+    try:
+        os.environ["TG_CHAT"] = "7"                          # заданное в окружении не перезаписывается
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / ".env"
+            f.write_text(text)
+            f.chmod(0o644)
+            assert sorted(env.load(f)) == ["SUI_PRIVATE_KEY", "TG_TOKEN"]
+            assert os.environ["TG_CHAT"] == "7" and os.environ["SUI_PRIVATE_KEY"] == "suiprivkey1xyz"
+            assert os.name != "posix" or f.stat().st_mode & 0o077 == 0     # права сужены до владельца
+            assert env.load(Path(d) / "нет такого") == []
+    finally:
+        for n, v in saved.items():
+            os.environ.pop(n, None)
+            if v is not None:
+                os.environ[n] = v
 
 
 if __name__ == "__main__":

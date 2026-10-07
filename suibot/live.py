@@ -24,18 +24,23 @@ dry_run = true — ничего не отправляется: позиция в
 """
 from __future__ import annotations
 
+import csv
 import json
+import threading
+from html import escape as esc
 import math
 import os
 import subprocess
 import time
 import traceback
+
+import requests
 from dataclasses import asdict, replace
 from datetime import datetime, timezone
 
 from lpscan.common import ROOT
 from sui_pools import SUI, USDC
-from suibot import notify
+from suibot import charts, history, notify
 from suibot.book import (Book, accrue_growth, close_to_idle, decide, exit_to_sui, exit_to_usdc, init_book,
                          open_position, rebalance, summary)
 from suibot.chain import raw_to_usd, token_price, read_pools, usd_to_raw
@@ -43,6 +48,7 @@ from suibot.clmm import amounts, snap_ticks, sqrt_of_tick
 from suibot.config import Config
 from suibot.paper import _append, _utc, log
 from suibot.rally import RallyWatch
+from suibot.sim import simulate
 
 try:
     import fcntl
@@ -53,11 +59,69 @@ except ImportError:            # Windows
 GAS_BUFFER_SUI = 0.05      # при открытии позиции столько своих SUI бот оставляет на газ
 RETRY_MINUTES = (2, 6, 18)  # повторы после ошибки; следующая ошибка подряд — пауза до /resume
 SYNC_MINUTES = 30          # плановая сверка с кошельком
-COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "help")
+COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "events", "week", "alert", "strategy", "settings",
+            "help")
 HELP = ("Команды: /status — отчёт; /pause — пауза; /resume — продолжить; /sui — снять позицию и всё в SUI; "
         "/usdc — снять позицию и всё в USDC; /close — снять позицию, монеты оставить. После /sui, /usdc, /close "
         "бот на паузе; /resume — снова открыть позицию.")
 MANUAL = {"sui": "вручную: всё в SUI", "usdc": "вручную: всё в USDC", "close": "вручную: позиция снята"}
+MENU = {"status": "отчёт: позиция, заработок, итог", "pause": "пауза (позиция остаётся)", "resume": "продолжить",
+        "sui": "снять позицию, всё в SUI", "usdc": "снять позицию, всё в USDC", "close": "снять позицию",
+        "events": "последние события", "week": "недельный отчёт с графиком", "alert": "алерт цены: /alert 1.30 (/alert — список, /alert off — снять)",
+        "strategy": "проверить стратегии на свежих ценах", "settings": "настройки бота с пояснениями",
+        "help": "список команд"}
+TX_URL = "https://suiscan.xyz/mainnet/tx/"
+OBJ_URL = "https://suiscan.xyz/mainnet/object/"
+TX_NAMES = {"open": "открытие", "close": "закрытие", "swap": "обмен"}
+ICONS = {"открыта": "✅", "позиция найдена": "🔎", "позиция закрыта не ботом": "🛑", "пауза": "⏸", "продолжение": "▶️",
+         "вручную: всё в SUI": "✋", "вручную: всё в USDC": "✋", "вручную: позиция снята": "✋", "выход завершён": "☑️",
+         "пересборка": "🔄", "позиция открыта заново": "🔄", "возврат в пул": "↩️", "выход в SUI": "🚀",
+         "выход в USDC": "🛡", "цена вне диапазона": "⚠️", "цена снова в диапазоне": "✅", "нет связи": "📡",
+         "ошибка": "❌", "мало SUI на газ": "⛽", "награды обменяны": "🎁", "обмен наград не удался": "🎁",
+         "бот был выключен": "💤", "реинвестирование": "♻️", "цена пула расходится с биржей": "🚧",
+         "отставание от «держать SUI»": "📉", "связь восстановлена": "📡"}
+BINANCE_PRICE = "https://data-api.binance.vision/api/v3/ticker/price"
+
+
+def exchange_price() -> float | None:
+    """Цена SUI на Binance (SUIUSDT) для сверки с ценой пула; None — биржа недоступна."""
+    try:
+        return float(requests.get(BINANCE_PRICE, params={"symbol": "SUIUSDT"}, timeout=8).json()["price"])
+    except (requests.RequestException, ValueError, KeyError, TypeError):
+        return None
+
+
+def rules_text(rules) -> str:
+    """[[72, 0.15]] → «≥15% за 72 ч»."""
+    return ", ".join(f"≥{r:.0%} за {h:g} ч" for h, r in rules or [])
+
+
+def money(x: float, sign: bool = False) -> str:
+    s = f"${abs(x):,.2f}"
+    return ("+" if x >= 0 else "−") + s if sign else ("−" + s if x < 0 else s)
+
+
+def pct(x: float) -> str:
+    return f"{'+' if x >= 0 else '−'}{abs(x):.1%}"
+
+
+def num(x: float, d: int = 1) -> str:
+    return f"{'+' if x >= 0 else '−'}{abs(x):,.{d}f}"
+
+
+def age(days: float) -> str:
+    m = days * 1440
+    return f"{m:.0f} мин" if m < 60 else f"{m / 60:.1f} ч" if m < 1440 else f"{days:.1f} дн."
+
+
+def bar(p: float, lo: float, hi: float, n: int = 12) -> str:
+    """Где цена внутри диапазона: ┃───●────┃ (точка снаружи — цена вне диапазона)."""
+    if p < lo:
+        return "●┃" + "─" * n + "┃"
+    if p > hi:
+        return "┃" + "─" * n + "┃●"
+    i = min(n - 1, int((p - lo) / (hi - lo) * n))
+    return "┃" + "─" * i + "●" + "─" * (n - 1 - i) + "┃"
 
 
 def lock_once(path):
@@ -144,6 +208,23 @@ class Live:
         self.last_sync = st.get("last_sync", 0.0)
         self.need_sync = not self.dry                  # после каждого запуска — сверка с кошельком
         self.watch = RallyWatch(self.s.rally_exit, st.get("watch"), min_step=60, drop_rules=self.s.crash_exit)
+        self.out_noticed = st.get("out_noticed", False)   # сообщение «цена вне диапазона» уже отправлено
+        self.last_report_t = st.get("last_report_t")      # когда отправлен последний регулярный отчёт (часы Mac)
+        self.txs = []                                     # транзакции текущего действия — ссылки в сообщение
+        self.alerts = st.get("alerts", [])                # ценовые алерты: [[цена, "up"|"down"], ...]
+        self.day_snap = st.get("day_snap")                # итоги на момент прошлой утренней сводки
+        self.gas_warned = st.get("gas_warned", False)
+        self.last_tick_t = st.get("last_tick_t")          # часы Mac на последнем опросе — для «бот был выключен»
+        self.down_since = None
+        self.last_reinvest = st.get("last_reinvest")
+        self.onchain = st.get("onchain")                  # несобранные комиссии и награды по данным сети
+        self.lag_hist = st.get("lag_hist", [])             # [время, SUI к «держать SUI»] на каждое утро
+        self.price_warned = False
+        self.net_down_since = None
+        self.last_ping = 0.0
+        self.last_snap_t = st.get("last_snap_t", 0.0)
+        self.last_strategy_check = st.get("last_strategy_check")
+        self.hello = False
         self.has_key = bool(os.environ.get("SUI_PRIVATE_KEY"))
         self.label = "СИМУЛЯЦИЯ" if self.dry else "РЕАЛЬНЫЕ ДЕНЬГИ"
 
@@ -155,14 +236,205 @@ class Live:
             "prev": self.prev, "tg_offset": self.tg_offset, "last_report_day": self.last_report_day,
             "address": self.address, "foreign": sorted(self.foreign), "pending": self.pending, "manual": self.manual,
             "collected": self.collected, "errors": self.errors, "missing": self.missing, "retry_at": self.retry_at,
-            "last_sync": self.last_sync, "watch": self.watch.dump()}, ensure_ascii=False))
+            "last_sync": self.last_sync, "watch": self.watch.dump(), "out_noticed": self.out_noticed,
+            "last_report_t": self.last_report_t, "alerts": self.alerts, "day_snap": self.day_snap,
+            "gas_warned": self.gas_warned, "last_tick_t": self.last_tick_t, "last_reinvest": self.last_reinvest,
+            "onchain": self.onchain, "lag_hist": self.lag_hist, "last_snap_t": self.last_snap_t,
+            "last_strategy_check": self.last_strategy_check}, ensure_ascii=False))
         tmp.replace(self.path)
 
-    def event(self, t: float, kind: str, price: float, text: str):
-        log(f"[{self.label}] {kind}: {text}")
+    def event(self, t: float, kind: str, price: float, text: str, st=None, why: str | None = None):
+        """Событие: журнал и events.csv — одной строкой; Telegram — карточкой (части текста через «; » — строки,
+        st — добавить итог капитала, why — почему бот так сделал и какой настройкой это меняется,
+        транзакции этого действия — ссылками)."""
+        links, self.txs = self.txs, []
+        plain = text + (f"; {self.report(st).splitlines()[1]}" if st and self.book and self.book.start else "")
+        if why:
+            plain += f" | почему: {why}"
+        if links:
+            plain += "\nтранзакции: " + " ".join(TX_URL + d for _, d in links)
+        log(f"[{self.label}] {kind}: {plain}")
         _append(self.dir / "events.csv", {"time_utc": _utc(t), "mode": self.label, "event": kind,
-                                          "price": round(price, 5), "details": text})
-        notify.send(f"[{self.label}] {kind}: {text}")
+                                          "price": round(price, 5), "details": plain})
+        notify.send(self.card(kind, text, st, links, why), html=True)
+
+    def card(self, kind: str, text: str, st=None, links=(), why: str | None = None) -> str:
+        lines = [f"{ICONS.get(kind, 'ℹ️')} <b>{esc(kind[:1].upper() + kind[1:])}</b>" + (" · 🧪 симуляция" if self.dry else "")]
+        lines += [esc(x.strip()) for x in text.split("; ") if x.strip()]
+        if st and self.book and self.book.start:
+            r = summary(self.book, st, self.price_of(st))
+            cap = self.book.start["capital_sui"] * self.book.start["price"]
+            lines.append(f"💼 <b>{money(r['value'])}</b> = {r['value_sui']:,.1f} SUI"
+                         + (f" · итог {pct(r['value'] / cap - 1)}" if cap else ""))
+        if why:
+            lines.append(f"🧠 <i>почему: {esc(why)}</i>")
+        if links:
+            lines.append("🔗 " + " · ".join(f'<a href="{TX_URL}{d}">{TX_NAMES.get(op, op)}</a>' for op, d in links))
+        return "\n".join(lines)
+
+    def why(self, kind: str, mode: str | None = None) -> str:
+        """Логика решения простыми словами и настройки suibot.toml, которыми она меняется."""
+        s, lc = self.s, self.lc
+        rng = f"−{s.range_down:.0%}…+{s.range_up:.0%} от цены (range_down / range_up)"
+        return {
+            "открыта": f"бот берёт из кошелька не больше max_capital_usd = ${lc.max_capital_usd:g} и оставляет "
+                       f"gas_reserve_sui = {lc.gas_reserve_sui:g} SUI на газ; диапазон {rng} — узкий диапазон даёт больше "
+                       "комиссий, пока цена внутри",
+            "пересборка": f"цена была вне диапазона дольше out_minutes = {s.out_minutes:g} мин, комиссии не шли — бот "
+                          f"поставил новый диапазон {rng}; короткие выбросы он пережидает, потому что каждая "
+                          "пересборка стоит комиссии обмена и газа",
+            "позиция открыта заново": "позиции бота нет в кошельке (не открылась или пропала) — без позиции нет "
+                                      f"комиссий, поэтому бот открывает новую: {rng}",
+            "выход в SUI": f"сильный рост (rally_exit: {rules_text(s.rally_exit)}) — в пуле рост продаёт ваши SUI за "
+                           "USDC, поэтому бот держит всё в SUI; вернётся в пул после отката на "
+                           f"resume_drop_pct = {s.resume_drop_pct or 0:.0%} от пика",
+            "выход в USDC": f"сильное падение (crash_exit: {rules_text(s.crash_exit)}) — в пуле падение докупает SUI "
+                            "всё дороже, поэтому бот держит всё в USDC; вернётся в пул после отскока на "
+                            f"resume_rise_pct = {s.resume_rise_pct or 0:.0%} от минимума",
+            "возврат в пул": ("после выхода в SUI цена откатилась на resume_drop_pct = "
+                              f"{s.resume_drop_pct or 0:.0%} от пика — сильный рост закончился" if mode == "sui" else
+                              "после выхода в USDC цена отскочила на resume_rise_pct = "
+                              f"{s.resume_rise_pct or 0:.0%} от минимума — падение остановилось" if mode == "usdc" else
+                              "после вашей команды /resume") + f"; бот снова зарабатывает комиссии: {rng}",
+            "цена вне диапазона": "комиссии платят только пока цена внутри диапазона; бот ждёт out_minutes = "
+                                  f"{s.out_minutes:g} мин, прежде чем переставлять: короткие выбросы часто "
+                                  "возвращаются, а пересборка стоит денег",
+            "ошибка": "после ошибки бот сверяется с кошельком (чтобы не потратить дважды) и повторяет через 2, 6 и 18 "
+                      "мин; 4-я ошибка подряд — пауза, чтобы не тратить газ на повторяющийся сбой",
+            "нет связи": "без связи бот ничего не отправляет, деньги не трогаются; повторяет сам и на паузу не встаёт",
+            "мало SUI на газ": f"каждая транзакция платит газ в SUI; без газа бот не сможет ни переставить, ни закрыть "
+                               f"позицию; порог gas_warn_sui = {lc.gas_warn_sui:g} SUI",
+            "реинвестирование": f"раз в reinvest_days = {lc.reinvest_days:g} дн. бот забирает заработанное, меняет "
+                                f"награды дороже reward_min_usd = ${lc.reward_min_usd:g} на SUI (цель — больше SUI) и "
+                                "добавляет всё в позицию: деньги в позиции зарабатывают комиссии, а лежащие рядом — нет; "
+                                f"меньше reinvest_min_usd = ${lc.reinvest_min_usd:g} не добавляется — копится",
+            "обмен наград не удался": f"попробует снова через reinvest_days = {lc.reinvest_days:g} дн.; "
+                                      "на позицию это не влияет",
+            "цена пула расходится с биржей": f"разница больше price_check_pct = {lc.price_check_pct:.0%}: это может быть "
+                                             "короткий выброс в пуле или сбой узла; действовать по такой цене опасно, "
+                                             "поэтому бот ждёт, пока цены сойдутся, и проверяет каждые 30 с",
+            "отставание от «держать SUI»": f"порог lag_warn_pct = {lc.lag_warn_pct:.0%} за 7 дней; бот сам ничего не "
+                                           "меняет — пауза отключила бы и защиту от падения; решать вам: продолжать, "
+                                           "/sui (переждать в SUI) или обсудить стратегию",
+            "связь восстановлена": "пока связи нет, бот ничего не делает и деньги не трогает; позиция в пуле "
+                                   "продолжает работать сама",
+            "бот был выключен": "пока бот выключен, он не переставляет позицию и не выходит на сильных движениях; "
+                                "держите Mac включённым или перенесите бота на сервер",
+        }.get(kind, "")
+
+    def buttons(self) -> list:
+        return [[("🔄 Обновить", "status"), ("▶️ Продолжить", "resume") if self.paused else ("⏸ Пауза", "pause"),
+                 ("📜 События", "events")]]
+
+    def earned(self, st, r) -> float:
+        """Комиссии и награды в $ с начала."""
+        return r["fees_usd"] + r["value"] - self.usd(*self.book.holdings(st), st)
+
+    def snap(self, st, r) -> dict:
+        b = self.book
+        return {"t": time.time(), "earned": self.earned(st, r), "in_s": b.in_range_s, "tot_s": b.total_s,
+                "acts": len(b.rebalances) + len(b.exits) + len(b.crashes) + len(b.resumes),
+                "vs_hold": r["vs_hold_sui_count"], "price": r["price"]}
+
+    def daily(self, st, r) -> list[str]:
+        """Сводка с прошлой утренней сводки (или с запуска)."""
+        b, p = self.book, r["price"]
+        d0 = self.day_snap or {"t": None, "earned": 0.0, "in_s": 0.0, "tot_s": 0.0, "acts": 0, "vs_hold": 0.0,
+                               "price": b.start["price"]}
+        now = self.snap(st, r)
+        tot = now["tot_s"] - d0["tot_s"]
+        got = now["earned"] - d0["earned"]
+        out = ["", "🗓 <b>" + ("За сутки" if d0["t"] else "С запуска") + "</b>",
+               f"заработано <b>{money(got)}</b> ≈ {got / p:,.2f} SUI",
+               f"цена SUI {pct(p / d0['price'] - 1)}"
+               + (f" · в диапазоне {(now['in_s'] - d0['in_s']) / tot:.0%} времени" if tot > 0 else ""),
+               f"действий бота: {now['acts'] - d0['acts']} · к «держать SUI» {num(now['vs_hold'] - d0['vs_hold'], 2)} SUI"]
+        self.day_snap = now
+        self.lag_hist = (self.lag_hist + [[now["t"], now["vs_hold"]]])[-60:]
+        old = [h for h in self.lag_hist if now["t"] - h[0] >= 6.5 * 86400]
+        if old and self.lc.lag_warn_pct:
+            lag = (now["vs_hold"] - old[-1][1]) / b.start["capital_sui"]
+            if lag < -self.lc.lag_warn_pct:
+                self.event(st["t"], "отставание от «держать SUI»", p, f"за 7 дней бот отстал от «держать SUI» на "
+                           f"{-lag:.1%} ({num(now['vs_hold'] - old[-1][1])} SUI)", st,
+                           why=self.why("отставание от «держать SUI»"))
+        return out
+
+    def onchain_line(self, st) -> str:
+        """Несобранное в позиции по данным сети (обновляется при сверке раз в 30 мин)."""
+        o = self.onchain
+        fee = self.usd(int(o.get("fee_a") or 0), int(o.get("fee_b") or 0), st)
+        rew = 0.0
+        for t, amt in (o.get("rewards") or {}).items():
+            px, dec = self.price_of(st)(t)
+            rew += int(amt) * px / 10 ** dec
+        return f"в позиции сейчас (точно): комиссии {money(fee)} + награды {money(rew)}"
+
+    def settings_card(self) -> str:
+        s, lc = self.s, self.lc
+        rows = [("Стратегия", f"«{s.name}»", "[live] strategy — какая из стратегий suibot.toml работает"),
+                ("Диапазон", f"−{s.range_down:.0%}…+{s.range_up:.0%}", "range_down / range_up — уже: больше комиссий, "
+                 "но чаще пересборки"),
+                ("Пересборка", f"после {s.out_minutes:g} мин вне диапазона", "out_minutes — меньше: быстрее "
+                 "возвращается к комиссиям, но больше лишних пересборок на выбросах"),
+                ("Выход в SUI", rules_text(s.rally_exit) or "нет", f"rally_exit; назад в пул после отката "
+                 f"resume_drop_pct = {s.resume_drop_pct or 0:.0%}"),
+                ("Выход в USDC", rules_text(s.crash_exit) or "нет", f"crash_exit; назад после отскока "
+                 f"resume_rise_pct = {s.resume_rise_pct or 0:.0%}"),
+                ("Лимит капитала", f"${lc.max_capital_usd:g}", "max_capital_usd — больше бот из кошелька не берёт"),
+                ("Газ", f"{lc.gas_reserve_sui:g} SUI в запасе, тревога ниже {lc.gas_warn_sui:g}",
+                 "gas_reserve_sui / gas_warn_sui"),
+                ("Обмен", f"проскальзывание до {lc.slippage:.1%}", "slippage — больше: обмен проходит чаще, но может "
+                 "быть дороже"),
+                ("Реинвестирование", f"раз в {lc.reinvest_days:g} дн." if lc.reinvest_days else "выключено",
+                 f"reinvest_days; награды от ${lc.reward_min_usd:g}, добавка от ${lc.reinvest_min_usd:g}"),
+                ("Сверка с Binance", f"±{lc.price_check_pct:.0%}", "price_check_pct — защита от ложной цены"),
+                ("Отчёты", f"каждые {lc.report_hours:g} ч + утро", "report_hours"),
+                ("Проверка стратегий", f"раз в {lc.strategy_check_days:g} дн.", "strategy_check_days"),
+                ("Режим", "🧪 симуляция" if self.dry else "реальные деньги", "dry_run")]
+        return "⚙️ <b>Настройки</b> (файл suibot.toml)\n" + "\n".join(
+            f"\n<b>{esc(k)}</b>: {esc(v)}\n<i>{esc(d)}</i>" for k, v, d in rows)
+
+    def report_card(self, st, title: str = "Отчёт", daily: bool = False) -> str:
+        """Отчёт для Telegram: цена и диапазон, капитал, заработок (daily — и сводка за сутки)."""
+        b = self.book
+        lines = [f"📊 <b>{esc(title)}</b> · {esc(self.s.name)}"] + (["🧪 симуляция — реальных денег нет"] if self.dry else [])
+        if not b or not b.start:
+            return "\n".join(lines + ["позиция ещё не открыта" + (" (пауза)" if self.paused else "")])
+        r = summary(b, st, self.price_of(st))
+        p, (lo, hi) = r["price"], r["range"]
+        state = {"sui": "🚀 всё в SUI — ждёт отката, чтобы вернуться в пул",
+                 "usdc": "🛡 всё в USDC — ждёт отскока, чтобы вернуться в пул"}.get(r["mode"]) or (
+            "без позиции" if not b.L else "✅ в диапазоне — комиссии идут" if r["in_range_now"]
+            else "⚠️ вне диапазона — комиссии не идут")
+        lines += ["", f"💲 SUI <b>${p:.4f}</b>", ("⏸ пауза · " if self.paused else "") + state]
+        if b.mode == "lp" and b.L:
+            lines += [f"<code>{lo:.4f} {bar(p, lo, hi)} {hi:.4f}</code>",
+                      f"до нижней {pct(lo / p - 1)} · до верхней {pct(hi / p - 1)} · "
+                      f"в диапазоне {r['in_range_pct']:.0f}% времени"]
+        cap = b.start["capital_sui"] * b.start["price"]
+        pnl = r["value"] - cap
+        lines += ["", "💼 <b>Капитал</b>",
+                  f"{money(cap)} → <b>{money(r['value'])}</b> ({money(pnl, True)}" + (f", {pct(pnl / cap)})" if cap else ")"),
+                  f"= {r['value_sui']:,.1f} SUI · к «держать SUI» {num(r['vs_hold_sui_count'])} SUI",
+                  f"состав: {r['sui_amount']:,.1f} SUI + {r['usdc_amount']:,.2f} USDC"]
+        rew = r["value"] - self.usd(*b.holdings(st), st)
+        earned = self.earned(st, r)
+        day = (f" · ≈{money(earned / r['days'])} в день (≈{earned / r['days'] * 365 / cap:.0%} годовых)"
+               if r["days"] >= 1 / 24 and cap else "")
+        lines += ["", "💰 <b>Заработок</b>",
+                  f"комиссии ≈{money(r['fees_usd'])} · награды {money(rew)}",
+                  *([self.onchain_line(st)] if self.onchain and self.pos_id and not self.dry else []),
+                  f"итого <b>{money(earned)}</b> ≈ {earned / p:,.2f} SUI{day}",
+                  f"издержки {money(r['costs_usd'])} · пересборок {r['rebalances']}"]
+        foot = f"⏱ работает {age(r['days'])}"
+        if self.pos_id:
+            foot = f'🔗 <a href="{OBJ_URL}{self.pos_id}">позиция {self.pos_id[:10]}…</a> · ' + foot
+        if self.errors:
+            foot += f" · ❌ ошибок подряд: {self.errors}"
+        if self.alerts:
+            foot += " · 🔔 алерты: " + ", ".join(f"${x:g}" for x, _ in self.alerts)
+        return "\n".join(lines + (self.daily(st, r) if daily else []) + ["", foot])
 
     def price_of(self, st):
         return lambda t: token_price(t, st["sui"])
@@ -185,7 +457,30 @@ class Live:
                 f"стоимость ${r['value']:,.2f} = {r['value_sui']:,.1f} SUI-экв. (старт {r['capital_sui']:,.1f}, "
                 f"{r['vs_hold_sui_count']:+,.1f} SUI к холду), к той же доле {r['vs_split']:+,.2f}$\n"
                 f"сейчас {r['sui_amount']:,.1f} SUI + {r['usdc_amount']:,.2f} USDC; комиссии ≈${r['fees_usd']:,.2f}, "
-                f"издержки ${r['costs_usd']:,.2f}, пересборок {r['rebalances']}, дней {r['days']:.1f}")
+                f"издержки ${r['costs_usd']:,.2f}, пересборок {r['rebalances']}, дней {r['days']:.1f}\n"
+                + self.details(st, r))
+
+    def details(self, st, r) -> str:
+        """Позиция и заработок — для /status и регулярных отчётов (строки после третьей)."""
+        b, p = self.book, r["price"]
+        lines = []
+        if b.mode == "lp" and b.L:
+            lo, hi = r["range"]
+            where = f"позиция {self.pos_id[:10]}…" if self.pos_id else "позиция (виртуальная)"
+            lines.append(f"{where}: до нижней границы {lo / p - 1:+.1%}, до верхней {hi / p - 1:+.1%}; "
+                         f"в диапазоне {r['in_range_pct']:.0f}% времени")
+        rew = r["value"] - self.usd(*b.holdings(st), st)
+        earned = r["fees_usd"] + rew
+        cap = b.start["capital_sui"] * b.start["price"]
+        line = f"заработок: комиссии ≈${r['fees_usd']:,.2f} + награды ${rew:,.2f} = ${earned:,.2f} (≈{earned / p:,.1f} SUI)"
+        if r["days"] >= 1 / 24 and cap:
+            line += f", ≈${earned / r['days']:,.2f} в день (≈{earned / r['days'] * 365 / cap:.0%} годовых)"
+        lines.append(line)
+        if cap:
+            pnl = r["value"] - cap
+            lines.append(f"итог: ${cap:,.2f} → ${r['value']:,.2f} ({pnl:+,.2f}$, {pnl / cap:+.1%}); "
+                         f"к «держать SUI» {r['vs_hold_sui_count']:+,.1f} SUI")
+        return "\n".join(lines)
 
     # --- реальные транзакции -----------------------------------------------------------------------------
     def ex(self, st, op: dict, *args) -> dict:
@@ -196,13 +491,17 @@ class Live:
         self.pending = {**op, "before": sim.get("wallet")}
         self.save()
         try:
-            return executor(*args, simulate=False)
+            res = executor(*args, simulate=False)
         except ExecError as e:
             if e.out.get("sent") is False:                 # до сети не дошло — ничего не изменилось
                 self.pending = None
             elif e.out.get("digest") and e.out.get("status"):   # исполнилась с ошибкой: списан только газ
+                self.txs.append((op.get("op"), e.out["digest"]))
                 self.apply_changes(e.out, st)
             raise
+        if res.get("digest"):
+            self.txs.append((op.get("op"), res["digest"]))
+        return res
 
     def apply_changes(self, res: dict, st, swap: bool = False):
         """Изменения балансов кошелька из транзакции → свои монеты бота вне позиции; награды — отдельно."""
@@ -367,8 +666,15 @@ class Live:
                 self.event(st["t"], "позиция найдена", st["sui"], f"открытие прошло, позиция {p['id'][:10]}…")
             else:
                 self.foreign.add(p["id"])
-                notify.send(f"[{self.label}] в кошельке новая позиция {p['id'][:10]}… — бот её не трогает")
+                notify.send(f"ℹ️ <b>В кошельке новая позиция</b>\n{p['id'][:10]}… — бот её не трогает и не учитывает", html=True)
+        self.gas_check(w, st)
         avail_a, avail_b = self.available(w)
+        if self.pos_id and w.get("position") and "fee_a" in w["position"]:
+            self.onchain = {"t": time.time(), "fee_a": w["position"].get("fee_a"), "fee_b": w["position"].get("fee_b"),
+                            "rewards": w["position"].get("rewards") or {}}
+        if pend and pend.get("op") == "collect":           # оценка комиссий заменяется фактом из разницы балансов
+            b.fees_a = b.fees_b = 0.0
+            b.rewards = dict(self.collected)
         if pend and pend.get("before"):
             # точная разница балансов с момента перед отправкой — результат потерянной транзакции
             now_a, now_b = self.wallet(w["balances"])
@@ -391,13 +697,41 @@ class Live:
         self.need_sync, self.last_sync = False, st["t"]
         self.save()
 
+    def price_ok(self, st) -> bool:
+        """Цена пула не расходится с Binance больше чем на price_check_pct. Биржа недоступна — не мешаем."""
+        ex = exchange_price()
+        if ex is None or not self.lc.price_check_pct:
+            return True
+        dev = st["sui"] / ex - 1
+        if abs(dev) <= self.lc.price_check_pct:
+            self.price_warned = False
+            return True
+        if not self.price_warned:
+            self.price_warned = True
+            self.event(st["t"], "цена пула расходится с биржей", st["sui"], f"пул ${st['sui']:.4f}, Binance ${ex:.4f} "
+                       f"({pct(dev)}); действие отложено", why=self.why("цена пула расходится с биржей"))
+        return False
+
+    def gas_check(self, w: dict, st):
+        """Предупредить один раз, если SUI в кошельке на газ меньше gas_warn_sui (снова — после пополнения)."""
+        bal = {norm(k): int(v) for k, v in (w.get("balances") or {}).items()}
+        sui = bal.get(norm(SUI), 0) / 1e9
+        if sui < self.lc.gas_warn_sui and not self.gas_warned:
+            self.gas_warned = True
+            self.event(st["t"], "мало SUI на газ", st["sui"], f"в кошельке {sui:.3f} SUI; пополните кошелёк бота на "
+                       "1–2 SUI", why=self.why("мало SUI на газ"))
+        elif sui >= self.lc.gas_warn_sui + 0.2:
+            self.gas_warned = False
+
     # --- старт -------------------------------------------------------------------------------------------
     def start_real(self, st):
+        if not self.price_ok(st):
+            return
         w = self.status()
         self.address = w["address"]
         self.foreign = {p["id"] for p in w.get("positions", [])}
         if self.foreign:
-            notify.send(f"[{self.label}] в кошельке уже есть позиции в этом пуле ({len(self.foreign)}) — бот их не трогает")
+            notify.send(f"ℹ️ <b>В кошельке уже есть позиции в этом пуле: {len(self.foreign)}</b>\nбот их не трогает", html=True)
         avail_a, avail_b = self.available(w)
         value = self.usd(avail_a, avail_b, st)
         k = min(1.0, self.lc.max_capital_usd / value) if value else 0.0
@@ -416,8 +750,8 @@ class Live:
         self.save()
         self.open_real(st, lo, hi)
         lo, hi = b.range_usd
-        self.event(st["t"], "открыта", st["sui"], f"кошелёк {w['address'][:10]}…, капитал ${capital:,.2f}, "
-                   f"диапазон {lo:.4f}–{hi:.4f}, позиция {self.pos_id[:10]}…")
+        self.event(st["t"], "открыта", st["sui"], f"кошелёк {w['address'][:10]}…; капитал ${capital:,.2f}; "
+                   f"диапазон {lo:.4f}–{hi:.4f}; позиция {self.pos_id[:10]}…", why=self.why("открыта"))
 
     def start_dry(self, st):
         s = replace(self.s, capital_sui=self.lc.max_capital_usd / st["sui"])
@@ -441,26 +775,36 @@ class Live:
                     text += f"; в кошельке {w['address'][:10]}… нет SUI/USDC — симуляция открытия пропущена"
             except (ExecError, subprocess.TimeoutExpired) as e:
                 text += f"; симуляция не прошла: {e}"
-        self.event(st["t"], "открыта", st["sui"], text)
+        self.event(st["t"], "открыта", st["sui"], text, why=self.why("открыта"))
 
     # --- команды и решения -------------------------------------------------------------------------------
     def read_commands(self) -> list[str]:
         cmds, self.tg_offset = notify.commands(self.tg_offset)
         ctl = self.dir / "control.txt"
         if ctl.exists():
-            cmds += [x.strip().lower() for x in ctl.read_text().split() if x.strip()]
+            cmds += [x.strip().lower() for x in ctl.read_text().splitlines() if x.strip()]
             ctl.unlink()
         return cmds
 
     def command(self, c: str, st):
-        if c not in COMMANDS or c == "help":
-            notify.send(HELP)
+        c, _, arg = c.partition(" ")
+        if c == "events":
+            notify.send(self.events_card(), html=True)
+        elif c == "alert":
+            self.alert_command(arg.strip(), st["sui"])
+        elif c == "week":
+            self.weekly(st)
+        elif c == "settings":
+            notify.send(self.settings_card(), html=True)
+        elif c == "strategy":
+            notify.send("🧪 Проверяю стратегии на ценах за 30 и 90 дней — это займёт пару минут")
+            self.strategy_check()
+        elif c not in COMMANDS or c == "help":
+            notify.send("ℹ️ <b>Команды</b>\n" + "\n".join(f"/{k} — {esc(v)}" for k, v in MENU.items())
+                        + "\n\nПосле /sui, /usdc, /close бот на паузе; /resume — снова открыть позицию.", html=True)
         elif c == "status":
-            text = self.report(st)
-            if self.errors:
-                text += f"\nошибок подряд: {self.errors}"
-            notify.send(text)
-            log(text)
+            notify.send(self.report_card(st, "Статус"), html=True, buttons=self.buttons())
+            log(self.report(st))
         elif c == "pause":
             self.paused = True
             self.event(st["t"], "пауза", st["sui"], "по команде; позиция остаётся как есть")
@@ -474,9 +818,61 @@ class Live:
                 note = f"сначала будет завершена команда /{self.manual}, после неё бот снова встанет на паузу"
             self.event(st["t"], "продолжение", st["sui"], f"по команде; {note}")
         elif not self.book:
-            notify.send(f"[{self.label}] позиция ещё не открыта")
+            notify.send("ℹ️ Позиция ещё не открыта")
         else:
             self.manual, self.paused = c, True         # выполнится в step и будет доведено до конца при сбое
+
+    def events_card(self, n: int = 8) -> str:
+        """Последние события из events.csv: время по часам Mac, иконка, суть."""
+        path = self.dir / "events.csv"
+        rows = list(csv.DictReader(path.open())) if path.exists() else []
+        lines = ["📜 <b>Последние события</b>"]
+        for r in rows[-n:]:
+            try:
+                t = datetime.strptime(r["time_utc"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc).astimezone()
+                when = t.strftime("%d.%m %H:%M")
+            except (KeyError, ValueError):
+                when = r.get("time_utc", "")
+            what = (r.get("details") or "").split(" | почему")[0].split("\n")[0]
+            what = what if len(what) <= 90 else what[:89] + "…"
+            sim = " 🧪" if r.get("mode") == "СИМУЛЯЦИЯ" else ""
+            lines.append(f"<code>{esc(when)}</code> {ICONS.get(r.get('event', ''), 'ℹ️')} "
+                         f"<b>{esc(r.get('event', ''))}</b>{sim}\n{esc(what)}")
+        return "\n".join(lines) if rows else "📜 Событий пока нет"
+
+    def alert_command(self, arg: str, price: float):
+        """/alert 1.30 — сообщить, когда SUI дойдёт до цены; /alert — список; /alert off — снять все."""
+        if arg in ("off", "clear", "stop", "0", "нет"):
+            self.alerts = []
+            notify.send("🔕 Алерты сняты")
+            return
+        if arg:
+            try:
+                x = float(arg.replace(",", ".").lstrip("$"))
+            except ValueError:
+                x = 0.0
+            if not 0 < x < 1000:
+                notify.send("Формат: /alert 1.30 — сообщу, когда SUI дойдёт до $1.30")
+                return
+            if len(self.alerts) >= 10:
+                notify.send("Уже 10 алертов — снимите лишние: /alert off")
+                return
+            self.alerts.append([x, "up" if x > price else "down"])
+            notify.send(f"🔔 Алерт: сообщу, когда SUI {'поднимется' if x > price else 'опустится'} до ${x:g} "
+                        f"(сейчас ${price:.4f})")
+            return
+        notify.send("🔔 Алерты: " + (", ".join(f"${x:g} ({'вверх' if d == 'up' else 'вниз'})" for x, d in self.alerts)
+                                     if self.alerts else "нет. Поставить: /alert 1.30"))
+
+    def check_alerts(self, st):
+        p, left = st["sui"], []
+        for x, d in self.alerts:
+            if (d == "up" and p >= x) or (d == "down" and p <= x):
+                notify.send(f"🔔 <b>SUI ${p:.4f}</b>\nсработал ваш алерт: {'выше' if d == 'up' else 'ниже'} ${x:g}",
+                            html=True)
+            else:
+                left.append([x, d])
+        self.alerts = left
 
     def finish(self, st):
         """Довести до конца ручную команду или выход, прерванные ошибкой."""
@@ -492,17 +888,17 @@ class Live:
             if what in ("sui", "usdc"):
                 self.to_coin(st, what)
             self.manual, self.paused = None, True         # пауза — даже если между сбоем и повтором был /resume
-            self.event(st["t"], MANUAL[what], st["sui"], f"пауза до /resume; {self.report(st).splitlines()[1]}")
+            self.event(st["t"], MANUAL[what], st["sui"], "бот на паузе до /resume", st)
         elif b.mode in ("sui", "usdc") and not self.dry:
             if self.pos_id:
                 self.close_real(st)
             if self.wrong_coin_usd(st, b.mode) >= self.lc.min_swap_usd:
                 self.to_coin(st, b.mode)
-                self.event(st["t"], "выход завершён", st["sui"], self.report(st).splitlines()[1])
+                self.event(st["t"], "выход завершён", st["sui"], f"все монеты бота — в {b.mode.upper()}", st)
 
     def act(self, st, kind: str, why: str):
         b, s, p, t = self.book, self.s, st["sui"], st["t"]
-        old = list(b.range_usd)
+        old, was = list(b.range_usd), b.mode
         costs = self.cfg.costs
         if kind == "resume":
             # возврат в пул отмечается до открытия: если открытие сорвётся, бот откроет позицию заново,
@@ -537,8 +933,255 @@ class Live:
         lo, hi = b.range_usd
         name = {"rebalance": "пересборка", "reopen": "позиция открыта заново", "resume": "возврат в пул",
                 "exit": "выход в SUI", "crash": "выход в USDC"}[kind]
-        detail = f"{why}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}" if kind in ("rebalance", "reopen", "resume") else why
-        self.event(t, name, p, f"{detail}; {self.report(st).splitlines()[1]}")
+        detail = f"{why}; диапазон {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}" if kind in ("rebalance", "reopen", "resume") else why
+        self.out_noticed = False
+        self.event(t, name, p, detail, st, why=self.why(name, was if why != "по команде" else None))
+
+    def range_notice(self, st):
+        """Сообщить, что цена вышла из диапазона (дольше range_notice_minutes) и что вернулась."""
+        b = self.book
+        if not b or b.mode != "lp" or not b.L or self.paused:
+            return
+        lo, hi = b.range_usd
+        p = st["sui"]
+        if b.out_since is not None and not self.out_noticed and st["t"] - b.out_since >= self.lc.range_notice_minutes * 60:
+            self.out_noticed = True
+            left = max(0.0, self.s.out_minutes - (st["t"] - b.out_since) / 60)
+            self.event(st["t"], "цена вне диапазона", p, f"SUI ${p:.4f}, диапазон {lo:.4f}–{hi:.4f}; комиссии сейчас не "
+                       f"идут; если цена не вернётся, пересборка примерно через {left:.0f} мин",
+                       why=self.why("цена вне диапазона"))
+        elif b.out_since is None and self.out_noticed:
+            self.out_noticed = False
+            self.event(st["t"], "цена снова в диапазоне", p, f"SUI ${p:.4f}, диапазон {lo:.4f}–{hi:.4f}; комиссии идут")
+
+    def reinvest(self, st):
+        """Раз в reinvest_days: забрать комиссии и награды (позиция остаётся), награды → SUI, всё своё вне позиции —
+        в ту же позицию. Добавляется, только если цена в диапазоне и набралось не меньше reinvest_min_usd."""
+        self.last_reinvest = time.time()
+        b, parts = self.book, []
+        if self.pos_id and b.mode == "lp":
+            res = self.ex(st, {"op": "collect"}, "collect", "--pool", self.pc.object, "--position", self.pos_id)
+            b.fees_a = b.fees_b = 0.0                          # оценка заменяется фактом
+            b.rewards = dict(self.collected)
+            before = self.usd(b.idle_a, b.idle_b, st)
+            self.apply_changes(res, st)
+            parts.append(f"забрано комиссий ≈${self.usd(b.idle_a, b.idle_b, st) - before:,.2f}")
+            self.onchain = None
+        parts += self.swap_rewards(st)
+        free = self.usd(b.idle_a, b.idle_b, st)
+        if (self.pos_id and b.mode == "lp" and b.in_range(st["sq"]) and free >= self.lc.reinvest_min_usd
+                and self.price_ok(st)):
+            self.add_real(st)
+            parts.append(f"добавлено в позицию ≈${free - self.usd(b.idle_a, b.idle_b, st):,.2f}")
+        elif free >= 0.01:
+            parts.append(f"вне позиции осталось ${free:,.2f} — добавится в следующий раз или при пересборке")
+        self.event(st["t"], "реинвестирование", st["sui"], "; ".join(parts) or "нечего реинвестировать", st,
+                   why=self.why("реинвестирование"))
+
+    def add_real(self, st):
+        """Добавить свои монеты вне позиции в открытую позицию (те же потолки и запас на сдвиг цены, что при открытии)."""
+        b = self.book
+        shares = []
+        for k in (1 - self.lc.price_band, 1.0, 1 + self.lc.price_band):
+            a1, b1 = amounts(1.0, st["sq"] * math.sqrt(k), sqrt_of_tick(b.tick_lo), sqrt_of_tick(b.tick_hi))
+            shares.append(a1 * st["ua"] / (a1 * st["ua"] + b1 * st["ub"]))
+        self.to_share(st, min(shares))
+        gas = GAS_BUFFER_SUI * 1e9
+        amt_a = int(max(b.idle_a - (gas if b.a_is_sui else 0), 0))
+        amt_b = int(max(b.idle_b - (0 if b.a_is_sui else gas), 0))
+        if self.usd(amt_a, amt_b, st) < 1:
+            return
+        res = self.ex(st, {"op": "add"}, "add", "--pool", self.pc.object, "--position", self.pos_id,
+                      "--amount-a", amt_a, "--amount-b", amt_b, "--band", self.lc.price_band)
+        self.apply_changes(res, st)
+        self.need_sync = True                                  # точная ликвидность позиции — со следующей сверки
+
+    def swap_rewards(self, st) -> list[str]:
+        """Собранные ботом награды (CETUS и т.п.) дороже reward_min_usd — в SUI. Меняется не больше, чем бот собрал
+        сам (чужие монеты кошелька не трогаются). Сбой обмена не останавливает бота. Возвращает строки для отчёта."""
+        out = []
+        bal = {norm(k): int(v) for k, v in self.status()["balances"].items()}
+        for t, amt in list(self.collected.items()):
+            have = min(int(amt), bal.get(norm(t), 0))
+            if have <= 0 or self.is_sui(t):
+                continue
+            px, dec = self.price_of(st)(t)
+            usd = have * px / 10 ** dec
+            if usd < self.lc.reward_min_usd:
+                continue
+            sym = t.split("::")[-1]
+            sui_before = self.book.idle_b if not self.pc.a_is_sui else self.book.idle_a
+            try:
+                res = self.ex(st, {"op": "swap"}, "swap", "--from", t, "--to", SUI, "--amount", have,
+                              "--slippage", self.lc.slippage)
+            except (ExecError, subprocess.TimeoutExpired) as e:
+                self.event(st["t"], "обмен наград не удался", st["sui"], f"{have / 10 ** dec:,.2f} {sym}: {e}",
+                           why=self.why("обмен наград не удался"))
+                continue
+            self.apply_changes(res, st)
+            got = ((self.book.idle_b if not self.pc.a_is_sui else self.book.idle_a) - sui_before) / 1e9
+            out.append(f"{have / 10 ** dec:,.2f} {sym} (≈${usd:,.2f}) → {got:,.3f} SUI")
+        return out
+
+    def strategy_check(self):
+        """Бэктест всех стратегий из suibot.toml на ценах за 30 и 90 дней — в фоне, бот не останавливается.
+        Сам стратегию не меняет: только присылает таблицу и подсказку."""
+        self.last_strategy_check = time.time()
+        cfg, cur = self.cfg, self.s.name
+        strategies = [x for x in cfg.strategies if x.rebalance != "none"]
+
+        def work():
+            try:
+                res = {}
+                pools = {x.pool: cfg.pools[x.pool] for x in strategies}
+                now = read_pools(pools)
+                for days in (30, 90):
+                    cs, ys = history.load(pools, days, 5)
+                    times, prices = [c[0] for c in cs], [c[1] for c in cs]
+                    res[days] = (prices[-1] / prices[0] - 1, {
+                        x.name: simulate(x, cfg.pools[x.pool], times, prices, ys[x.pool], cfg.costs,
+                                         now[x.pool]["spacing"], scale=prices[0] / now[x.pool]["sui"])
+                        for x in strategies})
+                gain = {d: {n: r["value_sui"] / r["capital_sui"] - 1 for n, r in rows.items()}
+                        for d, (_, rows) in res.items()}
+                lines = ["🧪 <b>Проверка стратегий</b> — сколько стало штук SUI на истории"]
+                for d, (move, _) in res.items():
+                    lines += ["", f"<b>{d} дней</b> (цена SUI {pct(move)}):"]
+                    for n, g in sorted(gain[d].items(), key=lambda kv: -kv[1]):
+                        lines.append(("▸ <b>" if n == cur else "  ") + f"{esc(n)}: {pct(g)} SUI"
+                                     + (" ← сейчас</b>" if n == cur else ""))
+                better = [n for n in gain[30] if n != cur and all(gain[d][n] > gain[d].get(cur, 0) + 0.02 for d in gain)]
+                if better:
+                    best = max(better, key=lambda n: gain[30][n] + gain[90][n])
+                    lines += ["", f"💡 «{esc(best)}» лучше текущей в обоих периодах больше чем на 2%. Можно "
+                              f"переключить: в suibot.toml [live] strategy = \"{esc(best)}\" — решение за вами"]
+                else:
+                    lines += ["", "✅ Текущая стратегия не хуже остальных — менять не нужно"]
+                lines.append(f"🧠 <i>почему: раз в strategy_check_days = {self.lc.strategy_check_days:g} дн. бот гоняет "
+                             "все стратегии из suibot.toml на свежих 5-минутных ценах; прошлое не гарантирует "
+                             "будущего, поэтому бот сам ничего не меняет</i>")
+                notify.send("\n".join(lines), html=True)
+            except Exception as e:  # noqa: BLE001 — проверка не должна мешать боту
+                notify.send(f"🧪 Проверка стратегий не удалась: {str(e)[:200]}")
+
+        threading.Thread(target=work, daemon=True).start()
+
+    def snapshot(self, st):
+        """Снимок раз в час в live/snapshots.csv — для недельного графика и разбора."""
+        now = time.time()
+        if now - self.last_snap_t < 3600 or not self.book or not self.book.start:
+            return
+        self.last_snap_t = now
+        b = self.book
+        r = summary(b, st, self.price_of(st))
+        lp = b.mode == "lp" and b.L
+        _append(self.dir / "snapshots.csv", {
+            "t": round(now), "time_utc": _utc(now), "price": round(r["price"], 5),
+            "lo": round(r["range"][0], 5) if lp else "", "hi": round(r["range"][1], 5) if lp else "",
+            "value": round(r["value"], 2), "value_sui": round(r["value_sui"], 3), "capital_sui": round(r["capital_sui"], 3),
+            "earned": round(self.earned(st, r), 4), "in_range": int(bool(lp and r["in_range_now"])), "mode": b.mode})
+
+    def shadow_lines(self, st) -> list[str]:
+        """«Тень»: бумажные копии стратегий (служба suibot-paper) против реального бота — сколько стало штук SUI."""
+        path = self.cfg.state_dir / "state.json"
+        if not path.exists() or not self.book or not self.book.start:
+            return []
+        try:
+            books = {n: Book(**d) for n, d in json.loads(path.read_text()).get("books", {}).items()}
+        except (ValueError, TypeError):
+            return []
+        r = summary(self.book, st, self.price_of(st))
+        lines = ["", "🌗 <b>Тень</b> — бумажные копии на тех же ценах (сколько стало штук SUI)",
+                 f"▸ <b>реальный бот: {pct(r['value_sui'] / r['capital_sui'] - 1)}</b>"]
+        since = None
+        for x in self.cfg.strategies:
+            bk = books.get(x.name)
+            if not bk or not bk.start or x.pool != self.s.pool or x.rebalance == "none":
+                continue
+            q = summary(bk, st, self.price_of(st))
+            since = since or bk.start["t"]
+            lines.append(f"  {esc(x.name)}{' (как реальный)' if x.name == self.s.name else ''}: "
+                         f"{pct(q['value_sui'] / q['capital_sui'] - 1)}")
+        if since:
+            lines.append(f"<i>бумага с {datetime.fromtimestamp(since).strftime('%d.%m')}, реальный бот с "
+                         f"{datetime.fromtimestamp(self.book.start['t']).strftime('%d.%m')}; разница реального и "
+                         "бумажного — цена исполнения</i>")
+        return lines if len(lines) > 3 else []
+
+    def weekly(self, st):
+        """Недельный отчёт: итоги за 7 дней, «тень», график и журнал событий файлом."""
+        if not self.book or not self.book.start:
+            notify.send("📅 Позиция ещё не открыта — недельного отчёта нет")
+            return
+        now = time.time()
+        path = self.dir / "snapshots.csv"
+        rows = [x for x in csv.DictReader(path.open()) if now - float(x["t"]) <= 7 * 86400] if path.exists() else []
+        r = summary(self.book, st, self.price_of(st))
+        lines = ["📅 <b>Неделя</b> · " + esc(self.s.name)]
+        if rows:
+            a = rows[0]
+            got = self.earned(st, r) - float(a["earned"])
+            vs0 = float(a["value_sui"]) - float(a["capital_sui"])
+            lines += [f"с {datetime.fromtimestamp(float(a['t'])).strftime('%d.%m %H:%M')}",
+                      f"цена SUI {pct(r['price'] / float(a['price']) - 1)}",
+                      f"заработано <b>{money(got)}</b> ≈ {got / r['price']:,.2f} SUI",
+                      f"к «держать SUI» за неделю {num(r['vs_hold_sui_count'] - vs0, 2)} SUI",
+                      f"в диапазоне {sum(int(x['in_range']) for x in rows) / len(rows):.0%} времени"]
+        else:
+            lines.append("снимков пока нет — график появится через пару часов работы")
+        ev = self.dir / "events.csv"
+        if ev.exists():
+            cut = datetime.fromtimestamp(now - 7 * 86400, timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+            acts = [x["event"] for x in csv.DictReader(ev.open()) if x["time_utc"] >= cut and x["mode"] == self.label]
+            n = {k: acts.count(k) for k in ("пересборка", "выход в SUI", "выход в USDC", "возврат в пул",
+                                             "реинвестирование", "ошибка") if acts.count(k)}
+            lines.append("действия: " + (", ".join(f"{k} — {v}" for k, v in n.items()) or "не было"))
+        lines += self.shadow_lines(st)
+        lines.append("🧠 <i>почему: раз в неделю (понедельник утром) — итоги, график и журнал; журнал events.csv "
+                     "перешлите мне — по нему улучшаем стратегию</i>")
+        notify.send("\n".join(lines), html=True)
+        try:
+            png = charts.weekly_chart(rows, self.dir / "week.png")
+            if png:
+                notify.send_file(png, "цена и диапазон · штуки SUI у бота против «держать SUI»", photo=True)
+        except Exception:  # noqa: BLE001 — график не главное
+            log(traceback.format_exc())
+        if ev.exists():
+            notify.send_file(ev, "журнал событий бота (events.csv)")
+
+    def ping(self):
+        """Отметка «жив» для healthchecks.io раз в healthcheck_minutes (адрес — HEALTHCHECK_URL в .env или файл
+        healthcheck_url.txt в папке состояния). Нет отметок — сервис сам пишет вам, что бот не работает."""
+        now = time.time()
+        if now - self.last_ping < self.lc.healthcheck_minutes * 60:
+            return
+        f = self.cfg.state_dir / "healthcheck_url.txt"
+        url = os.environ.get("HEALTHCHECK_URL") or (f.read_text().strip() if f.exists() else "")
+        if not url:
+            return
+        self.last_ping = now
+        threading.Thread(target=lambda: requests.get(url, timeout=10), daemon=True).start()
+
+    def downtime_notice(self, st):
+        """После запуска: если бот не работал дольше downtime_notice_minutes — сколько и что было с ценой."""
+        since, self.down_since = self.down_since, None
+        gap = time.time() - since if since else 0
+        if gap < self.lc.downtime_notice_minutes * 60:
+            return
+        text = f"не работал {age(gap / 86400)} (с {datetime.fromtimestamp(since).strftime('%d.%m %H:%M')})"
+        try:
+            cs = history.binance_candles(since, time.time(), 5 if gap < 3 * 86400 else 60)
+            ps = [c[1] for c in cs]
+            if ps:
+                text += f"; цена SUI за это время ${min(ps):.4f}–${max(ps):.4f}"
+                b = self.book
+                if b and b.mode == "lp" and b.L:
+                    lo, hi = b.range_usd
+                    out = sum(1 for x in ps if not lo <= x <= hi) / len(ps)
+                    text += f"; вне диапазона ≈{out:.0%} времени — тогда комиссии не шли"
+        except Exception:  # noqa: BLE001 — история цены — не главное
+            pass
+        self.event(st["t"], "бот был выключен", st["sui"], text, why=self.why("бот был выключен"))
 
     def step(self, st):
         if self.retry_at and st["t"] < self.retry_at and not self.manual:   # ручную команду не откладываем
@@ -560,14 +1203,21 @@ class Live:
                 self.act(st, "resume", "по команде")
             elif b.mode == "lp" and not self.pos_id and not self.dry:   # позиция не открылась или пропала
                 d = decide(b, self.s, st, self.watch)
-                if d and d[0] in ("exit", "crash"):
-                    self.act(st, *d)
-                else:
-                    self.act(st, "reopen", "позиции нет")
+                if self.price_ok(st):
+                    if d and d[0] in ("exit", "crash"):
+                        self.act(st, *d)
+                    else:
+                        self.act(st, "reopen", "позиции нет")
             else:
                 d = decide(b, self.s, st, self.watch)
-                if d:
+                if d and self.price_ok(st):
                     self.act(st, *d)
+            now = time.time()
+            if not self.dry and self.lc.reinvest_days:
+                if self.last_reinvest is None:
+                    self.last_reinvest = now                  # первое реинвестирование — через reinvest_days
+                elif now - self.last_reinvest >= self.lc.reinvest_days * 86400:
+                    self.reinvest(st)
         self.errors, self.retry_at = 0, None
 
     def failed(self, st, e: Exception):
@@ -578,7 +1228,7 @@ class Live:
             m = RETRY_MINUTES[self.errors - 1]
             self.retry_at = st["t"] + m * 60
             if self.errors == 1:
-                self.event(st["t"], "нет связи", st["sui"], f"{text} — повтор через {m} мин")
+                self.event(st["t"], "нет связи", st["sui"], f"{text}; повтор через {m} мин", why=self.why("нет связи"))
             else:
                 log(f"{text} — повтор через {m} мин")
             return
@@ -588,11 +1238,13 @@ class Live:
         if self.errors <= len(RETRY_MINUTES):
             m = RETRY_MINUTES[self.errors - 1]
             self.retry_at = st["t"] + m * 60
-            self.event(st["t"], "ошибка", st["sui"], f"{text} — сверка с кошельком и повтор через {m} мин")
+            self.event(st["t"], "ошибка", st["sui"], f"{text}; бот сверится с кошельком и повторит через {m} мин",
+                       why=self.why("ошибка"))
         else:
             self.paused, self.retry_at = True, None
-            self.event(st["t"], "ошибка", st["sui"], f"{text} — {self.errors}-я ошибка подряд, бот на паузе. "
-                       "Деньги в пуле или в кошельке; посмотрите Cetus и пришлите текст ошибки. /resume — продолжить")
+            self.event(st["t"], "ошибка", st["sui"], f"{text}; {self.errors}-я ошибка подряд — бот на паузе; "
+                       "деньги в пуле или в кошельке: посмотрите Cetus и пришлите текст ошибки; /resume — продолжить",
+                       why=self.why("ошибка"))
 
     def tick(self, snap: dict):
         st = snap[self.s.pool]
@@ -600,9 +1252,13 @@ class Live:
             if self.book and self.prev and st["t"] > self.prev["t"] and self.book.L:
                 accrue_growth(self.book, self.prev, st, self.price_of(st))
             self.watch.add(st["t"], st["sui"])
+            if self.down_since:
+                self.downtime_notice(st)
             for c in self.read_commands():
                 self.command(c, st)
             self.step(st)
+            self.range_notice(st)
+            self.check_alerts(st)
         except Exception as e:  # noqa: BLE001 — любая ошибка: сверка, повтор, затем пауза; бот не падает
             try:
                 self.failed(st, e)
@@ -611,12 +1267,41 @@ class Live:
         finally:
             self.prev = {k: st[k] for k in ("t", "sq", "fa", "fb", "rew")}
             day = datetime.now(timezone.utc)
-            if day.hour == self.cfg.report_hour_utc and self.last_report_day != day.strftime("%Y-%m-%d"):
-                self.last_report_day = day.strftime("%Y-%m-%d")
+            now = time.time()
+            text = None
+            if self.book and self.book.start and self.hello:
+                text = self.report_card(st, "Бот работает")                       # первый отчёт после запуска
+            elif day.hour == self.cfg.report_hour_utc and self.last_report_day != day.strftime("%Y-%m-%d"):
                 try:
-                    notify.send(self.report(st))
+                    text = self.report_card(st, "Утренний отчёт", daily=True)
                 except Exception:  # noqa: BLE001
                     log(traceback.format_exc())
+            elif (self.lc.report_hours and self.book and self.book.start and self.last_report_t
+                  and now - self.last_report_t >= self.lc.report_hours * 3600):
+                text = self.report_card(st, "Отчёт")
+            self.hello = False
+            if day.hour == self.cfg.report_hour_utc:
+                self.last_report_day = day.strftime("%Y-%m-%d")
+            if text or not self.last_report_t:
+                self.last_report_t = now
+            if text:
+                try:
+                    notify.send(text, html=True, buttons=self.buttons())
+                except Exception:  # noqa: BLE001
+                    log(traceback.format_exc())
+            self.last_tick_t = now
+            self.ping()
+            try:
+                self.snapshot(st)
+                if text and "Утренний" in text and datetime.now().weekday() == 0:   # понедельник — недельный отчёт
+                    self.weekly(st)
+            except Exception:  # noqa: BLE001
+                log(traceback.format_exc())
+            if self.lc.strategy_check_days and self.book and self.book.start:
+                if self.last_strategy_check is None:
+                    self.last_strategy_check = now            # первая проверка — через strategy_check_days
+                elif now - self.last_strategy_check >= self.lc.strategy_check_days * 86400:
+                    self.strategy_check()
             try:
                 self.save()
             except OSError as e:
@@ -636,23 +1321,45 @@ class Live:
             ctl.unlink()
         log(f"боевой режим [{self.label}]: «{self.s.name}», до ${self.lc.max_capital_usd:,.0f}, опрос каждые "
             f"{self.cfg.poll_seconds} с; команды — Telegram или python3 bot.py control <команда>")
-        n = 0
+        notify.set_menu(MENU)
+        notify.send(f"🟢 <b>Бот запущен</b>" + (" · 🧪 симуляция" if self.dry else " · реальные деньги")
+                    + f"\nстратегия «{esc(self.s.name)}», лимит ${self.lc.max_capital_usd:,.0f}"
+                    + f"\nцена проверяется каждые {self.cfg.poll_seconds} с"
+                    + (f", отчёт каждые {self.lc.report_hours:g} ч" if self.lc.report_hours else "")
+                    + "\nкоманды — кнопка «/» в чате или /help", html=True)
+        self.hello = True
+        self.down_since = self.last_tick_t
+        n, why = 0, None
         try:
             while ticks is None or n < ticks:
                 try:
-                    snap = read_pools({self.s.pool: self.pc})
+                    snap = read_pools({self.s.pool: self.pc}, fast=True)
                 except Exception as e:  # noqa: BLE001 — сеть и лимиты не должны останавливать бота
                     log(f"не удалось прочитать пул: {e}")
+                    self.net_down_since = self.net_down_since or time.time()
                 else:
+                    if self.net_down_since and time.time() - self.net_down_since >= 120:
+                        st = snap[self.s.pool]
+                        self.event(st["t"], "связь восстановлена", st["sui"], "не было связи с сетью Sui "
+                                   f"{age((time.time() - self.net_down_since) / 86400)}", why=self.why("связь восстановлена"))
+                    self.net_down_since = None
                     self.tick(snap)
                 n += 1
                 if ticks is None or n < ticks:
                     time.sleep(self.cfg.poll_seconds)
         except KeyboardInterrupt:
+            why = "остановлен (Ctrl+C или перезапуск службы)"
             log("остановлен (позиция в пуле остаётся); при следующем запуске бот сверится с кошельком")
+        except Exception as e:  # noqa: BLE001
+            why = f"аварийно остановлен: {e}"
+            raise
         finally:
             self.save()
             lock.close()
+            if why:
+                notify.send(f"🔴 <b>Бот {esc(why)}</b>" + (" · 🧪 симуляция" if self.dry else "")
+                            + "\n⚠️ позиция осталась в пуле без присмотра: пересборок и выходов не будет, "
+                            "пока бот не запущен снова", html=True)
         if self.book and self.book.start:
             try:
                 print(self.report(read_pools({self.s.pool: self.pc})[self.s.pool]))
@@ -688,10 +1395,53 @@ def show(cfg: Config, events: int = 10):
 
 def control(cfg: Config, cmd: str):
     """Команда работающему боту через файл (из другого окна терминала)."""
-    if cmd not in COMMANDS:
+    if cmd.split(" ")[0] not in COMMANDS:
         raise SystemExit(HELP)
     d = cfg.state_dir / "live"
     d.mkdir(parents=True, exist_ok=True)
     with (d / "control.txt").open("a") as f:
         f.write(cmd + "\n")
     print(f"команда «{cmd}» передана боту — выполнится на следующем опросе")
+
+
+def check(cfg: Config, env_file: str):
+    """Проверка перед запуском (ключ и токены не печатаются): .env, Telegram, кошелёк, исполнитель, настройки."""
+    bad = 0
+
+    def line(good: bool, text: str):
+        nonlocal bad
+        bad += not good
+        print(("✅ " if good else "❌ ") + text)
+
+    present = [n for n in ("SUI_PRIVATE_KEY", "TG_TOKEN", "TG_CHAT") if os.environ.get(n)]
+    line(len(present) == 3, f"{env_file}: найдены {', '.join(present) or 'ничего'}"
+         + ("" if len(present) == 3 else " — нужны SUI_PRIVATE_KEY, TG_TOKEN, TG_CHAT"))
+    key = os.environ.get("SUI_PRIVATE_KEY", "")
+    line(key.startswith("suiprivkey1"), "ключ в формате suiprivkey1…" if key.startswith("suiprivkey1")
+         else "ключ не в формате suiprivkey1… (экспортируйте приватный ключ из Slush заново)")
+    err = notify.send("✅ проверка связи: бот видит этот чат")
+    line(err is None, "Telegram: тестовое сообщение отправлено — проверьте чат" if err is None else f"Telegram: {err}")
+    lc, s = cfg.live, next(x for x in cfg.strategies if x.name == cfg.live.strategy)
+    pc = cfg.pools[s.pool]
+    try:
+        w = executor("status", "--pool", pc.object, simulate=not key, address=None if key else lc.address)
+        st = read_pools({s.pool: pc})[s.pool]
+        bal = {norm(k): int(v) for k, v in w["balances"].items()}
+        sui, usdc = bal.get(norm(SUI), 0) / 1e9, bal.get(norm(USDC), 0) / 1e6
+        usd = max(0.0, sui - lc.gas_reserve_sui) * st["sui"] + usdc
+        line(True, f"кошелёк {w['address'][:10]}…{w['address'][-4:]}: {sui:,.2f} SUI + {usdc:,.2f} USDC "
+                   f"(SUI ${st['sui']:.4f})")
+        line(usd >= min(lc.max_capital_usd, 5) and sui >= lc.gas_reserve_sui + 0.5,
+             f"бот возьмёт ${min(usd, lc.max_capital_usd):,.2f} из лимита ${lc.max_capital_usd:,.0f}"
+             + (f"; до лимита не хватает ≈{(lc.max_capital_usd - usd) / st['sui'] + max(0.0, lc.gas_reserve_sui - sui):,.1f} SUI"
+                if usd < lc.max_capital_usd else "")
+             + f" (в кошельке всегда остаётся {lc.gas_reserve_sui:g} SUI на газ)")
+        if w.get("positions"):
+            print(f"ℹ️  в кошельке уже есть позиции в этом пуле ({len(w['positions'])}) — бот их не тронет")
+    except (ExecError, subprocess.TimeoutExpired, KeyError, ValueError) as e:
+        line(False, f"кошелёк/исполнитель: {e}")
+    real = cfg.state_dir / "live" / "state_real.json"
+    print(f"ℹ️  dry_run = {str(lc.dry_run).lower()} — "
+          + ("пробный режим, ничего не отправляется" if lc.dry_run else "РЕАЛЬНЫЕ ДЕНЬГИ")
+          + (f"; есть состояние прошлого боевого запуска ({real.name})" if real.exists() else ""))
+    print("\nвсё готово" if not bad else f"\nпроблем: {bad} — исправьте и запустите проверку ещё раз")

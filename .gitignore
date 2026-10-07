@@ -8,3 +8,7 @@ data/raw/llama_pools.json
 data/private/
 executor/node_modules/
 .env
+.env.*
+!.env.example
+suibot.env
+.server

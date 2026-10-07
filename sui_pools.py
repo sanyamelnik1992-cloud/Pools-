@@ -80,17 +80,20 @@ def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
 
 
-def gql(query: str) -> dict:
+def gql(query: str, tries: int = 6, timeout: float = 90) -> dict:
+    """Запрос к Sui GraphQL с повторами (пауза 1, 2, 4… с). Боевой бот спрашивает быстро (tries=2, timeout=20),
+    чтобы при обрыве связи не висеть минутами, а анализ истории — терпеливо."""
     err = None
-    for a in range(6):
+    for a in range(tries):
         try:
-            j = requests.post(GQL, json={"query": query}, timeout=90).json()
+            j = requests.post(GQL, json={"query": query}, timeout=timeout).json()
             if j.get("data") and not j.get("errors"):
                 return j["data"]
             err = j.get("errors")
         except (requests.RequestException, ValueError) as e:
             err = str(e)
-        time.sleep(2 ** a)
+        if a < tries - 1:
+            time.sleep(2 ** a)
     raise RuntimeError(f"Sui GraphQL: {err}")
 
 

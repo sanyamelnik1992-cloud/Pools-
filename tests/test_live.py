@@ -7,6 +7,7 @@
 """
 import json
 import math
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -22,6 +23,7 @@ from suibot.config import load  # noqa: E402
 from suibot.rally import RallyWatch  # noqa: E402
 
 SUI_LONG = "0x" + "0" * 63 + "2::sui::SUI"
+CETUS = "0x6864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS"
 ADDR = "0xb0t"
 GAS = 0.01e9
 
@@ -31,7 +33,7 @@ class FakeChain:
     fail — команда падает до отправки (симуляция не проходит)."""
 
     def __init__(self, sui: float, usdc: float):
-        self.w = {"sui": sui * 1e9, "usdc": usdc * 1e6}
+        self.w = {"sui": sui * 1e9, "usdc": usdc * 1e6, "cetus": 0.0}
         self.pos = {}
         self.n = 0
         self.st = None
@@ -73,7 +75,8 @@ class FakeChain:
             out = {"ok": True, "address": ADDR,
                    "positions": [{"id": k, "liquidity": str(L), "tick_lower": tl, "tick_upper": th}
                                  for k, (L, tl, th) in listed.items()],
-                   "balances": {SUI_LONG: str(int(self.w["sui"])), USDC: str(int(self.w["usdc"]))}}
+                   "balances": {SUI_LONG: str(int(self.w["sui"])), USDC: str(int(self.w["usdc"])),
+                                **({CETUS: str(int(self.w["cetus"]))} if self.w["cetus"] else {})}}
             if "--position" in kv:
                 pid = kv["--position"]
                 out["position_owned"] = pid in self.pos
@@ -94,7 +97,14 @@ class FakeChain:
                                                "balance_changes": self.changes(-GAS, 0)})
         if cmd == "swap":
             amt = float(kv["--amount"])
-            if kv["--from"] == USDC:
+            if kv["--from"] == CETUS:                                           # награды → SUI по $0.03 за CETUS
+                assert amt <= self.w["cetus"] + 1, "бот меняет больше CETUS, чем есть"
+                out = amt / 1e9 * 0.03 / st["sui"] * 1e9
+                self.w["cetus"] -= amt
+                self.w["sui"] += out - GAS
+                res = {"ok": True, "balance_changes": self.changes(out - GAS, 0) +
+                       [{"coinType": CETUS, "address": ADDR, "amount": str(int(-amt))}]}
+            elif kv["--from"] == USDC:
                 assert amt <= self.w["usdc"] + 1, "бот меняет больше USDC, чем есть"
                 out = amt / 1e6 / st["sui"] * 0.999 * 1e9
                 self.w["usdc"] -= amt
@@ -118,6 +128,25 @@ class FakeChain:
             pid = self.add_position(L, tl, th)
             res = {"ok": True, "balance_changes": self.changes(-ub - GAS, -ua), "created_positions": [pid],
                    "position": {"id": pid, "liquidity": str(L), "tick_lower": tl, "tick_upper": th}}
+        elif cmd == "collect":                                                  # комиссии и 100 CETUS наград
+            fa, fb, rw = 0.5e6, 0.4e9, 100e9
+            self.w["usdc"] += fa
+            self.w["sui"] += fb - GAS
+            self.w["cetus"] += rw
+            res = {"ok": True, "balance_changes": self.changes(fb - GAS, fa) +
+                   [{"coinType": CETUS, "address": ADDR, "amount": str(int(rw))}]}
+        elif cmd == "add":
+            pid = kv["--position"]
+            L0, tl, th = self.pos[pid]
+            have_a, have_b = float(kv["--amount-a"]), float(kv["--amount-b"])
+            assert have_a <= self.w["usdc"] + 1 and have_b + GAS <= self.w["sui"] + 1, "не хватает монет в кошельке"
+            a1, b1 = amounts(1.0, st["sq"], sqrt_of_tick(tl), sqrt_of_tick(th))
+            L = min(have_a / a1 if a1 else math.inf, have_b / b1 if b1 else math.inf) * 0.999
+            self.w["usdc"] -= L * a1
+            self.w["sui"] -= L * b1 + GAS
+            self.pos[pid] = (L0 + L, tl, th)
+            res = {"ok": True, "balance_changes": self.changes(-L * b1 - GAS, -L * a1),
+                   "position": {"id": pid, "liquidity": str(L0 + L), "tick_lower": tl, "tick_upper": th}}
         elif cmd == "close":
             L, tl, th = self.pos.pop(kv["--position"])
             a, b = amounts(L, st["sq"], sqrt_of_tick(tl), sqrt_of_tick(th))
@@ -136,7 +165,7 @@ class FakeChain:
 def config(tmp: Path, dry=False):
     toml = (Path(__file__).resolve().parent.parent / "suibot.toml").read_text()
     head = toml.split("[[strategy]]")[0].replace('state_dir = "data/private/bot"', f'state_dir = "{tmp}"')
-    head = head.replace("dry_run = true", f"dry_run = {'true' if dry else 'false'}")
+    head = re.sub(r"(?m)^dry_run = (true|false)", f"dry_run = {'true' if dry else 'false'}", head)  # любой режим в suibot.toml
     head = "\n".join('strategy = "тест"' if x.startswith("strategy =") else x for x in head.splitlines())
     head += '''
 [[strategy]]
@@ -171,8 +200,10 @@ class Harness:
         self.d, self.chain, self.t = Path(d), chain, 0.0
         live.executor = chain
         self.sent = []
-        notify.send = self.sent.append
+        notify.send = lambda text, html=False, buttons=None: self.sent.append(text)
+        notify.send_file = lambda path, caption='', photo=False: self.sent.append(f'FILE {Path(path).name} {photo}')
         notify.commands = lambda offset: ([], offset)
+        live.exchange_price = lambda: None                                        # без Binance: сверка не мешает
         self.bot = live.Live(config(self.d, dry))
 
     def tick(self, price, dt=3600):
@@ -256,7 +287,7 @@ def test_lost_response_on_open():
         st = h.tick(1.28)                                                  # повтор: сверка нашла позицию
         assert len(chain.pos) == 1 and bot.pos_id in chain.pos and bot.errors == 0
         assert bot_value(bot.book, st) < 215                               # не больше, чем было у бота
-        assert any("позиция найдена" in x for x in h.sent)
+        assert any("позиция найдена" in x.lower() for x in h.sent)
 
 
 def test_lost_response_on_close_and_ctrl_c():
@@ -531,6 +562,148 @@ def test_unsent_close_keeps_fee_estimate_once():
         h.bot.need_sync = True
         st = h.tick(1.20)
         assert bot_value(b, st) <= before + 0.5
+
+
+def test_range_notices_and_report():
+    """Цена вышла из диапазона — одно сообщение; вернулась — одно сообщение; /status — позиция и заработок."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        n = len(h.sent)
+        h.tick(1.27, dt=120)                                                # вне диапазона, но меньше 5 минут
+        assert len(h.sent) == n
+        for _ in range(3):
+            h.tick(1.27, dt=300)
+        out = [x for x in h.sent[n:] if "вне диапазона" in x]
+        assert len(out) == 1 and "пересборка примерно через" in out[0]
+        h.tick(1.20, dt=300)
+        assert sum("снова в диапазоне" in x for x in h.sent[n:]) == 1
+        h.cmd("status")
+        h.tick(1.20, dt=60)
+        rep = h.sent[-1]
+        assert "до нижней" in rep and "Заработок" in rep and "Капитал" in rep and "pos1" in rep and "●" in rep
+        assert h.bot.pos_id == "pos1"                                      # пересборки не было
+
+
+def test_why_alerts_events_gas_daily():
+    """Пересборка объясняет «почему», алерт срабатывает один раз, /events и сводка за сутки, мало газа."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        st = h.tick(1.20)
+        assert any("почему:" in x and "max_capital_usd" in x for x in h.sent)        # «открыта» с объяснением
+        h.cmd("alert 1,26")
+        h.tick(1.20, dt=60)
+        assert h.bot.alerts == [[1.26, "up"]]
+        for _ in range(4):
+            h.tick(1.27, dt=3600)                                               # вне диапазона > 3 ч — пересборка
+        reb = [x for x in h.sent if x.startswith("🔄")]
+        assert reb and "почему:" in reb[0] and "out_minutes" in reb[0]
+        assert sum("сработал ваш алерт" in x for x in h.sent) == 1 and not h.bot.alerts
+        h.cmd("events")
+        h.tick(1.27, dt=60)
+        assert "Последние события" in h.sent[-1] and "пересборка" in h.sent[-1]
+        card = h.bot.report_card(h.chain.st, "Утренний отчёт", daily=True)
+        assert "С запуска" in card and h.bot.day_snap
+        assert "За сутки" in h.bot.report_card(h.chain.st, "Утренний отчёт", daily=True)
+        h.bot.lc.gas_warn_sui = 1000                                              # «мало газа» при любой сумме
+        h.bot.need_sync = True
+        h.tick(1.27, dt=60)
+        h.bot.need_sync = True
+        h.tick(1.27, dt=60)
+        assert sum("газ" in x and "пополните" in x for x in h.sent) == 1          # одно предупреждение, без повторов
+
+
+def test_telegram_buttons_and_arguments():
+    import importlib
+    import os
+    import requests
+    updates = [{"update_id": 10, "callback_query": {"id": "c1", "from": {"id": 42}, "data": "pause",
+                                                     "message": {"chat": {"id": 42}}}},
+               {"update_id": 11, "callback_query": {"id": "c2", "from": {"id": 7}, "data": "close",
+                                                     "message": {"chat": {"id": 7}}}},
+               {"update_id": 12, "message": {"chat": {"id": 42}, "from": {"id": 42}, "text": "/alert 1.30 лишнее"}}]
+
+    class R:
+        ok = True
+
+        def json(self):
+            return {"ok": True, "result": updates}
+
+    n = importlib.reload(notify)
+    old = requests.get, requests.post, os.environ.get("TG_TOKEN"), os.environ.get("TG_CHAT")
+    answered = []
+    requests.get = lambda *a, **k: R()
+    requests.post = lambda *a, **k: answered.append(k.get("json")) or R()
+    os.environ.update(TG_TOKEN="x", TG_CHAT="42")
+    try:
+        cmds, offset = n.commands(None)
+    finally:
+        requests.get, requests.post = old[0], old[1]
+        for k, v in (("TG_TOKEN", old[2]), ("TG_CHAT", old[3])):
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+    assert cmds == ["pause", "alert 1.30"] and offset == 13                   # чужая кнопка не принята
+    assert answered == [{"callback_query_id": "c1"}]
+
+
+def test_reinvest_and_price_check():
+    """Реинвестирование: комиссии забраны, CETUS → SUI, всё добавлено в ту же позицию. Сверка с биржей откладывает
+    пересборку, пока цены расходятся."""
+    import time as _t
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        old_price = live.token_price
+        live.token_price = lambda t, sui: (0.03, 9) if t.endswith("CETUS") else (sui, 9) if t.endswith("SUI") else (1.0, 6)
+        try:
+            h.tick(1.20)
+            L0 = chain.pos["pos1"][0]
+            h.bot.last_reinvest = _t.time() - 8 * 86400
+            h.tick(1.20, dt=60)
+            msg = [x for x in h.sent if x.startswith("♻️")]
+            assert msg and "добавлено в позицию" in msg[0] and "CETUS" in msg[0] and "почему:" in msg[0]
+            assert chain.pos["pos1"][0] > L0 and h.bot.pos_id == "pos1"            # та же позиция, ликвидности больше
+            assert chain.w["cetus"] < 1 and h.bot.collected.get(CETUS, 0) < 1      # награды обменяны
+            assert not h.bot.pending and h.bot.errors == 0
+            assert abs(h.bot.last_reinvest - _t.time()) < 60                          # следующий раз — через неделю
+        finally:
+            live.token_price = old_price
+        live.exchange_price = lambda: 1.40                                         # биржа далеко от пула
+        for _ in range(4):
+            h.tick(1.27, dt=3600)
+        assert h.bot.pos_id == "pos1" and sum("расходится" in x for x in h.sent) == 1   # ждёт, сообщил один раз
+        live.exchange_price = lambda: 1.27
+        h.tick(1.27, dt=60)
+        assert h.bot.pos_id != "pos1"                                              # цены сошлись — пересборка
+
+
+def test_weekly_report_with_shadow_and_chart():
+    """Снимки раз в час, недельный отчёт: итоги, «тень» (бумажные копии), график и журнал файлом."""
+    from dataclasses import asdict
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        for p in (1.20, 1.21, 1.19, 1.22):
+            h.bot.last_snap_t = 0                                               # снимок на каждом такте
+            h.tick(p, dt=3600)
+        rows = (Path(d) / "live" / "snapshots.csv").read_text().splitlines()
+        assert len(rows) == 5 and rows[0].startswith("t,time_utc,price")
+        (Path(d) / "state.json").write_text(json.dumps({"books": {"тест": asdict(h.bot.book)}}))   # бумажная копия
+        h.cmd("week")
+        h.tick(1.22, dt=60)
+        week = [x for x in h.sent if x.startswith("📅")]
+        assert week and "заработано" in week[0] and "Тень" in week[0] and "реальный бот" in week[0]
+        files = [x for x in h.sent if x.startswith("FILE")]
+        assert "FILE events.csv False" in files
+        try:
+            import matplotlib  # noqa: F401
+            assert "FILE week.png True" in files
+        except ImportError:
+            pass
 
 
 if __name__ == "__main__":
