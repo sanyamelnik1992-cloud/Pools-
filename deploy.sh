@@ -12,6 +12,11 @@ HOST=${SUIBOT_HOST:-$(cat .server 2>/dev/null || true)}
 DIR=/home/suibot/Pools-
 RESTART=1; MSG=""
 for a in "$@"; do case "$a" in --no-restart) RESTART=0 ;; *) MSG="$a" ;; esac; done
+echo "▸ GitHub: нет ли новых правок (например, с телефона)"
+NEW=$(ssh "$HOST" 'cd /root/pools-git 2>/dev/null && git fetch -q origin claude/lp-pools-analysis && git rev-list --count HEAD..origin/claude/lp-pools-analysis || echo 0')
+if [ "${NEW:-0}" != 0 ]; then
+  echo "❌ на GitHub $NEW новых коммитов — сначала ./sync.sh и проверка, иначе выкладка затрёт эти правки"; exit 1
+fi
 echo "▸ проверки на Mac"
 python3 tests/test_suibot.py | tail -1
 python3 tests/test_live.py 2>/dev/null | tail -1
@@ -44,6 +49,13 @@ if [ -d /root/pools-git/.git ]; then                   # версия кода �
   if ! git diff --cached --quiet; then
     git commit -q -m "${MSG:-Обновление бота}" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
     echo "версия: $(git log --oneline -1)"
+  fi
+  if git push -q origin HEAD:claude/lp-pools-analysis 2>/dev/null; then   # токен — в /root/.git-credentials-pools
+    git rev-parse HEAD > "$DIR/data/private/bot/github_seen_sha"            # сторож не пишет о своей же отправке
+    chown suibot:suibot "$DIR/data/private/bot/github_seen_sha"
+    echo "GitHub: отправлено"
+  else
+    echo "⚠️ GitHub: отправить не удалось (версия сохранена на сервере, отправится со следующей выкладкой)"
   fi
 fi
 if [ "$RESTART" = 1 ] && systemctl is-enabled --quiet suibot 2>/dev/null; then
