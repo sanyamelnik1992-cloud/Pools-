@@ -95,6 +95,7 @@ python3 tests/test_suibot.py                    # проверки матема�
 `caffeinate -i python3 bot.py live`. Управление: Telegram (`TG_TOKEN`, `TG_CHAT`; команды принимаются только из
 личного чата владельца) — `/status`, `/pause`, `/resume`, `/sui`, `/usdc`, `/close`; или из другого окна
 `python3 bot.py control <команда>`. После `/sui`, `/usdc`, `/close` бот на паузе; `/resume` открывает позицию заново.
+Состояние работающего бота без вмешательства: `python3 bot.py status` (отчёт и последние события).
 `/resume` после автоматического выхода в SUI/USDC снимает только паузу — возврат в пул по правилу стратегии.
 
 Проверки: `python3 tests/test_suibot.py` и `python3 tests/test_live.py` — боевой цикл с поддельным кошельком: лимит

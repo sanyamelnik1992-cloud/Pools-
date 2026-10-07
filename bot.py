@@ -11,6 +11,7 @@
   python3 bot.py live                       боевой режим: стратегия из [live] на реальном кошельке
                                             (dry_run = true в suibot.toml — только симуляция)
   python3 bot.py control <команда>          ручное управление работающим ботом: status, pause, resume, sui, usdc, close
+  python3 bot.py status                     состояние боевого режима и последние события (только чтение)
 
 Стратегии и издержки — в suibot.toml (можно указать другой файл: --config). Состояние и журналы —
 data/private/bot/ (в git не попадают). Уведомления и команды в Telegram — если заданы переменные окружения
@@ -23,13 +24,13 @@ import argparse
 from lpscan.common import ROOT
 from suibot import backtest, optimize, scenario
 from suibot.config import load
-from suibot.live import Live, control
+from suibot.live import Live, control, show
 from suibot.paper import Paper
 
 
 def main():
     ap = argparse.ArgumentParser(description="Бот-ребалансер SUI/USDC на Cetus")
-    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "live", "control"])
+    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "live", "control", "status"])
     ap.add_argument("command", nargs="?", help="control: status | pause | resume | sui | usdc | close")
     ap.add_argument("--config", default=str(ROOT / "suibot.toml"))
     ap.add_argument("--reset", action="store_true", help="paper: начать заново, удалив сохранённое состояние")
@@ -56,6 +57,8 @@ def main():
         optimize.run(cfg, a.paths if a.paths != 100 else 30)
     elif a.mode == "live":
         Live(cfg).run(a.ticks)
+    elif a.mode == "status":
+        show(cfg)
     else:
         control(cfg, (a.command or "").lower())
 

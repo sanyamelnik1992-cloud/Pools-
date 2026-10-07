@@ -24,7 +24,6 @@ dry_run = true — ничего не отправляется: позиция в
 """
 from __future__ import annotations
 
-import fcntl
 import json
 import math
 import os
@@ -45,6 +44,12 @@ from suibot.config import Config
 from suibot.paper import _append, _utc, log
 from suibot.rally import RallyWatch
 
+try:
+    import fcntl
+except ImportError:            # Windows
+    fcntl = None
+    import msvcrt
+
 GAS_BUFFER_SUI = 0.05      # при открытии позиции столько своих SUI бот оставляет на газ
 RETRY_MINUTES = (2, 6, 18)  # повторы после ошибки; следующая ошибка подряд — пауза до /resume
 SYNC_MINUTES = 30          # плановая сверка с кошельком
@@ -53,6 +58,21 @@ HELP = ("Команды: /status — отчёт; /pause — пауза; /resume 
         "/usdc — снять позицию и всё в USDC; /close — снять позицию, монеты оставить. После /sui, /usdc, /close "
         "бот на паузе; /resume — снова открыть позицию.")
 MANUAL = {"sui": "вручную: всё в SUI", "usdc": "вручную: всё в USDC", "close": "вручную: позиция снята"}
+
+
+def lock_once(path):
+    """Один экземпляр бота на папку: второй запуск получает OSError."""
+    f = path.open("a+")
+    try:
+        if fcntl:
+            fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        else:
+            f.seek(0)
+            msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
+    except OSError:
+        f.close()
+        raise
+    return f
 
 
 class ExecError(RuntimeError):
@@ -606,9 +626,8 @@ class Live:
         if not self.dry and not self.has_key:
             raise SystemExit("для реальных денег нужен ключ: read -s SUI_PRIVATE_KEY && export SUI_PRIVATE_KEY "
                              "(или dry_run = true)")
-        lock = (self.dir / "lock").open("w")
         try:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            lock = lock_once(self.dir / "lock")
         except OSError:
             raise SystemExit("бот уже запущен в другом окне — второй экземпляр не нужен") from None
         ctl = self.dir / "control.txt"
@@ -639,6 +658,32 @@ class Live:
                 print(self.report(read_pools({self.s.pool: self.pc})[self.s.pool]))
             except Exception:  # noqa: BLE001
                 pass
+
+
+def show(cfg: Config, events: int = 10):
+    """Состояние боевого режима из сохранённых файлов и текущей цены пула — ничего не отправляет и не меняет
+    (можно запускать, пока бот работает, например чтобы Claude Code проверил его)."""
+    bot = Live(cfg)
+    st = read_pools({bot.s.pool: bot.pc})[bot.s.pool]
+    print(bot.report(st))
+    notes = []
+    if bot.paused:
+        notes.append("бот на паузе")
+    if bot.errors:
+        notes.append(f"ошибок подряд: {bot.errors}")
+    if bot.pending:
+        notes.append(f"неподтверждённая транзакция: {bot.pending.get('op')}")
+    if bot.manual:
+        notes.append(f"незавершённая команда: /{bot.manual}")
+    if bot.pos_id:
+        notes.append(f"позиция {bot.pos_id}")
+    if notes:
+        print("; ".join(notes))
+    path = bot.dir / "events.csv"
+    if path.exists():
+        lines = path.read_text().splitlines()
+        print(f"\nпоследние события ({path}):")
+        print("\n".join(lines[-events:] if len(lines) <= events else [lines[0]] + lines[-events:]))
 
 
 def control(cfg: Config, cmd: str):
