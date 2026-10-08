@@ -134,7 +134,7 @@ def table(strategies, offsets=(0,)):
 def timeline(res, s, named):
     """Смены фазы за 3 года у стратегии с фазами: даты, цены и сколько дней держалась фаза."""
     _, i0, i1 = named[0]
-    ev = [(t, k, p) for t, k, p in res[(s.name, i0, i1, "равн.", 1.0, 0)][1] if k in ("фаза роста", "фаза падения")]
+    ev = [(t, k, p) for t, k, p in res[(s.name, i0, i1, "равн.", 1.0, 0)][1] if k in ("фаза роста", "конец фазы роста")]
     if not ev:
         return
     print(f"Смены фазы у «{s.name}» (10.2023–сейчас):")
