@@ -848,6 +848,25 @@ def test_trend_filter_live():
     live.history.trend_warmup = lambda days, end: []
 
 
+def test_switch_to_trend_strategy_keeps_position():
+    """Переключение работающего бота на стратегию с фильтром тренда (тот же пул): позиция остаётся, средняя
+    подгружается из предыстории, лишних транзакций нет."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.t = 1.79e9
+        h.bot = live.Live(config(Path(d), extra=TREND))
+        h.tick(1.20)
+        txs = lambda: [c for c in chain.pools if c[0] != "status"]           # noqa: E731 — только транзакции
+        pos, calls = h.bot.pos_id, len(txs())
+        live.history.trend_warmup = lambda days, end: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
+        h.bot = live.Live(config(Path(d), extra=TREND, strategy="тест тренд"))
+        h.tick(1.20)
+        assert h.bot.pos_id == pos and len(txs()) == calls and h.bot.watch.trend_ma() is not None
+        assert h.bot.book.start and not h.bot.paused
+    live.history.trend_warmup = lambda days, end: []
+
+
 if __name__ == "__main__":
     tests = [(n, f) for n, f in globals().items() if n.startswith("test_")]
     for n, f in tests:
