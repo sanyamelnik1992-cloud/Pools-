@@ -32,6 +32,16 @@ def binance_candles(start: float, end: float, minutes: int = 5) -> list[tuple[fl
     return [c for c in out if c[0] <= end]
 
 
+def trend_warmup(days: float, end: float) -> list[tuple[float, float]]:
+    """Часовые цены SUIUSDT за days (+1) дней до end — предыстория для средней фильтра тренда."""
+    return [(c[0], c[1]) for c in binance_candles(end - (days + 1) * 86400, end - 3600, 60)]
+
+
+def trend_days(strategies) -> float:
+    """Самое длинное окно средней среди стратегий (0 — фильтр тренда нигде не используется)."""
+    return max((s.trend_ma_days or 0 for s in strategies), default=0)
+
+
 def load(pools: dict[str, PoolCfg], days: int, minutes: int = 5, source: str = "binance"):
     """Одни свечи и доход единицы ликвидности каждого пула на каждую свечу (доля полного диапазона):
     возвращает (candles, {пул: [y по свечам]})."""

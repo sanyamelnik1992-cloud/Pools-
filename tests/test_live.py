@@ -208,6 +208,7 @@ class Harness:
         notify.commands = lambda offset: ([], offset)
         live.exchange_price = lambda: None                                        # без Binance: сверка не мешает
         live.history.load = lambda *a, **k: ([], {})                              # без сети: история пустая
+        live.history.trend_warmup = lambda days, end: []                          # без сети: предыстории нет
         self.bot = live.Live(config(self.d, dry))
 
     def tick(self, price, dt=3600):
@@ -805,6 +806,46 @@ def test_pool_switch_only_after_close():
         h.tick(1.28)                                                       # старт в новом пуле
         assert ("open", new_obj) in chain.pools and len(chain.pos) == 1 and h.bot.book.pool == "cetus_025"
         assert h.bot.book.start["capital_sui"] * 1.28 < 205                # не больше лимита капитала
+
+
+TREND = """
+[[strategy]]
+name = "тест тренд"
+pool = "cetus_005"
+capital_sui = 100
+range_down = 0.04
+range_up = 0.04
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+trend_ma_days = 50
+"""
+
+
+def test_trend_filter_live():
+    """Средняя за 50 дней из предыстории Binance: рост ниже средней — выход в SUI пропущен (одно сообщение),
+    рост выше средней — выход как обычно; в отчёте — строка тренда."""
+    for level, exits in ((2.0, 0), (0.5, 1)):
+        with tempfile.TemporaryDirectory() as d:
+            chain = FakeChain(sui=170, usdc=0)
+            h = Harness(d, chain)
+            live.history.trend_warmup = lambda days, end, lv=level: [(end - (60 * 24 - i) * 3600, lv)
+                                                                    for i in range(60 * 24)]
+            h.bot = live.Live(config(Path(d), extra=TREND, strategy="тест тренд"))
+            h.t = 1.79e9                                                    # время как в сети (для предыстории)
+            st = h.tick(1.20)
+            assert h.bot.watch.trend_ma() is not None
+            for _ in range(3):
+                h.tick(1.42)                                                 # +18% за 72 ч
+            b = h.bot.book
+            assert len(b.exits) == exits and (b.mode == "lp") == (exits == 0)
+            skipped = [x for x in h.sent if "Выход в SUI пропущен" in x]
+            assert len(skipped) == (1 - exits) and (not skipped or "почему" in skipped[0])
+            card = h.bot.report_card(h.chain.st)
+            assert "тренд 50 дн." in card
+    live.history.trend_warmup = lambda days, end: []
 
 
 if __name__ == "__main__":

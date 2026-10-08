@@ -17,8 +17,10 @@ def run(cfg: Config, days: int = 30, minutes: int = 5, source: str = "binance") 
     now = read_pools(pools)
     cs, yields = history.load(pools, days, minutes, source)
     times, prices = [c[0] for c in cs], [c[1] for c in cs]
+    td = history.trend_days(cfg.strategies)
+    warm = history.trend_warmup(td, times[0]) if td else None
     rows = [simulate(s, cfg.pools[s.pool], times, prices, yields[s.pool], cfg.costs, now[s.pool]["spacing"],
-                     scale=prices[0] / now[s.pool]["sui"]) for s in cfg.strategies]
+                     scale=prices[0] / now[s.pool]["sui"], warm=warm) for s in cfg.strategies]
     print(f"История: {days} дней, свечи {minutes} мин ({source}), SUI ${prices[0]:.4f} → ${prices[-1]:.4f} "
           f"({prices[-1] / prices[0] - 1:+.0%})\n")
     print(report.table(rows, cfg.staking_apy))

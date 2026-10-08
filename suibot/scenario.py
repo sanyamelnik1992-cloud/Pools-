@@ -11,6 +11,7 @@ from __future__ import annotations
 import math
 import random
 import statistics as st
+import time
 
 from suibot import history
 from suibot.chain import read_pools
@@ -53,11 +54,13 @@ def run(cfg: Config, multiple: float = 2.0, days: int = 60, paths: int = 100, mi
     now = read_pools(pools)
     cs, yields = history.load(pools, hist_days, minutes, "binance")
     p0 = next(iter(now.values()))["sui"]
+    td = history.trend_days(cfg.strategies)
+    warm = history.trend_warmup(td, time.time()) if td else None     # сценарий продолжает сегодняшний рынок
     res = {s.name: [] for s in cfg.strategies}
     for times, prices, ys in make_paths(cs, yields, p0, multiple, days, paths, minutes, block_days, seed):
         for s in cfg.strategies:
             res[s.name].append(simulate(s, cfg.pools[s.pool], times, prices, ys[s.pool], cfg.costs,
-                                        now[s.pool]["spacing"]))
+                                        now[s.pool]["spacing"], warm=warm))
     out = {"multiple": multiple, "days": days, "paths": paths, "block_days": block_days, "start_price": p0,
            "strategies": {}}
     for name, rows in res.items():

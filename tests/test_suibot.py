@@ -184,6 +184,50 @@ def test_env_file():
                 os.environ[n] = v
 
 
+def test_trend_watch():
+    w = RallyWatch(None, trend_days=2)
+    for h in range(30):                                     # 30 часов — меньше 80% окна в 2 дня
+        w.add(h * 3600.0, 1.0)
+    assert w.trend_ma() is None and w.trend(0.5) is None    # средней ещё нет — фильтр не действует
+    for h in range(30, 60):
+        w.add(h * 3600.0, 2.0)
+    ma = w.trend_ma()
+    assert ma is not None and 1.0 < ma < 2.0 and w.trend(1.9) == "up" and w.trend(1.0) == "down"
+    w.add(59 * 3600.0 + 60, 9.0)                            # чаще раза в час в среднюю не попадает
+    assert w.trend_ma() == ma
+    w.reset()                                               # сброс после возврата в пул не трогает тренд
+    assert w.trend_ma() == ma
+    again = RallyWatch(None, w.dump(), trend_days=2)        # переживает перезапуск
+    assert math.isclose(again.trend_ma(), ma)
+    cold = RallyWatch(None, trend_days=2)
+    cold.add(100 * 3600.0, 3.0)
+    cold.warm_trend([(h * 3600.0, 1.0) for h in range(52, 100)])   # предыстория старше своих цен
+    assert cold.trend_ma() is not None and cold.tq[-1] == (100 * 3600.0, 3.0)
+    assert RallyWatch([[24, 0.1]]).dump().get("trend") is None     # без фильтра состояние как раньше
+
+
+def test_trend_filter_exits():
+    """Выход в SUI — только выше средней (иначе это отскок на падающем рынке), в USDC — только ниже."""
+    pc = PoolCfg("p", "0x0")
+    times = [h * 3600.0 for h in range(8)]
+    high = [(-(60 * 24 - h) * 3600.0, 2.0) for h in range(60 * 24)]     # 60 дней по $2: средняя выше цены
+    low = [(-(60 * 24 - h) * 3600.0, 0.5) for h in range(60 * 24)]      # 60 дней по $0.5: средняя ниже цены
+    up = [1.0, 1.03, 1.06, 1.09, 1.12, 1.20, 1.30, 1.40]
+    down = [1.0, 0.97, 0.94, 0.91, 0.88, 0.80, 0.70, 0.60]
+    kw = dict(rally_exit=[[24, 0.10]], resume_drop_pct=0.10, crash_exit=[[24, 0.10]], resume_rise_pct=0.10)
+    plain = Strategy("t", "p", 1000, 0.05, 0.05, **kw)
+    trend = Strategy("t", "p", 1000, 0.05, 0.05, trend_ma_days=50, **kw)
+    assert simulate(plain, pc, times, up, [0.0] * 8, NOCOST, 10, warm=high)["exits"] == 1
+    r = simulate(trend, pc, times, up, [0.0] * 8, NOCOST, 10, warm=high)
+    assert r["exits"] == 0 and r["mode"] == "lp"            # рост ниже средней — отскок, бот остаётся в пуле
+    assert simulate(trend, pc, times, up, [0.0] * 8, NOCOST, 10, warm=low)["exits"] == 1   # рост в растущем рынке
+    assert simulate(plain, pc, times, down, [0.0] * 8, NOCOST, 10, warm=low)["crashes"] == 1
+    r = simulate(trend, pc, times, down, [0.0] * 8, NOCOST, 10, warm=low)
+    assert r["crashes"] == 0 and r["mode"] == "lp"          # провал выше средней — бот остаётся в пуле
+    assert simulate(trend, pc, times, down, [0.0] * 8, NOCOST, 10, warm=high)["crashes"] == 1
+    assert simulate(trend, pc, times, up, [0.0] * 8, NOCOST, 10)["exits"] == 1    # без истории — как раньше
+
+
 if __name__ == "__main__":
     tests = [(n, f) for n, f in globals().items() if n.startswith("test_")]
     for n, f in tests:

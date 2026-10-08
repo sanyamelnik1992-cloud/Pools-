@@ -183,7 +183,8 @@ def exit_to_usdc(book: Book, st: dict, costs: Costs) -> float:
 
 
 def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
-    """Решение по правилам стратегии (без исполнения): ("exit" | "resume" | "rebalance", причина) или None.
+    """Решение по правилам стратегии (без исполнения): ("exit" | "crash" | "resume" | "rebalance", причина) или None;
+    ("skip_exit" | "skip_crash", причина) — выход пропущен фильтром тренда (сообщить, но ничего не делать).
     Обновляет наблюдение за ростом, пик после выхода и время выхода цены из диапазона."""
     p, t = st["sui"], st["t"]
     watch.add(t, p)
@@ -199,24 +200,32 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
         return None
     if book.mode != "lp":
         return None
+    trend = watch.trend(p) if s.trend_ma_days else None
+    skip = None
     why = watch.triggered(p) if s.rally_exit else None
     if why:
-        return "exit", why
+        if trend != "down":
+            return "exit", why
+        skip = ("skip_exit", f"{why}, но цена ниже средней за {s.trend_ma_days:g} дн. "
+                             f"(${watch.trend_ma():.4f}) — похоже на отскок на падающем рынке")
     why = watch.dropped(p) if s.crash_exit else None
     if why:
-        return "crash", why
+        if trend != "up":
+            return "crash", why
+        skip = skip or ("skip_crash", f"{why}, но цена выше средней за {s.trend_ma_days:g} дн. "
+                                      f"(${watch.trend_ma():.4f}) — похоже на провал на растущем рынке")
     update_out(book, st)
     if book.out_since is not None:
         reason = s.rebalance_reason(book, p, t)
         if reason:
             return "rebalance", reason
-    return None
+    return skip
 
 
 def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, str] | None:
     """Решение и его виртуальное исполнение (бумага, история, сценарии). Возвращает (событие, описание)."""
     d = decide(book, s, st, watch)
-    if d is None:
+    if d is None or d[0].startswith("skip"):
         return None
     kind, why = d
     p, t = st["sui"], st["t"]

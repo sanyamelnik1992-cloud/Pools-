@@ -80,7 +80,8 @@ ICONS = {"открыта": "✅", "позиция найдена": "🔎", "по
          "выход в USDC": "🛡", "цена вне диапазона": "⚠️", "цена снова в диапазоне": "✅", "нет связи": "📡",
          "ошибка": "❌", "мало SUI на газ": "⛽", "награды обменяны": "🎁", "обмен наград не удался": "🎁",
          "бот был выключен": "💤", "реинвестирование": "♻️", "цена пула расходится с биржей": "🚧",
-         "отставание от «держать SUI»": "📉", "связь восстановлена": "📡", "переход в другой пул": "🔀"}
+         "отставание от «держать SUI»": "📉", "связь восстановлена": "📡", "переход в другой пул": "🔀",
+         "выход в SUI пропущен": "🧭", "выход в USDC пропущен": "🧭"}
 BINANCE_PRICE = "https://data-api.binance.vision/api/v3/ticker/price"
 
 
@@ -244,7 +245,10 @@ class Live:
         self.retry_at = st.get("retry_at")
         self.last_sync = st.get("last_sync", 0.0)
         self.need_sync = not self.dry                  # после каждого запуска — сверка с кошельком
-        self.watch = RallyWatch(self.s.rally_exit, st.get("watch"), min_step=60, drop_rules=self.s.crash_exit)
+        self.watch = RallyWatch(self.s.rally_exit, st.get("watch"), min_step=60, drop_rules=self.s.crash_exit,
+                                trend_days=self.s.trend_ma_days)
+        self.trend_try = 0.0                              # последняя попытка загрузить предысторию средней
+        self.skip_noted = None                            # о пропущенном выходе уже сообщено
         self.out_noticed = st.get("out_noticed", False)   # сообщение «цена вне диапазона» уже отправлено
         self.last_report_t = st.get("last_report_t")      # когда отправлен последний регулярный отчёт (часы Mac)
         self.txs = []                                     # транзакции текущего действия — ссылки в сообщение
@@ -312,6 +316,13 @@ class Live:
     def why(self, kind: str, mode: str | None = None) -> str:
         """Логика решения простыми словами и настройки suibot.toml, которыми она меняется."""
         s, lc = self.s, self.lc
+
+        def trend_note(side: str) -> str:
+            ma = self.watch.trend_ma() if s.trend_ma_days else None
+            if ma is None:
+                return ""
+            return (f"; фильтр тренда: цена {'выше' if side == 'up' else 'ниже'} средней за trend_ma_days = "
+                    f"{s.trend_ma_days:g} дн. (${ma:.4f}) — выход по направлению рынка")
         rng = f"−{s.range_down:.0%}…+{s.range_up:.0%} от цены (range_down / range_up)"
         return {
             "открыта": f"бот берёт из кошелька не больше max_capital_usd = ${lc.max_capital_usd:g} и оставляет "
@@ -324,10 +335,18 @@ class Live:
                                       f"комиссий, поэтому бот открывает новую: {rng}",
             "выход в SUI": f"сильный рост (rally_exit: {rules_text(s.rally_exit)}) — в пуле рост продаёт ваши SUI за "
                            "USDC, поэтому бот держит всё в SUI; вернётся в пул после отката на "
-                           f"resume_drop_pct = {s.resume_drop_pct or 0:.0%} от пика",
+                           f"resume_drop_pct = {s.resume_drop_pct or 0:.0%} от пика" + trend_note("up"),
             "выход в USDC": f"сильное падение (crash_exit: {rules_text(s.crash_exit)}) — в пуле падение докупает SUI "
                             "всё дороже, поэтому бот держит всё в USDC; вернётся в пул после отскока на "
-                            f"resume_rise_pct = {s.resume_rise_pct or 0:.0%} от минимума",
+                            f"resume_rise_pct = {s.resume_rise_pct or 0:.0%} от минимума" + trend_note("down"),
+            "выход в SUI пропущен": f"сильный рост ({rules_text(s.rally_exit)}), но цена ниже средней за trend_ma_days = "
+                                    f"{s.trend_ma_days or 0:g} дн. — рынок в целом падает, и такой рост чаще оказывается "
+                                    "отскоком: по истории выходы в SUI на отскоках теряли 3–8% штук SUI; бот остаётся в "
+                                    "пуле и продолжает собирать комиссии",
+            "выход в USDC пропущен": f"сильное падение ({rules_text(s.crash_exit)}), но цена выше средней за "
+                                     f"trend_ma_days = {s.trend_ma_days or 0:g} дн. — рынок в целом растёт, и такие "
+                                     "провалы чаще выкупают: по истории выходы в USDC на них теряли 2–6% штук SUI; бот "
+                                     "остаётся в пуле и продолжает собирать комиссии",
             "возврат в пул": ("после выхода в SUI цена откатилась на resume_drop_pct = "
                               f"{s.resume_drop_pct or 0:.0%} от пика — сильный рост закончился" if mode == "sui" else
                               "после выхода в USDC цена отскочила на resume_rise_pct = "
@@ -422,6 +441,9 @@ class Live:
                  f"resume_drop_pct = {s.resume_drop_pct or 0:.0%}"),
                 ("Выход в USDC", rules_text(s.crash_exit) or "нет", f"crash_exit; назад после отскока "
                  f"resume_rise_pct = {s.resume_rise_pct or 0:.0%}"),
+                ("Фильтр тренда", f"средняя за {s.trend_ma_days:g} дн." if s.trend_ma_days else "выключен",
+                 "trend_ma_days — выход в SUI только выше средней, в USDC — только ниже: отскоки и провалы против "
+                 "тренда бот пережидает в пуле"),
                 ("Лимит капитала", f"${lc.max_capital_usd:g}", "max_capital_usd — больше бот из кошелька не берёт"),
                 ("Газ", f"{lc.gas_reserve_sui:g} SUI в запасе, тревога ниже {lc.gas_warn_sui:g}",
                  "gas_reserve_sui / gas_warn_sui"),
@@ -453,6 +475,12 @@ class Live:
             lines += [f"<code>{lo:.4f} {bar(p, lo, hi)} {hi:.4f}</code>",
                       f"до нижней {pct(lo / p - 1)} · до верхней {pct(hi / p - 1)} · "
                       f"в диапазоне {r['in_range_pct']:.0f}% времени"]
+        if self.s.trend_ma_days:
+            ma = self.watch.trend_ma()
+            lines.append(f"🧭 тренд {self.s.trend_ma_days:g} дн.: " + (
+                "копится история — пока выходы без фильтра" if ma is None else
+                f"цена {'выше' if p >= ma else 'ниже'} средней ${ma:.4f} — разрешён выход "
+                + ("в SUI на росте" if p >= ma else "в USDC на падении")))
         cap = b.start["capital_sui"] * b.start["price"]
         pnl = r["value"] - cap
         lines += ["", "💼 <b>Капитал</b>",
@@ -1080,12 +1108,14 @@ class Live:
                 res = {}
                 pools = {x.pool: cfg.pools[x.pool] for x in strategies}
                 now = read_pools(pools)
+                td = history.trend_days(strategies)
                 for days in (30, 90):
                     cs, ys = history.load(pools, days, 5)
                     times, prices = [c[0] for c in cs], [c[1] for c in cs]
+                    warm = history.trend_warmup(td, times[0]) if td else None
                     res[days] = (prices[-1] / prices[0] - 1, {
                         x.name: simulate(x, cfg.pools[x.pool], times, prices, ys[x.pool], cfg.costs,
-                                         now[x.pool]["spacing"], scale=prices[0] / now[x.pool]["sui"])
+                                         now[x.pool]["spacing"], scale=prices[0] / now[x.pool]["sui"], warm=warm)
                         for x in strategies})
                 gain = {d: {n: r["value_sui"] / r["capital_sui"] - 1 for n, r in rows.items()}
                         for d, (_, rows) in res.items()}
@@ -1243,7 +1273,9 @@ class Live:
                 if len(cs) - i0 < 12:
                     notify.send("🔬 Бот работает меньше часа — сверять с моделью пока рано")
                     return
-                model = simulate(s, pc, [c[0] for c in cs[i0:]], [c[1] for c in cs[i0:]], ys[pool][i0:], costs, spacing)
+                warm = history.trend_warmup(s.trend_ma_days, cs[i0][0]) if s.trend_ma_days else None
+                model = simulate(s, pc, [c[0] for c in cs[i0:]], [c[1] for c in cs[i0:]], ys[pool][i0:], costs, spacing,
+                                 warm=warm)
                 notify.send("\n".join(calibration_lines(real, earned, model, manual)), html=True)
             except Exception as e:  # noqa: BLE001 — сверка не должна мешать боту
                 notify.send(f"🔬 Сверка с моделью не удалась: {str(e)[:200]}")
@@ -1308,14 +1340,14 @@ class Live:
             if b.mode == "hold":                                     # после /sui, /usdc, /close и /resume
                 self.act(st, "resume", "по команде")
             elif b.mode == "lp" and not self.pos_id and not self.dry:   # позиция не открылась или пропала
-                d = decide(b, self.s, st, self.watch)
+                d = self.skipped(st, decide(b, self.s, st, self.watch))
                 if self.price_ok(st):
                     if d and d[0] in ("exit", "crash"):
                         self.act(st, *d)
                     else:
                         self.act(st, "reopen", "позиции нет")
             else:
-                d = decide(b, self.s, st, self.watch)
+                d = self.skipped(st, decide(b, self.s, st, self.watch))
                 if d and self.price_ok(st):
                     self.act(st, *d)
             now = time.time()
@@ -1325,6 +1357,28 @@ class Live:
                 elif now - self.last_reinvest >= self.lc.reinvest_days * 86400:
                     self.reinvest(st)
         self.errors, self.retry_at = 0, None
+
+    def skipped(self, st, d):
+        """Выход, пропущенный фильтром тренда: сообщить один раз (пока сигнал держится) и ничего не делать."""
+        if d and d[0].startswith("skip"):
+            kind = "выход в SUI пропущен" if d[0] == "skip_exit" else "выход в USDC пропущен"
+            if self.skip_noted != kind:
+                self.skip_noted = kind
+                self.event(st["t"], kind, st["sui"], d[1] + "; бот остаётся в пуле", st, why=self.why(kind))
+            return None
+        if d is None:
+            self.skip_noted = None
+        return d
+
+    def trend_warm(self):
+        """Предыстория средней тренда с Binance (часовые цены): при запуске и, пока не получилось, раз в час."""
+        if not self.s.trend_ma_days or self.watch.trend_ma() is not None or time.time() - self.trend_try < 3600:
+            return
+        self.trend_try = time.time()
+        try:
+            self.watch.warm_trend(history.trend_warmup(self.s.trend_ma_days, time.time()))
+        except Exception as e:  # noqa: BLE001 — без предыстории фильтр ждёт, пока накопится своя история
+            log(f"нет предыстории для средней тренда: {e}")
 
     def switch_pool(self, st) -> bool:
         """[live] strategy — в другом пуле, а деньги бота ещё в старом. Бот продолжает работать в старом пуле
@@ -1377,6 +1431,7 @@ class Live:
         try:
             if self.book and self.prev and st["t"] > self.prev["t"] and self.book.L:
                 accrue_growth(self.book, self.prev, st, self.price_of(st))
+            self.trend_warm()
             self.watch.add(st["t"], st["sui"])
             if self.down_since:
                 self.downtime_notice(st)

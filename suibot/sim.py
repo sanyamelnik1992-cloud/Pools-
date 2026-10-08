@@ -12,16 +12,21 @@ def no_price(_t):
 
 
 def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], yields: list[float],
-             costs: Costs, spacing: int, scale: float = 1.0) -> dict:
+             costs: Costs, spacing: int, scale: float = 1.0, warm: list | None = None) -> dict:
     """yields[j] — доход единицы ликвидности за свечу j (доля стоимости полнодиапазонной позиции).
-    Доход зачисляется, пока цена в диапазоне (по ценам начала и конца свечи); возвращает итог summary()."""
+    Доход зачисляется, пока цена в диапазоне (по ценам начала и конца свечи); возвращает итог summary().
+    warm — часовые цены перед началом ряда для средней фильтра тренда (trend_ma_days); их время сдвигается
+    вплотную к началу ряда (сценарии начинаются с t = 0)."""
     def state(t, p):
         return dict(state_from_price(p, pc.a_is_sui), t=t, spacing=spacing)
 
     prev = state(times[0], prices[0])
     book: Book = init_book(s, pc, prev, costs, scale)
     stop = s.stop_vs_split_pct is not None
-    watch = RallyWatch(s.rally_exit, drop_rules=s.crash_exit)
+    watch = RallyWatch(s.rally_exit, drop_rules=s.crash_exit, trend_days=s.trend_ma_days)
+    if warm and s.trend_ma_days:
+        off = times[0] - 3600 - warm[-1][0]
+        watch.warm_trend([(t + off, p) for t, p in warm])
     watch.add(times[0], prices[0])
     for t, p, y in zip(times[1:], prices[1:], yields[1:]):
         st = state(t, p)

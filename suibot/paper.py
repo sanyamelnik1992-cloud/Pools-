@@ -14,7 +14,7 @@ from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from suibot import notify, report
+from suibot import history, notify, report
 from suibot.book import Book, accrue_growth, check_stop, init_book, step, summary
 from suibot.chain import read_pools, token_price
 from suibot.config import Config
@@ -52,13 +52,21 @@ class Paper:
         self.last_report_day = st.get("last_report_day")
         self.watch_state = st.get("watch", {})
         self.watches: dict[str, RallyWatch] = {}
+        self.warm_try: dict[str, float] = {}
 
     def watch(self, s) -> RallyWatch:
         """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск)."""
         if s.name not in self.watches:
             self.watches[s.name] = RallyWatch(s.rally_exit, self.watch_state.get(s.name), min_step=60,
-                                              drop_rules=s.crash_exit)
-        return self.watches[s.name]
+                                              drop_rules=s.crash_exit, trend_days=s.trend_ma_days)
+        w = self.watches[s.name]
+        if s.trend_ma_days and w.trend_ma() is None and time.time() - self.warm_try.get(s.name, 0) > 3600:
+            self.warm_try[s.name] = time.time()       # средняя тренда: предыстория с Binance, при сбое — раз в час
+            try:
+                w.warm_trend(history.trend_warmup(s.trend_ma_days, time.time()))
+            except Exception as e:  # noqa: BLE001 — без предыстории фильтр просто ждёт, пока накопится своя
+                log(f"[{s.name}] нет предыстории для средней тренда: {e}")
+        return w
 
     def save(self):
         tmp = self.path.with_suffix(".tmp")
