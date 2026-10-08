@@ -15,7 +15,7 @@ from sui_pools import daily_checkpoints, gecko_candles, pool_history
 from suibot.chain import PoolCfg
 
 BINANCE = "https://data-api.binance.vision/api/v3/klines"
-INTERVALS = {1: "1m", 5: "5m", 15: "15m", 30: "30m", 60: "1h"}
+INTERVALS = {1: "1m", 5: "5m", 15: "15m", 30: "30m", 60: "1h", 1440: "1d"}
 
 
 def binance_candles(start: float, end: float, minutes: int = 5) -> list[tuple[float, float, float]]:
@@ -35,6 +35,12 @@ def binance_candles(start: float, end: float, minutes: int = 5) -> list[tuple[fl
 def trend_warmup(days: float, end: float) -> list[tuple[float, float]]:
     """Часовые цены SUIUSDT за days (+1) дней до end — предыстория для средней фильтра тренда."""
     return [(c[0], c[1]) for c in binance_candles(end - (days + 1) * 86400, end - 3600, 60)]
+
+
+def daily_closes(days: int) -> list[tuple[float, float]]:
+    """Дневные цены закрытия SUIUSDT за последние days дней: [(начало дня, цена)]."""
+    end = time.time()
+    return [(c[0], c[1]) for c in binance_candles(end - days * 86400, end, 1440)]
 
 
 def trend_days(strategies) -> float:

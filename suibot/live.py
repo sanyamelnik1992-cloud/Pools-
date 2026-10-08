@@ -60,7 +60,7 @@ GAS_BUFFER_SUI = 0.05      # при открытии позиции стольк
 RETRY_MINUTES = (2, 6, 18)  # повторы после ошибки; следующая ошибка подряд — пауза до /resume
 SYNC_MINUTES = 30          # плановая сверка с кошельком
 COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "events", "week", "alert", "strategy", "model",
-            "settings", "help")
+            "trend", "settings", "help")
 HELP = ("Команды: /status — отчёт; /pause — пауза; /resume — продолжить; /sui — снять позицию и всё в SUI; "
         "/usdc — снять позицию и всё в USDC; /close — снять позицию, монеты оставить. После /sui, /usdc, /close "
         "бот на паузе; /resume — снова открыть позицию.")
@@ -69,6 +69,7 @@ MENU = {"status": "отчёт: позиция, заработок, итог", "p
         "sui": "снять позицию, всё в SUI", "usdc": "снять позицию, всё в USDC", "close": "снять позицию",
         "events": "последние события", "week": "недельный отчёт с графиком", "alert": "алерт цены: /alert 1.30 (/alert — список, /alert off — снять)",
         "strategy": "проверить стратегии на свежих ценах", "model": "сверка: реальный бот против модели с запуска",
+        "trend": "тренд SUI на масштабах 50/100/200/365 дней",
         "settings": "настройки бота с пояснениями",
         "help": "список команд"}
 TX_URL = "https://suiscan.xyz/mainnet/tx/"
@@ -174,6 +175,50 @@ def executor(*args, simulate: bool, address: str | None = None) -> dict:
         raise ExecError(out.get("error") or (json.dumps(status, ensure_ascii=False) if status else "")
                         or (r.stderr or "")[-600:] or "исполнитель не ответил", out)
     return out
+
+
+def scales_lines(closes: list, bot_days: float | None = None, windows=(50, 100, 200, 365)) -> list[str]:
+    """Картина рынка по дневным ценам [(время, цена)]: максимум и дно после него, цена против средних за 50/100/200/365
+    дней (выше/ниже, растёт ли средняя за месяц, когда цена последний раз пробила её)."""
+    if len(closes) < 2:
+        return ["🧭 Тренд по масштабам: нет дневных цен (Binance недоступен) — попробуйте /trend позже"]
+    t = [x[0] for x in closes]
+    p = [x[1] for x in closes]
+    day = lambda i: datetime.fromtimestamp(t[i], timezone.utc).strftime("%d.%m.%y")   # noqa: E731
+    hi = max(range(len(p)), key=p.__getitem__)
+    lo = min(range(hi, len(p)), key=p.__getitem__)
+    now = p[-1]
+    lines = ["🧭 <b>Тренд SUI по масштабам</b> (дневные цены Binance)",
+             f"сейчас ${now:.4f} · от максимума ${p[hi]:.2f} ({day(hi)}) {pct(now / p[hi] - 1)}"
+             + (f" · от дна ${p[lo]:.3f} ({day(lo)}) {pct(now / p[lo] - 1)}" if lo != hi else ""), ""]
+
+    def ma(n, i):
+        return sum(p[i - n + 1:i + 1]) / n
+
+    ups = 0
+    for n in windows:
+        if len(p) < n + 30:
+            lines.append(f"{n} дн.: мало истории")
+            continue
+        m, m_ago = ma(n, len(p) - 1), ma(n, len(p) - 31)
+        cross = next((i for i in range(len(p) - 1, n, -1) if (p[i] >= ma(n, i)) != (p[i - 1] >= ma(n, i - 1))), None)
+        above, rising = now >= m, m > m_ago
+        ups += above and rising
+        lines.append(f"{'🟢' if above and rising else '🔴' if not above and not rising else '🟡'} <b>{n} дн.</b>: средняя "
+                     f"${m:.3f} ({'растёт' if rising else 'падает'}), цена {'выше' if above else 'ниже'} "
+                     f"({pct(now / m - 1)})" + (f" · пробой {'вверх' if above else 'вниз'} {day(cross)}" if cross else "")
+                     + (" ← фильтр бота" if bot_days and n == bot_days else ""))
+    n_ok = sum(1 for n in windows if len(p) >= n + 30)
+    long = windows[-1]
+    lines += ["", f"растущий тренд на {ups} из {n_ok} масштабов"
+              + (f"; годовой разворот подтвердится, когда цена закрепится выше ${ma(long, len(p) - 1):.3f} и годовая "
+                 "средняя начнёт расти" if len(p) >= long + 30 and not (now >= ma(long, len(p) - 1)
+                                                                       and ma(long, len(p) - 1) > ma(long, len(p) - 31))
+                 else ""),
+              "🧠 <i>почему: это картина рынка для ваших решений (держать SUI, увеличивать ли сумму); на сделки бота "
+              + (f"влияет только средняя за trend_ma_days = {bot_days:g} дн." if bot_days else "она не влияет")
+              + " — 🟢 цена выше растущей средней, 🔴 ниже падающей, 🟡 смешанно</i>"]
+    return lines
 
 
 def calibration_lines(real: dict, earned: float, model: dict, manual: int = 0) -> list[str]:
@@ -872,6 +917,8 @@ class Live:
             if self.book and self.book.start:
                 notify.send("🔬 Считаю модель за время работы бота — это займёт пару минут")
             self.calibration(st)
+        elif c == "trend":
+            self.trend_report()
         elif c not in COMMANDS or c == "help":
             notify.send("ℹ️ <b>Команды</b>\n" + "\n".join(f"/{k} — {esc(v)}" for k, v in MENU.items())
                         + "\n\nПосле /sui, /usdc, /close бот на паузе; /resume — снова открыть позицию.", html=True)
@@ -1240,7 +1287,23 @@ class Live:
             log(traceback.format_exc())
         if ev.exists():
             notify.send_file(ev, "журнал событий бота (events.csv)")
+        self.trend_report()
         self.calibration(st)
+
+    def trend_report(self, wait: bool = False):
+        """Тренд SUI на масштабах 50/100/200/365 дней по дневным ценам Binance — в фоне, отдельным сообщением."""
+        days = self.s.trend_ma_days
+
+        def work():
+            try:
+                notify.send("\n".join(scales_lines(history.daily_closes(900), days)), html=True)
+            except Exception as e:  # noqa: BLE001 — картина рынка не должна мешать боту
+                notify.send(f"🧭 Тренд по масштабам не удался: {str(e)[:200]}")
+
+        if wait:
+            work()
+        else:
+            threading.Thread(target=work, daemon=True).start()
 
     def manual_count(self, t0: float) -> int:
         """Ручные команды и паузы с момента t0 — модель их не делает."""

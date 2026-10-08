@@ -209,6 +209,7 @@ class Harness:
         live.exchange_price = lambda: None                                        # без Binance: сверка не мешает
         live.history.load = lambda *a, **k: ([], {})                              # без сети: история пустая
         live.history.trend_warmup = lambda days, end: []                          # без сети: предыстории нет
+        live.history.daily_closes = lambda days: []                               # без сети: дневных цен нет
         self.bot = live.Live(config(self.d, dry))
 
     def tick(self, price, dt=3600):
@@ -865,6 +866,33 @@ def test_switch_to_trend_strategy_keeps_position():
         assert h.bot.pos_id == pos and len(txs()) == calls and h.bot.watch.trend_ma() is not None
         assert h.bot.book.start and not h.bot.paused
     live.history.trend_warmup = lambda days, end: []
+
+
+def test_trend_scales():
+    """Картина рынка: падение 500 дней с максимума, дно, рост 60 дней — короткие масштабы растут, годовой ещё нет."""
+    import threading
+    day = 86400.0
+    closes = [(i * day, 5.0 * (0.13 ** (i / 500))) for i in range(501)]                     # 5.0 → 0.65
+    closes += [((501 + i) * day, 0.65 * (1.7 ** (i / 60))) for i in range(61)]               # дно → +70%
+    lines = live.scales_lines(closes, 50)
+    text = "\n".join(lines)
+    assert "от максимума $5.00" in text and "от дна $0.650" in text
+    assert "🟢 <b>50 дн.</b>" in text and "← фильтр бота" in text and "🔴 <b>365 дн.</b>" in text
+    assert "🟡 <b>200 дн.</b>" in text                     # цена выше, но средняя ещё падает — смешанно
+    assert "годовой разворот подтвердится" in text and "растущий тренд на 2 из 4" in text
+    assert "нет дневных цен" in live.scales_lines([])[0]
+    with tempfile.TemporaryDirectory() as d:
+        h = Harness(d, FakeChain(sui=170, usdc=0))
+        live.history.daily_closes = lambda days: closes
+        try:
+            h.cmd("trend")
+            h.tick(1.20)
+            for t in threading.enumerate():
+                if t is not threading.current_thread():
+                    t.join(10)
+        finally:
+            live.history.daily_closes = lambda days: []
+        assert any(x.startswith("🧭 <b>Тренд SUI по масштабам") for x in h.sent)
 
 
 if __name__ == "__main__":
