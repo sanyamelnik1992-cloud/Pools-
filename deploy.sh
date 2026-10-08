@@ -21,6 +21,15 @@ fi
 echo "▸ проверки на Mac"
 python3 tests/test_suibot.py | tail -1
 python3 tests/test_live.py 2>/dev/null | tail -1
+python3 - <<'PY'   # боевая стратегия должна быть исполнимой: иначе бот на сервере не запустится
+import sys
+from suibot.config import load
+cfg = load("suibot.toml")
+s = next(x for x in cfg.strategies if x.name == cfg.live.strategy)
+if s.paper_only():
+    sys.exit(f"❌ [live] strategy «{s.name}» использует {', '.join(s.paper_only())} — это только для «тени»; не выкладываю")
+print(f"боевая стратегия: «{s.name}»{' — РЕАЛЬНЫЕ ДЕНЬГИ' if not cfg.live.dry_run else ' — симуляция'}")
+PY
 echo "▸ копирование кода на $HOST"
 rsync -az --delete \
   --include '.env.example' --exclude '.env' --exclude '.env.*' --exclude '.server' --exclude '.claude/' \
