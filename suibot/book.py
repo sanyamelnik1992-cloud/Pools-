@@ -56,6 +56,9 @@ class Book:
     staked_sui: float = 0.0         # всего начислено стейкинга, SUI
     funding_usd: float = 0.0        # всего заплачено за удержание лонга, $
     liquidations: list = field(default_factory=list)
+    perp_peak: float = 0.0          # максимум цены с открытия лонга (для скользящего стопа и повторного входа)
+    perp_stopped: bool = False      # лонг закрыт стопом в этой фазе роста
+    stops: list = field(default_factory=list)
 
     def sqrt_bounds(self) -> tuple[float, float]:
         if not self.sa:
@@ -224,6 +227,7 @@ def enter_up(book: Book, st: dict, costs: Costs, s: Strategy | None = None) -> f
     cost = 0.0 if book.mode == "sui" and not book.L else close_to_idle(book, st, costs, "sui")
     book.mode = "up"
     book.phases.append([st["t"], "up"])
+    book.perp_stopped = False
     if s is not None and s.up_leverage > 1 and s.perp_leverage > 1:
         cost += open_perp(book, s, st, costs)
     return cost
@@ -236,14 +240,18 @@ def open_perp(book: Book, s: Strategy, st: dict, costs: Costs) -> float:
     a, b = book.holdings(st)
     equity = a * st["ua"] + b * st["ub"]
     margin = (s.up_leverage - 1) * equity / (s.perp_leverage - 1)
-    sui_raw = margin / p * 1e9
+    usdc = (book.idle_b if book.a_is_sui else book.idle_a) / 1e6       # USDC вне пула (например, после стопа)
+    need = margin - usdc                                               # > 0 — продать SUI на залог, < 0 — купить SUI
+    sui_raw = need / p * 1e9
     if book.a_is_sui:
         book.idle_a -= sui_raw
+        book.idle_b = 0.0
     else:
         book.idle_b -= sui_raw
+        book.idle_a = 0.0
     notional = margin * s.perp_leverage
-    cost = margin * (costs.swap_fee + costs.slippage) + notional * costs.swap_fee + costs.gas_sui * p
-    book.perp_margin, book.perp_sui, book.perp_entry = margin - cost, notional / p, p
+    cost = abs(need) * (costs.swap_fee + costs.slippage) + notional * costs.swap_fee + costs.gas_sui * p
+    book.perp_margin, book.perp_sui, book.perp_entry, book.perp_peak = margin - cost, notional / p, p, p
     book.costs_usd += cost
     return cost
 
@@ -264,8 +272,8 @@ def close_perp(book: Book, st: dict, costs: Costs) -> float:
     return cost
 
 
-def carry(book: Book, s: Strategy, st: dict) -> tuple[str, str] | None:
-    """В фазе роста: стейкинг лежащих SUI, плата за удержание лонга и проверка ликвидации."""
+def carry(book: Book, s: Strategy, st: dict, costs: Costs | None = None) -> tuple[str, str] | None:
+    """В фазе роста: стейкинг лежащих SUI, плата за удержание лонга, стоп-лосс, ликвидация и повторный вход."""
     t, p = st["t"], st["sui"]
     dt = t - book.carry_t if book.carry_t is not None else 0.0
     book.carry_t = t
@@ -285,11 +293,25 @@ def carry(book: Book, s: Strategy, st: dict) -> tuple[str, str] | None:
         book.perp_margin -= fee
         book.funding_usd += fee
         book.costs_usd += fee
+        book.perp_peak = max(book.perp_peak, p)
+        ref = book.perp_peak if s.perp_trail else book.perp_entry
+        if s.perp_stop and p <= ref * (1 - s.perp_stop) and costs is not None:
+            pnl = book.perp_sui * (p - book.perp_entry)
+            close_perp(book, st, costs)
+            book.perp_stopped = True
+            book.stops.append(t)
+            return "стоп-лосс", (f"цена ${p:.4f} на {1 - p / ref:.0%} ниже {'максимума' if s.perp_trail else 'входа'} "
+                                 f"${ref:.4f}: лонг закрыт, {'прибыль' if pnl >= 0 else 'убыток'} ≈${abs(pnl):,.0f}")
         if book.perp_margin + book.perp_sui * (p - book.perp_entry) <= MAINT * book.perp_sui * p:
             lost = book.perp_margin
             book.perp_sui = book.perp_margin = book.perp_entry = 0.0
             book.liquidations.append(t)
             return "ликвидация", f"цена ${p:.4f}: лонг на фьючерсах ликвидирован, потерян залог ≈${lost:,.0f}"
+    elif (book.perp_stopped and s.perp_reenter and costs is not None and s.up_leverage > 1 and s.perp_leverage > 1
+          and p > book.perp_peak):
+        book.perp_stopped = False
+        open_perp(book, s, st, costs)
+        return "лонг снова открыт", f"цена ${p:.4f} обновила максимум — рост продолжается"
     return None
 
 
@@ -343,7 +365,7 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
 
 def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, str] | None:
     """Решение и его виртуальное исполнение (бумага, история, сценарии). Возвращает (событие, описание)."""
-    ev = carry(book, s, st)
+    ev = carry(book, s, st, costs)
     if ev:
         return ev
     d = decide(book, s, st, watch)

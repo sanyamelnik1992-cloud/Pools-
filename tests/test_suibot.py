@@ -380,6 +380,20 @@ def test_staking_and_leverage_in_growth_phase():
     for k in range(16, 22):
         ev = step(b3, sp, st(0.9, t=k * D + 80000), w, NOCOST) or ev
     assert ev[0] == "конец фазы роста" and b3.perp_sui == 0 and b3.mode == "lp" and b3.L > 0
+    ss = replace(s, perp_leverage=3, perp_stop=0.20, perp_reenter=True, stake_apy=0.0, funding_apy=0.0)
+    b4 = init_book(ss, pc, st(1.0, t=0.0), NOCOST)
+    enter_up(b4, st(1.0, t=0.0), NOCOST, ss)
+    carry(b4, ss, st(1.0, t=0.0), NOCOST)
+    assert carry(b4, ss, st(0.85, t=60.0), NOCOST) is None                 # −15% — стоп ещё не сработал
+    ev = carry(b4, ss, st(0.79, t=120.0), NOCOST)                          # −21% — стоп раньше ликвидации (−28%)
+    assert ev[0] == "стоп-лосс" and b4.perp_sui == 0 and b4.perp_stopped and len(b4.stops) == 1
+    left = b4.idle_a / 1e6                                                  # из залога $250 вернулось ≈$250 − 750×0.21
+    assert math.isclose(left, 250 - 750 * 0.21, rel_tol=1e-6) and not b4.liquidations
+    assert carry(b4, ss, st(0.95, t=180.0), NOCOST) is None                # максимум ($1) не обновлён — без входа
+    ev = carry(b4, ss, st(1.01, t=240.0), NOCOST)                          # новый максимум — лонг снова
+    assert ev[0] == "лонг снова открыт" and b4.perp_sui > 0 and b4.idle_a == 0
+    val = summary(b4, st(1.01), no_price)["value"]
+    assert math.isclose((b4.idle_b / 1e9 + b4.perp_sui) * 1.01, val * 1.5, rel_tol=1e-6)   # снова 1.5× капитала
 
 
 if __name__ == "__main__":
