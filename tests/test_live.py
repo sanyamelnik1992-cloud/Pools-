@@ -986,6 +986,41 @@ def test_switch_running_bot_to_phase_strategy():
     live.history.trend_warmup = lambda days, end: []
 
 
+def test_paper_only_strategy_and_analysis():
+    """Стейкинг и плечо — только «тень»: боевой бот с такой стратегией не запускается и пишет почему.
+    /analysis — анализ всех стратегий в фоне (отдельный процесс), итог в Telegram; раз в analysis_days — сам."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        try:
+            live.Live(config(Path(d), extra=PHASE.replace('name = "тест фаза"', 'name = "тест плечо"')
+                             + "up_leverage = 1.5\n", strategy="тест плечо"))
+            raise AssertionError("бот запустился на стратегии только для «тени»")
+        except SystemExit as e:
+            assert "только для «тени»" in str(e) and any("🛑" in x for x in h.sent)
+        calls, real = [], live.analysis_text
+        live.analysis_text = lambda cfg: calls.append(cfg.path) or "🔬 Анализ: всё хорошо"
+        h.tick(1.20)
+        bot = h.bot
+        assert bot.last_analysis is not None and not calls             # первый анализ — через сутки после запуска
+        bot.last_analysis -= 31 * 86400
+        h.tick(1.20)
+        for _ in range(100):
+            if calls:
+                break
+            time.sleep(0.05)
+        assert len(calls) == 1 and calls[0] and any("🔬 Анализ: всё хорошо" in x for x in h.sent)
+        h.cmd("analysis")
+        h.tick(1.20)
+        for _ in range(100):
+            if len(calls) == 2:
+                break
+            time.sleep(0.05)
+        assert len(calls) == 2 and any("Запустил анализ" in x for x in h.sent)
+        assert "Анализ на всей истории" in bot.settings_card()
+        live.analysis_text = real
+
+
 def test_trend_scales():
     """Картина рынка: падение 500 дней с максимума, дно, рост 60 дней — короткие масштабы растут, годовой ещё нет."""
     import threading

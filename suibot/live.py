@@ -31,6 +31,7 @@ from html import escape as esc
 import math
 import os
 import subprocess
+import sys
 import time
 import traceback
 
@@ -60,7 +61,7 @@ GAS_BUFFER_SUI = 0.05      # при открытии позиции стольк
 RETRY_MINUTES = (2, 6, 18)  # повторы после ошибки; следующая ошибка подряд — пауза до /resume
 SYNC_MINUTES = 30          # плановая сверка с кошельком
 COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "events", "week", "alert", "strategy", "model",
-            "trend", "settings", "help")
+            "trend", "analysis", "settings", "help")
 HELP = ("Команды: /status — отчёт; /pause — пауза; /resume — продолжить; /sui — снять позицию и всё в SUI; "
         "/usdc — снять позицию и всё в USDC; /close — снять позицию, монеты оставить. После /sui, /usdc, /close "
         "бот на паузе; /resume — снова открыть позицию.")
@@ -70,6 +71,7 @@ MENU = {"status": "отчёт: позиция, заработок, итог", "p
         "events": "последние события", "week": "недельный отчёт с графиком", "alert": "алерт цены: /alert 1.30 (/alert — список, /alert off — снять)",
         "strategy": "проверить стратегии на свежих ценах", "model": "сверка: реальный бот против модели с запуска",
         "trend": "тренд SUI на масштабах 50/100/200/365 дней и фаза рынка",
+        "analysis": "все стратегии (боевая и «тень») на всей истории SUI с 2023 — до часа",
         "settings": "настройки бота с пояснениями",
         "help": "список команд"}
 TX_URL = "https://suiscan.xyz/mainnet/tx/"
@@ -221,6 +223,21 @@ def scales_lines(closes: list, bot_days: float | None = None, windows=(50, 100, 
     return lines
 
 
+def analysis_text(cfg: Config) -> str:
+    """Анализ всех стратегий на всей истории (bot.py phases --brief) отдельным процессом с низким приоритетом:
+    боевой цикл не тормозит, память после расчёта освобождается."""
+    cmd = [sys.executable, str(ROOT / "bot.py"), "phases", "--brief", "--workers", str(min(2, os.cpu_count() or 1))]
+    if cfg.path:
+        cmd += ["--config", str(cfg.path)]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=4 * 3600,
+                       preexec_fn=(lambda: os.nice(19)) if hasattr(os, "nice") else None)
+    out = r.stdout.strip()
+    if r.returncode or "🔬" not in out:
+        tail = (r.stderr or out or "нет вывода").strip().splitlines() or ["нет вывода"]
+        raise RuntimeError(tail[-1][:200])
+    return out[out.find("🔬"):]
+
+
 def calibration_lines(real: dict, earned: float, model: dict, manual: int = 0) -> list[str]:
     """Текст сверки: real — summary реального бота, earned — его комиссии и награды в $, model — summary
     симулятора за тот же период с тем же капиталом."""
@@ -260,6 +277,14 @@ class Live:
             raise SystemExit("в suibot.toml нет раздела [live]")
         self.cfg, self.lc = cfg, cfg.live
         self.s = next(s for s in cfg.strategies if s.name == self.lc.strategy)
+        if self.s.paper_only():                         # стейкинг и плечо пока только в «тени» и на истории
+            msg = (f"стратегия «{self.s.name}» использует {', '.join(self.s.paper_only())} — это пока только для «тени» "
+                   "и проверки на истории; в suibot.toml [live] strategy выберите другую")
+            try:
+                notify.send("🛑 " + msg)
+            except Exception:  # noqa: BLE001
+                pass
+            raise SystemExit(msg)
         self.pc = cfg.pools[self.s.pool]                # пул исполнения; при смене пула — пока пул книги (ниже)
         self.type_a, self.type_b = (SUI, USDC) if self.pc.a_is_sui else (USDC, SUI)
         self.dir = cfg.state_dir / "live"
@@ -309,6 +334,7 @@ class Live:
         self.last_ping = 0.0
         self.last_snap_t = st.get("last_snap_t", 0.0)
         self.last_strategy_check = st.get("last_strategy_check")
+        self.last_analysis = st.get("last_analysis")
         self.hello = False
         self.has_key = bool(os.environ.get("SUI_PRIVATE_KEY"))
         self.started = time.time()
@@ -326,7 +352,8 @@ class Live:
             "last_report_t": self.last_report_t, "alerts": self.alerts, "day_snap": self.day_snap,
             "gas_warned": self.gas_warned, "last_tick_t": self.last_tick_t, "last_reinvest": self.last_reinvest,
             "onchain": self.onchain, "lag_hist": self.lag_hist, "last_snap_t": self.last_snap_t,
-            "last_strategy_check": self.last_strategy_check, "switch_noted": self.switch_noted}, ensure_ascii=False))
+            "last_strategy_check": self.last_strategy_check, "switch_noted": self.switch_noted,
+            "last_analysis": self.last_analysis}, ensure_ascii=False))
         tmp.replace(self.path)
 
     def event(self, t: float, kind: str, price: float, text: str, st=None, why: str | None = None):
@@ -519,6 +546,8 @@ class Live:
                 ("Сверка с Binance", f"±{lc.price_check_pct:.0%}", "price_check_pct — защита от ложной цены"),
                 ("Отчёты", f"каждые {lc.report_hours:g} ч + утро", "report_hours"),
                 ("Проверка стратегий", f"раз в {lc.strategy_check_days:g} дн.", "strategy_check_days"),
+                ("Анализ на всей истории", f"раз в {lc.analysis_days:g} дн." if lc.analysis_days else "выключен",
+                 "analysis_days — все стратегии и соседи боевой на ценах с 2023, итог в Telegram; /analysis — сейчас"),
                 ("Режим", "🧪 симуляция" if self.dry else "реальные деньги", "dry_run")]
         return "⚙️ <b>Настройки</b> (файл suibot.toml)\n" + "\n".join(
             f"\n<b>{esc(k)}</b>: {esc(v)}\n<i>{esc(d)}</i>" for k, v, d in rows)
@@ -971,6 +1000,9 @@ class Live:
             self.calibration(st)
         elif c == "trend":
             self.trend_report()
+        elif c == "analysis":
+            notify.send("🔬 Запустил анализ всех стратегий на всей истории SUI с 2023 — итог пришлю (до часа)")
+            self.analysis()
         elif c not in COMMANDS or c == "help":
             notify.send("ℹ️ <b>Команды</b>\n" + "\n".join(f"/{k} — {esc(v)}" for k, v in MENU.items())
                         + "\n\nПосле /sui, /usdc, /close бот на паузе; /resume — снова открыть позицию.", html=True)
@@ -1247,8 +1279,12 @@ class Live:
                     pool = next(x.pool for x in strategies if x.name == best)
                     move = (f"; она в другом пуле ({pool}): после смены бот продолжит в старом пуле, а переедет "
                             "после /close и /resume" if pool != self.s.pool else "")
-                    lines += ["", f"💡 «{esc(best)}» лучше текущей в обоих периодах больше чем на 2%. Можно "
-                              f"переключить: в suibot.toml [live] strategy = \"{esc(best)}\"{esc(move)} — решение за вами"]
+                    if next(x for x in strategies if x.name == best).paper_only():
+                        lines += ["", f"💡 «{esc(best)}» лучше текущей в обоих периодах больше чем на 2%, но она только "
+                                  "для «тени» (стейкинг или плечо боевой режим пока не исполняет) — следим дальше"]
+                    else:
+                        lines += ["", f"💡 «{esc(best)}» лучше текущей в обоих периодах больше чем на 2%. Можно "
+                                  f"переключить: в suibot.toml [live] strategy = \"{esc(best)}\"{esc(move)} — решение за вами"]
                 else:
                     lines += ["", "✅ Текущая стратегия не хуже остальных — менять не нужно"]
                 lines.append(f"🧠 <i>почему: раз в strategy_check_days = {self.lc.strategy_check_days:g} дн. бот гоняет "
@@ -1359,6 +1395,23 @@ class Live:
             notify.send_file(ev, "журнал событий бота (events.csv)")
         self.trend_report()
         self.calibration(st)
+
+    def analysis(self, wait: bool = False):
+        """Раз в analysis_days (и по /analysis): все стратегии suibot.toml и соседи боевой на всей истории SUI —
+        в фоне, отдельным процессом; итог — в Telegram. Сам бот ничего не меняет."""
+        self.last_analysis = time.time()
+        cfg = self.cfg
+
+        def work():
+            try:
+                notify.send(analysis_text(cfg))
+            except Exception as e:  # noqa: BLE001 — анализ не должен мешать боту
+                notify.send(f"🔬 Анализ не удался: {str(e)[:200]}")
+
+        if wait:
+            work()
+        else:
+            threading.Thread(target=work, daemon=True).start()
 
     def trend_report(self, wait: bool = False):
         """Тренд SUI на масштабах 50/100/200/365 дней по дневным ценам Binance — в фоне, отдельным сообщением."""
@@ -1625,6 +1678,11 @@ class Live:
                     self.last_strategy_check = now            # первая проверка — через strategy_check_days
                 elif now - self.last_strategy_check >= self.lc.strategy_check_days * 86400:
                     self.strategy_check()
+            if self.lc.analysis_days and self.book and self.book.start:
+                if self.last_analysis is None:                # первый анализ — через сутки после запуска
+                    self.last_analysis = now - max(0.0, self.lc.analysis_days - 1) * 86400
+                elif now - self.last_analysis >= self.lc.analysis_days * 86400:
+                    self.analysis()
             try:
                 self.save()
             except OSError as e:

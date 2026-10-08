@@ -35,6 +35,16 @@ class Strategy:
     trend_ma_days: float | None = None # фильтр глобального тренда: выход в SUI — только если цена выше средней за
                                        # N дней, в USDC — только если ниже (отскоки и провалы против тренда
                                        # бот пережидает в пуле); не задано — выходы без фильтра
+    # только для «тени» и истории (боевой режим их не исполняет):
+    stake_apy: float = 0.0             # стейкинг SUI в фазе роста: столько SUI в год к лежащим SUI бота
+    up_leverage: float = 1.0           # в фазе роста держать SUI на столько × капитала: 1.5 — ещё полкапитала
+                                       # лонгом на фьючерсах (Bluefin) с залогом в USDC
+    perp_leverage: float = 3.0         # плечо самого фьючерса: залог = объём / perp_leverage
+    funding_apy: float = 0.10          # плата за удержание лонга (финансирование), доля объёма в год
+
+    def paper_only(self) -> list[str]:
+        """Настройки, которые боевой режим пока не исполняет (только «тень» и история)."""
+        return [n for n, on in (("stake_apy", self.stake_apy), ("up_leverage", self.up_leverage != 1.0)) if on]
 
     def target_range(self, price: float, first: bool = False, scale: float = 1.0) -> tuple[float, float]:
         """Диапазон в $ за SUI. scale — пересчёт initial_range к другой стартовой цене (проверка на истории)."""

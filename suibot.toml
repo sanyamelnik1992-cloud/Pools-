@@ -32,6 +32,7 @@ reinvest_min_usd = 2.0     # меньше $2 в позицию не добавл
 price_check_pct = 0.01     # не действовать, если цена пула расходится с Binance больше чем на 1% (выброс, сбой узла)
 lag_warn_pct = 0.05        # предупредить, если за 7 дней бот отстал от «держать SUI» больше чем на 5%
 strategy_check_days = 7    # раз в 7 дней бэктест всех стратегий на свежих ценах с подсказкой (0 — не проверять)
+analysis_days = 30         # раз в 30 дней все стратегии и соседи боевой на всей истории SUI с 2023 (/analysis — сейчас)
 
 [pools.cetus_025]          # Cetus USDC/SUI 0.25%, шаг тиков 60 (~0.6%) — самый глубокий пул
 object = "0xb8d7d9e66a60c239e7a60110efcf8de6c705580ed924d0dde141f4a0e2c90105"
@@ -91,45 +92,12 @@ phase_up = 0.05                                  # 2 закрытия подря
 phase_down = 0.05                                # 2 закрытия подряд ниже средней на 5% — падение/боковик
 phase_confirm = 2
 
-[[strategy]]
-name = "оптимальная ±4%"                 # прежняя основная: узкий диапазон + выходы в SUI на росте и в USDC на падении
-pool = "cetus_005"
-capital_sui = 3370
-range_down = 0.04
-range_up = 0.04
-out_minutes = 180                        # пересборка, если цена 3 часа вне диапазона (не дёргается на шуме)
-rally_exit = [[72, 0.15]]
-resume_drop_pct = 0.10
-crash_exit = [[72, 0.15]]
-resume_rise_pct = 0.10
+# «Тень» (служба suibot-paper): те же правила на живых ценах без денег — кандидаты на замену боевой. Каждую
+# неделю их итог против реального бота — в /week, раз в месяц все они на всей истории — в /analysis.
+# stake_apy и up_leverage боевой режим пока не исполняет — такие стратегии только для «тени».
 
 [[strategy]]
-name = "оптимальная ±4%, выходы по тренду"  # боевая 7–8.10.2026; то же + фильтр тренда: выход в SUI только выше средней
-pool = "cetus_005"                          # за 50 дней, в USDC — только ниже (отскоки и провалы против тренда бот
-capital_sui = 3370                          # пережидает в пуле); на истории лучше и в среднем, и в худшем случае
-range_down = 0.04
-range_up = 0.04
-out_minutes = 180
-rally_exit = [[72, 0.15]]
-resume_drop_pct = 0.10
-crash_exit = [[72, 0.15]]
-resume_rise_pct = 0.10
-trend_ma_days = 50
-
-[[strategy]]
-name = "оптимальная ±4%, пул 0.25%"      # та же стратегия в пуле 0.25%: если Cetus урежет награды в 0.05%, этот
-pool = "cetus_025"                       # пул может стать выгоднее — «тень» и проверка стратегий покажут это сами
-capital_sui = 3370
-range_down = 0.04
-range_up = 0.04
-out_minutes = 180
-rally_exit = [[72, 0.15]]
-resume_drop_pct = 0.10
-crash_exit = [[72, 0.15]]
-resume_rise_pct = 0.10
-
-[[strategy]]
-name = "±5% те же правила"
+name = "фазы + стейкинг"                 # то же + стейкинг SUI у валидаторов, пока бот в фазе роста держит SUI
 pool = "cetus_005"
 capital_sui = 3370
 range_down = 0.05
@@ -139,30 +107,97 @@ rally_exit = [[72, 0.15]]
 resume_drop_pct = 0.10
 crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+stake_apy = 0.014
 
 [[strategy]]
-name = "±3% те же правила"               # больше комиссий, но чаще пересборки и хуже в худшем случае
-pool = "cetus_005"
-capital_sui = 3370
-range_down = 0.03
-range_up = 0.03
+name = "фазы + плечо 1.25× в росте"      # в фазе роста ещё 25% капитала лонгом (фьючерс 2×, залог 25% капитала):
+pool = "cetus_005"                       # на 3 годах +154% к «держать SUI», кварталы роста +6%; риск — обвал на
+capital_sui = 3370                       # −47% от входа ликвидирует лонг (как 10.10.2025, тогда была фаза падения)
+range_down = 0.05
+range_up = 0.05
 out_minutes = 180
 rally_exit = [[72, 0.15]]
 resume_drop_pct = 0.10
 crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+stake_apy = 0.014
+up_leverage = 1.25
+perp_leverage = 2
+funding_apy = 0.10
 
 [[strategy]]
-name = "±4% без выходов"                 # для сравнения: только пересборка
+name = "фазы + плечо 1.5× в росте"       # то же с половиной капитала лонгом: +198% за 3 года, кварталы роста +17%,
+pool = "cetus_005"                       # но при обвале теряется залог — половина капитала
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+stake_apy = 0.014
+up_leverage = 1.5
+perp_leverage = 2
+funding_apy = 0.10
+
+[[strategy]]
+name = "фазы, двойной выход в USDC"      # в фазе падения выход в USDC и при −15% за 72 ч, и при −10% за 24 ч:
+pool = "cetus_005"                       # спад 2024 −14% вместо −24%, 3 года +137%
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15], [24, 0.10]]
+resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+
+[[strategy]]
+name = "фазы, двойной выход, пул ±8%"    # то же с пулом ±8%: худший квартал −15% вместо −23%
+pool = "cetus_005"
+capital_sui = 3370
+range_down = 0.08
+range_up = 0.08
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15], [24, 0.10]]
+resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+
+[[strategy]]
+name = "фазы, пул 0.25%"                 # боевая стратегия в пуле 0.25%: если Cetus урежет награды в 0.05%, этот
+pool = "cetus_025"                       # пул может стать выгоднее — «тень» и проверка стратегий покажут это сами
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+
+[[strategy]]
+name = "оптимальная ±4%, выходы по тренду"  # прежняя боевая (7–8.10.2026), без фаз: для сравнения
 pool = "cetus_005"
 capital_sui = 3370
 range_down = 0.04
 range_up = 0.04
 out_minutes = 180
-
-[[strategy]]
-name = "1.20–1.30 без пересборки"        # как ваша позиция
-pool = "cetus_025"
-capital_sui = 3370
-initial_range = [1.1997, 1.3048]
-rebalance = "none"
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+trend_ma_days = 50

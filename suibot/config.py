@@ -33,6 +33,7 @@ class LiveCfg:
     healthcheck_minutes: float = 5.0    # как часто отмечаться в healthchecks.io (если задан адрес)
     strategy_check_days: float = 7.0    # раз в N дней проверять стратегии на свежих ценах; 0 — не проверять
     downtime_notice_minutes: int = 10   # после запуска сообщить, если бот не работал дольше N минут
+    analysis_days: float = 30.0         # раз в N дней анализ всех стратегий на всей истории SUI в Telegram; 0 — нет
 
 
 @dataclass
@@ -46,6 +47,7 @@ class Config:
     staking_apy: float = 0.014          # стейкинг SUI у валидаторов — ориентир «сколько SUI без риска»
     state_dir: Path = ROOT / "data" / "private" / "bot"
     live: LiveCfg | None = None
+    path: Path | None = None            # файл настроек (для запуска анализа отдельным процессом)
 
     def pools_used(self) -> dict[str, PoolCfg]:
         return {s.pool: self.pools[s.pool] for s in self.strategies}
@@ -70,4 +72,4 @@ def load(path: str | Path) -> Config:
         raw["state_dir"] = sd if sd.is_absolute() else ROOT / sd
     if live and live.strategy not in names:
         raise SystemExit(f"[live] strategy: нет стратегии «{live.strategy}» в списке [[strategy]]")
-    return Config(pools=pools, strategies=strategies, costs=costs, live=live, **raw)
+    return Config(pools=pools, strategies=strategies, costs=costs, live=live, path=Path(path).resolve(), **raw)

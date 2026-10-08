@@ -48,6 +48,14 @@ class Book:
     resumes: list = field(default_factory=list)
     crashes: list = field(default_factory=list)   # выходы в USDC на падении
     phases: list = field(default_factory=list)    # смены фазы рынка: [время, "up" | "down"]
+    # только «тень» и история: стейкинг и лонг на фьючерсах в фазе роста
+    perp_sui: float = 0.0           # объём лонга, SUI
+    perp_entry: float = 0.0         # цена входа
+    perp_margin: float = 0.0        # залог, $ (финансирование списывается из него)
+    carry_t: float | None = None    # время последнего начисления стейкинга и финансирования
+    staked_sui: float = 0.0         # всего начислено стейкинга, SUI
+    funding_usd: float = 0.0        # всего заплачено за удержание лонга, $
+    liquidations: list = field(default_factory=list)
 
     def sqrt_bounds(self) -> tuple[float, float]:
         if not self.sa:
@@ -60,10 +68,17 @@ class Book:
         sa, sb = self.sqrt_bounds()
         return sa <= sq <= sb
 
+    def perp_equity(self, p: float) -> float:
+        """Стоимость фьючерса: залог плюс прибыль или убыток, $ (не меньше нуля)."""
+        return max(0.0, self.perp_margin + self.perp_sui * (p - self.perp_entry)) if self.perp_sui else 0.0
+
     def holdings(self, st: dict) -> tuple[float, float]:
-        """Монеты a и b: позиция, несобранные комиссии и монеты вне пула."""
+        """Монеты a и b: позиция, несобранные комиссии и монеты вне пула (фьючерс — в USDC по его стоимости)."""
         a, b = amounts(self.L, st["sq"], *self.sqrt_bounds()) if self.L else (0.0, 0.0)
-        return a + self.fees_a + self.idle_a, b + self.fees_b + self.idle_b
+        e = self.perp_equity(st["sui"]) * 1e6 if self.perp_sui else 0.0
+        if self.a_is_sui:
+            return a + self.fees_a + self.idle_a, b + self.fees_b + self.idle_b + e
+        return a + self.fees_a + self.idle_a + e, b + self.fees_b + self.idle_b
 
 
 def open_position(book: Book, st: dict, lo_usd: float, hi_usd: float, a: float, b: float, costs: Costs) -> float:
@@ -200,12 +215,82 @@ def phase_text(watch, side: str) -> str:
             f"{abs(1 - c / m):.0%} (порог −{ph.down:.1%}; {note}) — фаза падения или боковика")
 
 
-def enter_up(book: Book, st: dict, costs: Costs) -> float:
-    """Фаза роста: снять позицию и всё в SUI (после выхода в SUI на росте менять уже нечего)."""
+MAINT = 0.05          # фьючерс ликвидируется, когда его стоимость ниже 5% объёма (с запасом к бирже)
+
+
+def enter_up(book: Book, st: dict, costs: Costs, s: Strategy | None = None) -> float:
+    """Фаза роста: снять позицию и всё в SUI (после выхода в SUI на росте менять уже нечего); у стратегии с плечом
+    (только «тень») — ещё лонг на фьючерсах."""
     cost = 0.0 if book.mode == "sui" and not book.L else close_to_idle(book, st, costs, "sui")
     book.mode = "up"
     book.phases.append([st["t"], "up"])
+    if s is not None and s.up_leverage > 1 and s.perp_leverage > 1:
+        cost += open_perp(book, s, st, costs)
     return cost
+
+
+def open_perp(book: Book, s: Strategy, st: dict, costs: Costs) -> float:
+    """Лонг на (up_leverage − 1) × капитал: часть SUI меняется на USDC-залог, объём = залог × perp_leverage.
+    Вместе с оставшимися SUI получается up_leverage × капитал в SUI."""
+    p = st["sui"]
+    a, b = book.holdings(st)
+    equity = a * st["ua"] + b * st["ub"]
+    margin = (s.up_leverage - 1) * equity / (s.perp_leverage - 1)
+    sui_raw = margin / p * 1e9
+    if book.a_is_sui:
+        book.idle_a -= sui_raw
+    else:
+        book.idle_b -= sui_raw
+    notional = margin * s.perp_leverage
+    cost = margin * (costs.swap_fee + costs.slippage) + notional * costs.swap_fee + costs.gas_sui * p
+    book.perp_margin, book.perp_sui, book.perp_entry = margin - cost, notional / p, p
+    book.costs_usd += cost
+    return cost
+
+
+def close_perp(book: Book, st: dict, costs: Costs) -> float:
+    """Закрыть лонг: его стоимость — в USDC вне пула."""
+    if not book.perp_sui:
+        return 0.0
+    p = st["sui"]
+    cost = book.perp_sui * p * costs.swap_fee + costs.gas_sui * p
+    usd = max(0.0, book.perp_equity(p) - cost)
+    if book.a_is_sui:
+        book.idle_b += usd * 1e6
+    else:
+        book.idle_a += usd * 1e6
+    book.perp_sui = book.perp_margin = book.perp_entry = 0.0
+    book.costs_usd += cost
+    return cost
+
+
+def carry(book: Book, s: Strategy, st: dict) -> tuple[str, str] | None:
+    """В фазе роста: стейкинг лежащих SUI, плата за удержание лонга и проверка ликвидации."""
+    t, p = st["t"], st["sui"]
+    dt = t - book.carry_t if book.carry_t is not None else 0.0
+    book.carry_t = t
+    if book.mode != "up" or dt <= 0:
+        return None
+    yr = dt / (365 * 86400)
+    if s.stake_apy:
+        add = (book.idle_a if book.a_is_sui else book.idle_b) * s.stake_apy * yr
+        if book.a_is_sui:
+            book.idle_a += add
+        else:
+            book.idle_b += add
+        book.staked_sui += add / 1e9
+        book.fees_usd += add / 1e9 * p
+    if book.perp_sui:
+        fee = book.perp_sui * p * s.funding_apy * yr
+        book.perp_margin -= fee
+        book.funding_usd += fee
+        book.costs_usd += fee
+        if book.perp_margin + book.perp_sui * (p - book.perp_entry) <= MAINT * book.perp_sui * p:
+            lost = book.perp_margin
+            book.perp_sui = book.perp_margin = book.perp_entry = 0.0
+            book.liquidations.append(t)
+            return "ликвидация", f"цена ${p:.4f}: лонг на фьючерсах ликвидирован, потерян залог ≈${lost:,.0f}"
+    return None
 
 
 def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
@@ -258,16 +343,21 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
 
 def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, str] | None:
     """Решение и его виртуальное исполнение (бумага, история, сценарии). Возвращает (событие, описание)."""
+    ev = carry(book, s, st)
+    if ev:
+        return ev
     d = decide(book, s, st, watch)
     if d is None or d[0].startswith("skip"):
         return None
     kind, why = d
     p, t = st["sui"], st["t"]
     if kind == "bull":
-        cost = enter_up(book, st, costs)
+        cost = enter_up(book, st, costs, s)
         sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
-        return "фаза роста", f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
+        lev = f", лонг {book.perp_sui:,.0f} SUI на фьючерсах" if book.perp_sui else ""
+        return "фаза роста", f"{why}: всё в SUI — {sui:,.0f} SUI{lev}, издержки ${cost:.2f}"
     if kind == "bear":
+        close_perp(book, st, costs)
         a, b = book.holdings(st)
         cost = open_position(book, st, *s.target_range(p), a, b, costs)
         book.phases.append([t, "down"])

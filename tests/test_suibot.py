@@ -6,7 +6,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from suibot.book import Costs, accrue_growth, decide, init_book, rebalance, step, summary, update_out  # noqa: E402
+from suibot.book import (Costs, accrue_growth, carry, close_perp, decide, enter_up, init_book, rebalance, step,  # noqa: E402
+                         summary, update_out)
 from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
 from suibot import env  # noqa: E402
 from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
@@ -344,6 +345,41 @@ def test_phase_in_simulation():
     a = simulate(plain, pc, times, prices, [0.0] * len(times), NOCOST, 10, warm=warm)
     b = simulate(phase, pc, times, prices, [0.0] * len(times), NOCOST, 10, warm=warm)
     assert b["mode"] == "up" and b["value_sui"] > 0.9 * 1000 and a["value_sui"] < 0.6 * 1000
+
+
+def test_staking_and_leverage_in_growth_phase():
+    """«Тень»: в фазе роста стейкинг лежащих SUI и лонг на фьючерсах (плечо 1.5× через фьючерс 2×): экспозиция
+    1.5× капитала, плата за удержание из залога, ликвидация на глубоком падении, закрытие при конце роста."""
+    D = 86400.0
+    pc = PoolCfg("p", "0x0")
+    s = Strategy("t", "p", 1000, 0.05, 0.05, up_leverage=1.5, perp_leverage=2, funding_apy=0.10, stake_apy=0.02)
+    assert s.paper_only() == ["stake_apy", "up_leverage"] and Strategy("t", "p", 1).paper_only() == []
+    book = init_book(s, pc, st(1.0, t=0.0), NOCOST)
+    enter_up(book, st(1.0, t=0.0), NOCOST, s)
+    spot = book.idle_b / 1e9                                      # a — USDC, b — SUI
+    assert math.isclose(spot + book.perp_sui, 1500, rel_tol=1e-6) and math.isclose(book.perp_margin, 500, rel_tol=1e-6)
+    assert math.isclose(summary(book, st(1.0), no_price)["value"], 1000, rel_tol=1e-6)
+    assert math.isclose(summary(book, st(1.1), no_price)["value"], 1150, rel_tol=1e-6)   # +10% цены → +15% капитала
+    carry(book, s, st(1.0, t=0.0))
+    assert carry(book, s, st(1.0, t=365 * D)) is None            # год: плата 10% объёма, стейкинг 2% лежащих SUI
+    assert math.isclose(book.perp_margin, 500 - 100, rel_tol=1e-6) and math.isclose(book.idle_b / 1e9, spot * 1.02, rel_tol=1e-6)
+    assert math.isclose(book.staked_sui, spot * 0.02, rel_tol=1e-6) and math.isclose(book.funding_usd, 100, rel_tol=1e-6)
+    ev = carry(book, s, st(0.62, t=365 * D + 60))                # падение −38% съедает залог — ликвидация
+    assert ev[0] == "ликвидация" and book.perp_sui == 0 and len(book.liquidations) == 1
+    assert math.isclose(summary(book, st(0.62), no_price)["value"], book.idle_b / 1e9 * 0.62, rel_tol=1e-6)
+    book2 = init_book(s, pc, st(1.0, t=0.0), NOCOST)
+    enter_up(book2, st(1.0, t=0.0), NOCOST, s)
+    close_perp(book2, st(1.2, t=D), NOCOST)                       # конец роста: лонг закрыт, прибыль — в USDC
+    assert book2.perp_sui == 0 and math.isclose(book2.idle_a / 1e6, 500 + 1000 * 0.2, rel_tol=1e-6)
+    w = watch_for(Strategy("t", "p", 1, phase_ma_days=10, phase_confirm=1))
+    w.warm([(h * 3600.0, 1.0 if h < 24 * 12 else 1.3) for h in range(24 * 15)])
+    sp = replace(s, phase_ma_days=10, phase_confirm=1, out_minutes=180)
+    b3 = init_book(sp, pc, st(1.3, t=15 * D), NOCOST)
+    ev = step(b3, sp, st(1.3, t=15 * D + 60), w, NOCOST)          # фаза роста: всё в SUI и лонг
+    assert ev[0] == "фаза роста" and "лонг" in ev[1] and b3.perp_sui > 0
+    for k in range(16, 22):
+        ev = step(b3, sp, st(0.9, t=k * D + 80000), w, NOCOST) or ev
+    assert ev[0] == "конец фазы роста" and b3.perp_sui == 0 and b3.mode == "lp" and b3.L > 0
 
 
 if __name__ == "__main__":

@@ -8,8 +8,9 @@
   python3 bot.py scenario [--multiple 2] [--days 60] [--paths 100]
                                             сценарий будущего: цена ×multiple за days дней, пути из реальной истории
   python3 bot.py optimize [--paths 30]      подбор стратегии: перебор параметров на кварталах года и сценариях
-  python3 bot.py phases [--grid]            стратегии на всей истории SUI с 2023 (бычьи рывки, спады, медвежий год)
-                                            и хронология фаз рынка; --grid — боевая стратегия и её соседи
+  python3 bot.py phases [--grid | --brief]  стратегии на всей истории SUI с 2023 (бычьи рывки, спады, медвежий год)
+                                            и хронология фаз рынка; --grid — боевая стратегия и её соседи;
+                                            --brief — короткий итог (его раз в месяц шлёт в Telegram боевой бот)
   python3 bot.py live                       боевой режим: стратегия из [live] на реальном кошельке
                                             (dry_run = true в suibot.toml — только симуляция)
   python3 bot.py control <команда>          ручное управление работающим ботом: status, pause, resume, sui, usdc, close
@@ -51,6 +52,8 @@ def main():
     ap.add_argument("--hist-days", type=int, default=180, help="scenario: из какой истории брать куски для путей")
     ap.add_argument("--block-days", type=int, default=5, help="scenario: длина куска истории в сутках")
     ap.add_argument("--grid", action="store_true", help="phases: боевая стратегия и её соседние настройки")
+    ap.add_argument("--brief", action="store_true", help="phases: короткий итог для Telegram (его шлёт боевой бот)")
+    ap.add_argument("--workers", type=int, help="phases: сколько процессов считать (по умолчанию — все ядра)")
     a = ap.parse_args()
     cfg = load(a.config)
     if a.mode == "paper":
@@ -64,7 +67,10 @@ def main():
     elif a.mode == "optimize":
         optimize.run(cfg, a.paths if a.paths != 100 else 30)
     elif a.mode == "phases":
-        phases.run_all(cfg, a.grid)
+        if a.brief:
+            print(phases.brief(cfg, a.workers))
+        else:
+            phases.run_all(cfg, a.grid)
     elif a.mode == "live":
         names = env.load(Path(a.env))              # только боевой режим загружает ключ; значения не печатаются
         if names:
