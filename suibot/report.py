@@ -13,7 +13,7 @@ def table(rows: list[dict], staking_apy: float = 0.0) -> str:
     lines = [head, "-" * len(head)]
     for r in rows:
         lo, hi = r["range"]
-        now = ({"sui": "в SUI", "usdc": "в USDC", "hold": "пауза", "up": "рост:SUI"}.get(r["mode"])
+        now = ({"sui": "в SUI", "usdc": "в USDC", "hold": "пауза", "up": "рост"}.get(r["mode"])
                or ("в диап." if r["in_range_now"] else "вне"))
         lines.append(f"{r['name'][:28]:28s} {lo:6.4f}–{hi:6.4f} {now:>7s} {r['in_range_pct']:6.0f}% "
                      f"${r['fees_usd']:>8,.0f} ${r['costs_usd']:>8,.0f} {r['rebalances']:>7d} ${r['value']:>9,.0f} "

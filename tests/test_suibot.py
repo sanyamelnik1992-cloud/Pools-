@@ -232,26 +232,26 @@ def test_trend_filter_exits():
 def test_phase_detector():
     """Фаза по дневным закрытиям: средняя за N дней и пороги с запасом; между порогами фаза не меняется;
     решение — только по закрытию дня; переживает перезапуск; смена настроек — пересчёт по закрытиям."""
-    D = 86400.0
+    D, H = 86400.0, 23 * 3600.0                          # цены в 23:00 — последние цены дня
     ph = Phase(10, 0.05, 0.05)
     for d in range(8):
         ph.feed(d * D + 3600, 1.0)
         ph.feed(d * D + 80000, 1.0)                    # последняя цена дня — его закрытие
     assert ph.current() is None                          # 7 закрытых дней < 80% окна: фазы ещё нет
-    ph.feed(8 * D, 1.0)
-    ph.feed(9 * D, 1.0)
+    ph.feed(8 * D + H, 1.0)
+    ph.feed(9 * D + H, 1.0)
     assert ph.current() == "down" and ph.since == 7   # 8 закрытий, цена на средней — «падение/боковик»
-    ph.feed(10 * D, 1.2)                                 # день 10 ещё не закрыт — фаза та же
+    ph.feed(10 * D + H, 1.2)                                 # день 10 ещё не закрыт — фаза та же
     assert ph.current() == "down"
-    ph.feed(11 * D, 1.2)                                 # закрытие 1.2 при средней ≈1.02: выше на 5%+ — рост
+    ph.feed(11 * D + H, 1.2)                                 # закрытие 1.2 при средней ≈1.02: выше на 5%+ — рост
     assert ph.current() == "up" and ph.since == 10
     hi, lo = ph.bounds()
     assert math.isclose(lo, ph.ma() * 0.95)
-    ph.feed(12 * D, 1.04)                                # закрытие 1.04 между порогами — фаза не меняется
-    ph.feed(13 * D, 1.04)
+    ph.feed(12 * D + H, 1.04)                                # закрытие 1.04 между порогами — фаза не меняется
+    ph.feed(13 * D + H, 1.04)
     assert ph.current() == "up"
     for d in range(14, 18):
-        ph.feed(d * D, 0.9)
+        ph.feed(d * D + H, 0.9)
     assert ph.current() == "down"
     again = Phase(10, 0.05, 0.05, state=ph.dump())       # перезапуск
     assert again.current() == "down" and again.closes == ph.closes and again.cur == ph.cur
@@ -261,25 +261,34 @@ def test_phase_detector():
     w2 = RallyWatch(None, phase=dict(days=10, up=0.05, down=0.05))
     w2.add(30 * D, 2.0)                                  # своя первая цена, затем предыстория из часовых цен
     w2.warm([(h * 3600.0, 1.0 if h < 24 * 25 else 1.5) for h in range(24 * 31)])
-    assert w2.phase() == "up" and w2.ph.last()[0] == 29 and w2.ph.cur == (30, 2.0)   # день 30 ещё не закрыт
+    assert w2.phase() == "up" and w2.ph.last()[0] == 29 and w2.ph.cur[:2] == (30, 2.0)   # день 30 ещё не закрыт
     assert not w2.need_warm() and w2.warm_days() == 20
     assert RallyWatch(None).phase() is None and not RallyWatch(None).need_warm()
+    stale = Phase(10, 0.05, 0.05, state=ph.dump())       # бот видел цену утром и был выключен до конца дня
+    stale.feed(30 * D + 3600, 5.0)
+    stale.feed(33 * D + 3600, 5.0)
+    assert stale.closes[-1][0] == 17 and stale.gap() and stale.current() == "down"   # утренняя цена — не закрытие
+    sw = RallyWatch(None, phase=dict(days=10, up=0.05, down=0.05), state={"phase": dict(stale.dump(), days=10,
+                    kind="sma", up=0.05, down=0.05)})
+    assert sw.need_warm()                                # пропуск дней — догрузить закрытия из предыстории
+    sw.warm([(h * 3600.0, 1.0 if h < 24 * 31 else 1.5) for h in range(24 * 33 + 2)])
+    assert not sw.need_warm() and sw.ph.last()[0] == 32 and sw.phase() == "up"
     s = Strategy("t", "p", 1, 0.04, 0.04, phase_ma_days=60, crash_exit=[[72, 0.15]])
     w3 = watch_for(s)
     assert w3.ph.days == 60 and w3.ph.up == 0.05 and w3.ph.confirm == 2 and w3.drop_rules == [(72.0, 0.15)]
     two = Phase(10, 0.05, 0.05, confirm=2)                  # подтверждение: два закрытия подряд за порогом
     for d in range(10):
-        two.feed(d * D, 1.0)
-    two.feed(10 * D, 1.0)
+        two.feed(d * D + H, 1.0)
+    two.feed(10 * D + H, 1.0)
     assert two.current() == "down"
-    two.feed(11 * D, 1.3)
-    two.feed(12 * D, 1.0)
+    two.feed(11 * D + H, 1.3)
+    two.feed(12 * D + H, 1.0)
     assert two.current() == "down" and two.run == [1, 0]    # одно закрытие выше порога — мало
-    two.feed(13 * D, 1.3)                                   # однодневный выброс — фаза не меняется
+    two.feed(13 * D + H, 1.3)                                   # однодневный выброс — фаза не меняется
     assert two.current() == "down" and two.run == [0, 0]
-    two.feed(14 * D, 1.3)
+    two.feed(14 * D + H, 1.3)
     assert two.current() == "down" and two.run[0] == 1
-    two.feed(15 * D, 1.3)                                   # второе закрытие подряд выше порога — рост
+    two.feed(15 * D + H, 1.3)                                   # второе закрытие подряд выше порога — рост
     assert two.current() == "up" and two.since == 14
     re = RallyWatch(None, {"phase": dict(two.dump(), days=10, kind="sma", up=0.05, down=0.05, confirm=1)},
                     phase=dict(days=10, up=0.05, down=0.05, confirm=2))
@@ -295,7 +304,7 @@ def test_phase_bull_and_bear():
                  phase_confirm=1, crash_exit=[[72, 0.15]], resume_rise_pct=0.10)
     w = watch_for(s)
     w.warm([(h * 3600.0, 1.0) for h in range(24 * 12)])           # 12 дней по $1 — фаза «падение/боковик»
-    t = 12 * D
+    t = 12 * D + 22 * 3600                                         # 22:00 UTC — цена конца дня
     book = init_book(s, pc, st(1.0, t=t), NOCOST)
     w.add(t, 1.0)
     assert decide(book, s, st(1.0, t=t + 60), w) is None and book.mode == "lp"
@@ -308,7 +317,7 @@ def test_phase_bull_and_bear():
     assert step(book, s, st(1.5, t=t + 2 * D), w, NOCOST) is None and book.idle_b / 1e9 == sui   # держит SUI
     for k in range(3, 9):
         ev = step(book, s, st(0.8, t=t + k * D), w, NOCOST) or ev
-    assert ev[0] == "фаза падения" and book.mode == "lp" and book.L > 0 and book.phases[-1][1] == "down"
+    assert ev[0] == "конец фазы роста" and book.mode == "lp" and book.L > 0 and book.phases[-1][1] == "down"
     r = summary(book, st(0.8, t=t + 9 * D), no_price)
     assert r["mode"] == "lp" and abs(r["value_sui"] - sui) / sui < 0.01   # переход без потерь (без издержек)
     book.mode, book.L, book.peak = "usdc", 0.0, 0.8                 # вышли в USDC на падении
@@ -317,6 +326,8 @@ def test_phase_bull_and_bear():
     for k in range(9, 16):
         ev = step(book, s2, st(1.3, t=t + k * D), w, NOCOST) or ev
     assert ev[0] == "фаза роста" and book.mode == "up" and book.idle_a == 0 and book.idle_b > 0
+    ev = step(book, replace(s, phase_ma_days=None), st(1.3, t=t + 16 * D), w, NOCOST)   # стратегия без фаз
+    assert ev[0] == "конец фазы роста" and book.mode == "lp" and book.L > 0              # не застревает в SUI
 
 
 def test_phase_in_simulation():

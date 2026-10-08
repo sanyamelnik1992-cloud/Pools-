@@ -897,7 +897,7 @@ def test_phase_live():
     with tempfile.TemporaryDirectory() as d:
         chain = FakeChain(sui=100, usdc=60)
         h = Harness(d, chain)
-        h.t = time.time() - 3600                                            # предыстория берётся до «сейчас»
+        h.t = time.time() // day * day + 21.5 * 3600                        # опросы в 22:30 UTC — цены конца дня
         live.history.trend_warmup = warm
         h.bot = live.Live(config(Path(d), extra=PHASE, strategy="тест фаза"))
         txs = lambda: ([c[0] for c in chain.pools if c[0] != "status"]                  # noqa: E731 — транзакции
@@ -936,7 +936,7 @@ def test_phase_live():
     with tempfile.TemporaryDirectory() as d:                                  # симуляция: та же логика без сети
         chain = FakeChain(sui=100, usdc=60)
         h = Harness(d, chain, dry=True)
-        h.t = time.time() - 3600
+        h.t = time.time() // day * day + 21.5 * 3600
         live.history.trend_warmup = warm
         h.bot = live.Live(config(Path(d), dry=True, extra=PHASE, strategy="тест фаза"))
         h.tick(1.20)
@@ -970,6 +970,19 @@ def test_switch_running_bot_to_phase_strategy():
         assert chain.w["usdc"] < 1e6 and any("Фаза роста" in x for x in h.sent)     # USDC из позиции — в SUI
         h.tick(1.20, dt=600)
         assert b.mode == "up" and len(b.phases) == 1                                  # дальше ничего не делает
+        h.bot = live.Live(config(Path(d), extra=TREND + PHASE, strategy="тест тренд"))   # откат на стратегию без фаз
+        h.tick(1.20, dt=600)
+        assert h.bot.book.mode == "lp" and h.bot.pos_id and chain.pos                 # не застревает в SUI
+        assert any("Конец фазы роста" in x and "без фазы рынка" in x for x in h.sent)
+    with tempfile.TemporaryDirectory() as d:                                  # первый запуск без предыстории
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.bot = live.Live(config(Path(d), extra=PHASE, strategy="тест фаза"))
+        h.tick(1.20)
+        assert h.bot.book is None and not chain.pos                       # фаза неизвестна — пул не открывается
+        h.bot.started -= 4 * 3600                                          # предыстории нет 3+ часа — старт без фазы
+        h.tick(1.20)
+        assert h.bot.book and h.bot.pos_id
     live.history.trend_warmup = lambda days, end: []
 
 

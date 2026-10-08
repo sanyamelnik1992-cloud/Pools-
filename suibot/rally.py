@@ -16,6 +16,9 @@ from __future__ import annotations
 from collections import deque
 
 
+CLOSE_S = 2 * 3600       # цена в последние 2 часа дня — его закрытие
+
+
 class Phase:
     """Фаза рынка по дневным закрытиям: "up" — рост, "down" — падение или боковик, None — мало истории."""
 
@@ -24,18 +27,21 @@ class Phase:
         self.days, self.up, self.down, self.kind, self.confirm = int(days), float(up), float(down), kind, int(confirm)
         st = state or {}
         self.closes = deque((int(d), float(p)) for d, p in st.get("closes") or [])   # (день, цена закрытия)
-        self.cur = (int(st["cur"][0]), float(st["cur"][1])) if st.get("cur") else None   # (день, последняя цена)
+        cur = st.get("cur")                                                        # (день, последняя цена, когда видна)
+        self.cur = (int(cur[0]), float(cur[1]), float(cur[2]) if len(cur) > 2 else None) if cur else None
         self.state = st.get("state")
         self.ema = st.get("ema")
         self.since = st.get("since")                                               # день смены фазы
         self.run = list(st.get("run") or [0, 0])                                   # закрытий подряд выше / ниже порогов
 
     def feed(self, t: float, p: float):
+        """Цена бота. Закрытием дня считается последняя цена дня, если она видна в последние 2 часа дня; если бот
+        тогда не работал, день пропускается (его закрытие догружается из предыстории — need_warm)."""
         day = int(t // 86400)
-        if self.cur and day > self.cur[0]:
-            self._close(*self.cur)
+        if self.cur and day > self.cur[0] and (self.cur[2] is None or self.cur[2] >= (self.cur[0] + 1) * 86400 - CLOSE_S):
+            self._close(self.cur[0], self.cur[1])
         if not self.cur or day >= self.cur[0]:
-            self.cur = (day, p)
+            self.cur = (day, p, t)
 
     def _close(self, day: int, p: float):
         if self.closes and day <= self.closes[-1][0]:
@@ -93,12 +99,17 @@ class Phase:
         for t, p in samples:
             days[int(t // 86400)] = p
         last = max(days)
-        merged = {d: p for d, p in days.items() if d < last}
+        open_day = self.cur[0] if self.cur and self.cur[0] > last else last     # дни раньше него закрыты
+        merged = {d: p for d, p in days.items() if d < open_day}
         merged.update(dict(self.closes))
         self.closes = deque(sorted(merged.items()))
         self.recompute()
         if self.cur is None or self.cur[0] < last:
-            self.cur = (last, days[last])
+            self.cur = (last, days[last], max(t for t, _ in samples))
+
+    def gap(self) -> bool:
+        """Нет закрытия вчерашнего дня (бот не работал в конце дня) — нужна предыстория."""
+        return bool(self.cur and (not self.closes or self.closes[-1][0] < self.cur[0] - 1))
 
     def last(self) -> tuple[int, float] | None:
         """Последнее закрытие дня: (день, цена)."""
@@ -164,8 +175,8 @@ class RallyWatch:
         self.warm_trend(samples)
 
     def need_warm(self) -> bool:
-        """Нужна предыстория: средней тренда или фазы ещё нет."""
-        return bool(self.trend_days and self.trend_ma() is None) or bool(self.ph and self.ph.ma() is None)
+        """Нужна предыстория: средней тренда или фазы ещё нет, или пропущено закрытие дня."""
+        return bool(self.trend_days and self.trend_ma() is None) or bool(self.ph and (self.ph.ma() is None or self.ph.gap()))
 
     def warm_days(self) -> float:
         """Сколько дней предыстории загрузить (для фазы — два окна: чтобы фаза успела установиться)."""

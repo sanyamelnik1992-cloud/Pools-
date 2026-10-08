@@ -217,6 +217,8 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
     watch.add(t, p)
     phase = watch.phase() if s.phase_ma_days else None
     if book.mode == "up":
+        if not s.phase_ma_days:                    # стратегию сменили на вариант без фаз — снова в пул
+            return "bear", "в стратегии нет фазы рынка (phase_ma_days) — бот снова в пуле"
         return ("bear", phase_text(watch, "down")) if phase == "down" else None
     if phase == "up" and book.mode in ("lp", "sui", "usdc"):
         return "bull", phase_text(watch, "up")
@@ -271,7 +273,7 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
         book.phases.append([t, "down"])
         watch.reset()
         lo, hi = book.range_usd
-        return "фаза падения", f"{why}: снова в пул, диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}"
+        return "конец фазы роста", f"{why}: снова в пул, диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}"
     if kind == "resume":
         a, b = book.holdings(st)
         cost = open_position(book, st, *s.target_range(p), a, b, costs)

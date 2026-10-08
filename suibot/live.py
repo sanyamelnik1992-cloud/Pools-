@@ -311,6 +311,7 @@ class Live:
         self.last_strategy_check = st.get("last_strategy_check")
         self.hello = False
         self.has_key = bool(os.environ.get("SUI_PRIVATE_KEY"))
+        self.started = time.time()
         self.label = "СИМУЛЯЦИЯ" if self.dry else "РЕАЛЬНЫЕ ДЕНЬГИ"
 
     # --- служебное ---------------------------------------------------------------------------------------
@@ -371,7 +372,8 @@ class Live:
 
         def phase_why(side: str) -> str:
             if not s.phase_ma_days:
-                return ""
+                return ("в [live] strategy выбрана стратегия без фазы рынка — держать всё в SUI по фазе больше не по "
+                        "правилам, поэтому бот снова в пуле" if side == "down" else "")
             rule = (f"фаза рынка по дневным закрытиям (UTC): phase_confirm = {s.phase_confirm} закрытия подряд выше средней "
                     f"за phase_ma_days = {s.phase_ma_days:g} дн. больше чем на phase_up = {s.phase_up:.1%} — рост, "
                     f"ниже больше чем на phase_down = {s.phase_down:.1%} — падение или боковик; между порогами фаза не "
@@ -1158,8 +1160,10 @@ class Live:
                 and self.price_ok(st)):
             self.add_real(st)
             parts.append(f"добавлено в позицию ≈${free - self.usd(b.idle_a, b.idle_b, st):,.2f}")
-        elif free >= 0.01:
+        elif free >= 0.01 and b.mode == "lp":
             parts.append(f"вне позиции осталось ${free:,.2f} — добавится в следующий раз или при пересборке")
+        if b.mode != "lp" and not parts:
+            return                                      # вне пула (фаза роста, выход) реинвестировать нечего
         self.event(st["t"], "реинвестирование", st["sui"], "; ".join(parts) or "нечего реинвестировать", st,
                    why=self.why("реинвестирование"))
 
@@ -1455,6 +1459,8 @@ class Live:
         if self.retry_at and st["t"] < self.retry_at and not self.manual:   # ручную команду не откладываем
             return
         if self.book is None:
+            if self.s.phase_ma_days and self.watch.phase() is None and time.time() - self.started < 3 * 3600:
+                return                                  # фаза ещё неизвестна (нет предыстории) — не открывать пул зря
             if not self.paused:
                 (self.start_dry if self.dry else self.start_real)(st)
                 self.watch.add(st["t"], st["sui"])
@@ -1567,8 +1573,8 @@ class Live:
         try:
             if self.book and self.prev and st["t"] > self.prev["t"] and self.book.L:
                 accrue_growth(self.book, self.prev, st, self.price_of(st))
-            self.trend_warm()
             self.watch.add(st["t"], st["sui"])
+            self.trend_warm()                          # после цены: пропущенное закрытие дня видно сразу
             if self.down_since:
                 self.downtime_notice(st)
             for c in self.read_commands():
