@@ -44,8 +44,9 @@ def daily_closes(days: int) -> list[tuple[float, float]]:
 
 
 def trend_days(strategies) -> float:
-    """Самое длинное окно средней среди стратегий (0 — фильтр тренда нигде не используется)."""
-    return max((s.trend_ma_days or 0 for s in strategies), default=0)
+    """Сколько дней предыстории нужно стратегиям: окно средней фильтра тренда, для фазы рынка — два окна
+    (чтобы фаза успела установиться); 0 — ни фильтра, ни фаз."""
+    return max((max(s.trend_ma_days or 0, 2 * (s.phase_ma_days or 0)) for s in strategies), default=0)
 
 
 def load(pools: dict[str, PoolCfg], days: int, minutes: int = 5, source: str = "binance"):

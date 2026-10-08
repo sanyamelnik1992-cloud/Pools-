@@ -41,13 +41,13 @@ from datetime import datetime, timezone
 from lpscan.common import ROOT
 from sui_pools import SUI, USDC
 from suibot import charts, history, notify
-from suibot.book import (Book, accrue_growth, close_to_idle, decide, exit_to_sui, exit_to_usdc, init_book,
-                         open_position, rebalance, summary)
+from suibot.book import (Book, accrue_growth, close_to_idle, decide, enter_up, exit_to_sui, exit_to_usdc, init_book,
+                         open_position, phase_text, rebalance, summary)
 from suibot.chain import raw_to_usd, read_pools, state_from_price, token_price, usd_to_raw
 from suibot.clmm import amounts, snap_ticks, sqrt_of_tick
 from suibot.config import Config
 from suibot.paper import _append, _utc, log
-from suibot.rally import RallyWatch
+from suibot.rally import RallyWatch, watch_for
 from suibot.sim import simulate
 
 try:
@@ -69,7 +69,7 @@ MENU = {"status": "отчёт: позиция, заработок, итог", "p
         "sui": "снять позицию, всё в SUI", "usdc": "снять позицию, всё в USDC", "close": "снять позицию",
         "events": "последние события", "week": "недельный отчёт с графиком", "alert": "алерт цены: /alert 1.30 (/alert — список, /alert off — снять)",
         "strategy": "проверить стратегии на свежих ценах", "model": "сверка: реальный бот против модели с запуска",
-        "trend": "тренд SUI на масштабах 50/100/200/365 дней",
+        "trend": "тренд SUI на масштабах 50/100/200/365 дней и фаза рынка",
         "settings": "настройки бота с пояснениями",
         "help": "список команд"}
 TX_URL = "https://suiscan.xyz/mainnet/tx/"
@@ -82,7 +82,7 @@ ICONS = {"открыта": "✅", "позиция найдена": "🔎", "по
          "ошибка": "❌", "мало SUI на газ": "⛽", "награды обменяны": "🎁", "обмен наград не удался": "🎁",
          "бот был выключен": "💤", "реинвестирование": "♻️", "цена пула расходится с биржей": "🚧",
          "отставание от «держать SUI»": "📉", "связь восстановлена": "📡", "переход в другой пул": "🔀",
-         "выход в SUI пропущен": "🧭", "выход в USDC пропущен": "🧭"}
+         "выход в SUI пропущен": "🧭", "выход в USDC пропущен": "🧭", "фаза роста": "📈", "конец фазы роста": "📉"}
 BINANCE_PRICE = "https://data-api.binance.vision/api/v3/ticker/price"
 
 
@@ -290,9 +290,8 @@ class Live:
         self.retry_at = st.get("retry_at")
         self.last_sync = st.get("last_sync", 0.0)
         self.need_sync = not self.dry                  # после каждого запуска — сверка с кошельком
-        self.watch = RallyWatch(self.s.rally_exit, st.get("watch"), min_step=60, drop_rules=self.s.crash_exit,
-                                trend_days=self.s.trend_ma_days)
-        self.trend_try = 0.0                              # последняя попытка загрузить предысторию средней
+        self.watch = watch_for(self.s, st.get("watch"), min_step=60)
+        self.trend_try = 0.0                              # последняя попытка загрузить предысторию средней и фазы
         self.skip_noted = None                            # о пропущенном выходе уже сообщено
         self.out_noticed = st.get("out_noticed", False)   # сообщение «цена вне диапазона» уже отправлено
         self.last_report_t = st.get("last_report_t")      # когда отправлен последний регулярный отчёт (часы Mac)
@@ -369,6 +368,19 @@ class Live:
             return (f"; фильтр тренда: цена {'выше' if side == 'up' else 'ниже'} средней за trend_ma_days = "
                     f"{s.trend_ma_days:g} дн. (${ma:.4f}) — выход по направлению рынка")
         rng = f"−{s.range_down:.0%}…+{s.range_up:.0%} от цены (range_down / range_up)"
+
+        def phase_why(side: str) -> str:
+            if not s.phase_ma_days:
+                return ""
+            rule = (f"фаза рынка по дневным закрытиям (UTC): phase_confirm = {s.phase_confirm} закрытия подряд выше средней "
+                    f"за phase_ma_days = {s.phase_ma_days:g} дн. больше чем на phase_up = {s.phase_up:.1%} — рост, "
+                    f"ниже больше чем на phase_down = {s.phase_down:.1%} — падение или боковик; между порогами фаза не "
+                    "меняется, чтобы не дёргаться около средней и на однодневных выбросах")
+            if side == "up":
+                return (rule + "; на росте пул продаёт ваши SUI за USDC и сильно отстаёт от «держать SUI» (за 3 года "
+                        "истории — в разы), поэтому в фазе роста бот держит всё в SUI: рост капитала как у SUI")
+            return (rule + "; рост закончился — бот снова в пуле: на падении и в боковике пул копит SUI комиссиями, "
+                    f"а от обвала защищает выход в USDC ({rules_text(s.crash_exit) or 'выключен'})")
         return {
             "открыта": f"бот берёт из кошелька не больше max_capital_usd = ${lc.max_capital_usd:g} и оставляет "
                        f"gas_reserve_sui = {lc.gas_reserve_sui:g} SUI на газ; диапазон {rng} — узкий диапазон даёт больше "
@@ -421,6 +433,8 @@ class Live:
                                    "продолжает работать сама",
             "бот был выключен": "пока бот выключен, он не переставляет позицию и не выходит на сильных движениях; "
                                 "держите Mac включённым или перенесите бота на сервер",
+            "фаза роста": phase_why("up"),
+            "конец фазы роста": phase_why("down"),
             "переход в другой пул": "в [live] strategy выбрана стратегия в другом пуле; деньги бота ещё в старом пуле, "
                                     "поэтому бот продолжает работать там по новым правилам, а переезжает только по "
                                     "вашей команде: /close снимает позицию, /resume открывает её уже в новом пуле "
@@ -438,7 +452,7 @@ class Live:
     def snap(self, st, r) -> dict:
         b = self.book
         return {"t": time.time(), "earned": self.earned(st, r), "in_s": b.in_range_s, "tot_s": b.total_s,
-                "acts": len(b.rebalances) + len(b.exits) + len(b.crashes) + len(b.resumes),
+                "acts": len(b.rebalances) + len(b.exits) + len(b.crashes) + len(b.resumes) + len(b.phases),
                 "vs_hold": r["vs_hold_sui_count"], "price": r["price"]}
 
     def daily(self, st, r) -> list[str]:
@@ -486,6 +500,10 @@ class Live:
                  f"resume_drop_pct = {s.resume_drop_pct or 0:.0%}"),
                 ("Выход в USDC", rules_text(s.crash_exit) or "нет", f"crash_exit; назад после отскока "
                  f"resume_rise_pct = {s.resume_rise_pct or 0:.0%}"),
+                ("Фаза рынка", f"средняя за {s.phase_ma_days:g} дн., пороги +{s.phase_up:.1%} / −{s.phase_down:.1%}, "
+                 f"{s.phase_confirm} закр. подряд" if s.phase_ma_days else "выключена",
+                 "phase_ma_days / phase_up / phase_down / phase_confirm — дневные закрытия выше средней на phase_up: "
+                 "фаза роста, всё в SUI; ниже на phase_down: снова пул; решение раз в сутки"),
                 ("Фильтр тренда", f"средняя за {s.trend_ma_days:g} дн." if s.trend_ma_days else "выключен",
                  "trend_ma_days — выход в SUI только выше средней, в USDC — только ниже: отскоки и провалы против "
                  "тренда бот пережидает в пуле"),
@@ -512,7 +530,8 @@ class Live:
         r = summary(b, st, self.price_of(st))
         p, (lo, hi) = r["price"], r["range"]
         state = {"sui": "🚀 всё в SUI — ждёт отката, чтобы вернуться в пул",
-                 "usdc": "🛡 всё в USDC — ждёт отскока, чтобы вернуться в пул"}.get(r["mode"]) or (
+                 "usdc": "🛡 всё в USDC — ждёт отскока, чтобы вернуться в пул",
+                 "up": "📈 фаза роста — всё в SUI, пул ждёт конца роста"}.get(r["mode"]) or (
             "без позиции" if not b.L else "✅ в диапазоне — комиссии идут" if r["in_range_now"]
             else "⚠️ вне диапазона — комиссии не идут")
         lines += ["", f"💲 SUI <b>${p:.4f}</b>", ("⏸ пауза · " if self.paused else "") + state]
@@ -520,6 +539,7 @@ class Live:
             lines += [f"<code>{lo:.4f} {bar(p, lo, hi)} {hi:.4f}</code>",
                       f"до нижней {pct(lo / p - 1)} · до верхней {pct(hi / p - 1)} · "
                       f"в диапазоне {r['in_range_pct']:.0f}% времени"]
+        lines += self.phase_lines()
         if self.s.trend_ma_days:
             ma = self.watch.trend_ma()
             lines.append(f"🧭 тренд {self.s.trend_ma_days:g} дн.: " + (
@@ -550,6 +570,23 @@ class Live:
             foot += " · 🔔 алерты: " + ", ".join(f"${x:g}" for x, _ in self.alerts)
         return "\n".join(lines + (self.daily(st, r) if daily else []) + ["", foot])
 
+    def phase_lines(self) -> list[str]:
+        """Фаза рынка: какая сейчас, с какого дня и при каком закрытии дня сменится."""
+        ph = self.watch.ph if self.s.phase_ma_days else None
+        if not ph:
+            return []
+        if ph.current() is None:
+            return [f"🧭 фаза рынка: копится история (нужно {0.8 * ph.days:.0f} дневных закрытий) — пока пул без фаз"]
+        hi, lo = ph.bounds()
+        since = (f" с {datetime.fromtimestamp(ph.since * 86400, timezone.utc).strftime('%d.%m')}"
+                 if ph.since is not None else "")
+        n = f"{ph.confirm} закрытиях дня подряд" if ph.confirm > 1 else "закрытии дня"
+        if ph.current() == "up":
+            return [f"🧭 фаза рынка: 📈 <b>рост</b>{since} (средняя {ph.days} дн. ${ph.ma():.4f}) · "
+                    f"в пул — при {n} ниже ≈${lo:.4f}"]
+        return [f"🧭 фаза рынка: 📉 <b>падение/боковик</b>{since} (средняя {ph.days} дн. ${ph.ma():.4f}) · "
+                f"всё в SUI — при {n} выше ≈${hi:.4f}"]
+
     def price_of(self, st):
         return lambda t: token_price(t, st["sui"])
 
@@ -564,10 +601,12 @@ class Live:
             return f"[{self.label}] позиция ещё не открыта" + (" (пауза)" if self.paused else "")
         r = summary(self.book, st, self.price_of(st))
         lo, hi = r["range"]
-        state = ("пауза, " if self.paused else "") + ({"sui": "вышел в SUI", "usdc": "вышел в USDC"}.get(r["mode"]) or
+        state = ("пауза, " if self.paused else "") + ({"sui": "вышел в SUI", "usdc": "вышел в USDC",
+                                                        "up": "фаза роста — всё в SUI"}.get(r["mode"]) or
                                                        ("без позиции" if not self.book.L else
                                                         "в диапазоне" if r["in_range_now"] else "вне диапазона"))
-        return (f"[{self.label}] {self.s.name}: SUI ${r['price']:.4f}, диапазон {lo:.4f}–{hi:.4f}, {state}\n"
+        rng = f"диапазон {lo:.4f}–{hi:.4f}, " if self.book.mode == "lp" else ""
+        return (f"[{self.label}] {self.s.name}: SUI ${r['price']:.4f}, {rng}{state}\n"
                 f"стоимость ${r['value']:,.2f} = {r['value_sui']:,.1f} SUI-экв. (старт {r['capital_sui']:,.1f}, "
                 f"{r['vs_hold_sui_count']:+,.1f} SUI к холду), к той же доле {r['vs_split']:+,.2f}$\n"
                 f"сейчас {r['sui_amount']:,.1f} SUI + {r['usdc_amount']:,.2f} USDC; комиссии ≈${r['fees_usd']:,.2f}, "
@@ -862,6 +901,15 @@ class Live:
         b.start = {"t": st["t"], "price": st["sui"], "capital_sui": capital / st["sui"],
                    "split_sui": capital * (1 - usdc_share) / st["sui"], "split_usdc": capital * usdc_share}
         self.save()
+        if self.s.phase_ma_days and self.watch.phase() == "up":   # фаза роста — пул не открывается, всё в SUI
+            b.mode = "up"
+            b.phases.append([st["t"], "up"])
+            self.save()
+            self.to_coin(st, "sui")
+            self.event(st["t"], "фаза роста", st["sui"], f"кошелёк {w['address'][:10]}…; капитал ${capital:,.2f}; "
+                       f"{phase_text(self.watch, 'up')}; всё в SUI, пул откроется, когда рост закончится", st,
+                       why=self.why("фаза роста"))
+            return
         self.open_real(st, lo, hi)
         lo, hi = b.range_usd
         self.event(st["t"], "открыта", st["sui"], f"кошелёк {w['address'][:10]}…; капитал ${capital:,.2f}; "
@@ -890,6 +938,8 @@ class Live:
             except (ExecError, subprocess.TimeoutExpired) as e:
                 text += f"; симуляция не прошла: {e}"
         self.event(st["t"], "открыта", st["sui"], text, why=self.why("открыта"))
+        if self.s.phase_ma_days and self.watch.phase() == "up":
+            self.act(st, "bull", phase_text(self.watch, "up"))
 
     # --- команды и решения -------------------------------------------------------------------------------
     def read_commands(self) -> list[str]:
@@ -933,7 +983,10 @@ class Live:
             mode = self.book.mode if self.book else None
             note = {"sui": f"бот в SUI после роста — вернётся в пул после отката на {self.s.resume_drop_pct or 0:.0%}",
                     "usdc": f"бот в USDC после падения — вернётся в пул после отскока на {self.s.resume_rise_pct or 0:.0%}",
+                    "up": "фаза роста — бот держит всё в SUI и вернётся в пул, когда рост закончится",
                     }.get(mode, "позиция откроется, если её нет")
+            if mode == "hold" and self.s.phase_ma_days and self.watch.phase() == "up":
+                note = "фаза роста — бот не откроет пул, а переведёт всё в SUI"
             if self.manual:
                 note = f"сначала будет завершена команда /{self.manual}, после неё бот снова встанет на паузу"
             self.event(st["t"], "продолжение", st["sui"], f"по команде; {note}")
@@ -1009,26 +1062,36 @@ class Live:
                 self.to_coin(st, what)
             self.manual, self.paused = None, True         # пауза — даже если между сбоем и повтором был /resume
             self.event(st["t"], MANUAL[what], st["sui"], "бот на паузе до /resume", st)
-        elif b.mode in ("sui", "usdc") and not self.dry:
+        elif b.mode in ("sui", "usdc", "up") and not self.dry:
+            coin = "usdc" if b.mode == "usdc" else "sui"
             if self.pos_id:
                 self.close_real(st)
-            if self.wrong_coin_usd(st, b.mode) >= self.lc.min_swap_usd:
-                self.to_coin(st, b.mode)
-                self.event(st["t"], "выход завершён", st["sui"], f"все монеты бота — в {b.mode.upper()}", st)
+            if self.wrong_coin_usd(st, coin) >= self.lc.min_swap_usd:
+                self.to_coin(st, coin)
+                self.event(st["t"], "выход завершён", st["sui"], f"все монеты бота — в {coin.upper()}", st)
 
     def act(self, st, kind: str, why: str):
         b, s, p, t = self.book, self.s, st["sui"], st["t"]
         old, was = list(b.range_usd), b.mode
         costs = self.cfg.costs
-        if kind == "resume":
+        if kind in ("resume", "bear"):
             # возврат в пул отмечается до открытия: если открытие сорвётся, бот откроет позицию заново,
             # а не будет менять монеты туда-обратно и не выйдет снова по старому максимуму/минимуму
             b.mode = "lp"
-            b.resumes.append(t)
+            (b.resumes.append(t) if kind == "resume" else b.phases.append([t, "down"]))
             self.watch.reset()
             self.watch.add(t, p)
             self.save()
-        if kind in ("rebalance", "reopen", "resume"):
+        if kind == "bull":
+            if self.dry:
+                enter_up(b, st, costs)
+            else:
+                self.close_real(st)
+                b.mode = "up"                           # режим — до обмена: при сбое обмен будет доведён
+                b.phases.append([t, "up"])
+                self.save()
+                self.to_coin(st, "sui")
+        elif kind in ("rebalance", "reopen", "resume", "bear"):
             if self.dry:
                 if kind == "rebalance":
                     rebalance(b, st, s, costs)
@@ -1052,8 +1115,10 @@ class Live:
                 self.to_coin(st, to)
         lo, hi = b.range_usd
         name = {"rebalance": "пересборка", "reopen": "позиция открыта заново", "resume": "возврат в пул",
-                "exit": "выход в SUI", "crash": "выход в USDC"}[kind]
-        detail = f"{why}; диапазон {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}" if kind in ("rebalance", "reopen", "resume") else why
+                "exit": "выход в SUI", "crash": "выход в USDC", "bull": "фаза роста", "bear": "конец фазы роста"}[kind]
+        detail = (f"{why}; диапазон {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}" if kind in ("rebalance", "reopen", "resume")
+                  else f"{why}; снова в пул, диапазон {lo:.4f}–{hi:.4f}" if kind == "bear"
+                  else f"{why}; всё в SUI, пул ждёт конца роста" if kind == "bull" else why)
         self.out_noticed = False
         self.event(t, name, p, detail, st, why=self.why(name, was if why != "по команде" else None))
 
@@ -1273,7 +1338,8 @@ class Live:
             cut = datetime.fromtimestamp(now - 7 * 86400, timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
             acts = [x["event"] for x in csv.DictReader(ev.open()) if x["time_utc"] >= cut and x["mode"] == self.label]
             n = {k: acts.count(k) for k in ("пересборка", "выход в SUI", "выход в USDC", "возврат в пул",
-                                             "реинвестирование", "ошибка") if acts.count(k)}
+                                             "фаза роста", "конец фазы роста", "реинвестирование", "ошибка")
+                 if acts.count(k)}
             lines.append("действия: " + (", ".join(f"{k} — {v}" for k, v in n.items()) or "не было"))
         lines += self.shadow_lines(st)
         lines.append("🧠 <i>почему: раз в неделю (понедельник утром) — итоги, график и журнал; журнал events.csv "
@@ -1296,7 +1362,9 @@ class Live:
 
         def work():
             try:
-                notify.send("\n".join(scales_lines(history.daily_closes(900), days)), html=True)
+                phase = self.phase_lines()
+                notify.send("\n".join(scales_lines(history.daily_closes(900), days) + ([""] + phase if phase else [])),
+                            html=True)
             except Exception as e:  # noqa: BLE001 — картина рынка не должна мешать боту
                 notify.send(f"🧭 Тренд по масштабам не удался: {str(e)[:200]}")
 
@@ -1336,7 +1404,8 @@ class Live:
                 if len(cs) - i0 < 12:
                     notify.send("🔬 Бот работает меньше часа — сверять с моделью пока рано")
                     return
-                warm = history.trend_warmup(s.trend_ma_days, cs[i0][0]) if s.trend_ma_days else None
+                td = history.trend_days([s])
+                warm = history.trend_warmup(td, cs[i0][0]) if td else None
                 model = simulate(s, pc, [c[0] for c in cs[i0:]], [c[1] for c in cs[i0:]], ys[pool][i0:], costs, spacing,
                                  warm=warm)
                 notify.send("\n".join(calibration_lines(real, earned, model, manual)), html=True)
@@ -1401,11 +1470,14 @@ class Live:
             return
         if not self.paused:
             if b.mode == "hold":                                     # после /sui, /usdc, /close и /resume
-                self.act(st, "resume", "по команде")
+                if self.s.phase_ma_days and self.watch.phase() == "up":
+                    self.act(st, "bull", "по команде /resume; " + phase_text(self.watch, "up"))
+                else:
+                    self.act(st, "resume", "по команде")
             elif b.mode == "lp" and not self.pos_id and not self.dry:   # позиция не открылась или пропала
                 d = self.skipped(st, decide(b, self.s, st, self.watch))
                 if self.price_ok(st):
-                    if d and d[0] in ("exit", "crash"):
+                    if d and d[0] in ("exit", "crash", "bull"):
                         self.act(st, *d)
                     else:
                         self.act(st, "reopen", "позиции нет")
@@ -1434,14 +1506,15 @@ class Live:
         return d
 
     def trend_warm(self):
-        """Предыстория средней тренда с Binance (часовые цены): при запуске и, пока не получилось, раз в час."""
-        if not self.s.trend_ma_days or self.watch.trend_ma() is not None or time.time() - self.trend_try < 3600:
+        """Предыстория средней тренда и фазы рынка с Binance (часовые цены): при запуске и, пока не получилось,
+        раз в час."""
+        if not self.watch.need_warm() or time.time() - self.trend_try < 3600:
             return
         self.trend_try = time.time()
         try:
-            self.watch.warm_trend(history.trend_warmup(self.s.trend_ma_days, time.time()))
-        except Exception as e:  # noqa: BLE001 — без предыстории фильтр ждёт, пока накопится своя история
-            log(f"нет предыстории для средней тренда: {e}")
+            self.watch.warm(history.trend_warmup(self.watch.warm_days(), time.time()))
+        except Exception as e:  # noqa: BLE001 — без предыстории фильтр и фаза ждут, пока накопится своя история
+            log(f"нет предыстории для средней тренда и фазы: {e}")
 
     def switch_pool(self, st) -> bool:
         """[live] strategy — в другом пуле, а деньги бота ещё в старом. Бот продолжает работать в старом пуле

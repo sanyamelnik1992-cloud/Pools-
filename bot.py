@@ -8,6 +8,8 @@
   python3 bot.py scenario [--multiple 2] [--days 60] [--paths 100]
                                             сценарий будущего: цена ×multiple за days дней, пути из реальной истории
   python3 bot.py optimize [--paths 30]      подбор стратегии: перебор параметров на кварталах года и сценариях
+  python3 bot.py phases [--grid]            стратегии на всей истории SUI с 2023 (бычьи рывки, спады, медвежий год)
+                                            и хронология фаз рынка; --grid — боевая стратегия и её соседи
   python3 bot.py live                       боевой режим: стратегия из [live] на реальном кошельке
                                             (dry_run = true в suibot.toml — только симуляция)
   python3 bot.py control <команда>          ручное управление работающим ботом: status, pause, resume, sui, usdc, close
@@ -25,7 +27,7 @@ import argparse
 from pathlib import Path
 
 from lpscan.common import ROOT
-from suibot import backtest, env, optimize, scenario
+from suibot import backtest, env, optimize, phases, scenario
 from suibot.config import load
 from suibot.live import Live, check, control, show
 from suibot.paper import Paper
@@ -33,7 +35,8 @@ from suibot.paper import Paper
 
 def main():
     ap = argparse.ArgumentParser(description="Бот-ребалансер SUI/USDC на Cetus")
-    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "live", "control", "status", "check"])
+    ap.add_argument("mode", choices=["paper", "report", "backtest", "scenario", "optimize", "phases", "live", "control",
+                                          "status", "check"])
     ap.add_argument("command", nargs="?", help="control: status | pause | resume | sui | usdc | close")
     ap.add_argument("--config", default=str(ROOT / "suibot.toml"))
     ap.add_argument("--env", default=str(ROOT / ".env"), help="live, check: файл с SUI_PRIVATE_KEY, TG_TOKEN, TG_CHAT")
@@ -47,6 +50,7 @@ def main():
     ap.add_argument("--paths", type=int, default=100, help="scenario: число путей")
     ap.add_argument("--hist-days", type=int, default=180, help="scenario: из какой истории брать куски для путей")
     ap.add_argument("--block-days", type=int, default=5, help="scenario: длина куска истории в сутках")
+    ap.add_argument("--grid", action="store_true", help="phases: боевая стратегия и её соседние настройки")
     a = ap.parse_args()
     cfg = load(a.config)
     if a.mode == "paper":
@@ -59,6 +63,8 @@ def main():
         scenario.run(cfg, a.multiple, a.days or 60, a.paths, a.minutes, a.hist_days, a.block_days)
     elif a.mode == "optimize":
         optimize.run(cfg, a.paths if a.paths != 100 else 30)
+    elif a.mode == "phases":
+        phases.run_all(cfg, a.grid)
     elif a.mode == "live":
         names = env.load(Path(a.env))              # только боевой режим загружает ключ; значения не печатаются
         if names:

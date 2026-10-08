@@ -18,7 +18,7 @@ from suibot import history, notify, report
 from suibot.book import Book, accrue_growth, check_stop, init_book, step, summary
 from suibot.chain import read_pools, token_price
 from suibot.config import Config
-from suibot.rally import RallyWatch
+from suibot.rally import RallyWatch, watch_for
 
 
 def log(*a):
@@ -57,15 +57,14 @@ class Paper:
     def watch(self, s) -> RallyWatch:
         """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск)."""
         if s.name not in self.watches:
-            self.watches[s.name] = RallyWatch(s.rally_exit, self.watch_state.get(s.name), min_step=60,
-                                              drop_rules=s.crash_exit, trend_days=s.trend_ma_days)
+            self.watches[s.name] = watch_for(s, self.watch_state.get(s.name), min_step=60)
         w = self.watches[s.name]
-        if s.trend_ma_days and w.trend_ma() is None and time.time() - self.warm_try.get(s.name, 0) > 3600:
-            self.warm_try[s.name] = time.time()       # средняя тренда: предыстория с Binance, при сбое — раз в час
+        if w.need_warm() and time.time() - self.warm_try.get(s.name, 0) > 3600:
+            self.warm_try[s.name] = time.time()       # средняя тренда и фаза: предыстория с Binance, при сбое — раз в час
             try:
-                w.warm_trend(history.trend_warmup(s.trend_ma_days, time.time()))
-            except Exception as e:  # noqa: BLE001 — без предыстории фильтр просто ждёт, пока накопится своя
-                log(f"[{s.name}] нет предыстории для средней тренда: {e}")
+                w.warm(history.trend_warmup(w.warm_days(), time.time()))
+            except Exception as e:  # noqa: BLE001 — без предыстории фильтр и фаза ждут, пока накопится своя
+                log(f"[{s.name}] нет предыстории для средней тренда и фазы: {e}")
         return w
 
     def save(self):

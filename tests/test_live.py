@@ -10,6 +10,7 @@ import math
 import re
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -865,6 +866,110 @@ def test_switch_to_trend_strategy_keeps_position():
         h.tick(1.20)
         assert h.bot.pos_id == pos and len(txs()) == calls and h.bot.watch.trend_ma() is not None
         assert h.bot.book.start and not h.bot.paused
+    live.history.trend_warmup = lambda days, end: []
+
+
+PHASE = """
+[[strategy]]
+name = "тест фаза"
+pool = "cetus_005"
+capital_sui = 100
+range_down = 0.04
+range_up = 0.04
+out_minutes = 180
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+phase_ma_days = 60
+phase_up = 0.05
+phase_down = 0.05
+phase_confirm = 2
+"""
+
+
+def test_phase_live():
+    """Фаза рынка в боевом режиме: при запуске в фазе роста пул не открывается — всё в SUI; конец роста — пул;
+    снова рост — снять пул и всё в SUI; /resume после /close в фазе роста — сразу в SUI; фаза переживает
+    перезапуск; в отчёте — строка фазы, в сообщениях — «почему»."""
+    day = 86400.0
+
+    def warm(days, end):                                  # 100 дней по $0.8, затем 20 дней по $1.2 — фаза роста
+        return [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2) for i in range(120 * 24)]
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=100, usdc=60)
+        h = Harness(d, chain)
+        h.t = time.time() - 3600                                            # предыстория берётся до «сейчас»
+        live.history.trend_warmup = warm
+        h.bot = live.Live(config(Path(d), extra=PHASE, strategy="тест фаза"))
+        txs = lambda: ([c[0] for c in chain.pools if c[0] != "status"]                  # noqa: E731 — транзакции
+                       + [c for c, sim in chain.calls if c == "swap" and not sim])
+        h.tick(1.20)
+        bot, b = h.bot, h.bot.book
+        assert bot.watch.phase() == "up" and b.mode == "up" and not chain.pos and bot.pos_id is None
+        assert "open" not in txs() and "swap" in txs()                       # USDC бота обменян на SUI, пула нет
+        assert b.idle_a < 1e6 and chain.w["usdc"] < 1e6 and len(b.phases) == 1
+        card = [x for x in h.sent if "Фаза роста" in x]
+        assert card and "почему" in card[0] and "phase_ma_days" in card[0]
+        assert "фаза рынка: 📈" in bot.report_card(chain.st) and "фаза роста — всё в SUI" in bot.report_card(chain.st)
+        h.tick(0.70, dt=day)                                                  # день ещё не закрыт по 0.70
+        assert b.mode == "up" and bot.pos_id is None
+        h.tick(0.70, dt=day)                                                  # одно закрытие ниже порога — мало
+        assert b.mode == "up" and bot.watch.ph.run == [0, 1]
+        h.tick(0.70, dt=day)                                                  # второе закрытие подряд — конец роста
+        assert b.mode == "lp" and bot.pos_id and chain.pos and b.phases[-1][1] == "down"
+        assert any("Конец фазы роста" in x for x in h.sent) and "фаза рынка: 📉" in bot.report_card(chain.st)
+        h.bot = live.Live(config(Path(d), extra=PHASE, strategy="тест фаза"))   # фаза переживает перезапуск
+        bot, b = h.bot, h.bot.book
+        assert bot.watch.phase() == "down" and b.mode == "lp"
+        h.tick(1.15, dt=day)
+        h.tick(1.15, dt=day)
+        assert b.mode == "lp"
+        h.tick(1.15, dt=day)                                                  # два закрытия 1.15 выше средней — рост
+        assert b.mode == "up" and bot.pos_id is None and not chain.pos and b.idle_a < 1e6 and len(b.phases) == 3
+        h.cmd("close")
+        h.tick(1.15, dt=600)
+        assert b.mode == "hold" and bot.paused
+        n = len(txs())
+        h.cmd("resume")
+        h.tick(1.15, dt=600)                                                  # /resume в фазе роста — сразу в SUI
+        assert b.mode == "up" and not bot.paused and not chain.pos and "open" not in txs()[n:]
+        assert any("Фаза рынка" in x for x in [bot.settings_card()])
+    with tempfile.TemporaryDirectory() as d:                                  # симуляция: та же логика без сети
+        chain = FakeChain(sui=100, usdc=60)
+        h = Harness(d, chain, dry=True)
+        h.t = time.time() - 3600
+        live.history.trend_warmup = warm
+        h.bot = live.Live(config(Path(d), dry=True, extra=PHASE, strategy="тест фаза"))
+        h.tick(1.20)
+        assert h.bot.book.mode == "up" and h.bot.book.L == 0 and not [c for c in chain.pools if c[0] != "status"]
+        assert any("Фаза роста" in x for x in h.sent)
+        for _ in range(3):
+            h.tick(0.70, dt=day)
+        assert h.bot.book.mode == "lp" and h.bot.book.L > 0
+    live.history.trend_warmup = lambda days, end: []
+
+
+def test_switch_running_bot_to_phase_strategy():
+    """Как на сервере: бот в пуле по стратегии с фильтром тренда; [live] переключили на фазы, рынок в фазе роста —
+    после перезапуска бот подгружает предысторию, снимает позицию и переводит всё в SUI (без лишних транзакций)."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.t = time.time() - 3600
+        live.history.trend_warmup = lambda days, end: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
+        h.bot = live.Live(config(Path(d), extra=TREND + PHASE, strategy="тест тренд"))
+        h.tick(1.20)
+        assert h.bot.pos_id and chain.pos and h.bot.book.mode == "lp"
+        n = len([c for c in chain.pools if c[0] != "status"])
+        live.history.trend_warmup = lambda days, end: [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2)
+                                                       for i in range(120 * 24)]
+        h.bot = live.Live(config(Path(d), extra=TREND + PHASE, strategy="тест фаза"))
+        h.tick(1.20, dt=600)
+        b = h.bot.book
+        assert b.mode == "up" and h.bot.pos_id is None and not chain.pos and b.idle_a < 1e6
+        assert [c[0] for c in chain.pools if c[0] != "status"][n:] == ["close"]      # только снять позицию
+        assert chain.w["usdc"] < 1e6 and any("Фаза роста" in x for x in h.sent)     # USDC из позиции — в SUI
+        h.tick(1.20, dt=600)
+        assert b.mode == "up" and len(b.phases) == 1                                  # дальше ничего не делает
     live.history.trend_warmup = lambda days, end: []
 
 

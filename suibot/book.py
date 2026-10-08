@@ -1,6 +1,7 @@
 """Учёт виртуальной позиции: открытие, пересборка, начисление комиссий и наград, сравнение с холдом."""
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass, field
 
 from suibot.chain import PoolCfg, raw_to_usd, usd_to_raw
@@ -40,11 +41,13 @@ class Book:
     sb: float = 0.0
     idle_a: float = 0.0             # монеты вне пула (после выхода в SUI), мин. единицы
     idle_b: float = 0.0
-    mode: str = "lp"                # lp — в пуле; sui — вышли в SUI на росте; usdc — в USDC на падении; hold — вручную
+    mode: str = "lp"                # lp — в пуле; sui — вышли в SUI на росте; usdc — в USDC на падении; hold — вручную;
+    #                                 up — фаза роста рынка: всё в SUI, пока фаза не сменится
     peak: float = 0.0               # после выхода: максимум цены (в SUI) или минимум (в USDC)
     exits: list = field(default_factory=list)
     resumes: list = field(default_factory=list)
     crashes: list = field(default_factory=list)   # выходы в USDC на падении
+    phases: list = field(default_factory=list)    # смены фазы рынка: [время, "up" | "down"]
 
     def sqrt_bounds(self) -> tuple[float, float]:
         if not self.sa:
@@ -182,12 +185,41 @@ def exit_to_usdc(book: Book, st: dict, costs: Costs) -> float:
     return cost
 
 
+def phase_text(watch, side: str) -> str:
+    """Почему фаза такая: последнее дневное закрытие против средней, порог и сколько закрытий подряд за ним."""
+    ph = watch.ph
+    _, c = ph.last()
+    m = ph.ma()
+    n = ph.run[0 if side == "up" else 1]
+    note = (f"закрытий подряд за порогом: {n}" if n >= ph.confirm else
+            "фаза держится с " + time.strftime("%d.%m", time.gmtime(ph.since * 86400)) if ph.since is not None else "")
+    if side == "up":
+        return (f"закрытие дня ${c:.4f} {'выше' if c >= m else 'ниже'} средней за {ph.days} дн. (${m:.4f}) на "
+                f"{abs(c / m - 1):.0%} (порог +{ph.up:.1%}; {note}) — фаза роста")
+    return (f"закрытие дня ${c:.4f} {'ниже' if c <= m else 'выше'} средней за {ph.days} дн. (${m:.4f}) на "
+            f"{abs(1 - c / m):.0%} (порог −{ph.down:.1%}; {note}) — фаза падения или боковика")
+
+
+def enter_up(book: Book, st: dict, costs: Costs) -> float:
+    """Фаза роста: снять позицию и всё в SUI (после выхода в SUI на росте менять уже нечего)."""
+    cost = 0.0 if book.mode == "sui" and not book.L else close_to_idle(book, st, costs, "sui")
+    book.mode = "up"
+    book.phases.append([st["t"], "up"])
+    return cost
+
+
 def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
     """Решение по правилам стратегии (без исполнения): ("exit" | "crash" | "resume" | "rebalance", причина) или None;
-    ("skip_exit" | "skip_crash", причина) — выход пропущен фильтром тренда (сообщить, но ничего не делать).
+    ("skip_exit" | "skip_crash", причина) — выход пропущен фильтром тренда (сообщить, но ничего не делать);
+    ("bull", причина) — началась фаза роста: всё в SUI; ("bear", причина) — фаза роста кончилась: снова в пул.
     Обновляет наблюдение за ростом, пик после выхода и время выхода цены из диапазона."""
     p, t = st["sui"], st["t"]
     watch.add(t, p)
+    phase = watch.phase() if s.phase_ma_days else None
+    if book.mode == "up":
+        return ("bear", phase_text(watch, "down")) if phase == "down" else None
+    if phase == "up" and book.mode in ("lp", "sui", "usdc"):
+        return "bull", phase_text(watch, "up")
     if book.mode == "sui":
         book.peak = max(book.peak, p)
         if s.resume_drop_pct is not None and p <= book.peak * (1 - s.resume_drop_pct):
@@ -229,6 +261,17 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
         return None
     kind, why = d
     p, t = st["sui"], st["t"]
+    if kind == "bull":
+        cost = enter_up(book, st, costs)
+        sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
+        return "фаза роста", f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
+    if kind == "bear":
+        a, b = book.holdings(st)
+        cost = open_position(book, st, *s.target_range(p), a, b, costs)
+        book.phases.append([t, "down"])
+        watch.reset()
+        lo, hi = book.range_usd
+        return "фаза падения", f"{why}: снова в пул, диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}"
     if kind == "resume":
         a, b = book.holdings(st)
         cost = open_position(book, st, *s.target_range(p), a, b, costs)

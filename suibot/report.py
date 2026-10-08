@@ -13,7 +13,8 @@ def table(rows: list[dict], staking_apy: float = 0.0) -> str:
     lines = [head, "-" * len(head)]
     for r in rows:
         lo, hi = r["range"]
-        now = {"sui": "в SUI", "usdc": "в USDC", "hold": "пауза"}.get(r["mode"]) or ("в диап." if r["in_range_now"] else "вне")
+        now = ({"sui": "в SUI", "usdc": "в USDC", "hold": "пауза", "up": "рост:SUI"}.get(r["mode"])
+               or ("в диап." if r["in_range_now"] else "вне"))
         lines.append(f"{r['name'][:28]:28s} {lo:6.4f}–{hi:6.4f} {now:>7s} {r['in_range_pct']:6.0f}% "
                      f"${r['fees_usd']:>8,.0f} ${r['costs_usd']:>8,.0f} {r['rebalances']:>7d} ${r['value']:>9,.0f} "
                      f"{r['value_sui']:>9,.0f} {r['vs_hold_sui_count']:>+13,.0f} {_usd(r['vs_split']):>14s}"
@@ -41,6 +42,6 @@ def short(rows: list[dict]) -> str:
     for r in rows:
         out.append(f"• {r['name']}: {r['value_sui']:,.0f} SUI-экв. ({r['vs_hold_sui_count']:+,.0f}), "
                    f"комиссии ${r['fees_usd']:,.0f}, пересборок {r['rebalances']}"
-                   + {"sui": ", сейчас в SUI", "usdc": ", сейчас в USDC"}.get(r["mode"], "")
+                   + {"sui": ", сейчас в SUI", "usdc": ", сейчас в USDC", "up": ", фаза роста — в SUI"}.get(r["mode"], "")
                    + (" [остановлена]" if r["stopped"] else ""))
     return "\n".join(out)

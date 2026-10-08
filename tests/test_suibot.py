@@ -1,16 +1,17 @@
 """Проверки математики и учёта бота без сети:  python3 tests/test_suibot.py  (или pytest)."""
 import math
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from suibot.book import Costs, accrue_growth, init_book, rebalance, summary, update_out  # noqa: E402
+from suibot.book import Costs, accrue_growth, decide, init_book, rebalance, step, summary, update_out  # noqa: E402
 from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
 from suibot import env  # noqa: E402
 from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
 from suibot.sim import simulate  # noqa: E402
-from suibot.rally import RallyWatch  # noqa: E402
+from suibot.rally import Phase, RallyWatch, watch_for  # noqa: E402
 from suibot.strategy import Strategy  # noqa: E402
 
 NOCOST = Costs(0.0, 0.0, 0.0)
@@ -226,6 +227,112 @@ def test_trend_filter_exits():
     assert r["crashes"] == 0 and r["mode"] == "lp"          # провал выше средней — бот остаётся в пуле
     assert simulate(trend, pc, times, down, [0.0] * 8, NOCOST, 10, warm=high)["crashes"] == 1
     assert simulate(trend, pc, times, up, [0.0] * 8, NOCOST, 10)["exits"] == 1    # без истории — как раньше
+
+
+def test_phase_detector():
+    """Фаза по дневным закрытиям: средняя за N дней и пороги с запасом; между порогами фаза не меняется;
+    решение — только по закрытию дня; переживает перезапуск; смена настроек — пересчёт по закрытиям."""
+    D = 86400.0
+    ph = Phase(10, 0.05, 0.05)
+    for d in range(8):
+        ph.feed(d * D + 3600, 1.0)
+        ph.feed(d * D + 80000, 1.0)                    # последняя цена дня — его закрытие
+    assert ph.current() is None                          # 7 закрытых дней < 80% окна: фазы ещё нет
+    ph.feed(8 * D, 1.0)
+    ph.feed(9 * D, 1.0)
+    assert ph.current() == "down" and ph.since == 7   # 8 закрытий, цена на средней — «падение/боковик»
+    ph.feed(10 * D, 1.2)                                 # день 10 ещё не закрыт — фаза та же
+    assert ph.current() == "down"
+    ph.feed(11 * D, 1.2)                                 # закрытие 1.2 при средней ≈1.02: выше на 5%+ — рост
+    assert ph.current() == "up" and ph.since == 10
+    hi, lo = ph.bounds()
+    assert math.isclose(lo, ph.ma() * 0.95)
+    ph.feed(12 * D, 1.04)                                # закрытие 1.04 между порогами — фаза не меняется
+    ph.feed(13 * D, 1.04)
+    assert ph.current() == "up"
+    for d in range(14, 18):
+        ph.feed(d * D, 0.9)
+    assert ph.current() == "down"
+    again = Phase(10, 0.05, 0.05, state=ph.dump())       # перезапуск
+    assert again.current() == "down" and again.closes == ph.closes and again.cur == ph.cur
+    w = RallyWatch(None, {"phase": dict(ph.dump(), days=10, kind="sma", up=0.05, down=0.05)},
+                   phase=dict(days=10, up=0.5, down=0.5))   # другие пороги — пересчёт заново по закрытиям
+    assert w.phase() == "down" and w.ph.up == 0.5
+    w2 = RallyWatch(None, phase=dict(days=10, up=0.05, down=0.05))
+    w2.add(30 * D, 2.0)                                  # своя первая цена, затем предыстория из часовых цен
+    w2.warm([(h * 3600.0, 1.0 if h < 24 * 25 else 1.5) for h in range(24 * 31)])
+    assert w2.phase() == "up" and w2.ph.last()[0] == 29 and w2.ph.cur == (30, 2.0)   # день 30 ещё не закрыт
+    assert not w2.need_warm() and w2.warm_days() == 20
+    assert RallyWatch(None).phase() is None and not RallyWatch(None).need_warm()
+    s = Strategy("t", "p", 1, 0.04, 0.04, phase_ma_days=60, crash_exit=[[72, 0.15]])
+    w3 = watch_for(s)
+    assert w3.ph.days == 60 and w3.ph.up == 0.05 and w3.ph.confirm == 2 and w3.drop_rules == [(72.0, 0.15)]
+    two = Phase(10, 0.05, 0.05, confirm=2)                  # подтверждение: два закрытия подряд за порогом
+    for d in range(10):
+        two.feed(d * D, 1.0)
+    two.feed(10 * D, 1.0)
+    assert two.current() == "down"
+    two.feed(11 * D, 1.3)
+    two.feed(12 * D, 1.0)
+    assert two.current() == "down" and two.run == [1, 0]    # одно закрытие выше порога — мало
+    two.feed(13 * D, 1.3)                                   # однодневный выброс — фаза не меняется
+    assert two.current() == "down" and two.run == [0, 0]
+    two.feed(14 * D, 1.3)
+    assert two.current() == "down" and two.run[0] == 1
+    two.feed(15 * D, 1.3)                                   # второе закрытие подряд выше порога — рост
+    assert two.current() == "up" and two.since == 14
+    re = RallyWatch(None, {"phase": dict(two.dump(), days=10, kind="sma", up=0.05, down=0.05, confirm=1)},
+                    phase=dict(days=10, up=0.05, down=0.05, confirm=2))
+    assert re.phase() == "up" and re.ph.run == two.run       # смена confirm — пересчёт, тот же итог
+
+
+def test_phase_bull_and_bear():
+    """Фаза роста — снять пул и всё в SUI; фаза роста кончилась — снова пул; после выхода в USDC на падении
+    фаза роста тоже переводит всё в SUI."""
+    D = 86400.0
+    pc = PoolCfg("p", "0x0")
+    s = Strategy("t", "p", 1000, 0.04, 0.04, out_minutes=180, phase_ma_days=10, phase_up=0.05, phase_down=0.05,
+                 phase_confirm=1, crash_exit=[[72, 0.15]], resume_rise_pct=0.10)
+    w = watch_for(s)
+    w.warm([(h * 3600.0, 1.0) for h in range(24 * 12)])           # 12 дней по $1 — фаза «падение/боковик»
+    t = 12 * D
+    book = init_book(s, pc, st(1.0, t=t), NOCOST)
+    w.add(t, 1.0)
+    assert decide(book, s, st(1.0, t=t + 60), w) is None and book.mode == "lp"
+    assert step(book, s, st(1.2, t=t + 3600), w, NOCOST) is None   # день ещё не закрыт — фаза прежняя
+    assert book.mode == "lp" and book.out_since == t + 3600
+    ev = step(book, s, st(1.2, t=t + D), w, NOCOST)                 # закрытие 1.2 — фаза роста
+    assert ev[0] == "фаза роста" and book.mode == "up" and book.L == 0 and book.idle_a == 0   # a — USDC, b — SUI
+    assert "средней за 10 дн." in ev[1] and book.phases[-1][1] == "up"
+    sui = book.idle_b / 1e9
+    assert step(book, s, st(1.5, t=t + 2 * D), w, NOCOST) is None and book.idle_b / 1e9 == sui   # держит SUI
+    for k in range(3, 9):
+        ev = step(book, s, st(0.8, t=t + k * D), w, NOCOST) or ev
+    assert ev[0] == "фаза падения" and book.mode == "lp" and book.L > 0 and book.phases[-1][1] == "down"
+    r = summary(book, st(0.8, t=t + 9 * D), no_price)
+    assert r["mode"] == "lp" and abs(r["value_sui"] - sui) / sui < 0.01   # переход без потерь (без издержек)
+    book.mode, book.L, book.peak = "usdc", 0.0, 0.8                 # вышли в USDC на падении
+    book.idle_a, book.idle_b = 800e6, 0.0
+    s2 = replace(s, resume_rise_pct=None)                           # без возврата по отскоку: только фаза
+    for k in range(9, 16):
+        ev = step(book, s2, st(1.3, t=t + k * D), w, NOCOST) or ev
+    assert ev[0] == "фаза роста" and book.mode == "up" and book.idle_a == 0 and book.idle_b > 0
+
+
+def test_phase_in_simulation():
+    """На истории: долгий рост — бот почти весь путь в SUI (близко к «держать SUI»), без фаз пул сильно
+    отстаёт; предыстория для фазы сдвигается на целые сутки."""
+    D = 86400.0
+    pc = PoolCfg("p", "0x0")
+    times = [k * 3600.0 for k in range(24 * 60)]
+    prices = [1.0 * 1.02 ** (k / 24) for k in range(24 * 60)]      # +2% в день 60 дней
+    warm = [(-(40 * 24 - h) * 3600.0, 1.0) for h in range(40 * 24)]
+    kw = dict(crash_exit=[[72, 0.15]], resume_rise_pct=0.10)
+    plain = Strategy("t", "p", 1000, 0.04, 0.04, out_minutes=180, **kw)
+    phase = Strategy("t", "p", 1000, 0.04, 0.04, out_minutes=180, phase_ma_days=20, **kw)
+    a = simulate(plain, pc, times, prices, [0.0] * len(times), NOCOST, 10, warm=warm)
+    b = simulate(phase, pc, times, prices, [0.0] * len(times), NOCOST, 10, warm=warm)
+    assert b["mode"] == "up" and b["value_sui"] > 0.9 * 1000 and a["value_sui"] < 0.6 * 1000
 
 
 if __name__ == "__main__":
