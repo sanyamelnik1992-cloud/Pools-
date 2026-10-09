@@ -6,8 +6,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from suibot.book import (Costs, accrue_growth, carry, close_perp, decide, enter_up, init_book, rebalance, step,  # noqa: E402
-                         summary, update_out)
+from suibot.book import (Costs, accrue_growth, carry, close_perp, decide, enter_up, init_book, open_position,  # noqa: E402
+                         rebalance, step, summary, update_out)
 from suibot.chain import PoolCfg, raw_to_usd, state_from_price, usd_to_raw  # noqa: E402
 from suibot import env  # noqa: E402
 from suibot.clmm import Q64, U128, growth_delta, snap_ticks, sqrt_of_tick  # noqa: E402
@@ -394,6 +394,47 @@ def test_staking_and_leverage_in_growth_phase():
     assert ev[0] == "лонг снова открыт" and b4.perp_sui > 0 and b4.idle_a == 0
     val = summary(b4, st(1.01), no_price)["value"]
     assert math.isclose((b4.idle_b / 1e9 + b4.perp_sui) * 1.01, val * 1.5, rel_tol=1e-6)   # снова 1.5× капитала
+
+
+def test_ladder_after_growth():
+    """Конец фазы роста с лесенкой: всё в USDC диапазоном ниже цены (−5%…−40%); пока цена выше — ни пересборок, ни
+    выходов; по пути вниз пул покупает SUI; ниже лесенки 3 ч — обычный пул; лесенка ждёт не дольше ladder_days."""
+    D, H = 86400.0, 3600.0
+    pc = PoolCfg("p", "0x0")
+    s = Strategy("t", "p", 1000, 0.05, 0.05, out_minutes=180, phase_ma_days=10, phase_confirm=1,
+                 crash_exit=[[72, 0.15]], resume_rise_pct=0.10, bear_ladder=0.40, ladder_top=0.05, ladder_days=30)
+    w = watch_for(s)
+    w.warm([(h * H, 1.0 if h < 24 * 12 else 1.5) for h in range(24 * 14)])     # рост: $1 → $1.5
+    t = 14 * D + 22 * H
+    book = init_book(s, pc, st(1.5, t=t), NOCOST)
+    assert step(book, s, st(1.5, t=t + 60), w, NOCOST)[0] == "фаза роста" and book.mode == "up"
+    ev = None
+    for k in range(1, 4):
+        ev = step(book, s, st(1.0, t=t + k * D), w, NOCOST) or ev                # закрытие $1 — конец роста
+    assert ev[0] == "конец фазы роста" and "лесенкой" in ev[1] and book.mode == "lp" and book.ladder_t is not None
+    lo, hi = book.range_usd
+    assert abs(lo / 1.0 - 0.60) < 0.01 and abs(hi / 1.0 - 0.95) < 0.01
+    sui0 = summary(book, st(1.0), no_price)["sui_amount"]
+    assert sui0 < 1e-6                                                          # над лесенкой — только USDC
+    t2 = t + 3 * D
+    for k in range(1, 20):                                                      # цена выше лесенки — ничего не делает
+        assert step(book, s, st(1.02, t=t2 + k * H), w, NOCOST) is None
+    assert book.ladder_t is not None and not book.rebalances and not book.crashes
+    assert step(book, s, st(0.80, t=t2 + 21 * H), w, NOCOST) is None             # падение −20% — без выхода в USDC
+    r = summary(book, st(0.80), no_price)
+    assert r["sui_amount"] > 0 and r["usdc_amount"] > 0 and not book.crashes     # лесенка купила SUI
+    step(book, s, st(0.55, t=t2 + 22 * H), w, NOCOST)                           # ниже лесенки — всё в SUI
+    assert summary(book, st(0.55), no_price)["usdc_amount"] < 1e-6 and not book.rebalances
+    ev = step(book, s, st(0.55, t=t2 + 26 * H), w, NOCOST)                      # 3+ часа ниже — обычный пул
+    assert ev[0] == "пересборка" and book.ladder_t is None and len(book.rebalances) == 1
+    lo, hi = book.range_usd
+    assert lo < 0.55 < hi
+    assert step(book, s, st(0.55, t=t2 + 27 * H), w, NOCOST) is None and not book.crashes   # падение уже отработано
+    b2 = init_book(s, pc, st(1.0, t=0.0), NOCOST)                                # срок лесенки
+    b2.ladder_t, b2.mode = 0.0, "lp"
+    open_position(b2, st(1.0, t=0.0), *s.ladder_range(1.0), *b2.holdings(st(1.0)), NOCOST)
+    assert decide(b2, s, st(1.02, t=29 * D), RallyWatch(None)) is None
+    assert decide(b2, s, st(1.02, t=30 * D), RallyWatch(None))[0] == "rebalance"
 
 
 if __name__ == "__main__":

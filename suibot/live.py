@@ -42,8 +42,8 @@ from datetime import datetime, timezone
 from lpscan.common import ROOT
 from sui_pools import SUI, USDC
 from suibot import charts, history, notify
-from suibot.book import (Book, accrue_growth, close_to_idle, decide, enter_up, exit_to_sui, exit_to_usdc, init_book,
-                         open_position, phase_text, rebalance, summary)
+from suibot.book import (Book, accrue_growth, close_to_idle, decide, enter_up, exit_to_sui, exit_to_usdc,
+                         init_book, open_position, phase_text, rebalance, summary)
 from suibot.chain import raw_to_usd, read_pools, state_from_price, token_price, usd_to_raw
 from suibot.clmm import amounts, snap_ticks, sqrt_of_tick
 from suibot.config import Config
@@ -408,6 +408,12 @@ class Live:
             if side == "up":
                 return (rule + "; на росте пул продаёт ваши SUI за USDC и сильно отстаёт от «держать SUI» (за 3 года "
                         "истории — в разы), поэтому в фазе роста бот держит всё в SUI: рост капитала как у SUI")
+            if s.bear_ladder:
+                return (rule + "; рост закончился — после роста SUI по истории падал на 25–90%, поэтому бот переводит "
+                        f"всё в USDC «лесенкой»: диапазон пула от −{s.ladder_top:.0%} до −{s.bear_ladder:.0%} ниже цены "
+                        "(bear_ladder / ladder_top) — по пути вниз пул покупает SUI и берёт комиссии; лесенка выкуплена "
+                        f"или ждёт дольше ladder_days = {s.ladder_days or 0:g} дн. — обычный пул; на 3 годах это дало "
+                        "в разы больше SUI, чем сразу пул вокруг цены")
             return (rule + "; рост закончился — бот снова в пуле: на падении и в боковике пул копит SUI комиссиями, "
                     f"а от обвала защищает выход в USDC ({rules_text(s.crash_exit) or 'выключен'})")
         return {
@@ -533,6 +539,9 @@ class Live:
                  f"{s.phase_confirm} закр. подряд" if s.phase_ma_days else "выключена",
                  "phase_ma_days / phase_up / phase_down / phase_confirm — дневные закрытия выше средней на phase_up: "
                  "фаза роста, всё в SUI; ниже на phase_down: снова пул; решение раз в сутки"),
+                ("Лесенка в конце роста", f"от −{s.ladder_top:.0%} до −{s.bear_ladder:.0%}, не дольше "
+                 f"{s.ladder_days or 0:g} дн." if s.bear_ladder else "выключена", "bear_ladder / ladder_top / ladder_days — "
+                 "на конце фазы роста всё в USDC диапазоном ниже цены: по пути вниз пул покупает SUI"),
                 ("Фильтр тренда", f"средняя за {s.trend_ma_days:g} дн." if s.trend_ma_days else "выключен",
                  "trend_ma_days — выход в SUI только выше средней, в USDC — только ниже: отскоки и провалы против "
                  "тренда бот пережидает в пуле"),
@@ -563,8 +572,11 @@ class Live:
         state = {"sui": "🚀 всё в SUI — ждёт отката, чтобы вернуться в пул",
                  "usdc": "🛡 всё в USDC — ждёт отскока, чтобы вернуться в пул",
                  "up": "📈 фаза роста — всё в SUI, пул ждёт конца роста"}.get(r["mode"]) or (
+            ("🪜 лесенка: всё в USDC, ждёт падения — SUI начнёт покупаться ниже ${:.4f}".format(hi) if p > hi else
+             "🪜 лесенка покупает SUI по пути вниз — комиссии идут" if p >= lo else
+             "🪜 лесенка выкуплена — скоро обычный пул") if b.ladder_t is not None and b.L else (
             "без позиции" if not b.L else "✅ в диапазоне — комиссии идут" if r["in_range_now"]
-            else "⚠️ вне диапазона — комиссии не идут")
+            else "⚠️ вне диапазона — комиссии не идут"))
         lines += ["", f"💲 SUI <b>${p:.4f}</b>", ("⏸ пауза · " if self.paused else "") + state]
         if b.mode == "lp" and b.L:
             lines += [f"<code>{lo:.4f} {bar(p, lo, hi)} {hi:.4f}</code>",
@@ -1113,6 +1125,7 @@ class Live:
             # а не будет менять монеты туда-обратно и не выйдет снова по старому максимуму/минимуму
             b.mode = "lp"
             (b.resumes.append(t) if kind == "resume" else b.phases.append([t, "down"]))
+            b.ladder_t = t if kind == "bear" and s.bear_ladder else None
             self.watch.reset()
             self.watch.add(t, p)
             self.save()
@@ -1126,15 +1139,20 @@ class Live:
                 self.save()
                 self.to_coin(st, "sui")
         elif kind in ("rebalance", "reopen", "resume", "bear"):
+            if kind == "rebalance" and b.ladder_t is not None:   # лесенка выкуплена или ждала слишком долго — обычный
+                b.ladder_t = None                         # пул; падение уже отработано — выходы считаются заново
+                self.watch.reset()
+                self.watch.add(t, p)
+            rng = s.ladder_range(p) if b.ladder_t is not None and s.bear_ladder else s.target_range(p)
             if self.dry:
                 if kind == "rebalance":
                     rebalance(b, st, s, costs)
                 else:
-                    open_position(b, st, *s.target_range(p), *b.holdings(st), costs)
+                    open_position(b, st, *rng, *b.holdings(st), costs)
             else:
                 if kind == "rebalance":
                     self.close_real(st)
-                self.open_real(st, *s.target_range(p))
+                self.open_real(st, *rng)
                 if kind == "rebalance":
                     b.rebalances.append(t)
         elif kind in ("exit", "crash"):
@@ -1151,6 +1169,7 @@ class Live:
         name = {"rebalance": "пересборка", "reopen": "позиция открыта заново", "resume": "возврат в пул",
                 "exit": "выход в SUI", "crash": "выход в USDC", "bull": "фаза роста", "bear": "конец фазы роста"}[kind]
         detail = (f"{why}; диапазон {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}" if kind in ("rebalance", "reopen", "resume")
+                  else f"{why}; всё в USDC лесенкой {lo:.4f}–{hi:.4f}: по пути вниз пул купит SUI" if kind == "bear" and b.ladder_t
                   else f"{why}; снова в пул, диапазон {lo:.4f}–{hi:.4f}" if kind == "bear"
                   else f"{why}; всё в SUI, пул ждёт конца роста" if kind == "bull" else why)
         self.out_noticed = False
@@ -1159,7 +1178,7 @@ class Live:
     def range_notice(self, st):
         """Сообщить, что цена вышла из диапазона (дольше range_notice_minutes) и что вернулась."""
         b = self.book
-        if not b or b.mode != "lp" or not b.L or self.paused:
+        if not b or b.mode != "lp" or not b.L or self.paused or b.ladder_t is not None:   # лесенка ждёт вне диапазона
             return
         lo, hi = b.range_usd
         p = st["sui"]
@@ -1545,7 +1564,7 @@ class Live:
                 if d and self.price_ok(st):
                     self.act(st, *d)
             now = time.time()
-            if not self.dry and self.lc.reinvest_days:
+            if not self.dry and self.lc.reinvest_days and b.ladder_t is None:
                 if self.last_reinvest is None:
                     self.last_reinvest = now                  # первое реинвестирование — через reinvest_days
                 elif now - self.last_reinvest >= self.lc.reinvest_days * 86400:

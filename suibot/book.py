@@ -59,6 +59,7 @@ class Book:
     perp_peak: float = 0.0          # максимум цены с открытия лонга (для скользящего стопа и повторного входа)
     perp_stopped: bool = False      # лонг закрыт стопом в этой фазе роста
     stops: list = field(default_factory=list)
+    ladder_t: float | None = None   # с какого времени стоит лесенка конца роста (None — обычный пул)
 
     def sqrt_bounds(self) -> tuple[float, float]:
         if not self.sa:
@@ -122,6 +123,7 @@ def rebalance(book: Book, st: dict, s: Strategy, costs: Costs) -> float:
     cost = open_position(book, st, *s.target_range(st["sui"]), a, b, costs)
     book.rebalances.append(st["t"])
     book.out_since = None
+    book.ladder_t = None
     return cost
 
 
@@ -203,6 +205,11 @@ def exit_to_usdc(book: Book, st: dict, costs: Costs) -> float:
     return cost
 
 
+def bear_range(s: Strategy, p: float) -> tuple[float, float]:
+    """Диапазон при конце фазы роста: лесенка только из USDC ниже цены или обычный пул вокруг цены."""
+    return s.ladder_range(p) if s.bear_ladder else s.target_range(p)
+
+
 def phase_text(watch, side: str) -> str:
     """Почему фаза такая: последнее дневное закрытие против средней, порог и сколько закрытий подряд за ним."""
     ph = watch.ph
@@ -228,6 +235,7 @@ def enter_up(book: Book, st: dict, costs: Costs, s: Strategy | None = None) -> f
     book.mode = "up"
     book.phases.append([st["t"], "up"])
     book.perp_stopped = False
+    book.ladder_t = None
     if s is not None and s.up_leverage > 1 and s.perp_leverage > 1:
         cost += open_perp(book, s, st, costs)
     return cost
@@ -341,6 +349,17 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
         return None
     if book.mode != "lp":
         return None
+    if book.ladder_t is not None:                  # лесенка конца роста: ждёт падения, выходов и пересборки нет
+        lo, _ = book.range_usd
+        if s.ladder_days and t - book.ladder_t >= s.ladder_days * 86400:
+            return "rebalance", f"лесенка ждала падения {s.ladder_days:g} дн. — дальше обычный пул"
+        if p < lo:
+            update_out(book, st)
+            if t - book.out_since >= s.out_minutes * 60:
+                return "rebalance", f"лесенка выкуплена (цена ниже ${lo:.4f}) — дальше обычный пул"
+        else:
+            book.out_since = None
+        return None
     trend = watch.trend(p) if s.trend_ma_days else None
     skip = None
     why = watch.triggered(p) if s.rally_exit else None
@@ -381,11 +400,14 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
     if kind == "bear":
         close_perp(book, st, costs)
         a, b = book.holdings(st)
-        cost = open_position(book, st, *s.target_range(p), a, b, costs)
+        cost = open_position(book, st, *bear_range(s, p), a, b, costs)
         book.phases.append([t, "down"])
+        book.ladder_t = t if s.bear_ladder else None
         watch.reset()
         lo, hi = book.range_usd
-        return "конец фазы роста", f"{why}: снова в пул, диапазон {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}"
+        what = (f"всё в USDC лесенкой {lo:.4f}–{hi:.4f}: по пути вниз пул купит SUI" if s.bear_ladder
+                else f"снова в пул, диапазон {lo:.4f}–{hi:.4f}")
+        return "конец фазы роста", f"{why}: {what}, издержки ${cost:.2f}"
     if kind == "resume":
         a, b = book.holdings(st)
         cost = open_position(book, st, *s.target_range(p), a, b, costs)
@@ -404,6 +426,9 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
         return "выход в USDC", (f"{why}: всё в USDC — ${usdc:,.0f}, издержки ${cost:.2f}"
                                 + ("" if s.resume_rise_pct is not None else ", бот больше не работает"))
     old = book.range_usd
+    if book.ladder_t is not None:                 # лесенка отработала падение — выходы считаются заново от этой цены
+        watch.reset()
+        watch.add(t, p)
     cost = rebalance(book, st, s, costs)
     lo, hi = book.range_usd
     return "пересборка", (f"{why}: {old[0]:.4f}–{old[1]:.4f} → {lo:.4f}–{hi:.4f}, издержки ${cost:.2f}, "

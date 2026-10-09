@@ -1021,6 +1021,50 @@ def test_paper_only_strategy_and_analysis():
         live.analysis_text = real
 
 
+def test_ladder_live():
+    """Боевой режим, конец роста с лесенкой: позиция только из USDC ниже цены, пока цена выше — ни пересборок, ни
+    сообщений «вне диапазона»; лесенка выкуплена и цена 3 ч ниже — обычный пул; в отчёте — строка лесенки."""
+    day = 86400.0
+
+    def warm(days, end):
+        return [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2) for i in range(120 * 24)]
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=100, usdc=60)
+        h = Harness(d, chain)
+        h.t = time.time() // day * day + 21.5 * 3600
+        live.history.trend_warmup = warm
+        extra = PHASE.replace('name = "тест фаза"', 'name = "тест лесенка"') + "bear_ladder = 0.40\nladder_top = 0.05\n"
+        h.bot = live.Live(config(Path(d), extra=extra, strategy="тест лесенка"))
+        h.tick(1.20)
+        bot, b = h.bot, h.bot.book
+        assert b.mode == "up"
+        for _ in range(3):
+            h.tick(0.70, dt=day)                                              # 2 закрытия ниже средней — конец роста
+        assert b.mode == "lp" and b.ladder_t is not None and bot.pos_id and len(chain.pos) == 1
+        lo, hi = b.range_usd
+        assert abs(lo - 0.42) < 0.01 and abs(hi - 0.665) < 0.01
+        L, tl, th = chain.pos[bot.pos_id]
+        a, sui = amounts(L, chain.st["sq"], sqrt_of_tick(tl), sqrt_of_tick(th))
+        assert sui == 0 and a > 0 and chain.w["usdc"] < 1e6                   # в позиции только USDC
+        assert any("Конец фазы роста" in x and "лесенкой" in x for x in h.sent)
+        assert "🪜 лесенка" in bot.report_card(chain.st) and "Лесенка в конце роста" in bot.settings_card()
+        pos = bot.pos_id
+        for _ in range(6):
+            h.tick(0.72, dt=3600)                                             # выше лесенки 6 ч — ничего не делает
+        assert bot.pos_id == pos and not b.rebalances and not any("вне диапазона" in x for x in h.sent)
+        h.tick(0.55, dt=3600)                                                 # лесенка покупает SUI
+        h.tick(0.38, dt=3600)                                                 # ниже лесенки
+        assert bot.pos_id == pos
+        for _ in range(4):
+            h.tick(0.38, dt=3600)
+        assert b.ladder_t is None and len(b.rebalances) == 1 and bot.pos_id != pos   # обычный пул вокруг цены
+        lo, hi = b.range_usd
+        assert lo < 0.38 < hi and len(chain.pos) == 1 and b.mode == "lp" and not b.crashes   # без выхода в USDC
+        h.tick(0.38, dt=3600)
+        assert b.mode == "lp" and not b.crashes                                # падение отработано лесенкой
+    live.history.trend_warmup = lambda days, end: []
+
+
 def test_trend_scales():
     """Картина рынка: падение 500 дней с максимума, дно, рост 60 дней — короткие масштабы растут, годовой ещё нет."""
     import threading

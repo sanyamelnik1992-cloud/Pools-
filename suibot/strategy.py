@@ -35,6 +35,11 @@ class Strategy:
     trend_ma_days: float | None = None # фильтр глобального тренда: выход в SUI — только если цена выше средней за
                                        # N дней, в USDC — только если ниже (отскоки и провалы против тренда
                                        # бот пережидает в пуле); не задано — выходы без фильтра
+    bear_ladder: float | None = None   # конец фазы роста: всё в USDC «лесенкой» — диапазон пула ниже цены до
+                                       # −bear_ladder; по пути вниз пул покупает SUI и берёт комиссии; не задано —
+                                       # обычный пул вокруг цены
+    ladder_top: float = 0.05           # лесенка начинается на столько ниже цены
+    ladder_days: float | None = 30     # лесенка ждёт падения не дольше N дней, потом обычный пул
     # только для «тени» и истории (боевой режим их не исполняет):
     stake_apy: float = 0.0             # стейкинг SUI в фазе роста: столько SUI в год к лежащим SUI бота
     up_leverage: float = 1.0           # в фазе роста держать SUI на столько × капитала: 1.5 — ещё полкапитала
@@ -49,6 +54,10 @@ class Strategy:
     def paper_only(self) -> list[str]:
         """Настройки, которые боевой режим пока не исполняет (только «тень» и история)."""
         return [n for n, on in (("stake_apy", self.stake_apy), ("up_leverage", self.up_leverage != 1.0)) if on]
+
+    def ladder_range(self, price: float) -> tuple[float, float]:
+        """Лесенка конца роста (только USDC): от −ladder_top до −bear_ladder от цены."""
+        return price * (1 - self.bear_ladder), price * (1 - self.ladder_top)
 
     def target_range(self, price: float, first: bool = False, scale: float = 1.0) -> tuple[float, float]:
         """Диапазон в $ за SUI. scale — пересчёт initial_range к другой стартовой цене (проверка на истории)."""

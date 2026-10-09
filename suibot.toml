@@ -16,7 +16,7 @@ slippage = 0.0005          # проскальзывание
 gas_sui = 0.02             # газ на одну пересборку (снять, обменять, добавить), SUI
 
 [live]                     # боевой режим: python3 bot.py live
-strategy = "фазы рынка: рост — SUI, иначе пул ±5%"   # какая стратегия из списка ниже ведётся на реальные деньги
+strategy = "фазы: рост — SUI, конец роста — лесенка USDC"   # какая стратегия из списка ниже ведётся на реальные деньги
 max_capital_usd = 200      # бот берёт из кошелька не больше этой суммы (SUI + USDC)
 gas_reserve_sui = 1.0      # столько SUI всегда остаётся в кошельке на газ
 slippage = 0.005           # допустимое проскальзывание обмена через агрегатор (0.5%)
@@ -76,7 +76,7 @@ a_is_sui = false
 
 
 [[strategy]]
-name = "фазы рынка: рост — SUI, иначе пул ±5%"   # основная: в фазе роста всё в SUI (растёт как SUI), в фазе
+name = "фазы: рост — SUI, конец роста — лесенка USDC"   # основная: в фазе роста всё в SUI, в фазе
 pool = "cetus_005"                               # падения и боковика — пул ±5% с выходами по тренду (копит SUI)
 capital_sui = 3370
 range_down = 0.05
@@ -91,6 +91,9 @@ phase_ma_days = 60                               # фаза: средняя за
 phase_up = 0.05                                  # 2 закрытия подряд выше средней на 5% — рост
 phase_down = 0.05                                # 2 закрытия подряд ниже средней на 5% — падение/боковик
 phase_confirm = 2
+bear_ladder = 0.40                               # конец роста: всё в USDC лесенкой от −5% до −40% ниже цены —
+ladder_top = 0.05                                # по пути вниз пул покупает SUI; выкуплена или ждёт дольше
+ladder_days = 30                                 # 30 дней — обычный пул ±5% (с 9.10.2026)
 
 # «Тень» (служба suibot-paper): те же правила на живых ценах без денег — кандидаты на замену боевой. Каждую
 # неделю их итог против реального бота — в /week, раз в месяц все они на всей истории — в /analysis.
@@ -110,6 +113,7 @@ crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
 trend_ma_days = 50
 phase_ma_days = 60
+bear_ladder = 0.40
 stake_apy = 0.014
 
 [[strategy]]
@@ -125,6 +129,7 @@ crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
 trend_ma_days = 50
 phase_ma_days = 60
+bear_ladder = 0.40
 stake_apy = 0.014
 up_leverage = 1.25
 perp_leverage = 3
@@ -145,6 +150,7 @@ crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
 trend_ma_days = 50
 phase_ma_days = 60
+bear_ladder = 0.40
 stake_apy = 0.014
 up_leverage = 1.5
 perp_leverage = 3
@@ -164,6 +170,7 @@ crash_exit = [[72, 0.15], [24, 0.10]]
 resume_rise_pct = 0.10
 trend_ma_days = 50
 phase_ma_days = 60
+bear_ladder = 0.40
 
 [[strategy]]
 name = "фазы, двойной выход, пул ±8%"    # то же с пулом ±8%: худший квартал −15% вместо −23%
@@ -178,10 +185,26 @@ crash_exit = [[72, 0.15], [24, 0.10]]
 resume_rise_pct = 0.10
 trend_ma_days = 50
 phase_ma_days = 60
+bear_ladder = 0.40
 
 [[strategy]]
 name = "фазы, пул 0.25%"                 # боевая стратегия в пуле 0.25%: если Cetus урежет награды в 0.05%, этот
 pool = "cetus_025"                       # пул может стать выгоднее — «тень» и проверка стратегий покажут это сами
+capital_sui = 3370
+range_down = 0.05
+range_up = 0.05
+out_minutes = 180
+rally_exit = [[72, 0.15]]
+resume_drop_pct = 0.10
+crash_exit = [[72, 0.15]]
+resume_rise_pct = 0.10
+trend_ma_days = 50
+phase_ma_days = 60
+bear_ladder = 0.40
+
+[[strategy]]
+name = "фазы без лесенки"                # боевая 8–9.10.2026: на конце роста сразу пул ±5% вокруг цены
+pool = "cetus_005"
 capital_sui = 3370
 range_down = 0.05
 range_up = 0.05
