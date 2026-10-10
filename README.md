@@ -1,5 +1,7 @@
 # LP-пулы Arbitrum и Base: доходность и риски
 
+> Полное описание бота для разбора и идей (логика, правила, проверки, слабые места): [docs/BOT_OVERVIEW.md](docs/BOT_OVERVIEW.md)
+
 Сбор и анализ данных по LP-пулам DeFi на Arbitrum и Base по данным [Krystal](https://defi.krystal.app/pools),
 с перекрёстной проверкой через DefiLlama, GeckoTerminal, DexScreener и RPC сетей. Blast добавлен для сравнения
 (Krystal его не поддерживает).
