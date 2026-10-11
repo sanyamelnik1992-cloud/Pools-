@@ -5,10 +5,10 @@
   "description": "Исполнитель транзакций бота на Cetus (Sui): статус, открытие и закрытие позиции, обмен через агрегатор",
   "dependencies": {
     "@cetusprotocol/aggregator-sdk": "1.7.3",
-    "@cetusprotocol/common-sdk": "*",
+    "@cetusprotocol/common-sdk": "1.4.3",
     "@cetusprotocol/sui-clmm-sdk": "1.4.9",
     "@mysten/sui": "2.31.2",
-    "blakejs": "*",
-    "bn.js": "^5.2.1"
+    "blakejs": "1.2.1",
+    "bn.js": "5.2.5"
   }
 }

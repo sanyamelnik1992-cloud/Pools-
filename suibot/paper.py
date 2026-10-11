@@ -53,16 +53,21 @@ class Paper:
         self.watch_state = st.get("watch", {})
         self.watches: dict[str, RallyWatch] = {}
         self.warm_try: dict[str, float] = {}
+        self.warm_day: dict[str, int] = {}
+        self.recent: dict[str, list] = {}
 
     def watch(self, s) -> RallyWatch:
         """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск)."""
         if s.name not in self.watches:
             self.watches[s.name] = watch_for(s, self.watch_state.get(s.name), min_step=60)
         w = self.watches[s.name]
-        if w.need_warm() and time.time() - self.warm_try.get(s.name, 0) > 3600:
-            self.warm_try[s.name] = time.time()       # средняя тренда и фаза: предыстория с Binance, при сбое — раз в час
-            try:
+        day = int(time.time() // 86400)
+        daily = w.ph is not None and self.warm_day.get(s.name) != day and time.time() % 86400 >= 3600
+        if (w.need_warm() or daily) and time.time() - self.warm_try.get(s.name, 0) > (600 if daily else 3600):
+            self.warm_try[s.name] = time.time()       # средняя тренда и фаза: предыстория с Binance, при сбое — раз в час;
+            try:                                      # раз в день — закрытия дня для фазы с Binance, как в бою
                 w.warm(history.trend_warmup(w.warm_days(), time.time()))
+                self.warm_day[s.name] = day
             except Exception as e:  # noqa: BLE001 — без предыстории фильтр и фаза ждут, пока накопится своя
                 log(f"[{s.name}] нет предыстории для средней тренда и фазы: {e}")
         return w
@@ -92,6 +97,12 @@ class Paper:
                 if k in self.prev and st["t"] - self.prev[k]["t"] > 5 * cfg.poll_seconds}
         for k, dt in gaps.items():
             log(f"пул {k}: перерыв {dt / 60:.0f} мин — начисление за это время приблизительное")
+        flash = {}
+        for k, st in snap.items():                    # вспышка (цена за 5 минут больше чем на 10%) — без решений, как в бою
+            rec = [x for x in self.recent.get(k, []) if st["t"] - x[0] <= 900]
+            old = [p for t, p in rec if 240 <= st["t"] - t <= 600]
+            flash[k] = bool(old) and abs(st["sui"] / old[-1] - 1) > 0.10
+            self.recent[k] = rec + [(st["t"], st["sui"])]
         for s in cfg.strategies:
             st = snap[s.pool]
 
@@ -112,7 +123,7 @@ class Paper:
                 if s.pool in gaps:
                     book.gap_s += gaps[s.pool]
                 accrue_growth(book, prev, st, price_of)
-            ev = step(book, s, st, self.watch(s), cfg.costs)
+            ev = None if flash.get(s.pool) else step(book, s, st, self.watch(s), cfg.costs)
             if ev:
                 self.event(st["t"], s.name, ev[0], st["sui"], ev[1])
             summ = summary(book, st, price_of)

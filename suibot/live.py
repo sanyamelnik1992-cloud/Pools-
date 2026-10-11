@@ -30,6 +30,7 @@ import threading
 from html import escape as esc
 import math
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -59,6 +60,12 @@ except ImportError:            # Windows
 
 GAS_BUFFER_SUI = 0.05      # при открытии позиции столько своих SUI бот оставляет на газ
 RETRY_MINUTES = (2, 6, 18)  # повторы после ошибки; следующая ошибка подряд — пауза до /resume
+URGENT = ("crash", "exit", "bull", "bear")         # выходы и смены фазы: ждать нельзя
+URGENT_RETRY_MINUTES = (1, 1, 1, 2, 2, 3, 5, 5)    # их повторы — чаще и дольше, прежде чем пауза
+PRICE_WAIT_URGENT_MIN = 10  # выход ждёт сходства цены пула с Binance не дольше стольких минут
+PAUSE_ALERT_MINUTES = 60    # напоминать о паузе после ошибок (позиция без присмотра) раз в столько минут
+FLASH_PCT = 0.10            # цена за 5 минут сдвинулась больше чем на столько — вспышка: выход ждёт успокоения
+                            # (10.10.2025 SUI за 5 минут упал с $2.75 до $0.99 и через 15 минут вернулся к $2)
 SYNC_MINUTES = 30          # плановая сверка с кошельком
 COMMANDS = ("status", "pause", "resume", "sui", "usdc", "close", "events", "week", "alert", "strategy", "model",
             "trend", "analysis", "settings", "help")
@@ -84,7 +91,7 @@ ICONS = {"открыта": "✅", "позиция найдена": "🔎", "по
          "ошибка": "❌", "мало SUI на газ": "⛽", "награды обменяны": "🎁", "обмен наград не удался": "🎁",
          "бот был выключен": "💤", "реинвестирование": "♻️", "цена пула расходится с биржей": "🚧",
          "отставание от «держать SUI»": "📉", "связь восстановлена": "📡", "переход в другой пул": "🔀",
-         "выход в SUI пропущен": "🧭", "выход в USDC пропущен": "🧭", "фаза роста": "📈", "конец фазы роста": "📉"}
+         "выход в SUI пропущен": "🧭", "выход в USDC пропущен": "🧭", "вспышка цены": "⚡", "фаза роста": "📈", "конец фазы роста": "📉"}
 BINANCE_PRICE = "https://data-api.binance.vision/api/v3/ticker/price"
 
 
@@ -331,6 +338,13 @@ class Live:
         self.lag_hist = st.get("lag_hist", [])             # [время, SUI к «держать SUI»] на каждое утро
         self.price_warned = False
         self.net_down_since = None
+        self.price_bad_since = None                       # с какого момента цена пула расходится с Binance
+        self.urgent = None                                # срочное действие (выход, смена фазы), которое не удалось
+        self.last_pause_alert = 0.0
+        self.warm_day = None                              # день, за который закрытия уже сверены с Binance
+        self.confirm = None                               # (команда, время) — ждёт подтверждения из Telegram
+        self.recent = []                                  # цены за последние 15 минут — для защиты от вспышек
+        self.flash_noted = False
         self.last_ping = 0.0
         self.last_snap_t = st.get("last_snap_t", 0.0)
         self.last_strategy_check = st.get("last_strategy_check")
@@ -458,6 +472,9 @@ class Live:
                                 f"меньше reinvest_min_usd = ${lc.reinvest_min_usd:g} не добавляется — копится",
             "обмен наград не удался": f"попробует снова через reinvest_days = {lc.reinvest_days:g} дн.; "
                                       "на позицию это не влияет",
+            "вспышка цены": f"за 5 минут цена сдвинулась больше чем на {FLASH_PCT:.0%}: такие вспышки (10.10.2025 SUI "
+                            "упал с $2.75 до $0.99 и через 15 минут вернулся к $2) проходят за минуты, а выход по "
+                            "такой цене продал бы на самом дне; бот ждёт, пока цена успокоится, и решает заново",
             "цена пула расходится с биржей": f"разница больше price_check_pct = {lc.price_check_pct:.0%}: это может быть "
                                              "короткий выброс в пуле или сбой узла; действовать по такой цене опасно, "
                                              "поэтому бот ждёт, пока цены сойдутся, и проверяет каждые 30 с",
@@ -893,14 +910,24 @@ class Live:
         self.need_sync, self.last_sync = False, st["t"]
         self.save()
 
-    def price_ok(self, st) -> bool:
-        """Цена пула не расходится с Binance больше чем на price_check_pct. Биржа недоступна — не мешаем."""
+    def price_ok(self, st, urgent: bool = False) -> bool:
+        """Цена пула не расходится с Binance больше чем на price_check_pct. Биржа недоступна — не мешаем.
+        Срочное действие (выход, смена фазы) ждёт сходства не дольше PRICE_WAIT_URGENT_MIN минут: в обвал
+        расхождение и бывает, а бесконечное ожидание оставит позицию без защиты."""
         ex = exchange_price()
         if ex is None or not self.lc.price_check_pct:
             return True
         dev = st["sui"] / ex - 1
         if abs(dev) <= self.lc.price_check_pct:
             self.price_warned = False
+            self.price_bad_since = None
+            return True
+        self.price_bad_since = self.price_bad_since or time.time()
+        if urgent and time.time() - self.price_bad_since >= PRICE_WAIT_URGENT_MIN * 60:
+            self.event(st["t"], "цена пула расходится с биржей", st["sui"], f"пул ${st['sui']:.4f}, Binance ${ex:.4f} "
+                       f"({pct(dev)}) уже {PRICE_WAIT_URGENT_MIN} мин; выход больше не ждёт — действую по цене пула",
+                       why=self.why("цена пула расходится с биржей"))
+            self.price_bad_since = None
             return True
         if not self.price_warned:
             self.price_warned = True
@@ -988,13 +1015,14 @@ class Live:
     def read_commands(self) -> list[str]:
         cmds, self.tg_offset = notify.commands(self.tg_offset)
         ctl = self.dir / "control.txt"
-        if ctl.exists():
-            cmds += [x.strip().lower() for x in ctl.read_text().splitlines() if x.strip()]
+        if ctl.exists():                                 # с самого сервера — без подтверждения («!»)
+            cmds += ["!" + x.strip().lower() for x in ctl.read_text().splitlines() if x.strip()]
             ctl.unlink()
         return cmds
 
     def command(self, c: str, st):
-        c, _, arg = c.partition(" ")
+        trusted = c.startswith("!")
+        c, _, arg = c.lstrip("!").partition(" ")
         if c == "events":
             notify.send(self.events_card(), html=True)
         elif c == "alert":
@@ -1038,7 +1066,12 @@ class Live:
             self.event(st["t"], "продолжение", st["sui"], f"по команде; {note}")
         elif not self.book:
             notify.send("ℹ️ Позиция ещё не открыта")
+        elif not trusted and not (self.confirm and self.confirm[0] == c and time.time() - self.confirm[1] <= 120):
+            self.confirm = (c, time.time())               # снять позицию из Telegram — только с подтверждением
+            notify.send(f"⚠️ /{c} — {MENU[c]}, и бот встанет на паузу. Подтвердите: отправьте /{c} ещё раз в течение "
+                        "2 минут")
         else:
+            self.confirm = None
             self.manual, self.paused = c, True         # выполнится в step и будет доведено до конца при сбое
 
     def events_card(self, n: int = 8) -> str:
@@ -1493,6 +1526,10 @@ class Live:
         else:
             threading.Thread(target=work, daemon=True).start()
 
+    def error_paused(self) -> bool:
+        """Пауза после ошибок подряд (не по команде): бот ждёт /resume."""
+        return self.paused and self.errors > len(RETRY_MINUTES)
+
     def ping(self):
         """Отметка «жив» для healthchecks.io раз в healthcheck_minutes (адрес — HEALTHCHECK_URL в .env или файл
         healthcheck_url.txt в папке состояния). Нет отметок — сервис сам пишет вам, что бот не работает."""
@@ -1538,7 +1575,7 @@ class Live:
                 self.watch.add(st["t"], st["sui"])
             self.errors, self.retry_at = 0, None
             return
-        if self.paused and self.errors > len(RETRY_MINUTES):   # пауза после ошибок — ждём /resume
+        if self.error_paused():                                # пауза после ошибок — ждём /resume
             return
         b = self.book
         if not self.dry and (self.need_sync or self.pending or st["t"] - self.last_sync > SYNC_MINUTES * 60):
@@ -1554,14 +1591,18 @@ class Live:
                     self.act(st, "resume", "по команде")
             elif b.mode == "lp" and not self.pos_id and not self.dry:   # позиция не открылась или пропала
                 d = self.skipped(st, decide(b, self.s, st, self.watch))
-                if self.price_ok(st):
+                if d and d[0] in URGENT:
+                    self.urgent = d[0]
+                if self.price_ok(st, bool(d and d[0] in URGENT)):
                     if d and d[0] in ("exit", "crash", "bull"):
                         self.act(st, *d)
                     else:
                         self.act(st, "reopen", "позиции нет")
             else:
                 d = self.skipped(st, decide(b, self.s, st, self.watch))
-                if d and self.price_ok(st):
+                if d and d[0] in URGENT:
+                    self.urgent = d[0]
+                if d and self.price_ok(st, d[0] in URGENT):
                     self.act(st, *d)
             now = time.time()
             if not self.dry and self.lc.reinvest_days and b.ladder_t is None:
@@ -1569,7 +1610,13 @@ class Live:
                     self.last_reinvest = now                  # первое реинвестирование — через reinvest_days
                 elif now - self.last_reinvest >= self.lc.reinvest_days * 86400:
                     self.reinvest(st)
-        self.errors, self.retry_at = 0, None
+        self.errors, self.retry_at, self.urgent = 0, None, None
+
+    def flash(self, st) -> bool:
+        """Вспышка: цена отличается от цены 4–10 минут назад больше чем на FLASH_PCT. По таким ценам выход не
+        исполняется (на проверке истории — так же): бот ждёт, пока цена успокоится, и решает заново."""
+        old = [p for t, p in self.recent if 240 <= st["t"] - t <= 600]
+        return bool(old) and abs(st["sui"] / old[-1] - 1) > FLASH_PCT
 
     def skipped(self, st, d):
         """Выход, пропущенный фильтром тренда: сообщить один раз (пока сигнал держится) и ничего не делать."""
@@ -1585,12 +1632,17 @@ class Live:
 
     def trend_warm(self):
         """Предыстория средней тренда и фазы рынка с Binance (часовые цены): при запуске и, пока не получилось,
-        раз в час."""
-        if not self.watch.need_warm() or time.time() - self.trend_try < 3600:
+        раз в час. И каждый новый день: закрытия для фазы — с Binance, как в проверке на истории (цена пула —
+        только запасной вариант, если Binance недоступен)."""
+        day = int(time.time() // 86400)
+        need = self.watch.need_warm()
+        daily = self.watch.ph is not None and self.warm_day != day
+        if not (need or daily) or time.time() - self.trend_try < (600 if daily else 3600):
             return
         self.trend_try = time.time()
         try:
             self.watch.warm(history.trend_warmup(self.watch.warm_days(), time.time()))
+            self.warm_day = day
         except Exception as e:  # noqa: BLE001 — без предыстории фильтр и фаза ждут, пока накопится своя история
             log(f"нет предыстории для средней тренда и фазы: {e}")
 
@@ -1617,9 +1669,10 @@ class Live:
     def failed(self, st, e: Exception):
         self.need_sync = not self.dry
         text = str(e) or type(e).__name__
+        delays = URGENT_RETRY_MINUTES if self.urgent else RETRY_MINUTES   # выход повторяется чаще и дольше
         if isinstance(e, ReadError):                    # нет связи: повторять без паузы, сообщить один раз
-            self.errors = min(self.errors + 1, len(RETRY_MINUTES))
-            m = RETRY_MINUTES[self.errors - 1]
+            self.errors = min(self.errors + 1, len(delays))
+            m = delays[self.errors - 1]
             self.retry_at = st["t"] + m * 60
             if self.errors == 1:
                 self.event(st["t"], "нет связи", st["sui"], f"{text}; повтор через {m} мин", why=self.why("нет связи"))
@@ -1629,8 +1682,8 @@ class Live:
         self.errors += 1
         if not isinstance(e, (ExecError, subprocess.TimeoutExpired)):
             log(traceback.format_exc())
-        if self.errors <= len(RETRY_MINUTES):
-            m = RETRY_MINUTES[self.errors - 1]
+        if self.errors <= len(delays):
+            m = delays[self.errors - 1]
             self.retry_at = st["t"] + m * 60
             self.event(st["t"], "ошибка", st["sui"], f"{text}; бот сверится с кошельком и повторит через {m} мин",
                        why=self.why("ошибка"))
@@ -1645,6 +1698,19 @@ class Live:
         try:
             if self.book and self.prev and st["t"] > self.prev["t"] and self.book.L:
                 accrue_growth(self.book, self.prev, st, self.price_of(st))
+            flash = self.flash(st)
+            self.recent = [x for x in self.recent if st["t"] - x[0] <= 900] + [(st["t"], st["sui"])]
+            if flash:                                  # вспышка: цена не идёт ни в правила, ни в решения
+                if not self.flash_noted:
+                    self.flash_noted = True
+                    self.event(st["t"], "вспышка цены", st["sui"], f"SUI ${st['sui']:.4f}: за 5 минут больше чем на "
+                               f"{FLASH_PCT:.0%}; бот ничего не делает, пока цена не успокоится",
+                               why=self.why("вспышка цены"))
+                for c in self.read_commands():
+                    self.command(c, st)
+                self.check_alerts(st)
+                return
+            self.flash_noted = False
             self.watch.add(st["t"], st["sui"])
             self.trend_warm()                          # после цены: пропущенное закрытие дня видно сразу
             if self.down_since:
@@ -1685,7 +1751,14 @@ class Live:
                 except Exception:  # noqa: BLE001
                     log(traceback.format_exc())
             self.last_tick_t = now
-            self.ping()
+            if self.error_paused():
+                if now - self.last_pause_alert >= PAUSE_ALERT_MINUTES * 60:
+                    self.last_pause_alert = now
+                    notify.send("⏸ <b>Бот на паузе после ошибок</b>\nпозиция без присмотра: выходов, пересборок и смены "
+                                "фазы нет; отметки «жив» не отправляются. Посмотрите /events, затем /resume — "
+                                f"напоминание каждые {PAUSE_ALERT_MINUTES} мин", html=True)
+            elif not self.errors:
+                self.ping()                               # «жив» — только когда бот работает без ошибок
             try:
                 self.snapshot(st)
                 if text and "Утренний" in text and datetime.now().weekday() == 0:   # понедельник — недельный отчёт
@@ -1721,6 +1794,12 @@ class Live:
             ctl.unlink()
         log(f"боевой режим [{self.label}]: «{self.s.name}», до ${self.lc.max_capital_usd:,.0f}, опрос каждые "
             f"{self.cfg.poll_seconds} с; команды — Telegram или python3 bot.py control <команда>")
+        def stop(_sig, _frame):
+            raise KeyboardInterrupt                       # перезапуск службы (SIGTERM) — как Ctrl+C: сохранить и сообщить
+        try:
+            signal.signal(signal.SIGTERM, stop)
+        except ValueError:                                # не главный поток (проверки) — без обработчика
+            pass
         notify.set_menu(MENU)
         notify.send(f"🟢 <b>Бот запущен</b>" + (" · 🧪 симуляция" if self.dry else " · реальные деньги")
                     + f"\nстратегия «{esc(self.s.name)}», лимит ${self.lc.max_capital_usd:,.0f}"

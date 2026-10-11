@@ -3,6 +3,7 @@
 #   ./server.sh status    отчёт бота и состояние службы      ./server.sh logs [N]   последние N строк журнала
 #   ./server.sh restart   перезапуск                          ./server.sh stop       остановка (позиция остаётся в пуле)
 #   ./server.sh start     запуск                              ./server.sh check      самопроверка (.env, Telegram, кошелёк)
+#   ./server.sh backup    копия состояния и журналов бота с сервера в data/private/server-backup/<дата> (ключа там нет)
 set -euo pipefail
 cd "$(dirname "$0")"
 HOST=${SUIBOT_HOST:-$(cat .server 2>/dev/null || true)}
@@ -13,5 +14,7 @@ case "${1:-status}" in
   logs)    ssh "$HOST" "journalctl -u suibot --no-pager -o cat -n ${2:-40}" ;;
   restart|stop|start) ssh "$HOST" "systemctl $1 suibot; sleep 3; systemctl is-active suibot || true" ;;
   check)   ssh "$HOST" "$RUN check" ;;
-  *) sed -n '2,5p' "$0"; exit 1 ;;
+  backup)  d="data/private/server-backup/$(date +%Y-%m-%d)"; mkdir -p "$d"
+           rsync -az "$HOST":/home/suibot/Pools-/data/private/bot/ "$d/" && echo "копия: $d" ;;
+  *) sed -n '2,6p' "$0"; exit 1 ;;
 esac

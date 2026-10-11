@@ -103,9 +103,24 @@ def run(job):
     sh = off * 3600                                  # сдвиг времени = другой час «закрытия дня»
     warm = [(T[j] - sh, P[j]) for j in range(j0, i0) if int(T[j]) % 3600 == 0]
     ev = []
+    curve = [] if (yk == "равн." and cm == 1.0 and i1 == len(T)) else None   # просадки — по окну до сейчас
     r = simulate(dataclasses.replace(s, capital_sui=CAP / P[i0]), D["pc"], [t - sh for t in T[i0:i1]], P[i0:i1],
-                 D["Y"][yk][i0:i1], costs, D["sp"], warm=warm, events=ev)
-    return (s.name, *job[1:]), (r["value"] / (CAP / P[i0] * P[i1 - 1]) - 1, [(t + sh, k, p) for t, k, p in ev])
+                 D["Y"][yk][i0:i1], costs, D["sp"], warm=warm, events=ev, curve=curve)
+    return (s.name, *job[1:]), (r["value"] / (CAP / P[i0] * P[i1 - 1]) - 1, [(t + sh, k, p) for t, k, p in ev],
+                                drawdowns(curve) if curve else None)
+
+
+def drawdowns(curve) -> dict:
+    """Максимальная просадка в $ и доля времени глубже −50% от прежнего максимума — у бота и у «держать SUI»."""
+    out = {}
+    for key, col in (("bot", 1), ("hold", 2)):
+        peak, worst, deep = curve[0][col], 0.0, 0
+        for c in curve:
+            peak = max(peak, c[col])
+            worst = min(worst, c[col] / peak - 1)
+            deep += c[col] < peak * 0.5
+        out[key] = (worst, deep / len(curve))
+    return out
 
 
 def compute(strategies, offsets=(0,), workers: int | None = None) -> dict:
@@ -127,6 +142,7 @@ def stats(res, s, off=0) -> dict:
     up = [v for v, ch in q if ch >= 1.2]
     other = [v for v, ch in q if ch < 1.2]
     return dict(g, med=res[(s.name, a, b, "мед.", 1.0, off)][0], x3=res[(s.name, a, b, "равн.", 3.0, off)][0],
+                dd=res[(s.name, a, b, "равн.", 1.0, off)][2],
                 up=stt.mean(up), up_min=min(up), other=stt.mean(other), other_min=min(other),
                 liq=sum(1 for _, e, _ in res[(s.name, a, b, "равн.", 1.0, off)][1] if e == "ликвидация"))
 
@@ -162,7 +178,11 @@ def table(strategies, offsets=(0,), workers: int | None = None):
             print(f"  3 года {g('3 года'):+.0%}/{g('3 года', 'мед.'):+.0%} (изд.×3 {g('3 года', cm=3.0):+.0%}) | "
                   + " | ".join(f"{n} {g(n):+.0%}" for n, _, _ in named[1:]))
             print(f"  кварталы роста цены ≥ +20% ({len(up)}): в среднем {stt.mean(up):+.0%}, худший {min(up):+.0%}; "
-                  f"остальные ({len(other)}): в среднем {stt.mean(other):+.0%}, худший {min(other):+.0%}")
+                  f"остальные ({len(other)}): в среднем {stt.mean(other):+.0%}, худший {min(other):+.0%}", flush=True)
+            dd = res[(s.name, named[0][1], named[0][2], "равн.", 1.0, off)][2]
+            if dd:
+                print(f"  макс. просадка в $ за 3 года: бот {dd['bot'][0]:+.0%}, держать SUI {dd['hold'][0]:+.0%}; время глубже "
+                      f"−50% от прежнего максимума: бот {dd['bot'][1]:.0%}, держать SUI {dd['hold'][1]:.0%}", flush=True)
         print()
     return res, named
 
@@ -208,13 +228,16 @@ def brief(cfg: Config, workers: int | None = None) -> str:
                          f"${P[-1]:.4f}, средняя {ph.days} дн. ${ph.ma():.4f}; смена — при {ph.confirm} закрытиях "
                          + (f"ниже ≈${lo:.4f}" if ph.current() == "up" else f"выше ≈${hi:.4f}"))
     lines.append("")
-    lines.append("3 года (изд.×3) | бычьи рывки | медвежий год | кварталы роста:")
+    lines.append("3 года (изд.×3) | бычьи рывки | медвежий год | кварталы роста | макс. просадка $:")
     for s in sorted(own, key=lambda x: -st[x.name]["3 года"]):
         x = st[s.name]
         tag = " ← боевая" if s.name == live.name else " (только «тень»)" if s.paper_only() else ""
         lines.append(f"{'▸' if s.name == live.name else '·'} {s.name}{tag}: {x['3 года']:+.0%} ({x['x3']:+.0%}) | "
                      f"{x['бычий 1']:+.0%}/{x['бычий 2']:+.0%} | {x['медвежий год']:+.0%} | {x['up']:+.0%}"
+                     + (f" | {x['dd']['bot'][0]:+.0%}" if x.get("dd") else "")
                      + (f" | ликвидаций {x['liq']}" if x["liq"] else ""))
+    if L.get("dd"):
+        lines.append(f"(для сравнения «держать SUI»: макс. просадка в $ {L['dd']['hold'][0]:+.0%})")
     nv = [st[s.name]["3 года"] for s in near]
     if nv:
         lines += ["", f"Соседние настройки боевой ({len(nv)}): от {min(nv):+.0%} до {max(nv):+.0%} за 3 года; "

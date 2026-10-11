@@ -437,6 +437,33 @@ def test_ladder_after_growth():
     assert decide(b2, s, st(1.02, t=30 * D), RallyWatch(None))[0] == "rebalance"
 
 
+def test_strategy_fields_live_or_shadow():
+    """Каждая настройка стратегии либо исполняется боевым ботом, либо помечена «только для тени» — тогда боевой
+    бот с ней не запустится (иначе модель и бой разошлись бы молча)."""
+    import dataclasses
+    live_ok = {"name", "pool", "capital_sui", "range_down", "range_up", "initial_range", "rebalance", "out_minutes",
+               "cooldown_minutes", "max_per_day", "rally_exit", "resume_drop_pct", "crash_exit", "resume_rise_pct",
+               "phase_ma_days", "phase_up", "phase_down", "phase_confirm", "phase_kind", "trend_ma_days",
+               "bear_ladder", "ladder_top", "ladder_days"}
+    shadow = {"stake_apy": 0.01, "up_leverage": 1.5, "stop_vs_split_pct": 10.0}
+    tied = {"perp_leverage", "funding_apy", "perp_stop", "perp_trail", "perp_reenter"}   # действуют только с плечом
+    names = {f.name for f in dataclasses.fields(Strategy)}
+    assert names == live_ok | set(shadow) | tied, names ^ (live_ok | set(shadow) | tied)
+    for k, v in shadow.items():
+        assert Strategy("t", "p", 1, **{k: v}).paper_only() == [k]
+
+
+def test_phase_prefers_binance_closes():
+    """Закрытие дня по цене пула заменяется закрытием Binance, когда оно есть (как в проверке на истории)."""
+    D, H = 86400.0, 23 * 3600.0
+    ph = Phase(5, 0.05, 0.05)
+    for d in range(7):
+        ph.feed(d * D + H, 1.0 + (0.5 if d == 5 else 0))                  # выброс цены пула в конце дня 5
+    assert dict(ph.closes)[5] == 1.5
+    ph.warm([(h * 3600.0, 1.0) for h in range(24 * 7)])
+    assert dict(ph.closes)[5] == 1.0 and ph.cur[0] == 6
+
+
 if __name__ == "__main__":
     tests = [(n, f) for n, f in globals().items() if n.startswith("test_")]
     for n, f in tests:

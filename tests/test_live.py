@@ -1065,6 +1065,85 @@ def test_ladder_live():
     live.history.trend_warmup = lambda days, end: []
 
 
+def test_urgent_exit_safety():
+    """Выход при обвале: сбои повторяются через минуту и дольше не встают на паузу; расхождение с Binance держит выход
+    не дольше 10 минут; на паузе после ошибок — без отметок «жив» и с напоминаниями; из Telegram /close — только с
+    подтверждением."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        pings = []
+        h.bot.ping = lambda: pings.append(1)
+        h.tick(1.20)
+        assert pings                                                      # работает без ошибок — «жив»
+        chain.fail.add("close")
+        h.tick(1.00)                                                      # −17% за 72 ч: выход в USDC, но сбой
+        bot = h.bot
+        assert bot.urgent == "crash" and bot.errors == 1 and bot.retry_at - h.t <= 60 and not bot.paused
+        for _ in range(4):
+            h.tick(1.00, dt=60)
+        assert bot.errors >= 4 and not bot.paused                         # обычное действие уже было бы на паузе
+        n = len(pings)
+        for _ in range(10):
+            h.tick(1.00, dt=600)
+        assert bot.paused and bot.error_paused() and len(pings) == n      # пауза после ошибок — «жив» не шлётся
+        assert any("Бот на паузе после ошибок" in x for x in h.sent)
+        k = sum("Бот на паузе после ошибок" in x for x in h.sent)
+        bot.last_pause_alert -= 3601
+        h.tick(1.00, dt=60)
+        assert sum("Бот на паузе после ошибок" in x for x in h.sent) == k + 1   # напоминание раз в час
+        chain.fail.clear()
+        h.cmd("resume")
+        h.tick(1.00)
+        assert not bot.paused and bot.book.mode == "usdc" and not chain.pos and bot.urgent is None
+    with tempfile.TemporaryDirectory() as d:                               # расхождение с Binance на обвале
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        live.exchange_price = lambda: 1.20                                 # биржа «не видит» падения
+        h.tick(1.00)
+        assert h.bot.book.mode == "lp" and chain.pos and h.bot.price_bad_since
+        h.bot.price_bad_since -= 601                                       # расхождение держится 10 мин
+        h.tick(1.00, dt=60)
+        assert h.bot.book.mode == "usdc" and not chain.pos
+        assert any("выход больше не ждёт" in x for x in h.sent)
+        live.exchange_price = lambda: None
+    with tempfile.TemporaryDirectory() as d:                               # /close из Telegram — с подтверждением
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        inbox = [["close"]]
+        notify.commands = lambda offset: (inbox.pop() if inbox else [], offset)
+        h.tick(1.20, dt=60)
+        assert chain.pos and not h.bot.manual and any("Подтвердите" in x for x in h.sent)
+        inbox.append(["close"])
+        h.tick(1.20, dt=60)
+        assert not chain.pos and h.bot.paused and h.bot.book.mode == "hold"
+        notify.commands = lambda offset: ([], offset)
+
+
+def test_flash_does_not_trigger_exit():
+    """Вспышка (цена за минуты −60% и обратно) не продаёт на дне: выход ждёт, пока цена 4+ минуты без скачков;
+    настоящее падение выходит через несколько минут."""
+    with tempfile.TemporaryDirectory() as d:
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        for _ in range(10):
+            h.tick(1.20, dt=60)
+        h.tick(0.45, dt=60)                                                # вспышка: −62% за минуту
+        b = h.bot.book
+        assert b.mode == "lp" and chain.pos and any("Вспышка цены" in x for x in h.sent)
+        h.tick(1.18, dt=60)                                                # вернулась — выхода нет
+        assert b.mode == "lp" and not b.crashes
+        for _ in range(3):
+            h.tick(1.00, dt=60)                                            # настоящее падение −17%: пока ждёт
+        assert b.mode == "lp"
+        for _ in range(3):
+            h.tick(1.00, dt=60)                                            # цена 4+ минуты спокойна — выход
+        assert b.mode == "usdc" and not chain.pos and len(b.crashes) == 1
+
+
 def test_trend_scales():
     """Картина рынка: падение 500 дней с максимума, дно, рост 60 дней — короткие масштабы растут, годовой ещё нет."""
     import threading

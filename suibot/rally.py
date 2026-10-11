@@ -91,8 +91,9 @@ class Phase:
             self._close(d, p)
 
     def warm(self, samples: list):
-        """Предыстория (часовые цены): последнее значение каждого дня — его закрытие; последний день выборки
-        считается незакрытым. Свои закрытия бота важнее; дни, когда бот не работал, берутся из выборки."""
+        """Предыстория (часовые цены Binance): последнее значение каждого дня — его закрытие; последний день выборки
+        считается незакрытым. Закрытия Binance заменяют закрытия по цене пула (решения — как в проверке на истории),
+        свои закрытия остаются только за дни, которых нет в выборке."""
         if not samples:
             return
         days = {}
@@ -100,8 +101,8 @@ class Phase:
             days[int(t // 86400)] = p
         last = max(days)
         open_day = self.cur[0] if self.cur and self.cur[0] > last else last     # дни раньше него закрыты
-        merged = {d: p for d, p in days.items() if d < open_day}
-        merged.update(dict(self.closes))
+        merged = dict(self.closes)                       # закрытия Binance важнее цены пула: как в проверке на истории
+        merged.update({d: p for d, p in days.items() if d < open_day})
         self.closes = deque(sorted(merged.items()))
         self.recompute()
         if self.cur is None or self.cur[0] < last:

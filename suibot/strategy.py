@@ -53,7 +53,8 @@ class Strategy:
 
     def paper_only(self) -> list[str]:
         """Настройки, которые боевой режим пока не исполняет (только «тень» и история)."""
-        return [n for n, on in (("stake_apy", self.stake_apy), ("up_leverage", self.up_leverage != 1.0)) if on]
+        return [n for n, on in (("stake_apy", self.stake_apy), ("up_leverage", self.up_leverage != 1.0),
+                                ("stop_vs_split_pct", self.stop_vs_split_pct is not None)) if on]
 
     def ladder_range(self, price: float) -> tuple[float, float]:
         """Лесенка конца роста (только USDC): от −ladder_top до −bear_ladder от цены."""
