@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Выкладка бота на сервер: проверки на Mac → копирование кода → npm ci (если менялись пакеты) → проверки на
-# сервере → версия в git на сервере (/root/pools-git, без .env и состояния) → перезапуск «тени» (suibot-paper);
-# только если она поднялась без ошибок — перезапуск боевого бота (suibot).
+# сервере → перезапуск «тени» (suibot-paper); только если она поднялась без ошибок — перезапуск боевого бота
+# (suibot) и версия в git на сервере (/root/pools-git, без .env и состояния) → GitHub.
 # Не трогает на сервере: .env (ключ), data/private (состояние и журнал), node_modules.
 # Адрес сервера — в файле .server (не в git), например: suibot (имя из ~/.ssh/config).
 #   ./deploy.sh "что изменилось"              выложить, записать версию и перезапустить
@@ -50,6 +50,24 @@ fi
 cd "$DIR"
 sudo -u suibot python3 tests/test_suibot.py | tail -1
 sudo -u suibot env PATH=/opt/node/bin:/usr/bin:/bin python3 tests/test_live.py 2>/dev/null | tail -1
+if [ "$RESTART" = 1 ] && systemctl is-enabled --quiet suibot 2>/dev/null; then
+  if systemctl is-enabled --quiet suibot-paper 2>/dev/null; then   # сначала «тень»: новый код без денег
+    systemctl restart suibot-paper
+    sleep 45                                                       # первый опрос — после предыстории с Binance
+    LOG=$(journalctl -u suibot-paper --since "-60s" -o cat 2>/dev/null || true)
+    if [ "$(systemctl is-active suibot-paper)" != active ] || grep -q Traceback <<<"$LOG"; then
+      echo "❌ «тень» на новом коде упала — боевой бот НЕ перезапущен (в памяти у него прежняя версия Python; файлы"
+      echo "   в папке и исполнитель executor уже новые — при следующем перезапуске он возьмёт их). Исправьте и"
+      echo "   выложите снова; версия в git не записана. Журнал «тени»:"
+      journalctl -u suibot-paper -n 20 --no-pager -o cat
+      exit 1
+    fi
+    echo "служба suibot-paper: active"
+  fi
+  systemctl restart suibot
+  sleep 8
+  echo "служба suibot: $(systemctl is-active suibot)"
+fi
 if [ -d /root/pools-git/.git ]; then                   # версия кода — в git (секреты и состояние не попадают)
   rsync -rlpt --delete --exclude '.git/' --include '.env.example' --exclude '.env' --exclude '.env.*' \
     --exclude 'data/private/' --exclude 'data/.cache/' --exclude 'executor/node_modules/' \
@@ -67,21 +85,6 @@ if [ -d /root/pools-git/.git ]; then                   # версия кода �
   else
     echo "⚠️ GitHub: отправить не удалось (версия сохранена на сервере, отправится со следующей выкладкой)"
   fi
-fi
-if [ "$RESTART" = 1 ] && systemctl is-enabled --quiet suibot 2>/dev/null; then
-  if systemctl is-enabled --quiet suibot-paper 2>/dev/null; then   # сначала «тень»: новый код без денег
-    systemctl restart suibot-paper
-    sleep 20
-    if [ "$(systemctl is-active suibot-paper)" != active ] || journalctl -u suibot-paper --since "-40s" -o cat | grep -q Traceback; then
-      echo "❌ «тень» на новом коде упала — боевой бот НЕ перезапущен, работает прежняя версия:"
-      journalctl -u suibot-paper -n 20 --no-pager -o cat
-      exit 1
-    fi
-    echo "служба suibot-paper: active"
-  fi
-  systemctl restart suibot
-  sleep 8
-  echo "служба suibot: $(systemctl is-active suibot)"
 fi
 REMOTE
 echo "✅ готово"

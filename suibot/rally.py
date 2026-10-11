@@ -90,23 +90,28 @@ class Phase:
         for d, p in closes:
             self._close(d, p)
 
-    def warm(self, samples: list):
-        """Предыстория (часовые цены Binance): последнее значение каждого дня — его закрытие; последний день выборки
-        считается незакрытым. Закрытия Binance заменяют закрытия по цене пула (решения — как в проверке на истории),
-        свои закрытия остаются только за дни, которых нет в выборке."""
+    def warm(self, samples: list) -> int | None:
+        """Предыстория (часовые цены Binance): последнее значение каждого дня — его закрытие. Закрытия Binance
+        заменяют закрытия по цене пула (решения — как в проверке на истории), свои закрытия остаются только за дни,
+        которых нет в выборке. Последний день выборки закрыт, только если в ней есть его последний час и бот уже
+        видит следующий день. Возвращает последний день, закрытый по Binance (None — ни одного)."""
         if not samples:
-            return
+            return None
         days = {}
         for t, p in samples:
             days[int(t // 86400)] = p
         last = max(days)
+        end = max(t for t, _ in samples)
+        full = last if end % 86400 >= 86400 - 3600 else last - 1             # выборка дошла до последнего часа дня
         open_day = self.cur[0] if self.cur and self.cur[0] > last else last     # дни раньше него закрыты
+        done = min(full, open_day - 1)
         merged = dict(self.closes)                       # закрытия Binance важнее цены пула: как в проверке на истории
-        merged.update({d: p for d, p in days.items() if d < open_day})
+        merged.update({d: p for d, p in days.items() if d <= done})
         self.closes = deque(sorted(merged.items()))
         self.recompute()
         if self.cur is None or self.cur[0] < last:
-            self.cur = (last, days[last], max(t for t, _ in samples))
+            self.cur = (last, days[last], end)
+        return done if done in days else None
 
     def gap(self) -> bool:
         """Нет закрытия вчерашнего дня (бот не работал в конце дня) — нужна предыстория."""
@@ -169,11 +174,11 @@ class RallyWatch:
         for t, p in older + mine:
             self.feed_trend(t, p)
 
-    def warm(self, samples: list):
-        """Предыстория (часовые цены Binance) для средней тренда и для фазы рынка."""
-        if self.ph:
-            self.ph.warm(samples)
+    def warm(self, samples: list) -> int | None:
+        """Предыстория (часовые цены Binance) для средней тренда и для фазы рынка; для фазы — последний день,
+        закрытый по Binance (Phase.warm)."""
         self.warm_trend(samples)
+        return self.ph.warm(samples) if self.ph else None
 
     def need_warm(self) -> bool:
         """Нужна предыстория: средней тренда или фазы ещё нет, или пропущено закрытие дня."""
@@ -248,3 +253,42 @@ def watch_for(s, state=None, min_step: float = 0.0) -> RallyWatch:
              if getattr(s, "phase_ma_days", None) else None)
     return RallyWatch(s.rally_exit, state, min_step=min_step, drop_rules=s.crash_exit, trend_days=s.trend_ma_days,
                       phase=phase)
+
+
+FLASH_PCT = 0.10          # цена ушла от обычной за 4–10 минут больше чем на столько — вспышка
+FLASH_HOLD_S = 15 * 60    # дольше вспышки не бывают (10.10.2025 — 20–30 мин вместе с откатом): дальше — настоящее движение
+FLASH_QUIET_S = 3600      # после такого движения вспышки час не ищутся: в обвале бот должен действовать
+
+
+class Flash:
+    """Защита от вспышек цены (бой, «тень», проверка на истории — одинаково). Цена ушла больше чем на FLASH_PCT от
+    медианы цен 4–10 минут назад — по ней не решают; одна ошибочная цена медиану не сдвигает. Отсчёт от цены до
+    вспышки держится не дольше FLASH_HOLD_S, затем FLASH_QUIET_S вспышки не ищутся — затяжной обвал не блокирует
+    выходы."""
+
+    def __init__(self, state: dict | None = None):
+        st = state or {}
+        self.recent = [tuple(x) for x in st.get("recent") or []]    # (время, цена) за последние 15 минут
+        self.since = st.get("since")                                # начало вспышки
+        self.ref = st.get("ref")                                    # цена до неё
+
+    def check(self, t: float, p: float) -> bool:
+        """True — цена p в момент t — вспышка: решения по ней не принимать."""
+        self.recent = [x for x in self.recent if 0 <= t - x[0] <= 900] + [(t, p)]
+        if self.since is not None:
+            if t - self.since <= FLASH_HOLD_S:
+                return abs(p / self.ref - 1) > FLASH_PCT
+            if t - self.since <= FLASH_QUIET_S:
+                return False
+            self.since = self.ref = None
+        old = sorted(q for s, q in self.recent if 240 <= t - s <= 600)
+        if not old:
+            return False
+        ref = old[len(old) // 2]
+        if abs(p / ref - 1) > FLASH_PCT:
+            self.since, self.ref = t, ref
+            return True
+        return False
+
+    def dump(self) -> dict:
+        return {"recent": [list(x) for x in self.recent], "since": self.since, "ref": self.ref}

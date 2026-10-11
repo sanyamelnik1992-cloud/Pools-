@@ -460,8 +460,42 @@ def test_phase_prefers_binance_closes():
     for d in range(7):
         ph.feed(d * D + H, 1.0 + (0.5 if d == 5 else 0))                  # выброс цены пула в конце дня 5
     assert dict(ph.closes)[5] == 1.5
-    ph.warm([(h * 3600.0, 1.0) for h in range(24 * 7)])
+    assert ph.warm([(h * 3600.0, 1.0) for h in range(24 * 7)]) == 5
     assert dict(ph.closes)[5] == 1.0 and ph.cur[0] == 6
+    ph = Phase(5, 0.05, 0.05)                                               # Binance отстаёт: дня 5 нет до 23:00
+    for d in range(7):
+        ph.feed(d * D + H, 1.0 + (0.5 if d == 5 else 0))
+    assert ph.warm([(h * 3600.0, 1.0) for h in range(24 * 5 + 20)]) == 4
+    assert dict(ph.closes)[5] == 1.5                                        # своё закрытие не заменено неполным днём
+    ph = Phase(5, 0.05, 0.05)                                               # бот ещё не видел нового дня (сеть
+    for d in range(6):                                                      # отстаёт) — вчерашний день открыт
+        ph.feed(d * D + H, 1.0)
+    assert ph.warm([(h * 3600.0, 1.0) for h in range(24 * 6)]) == 4
+
+
+def test_flash_guard():
+    """Вспышка: больше 10% от медианы цен 4–10 мин назад — одна ошибочная цена её не сдвигает; отсчёт от цены до
+    вспышки не дольше 15 мин, затем час без вспышек — затяжной обвал не блокирует решения."""
+    from suibot.rally import Flash
+    f = Flash()
+    for i in range(11):
+        assert not f.check(i * 60.0, 1.0)
+    assert f.check(660.0, 0.5) and f.since == 660.0                        # вспышка
+    assert not f.check(720.0, 1.0)                                         # вернулась
+    for i in range(13, 30):
+        assert not f.check(i * 60.0, 1.0)                                  # ошибочная цена в окне — медиана 1.0
+    f = Flash(f.dump())                                                    # переживает перезапуск
+    assert f.since == 660.0 and f.recent
+    f, p, held = Flash(), 1.0, []
+    for i in range(11):
+        f.check(i * 60.0, 1.0)
+    for i in range(11, 80):                                                # −3.5% в минуту больше часа
+        p *= 0.965
+        held.append(f.check(i * 60.0, p))
+    assert 10 <= sum(held[:20]) <= 16 and not any(held[18:60])             # держит не дольше 15 мин, затем час — нет
+    times = [0.0, 3600.0, 7200.0]                                          # часовые свечи: окна 4–10 мин нет
+    f = Flash()
+    assert not any(f.check(t, p) for t, p in zip(times, (1.0, 0.5, 1.0)))
 
 
 if __name__ == "__main__":

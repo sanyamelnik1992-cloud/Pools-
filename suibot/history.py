@@ -18,13 +18,15 @@ BINANCE = "https://data-api.binance.vision/api/v3/klines"
 INTERVALS = {1: "1m", 5: "5m", 15: "15m", 30: "30m", 60: "1h", 1440: "1d"}
 
 
-def binance_candles(start: float, end: float, minutes: int = 5) -> list[tuple[float, float, float]]:
+def binance_candles(start: float, end: float, minutes: int = 5, retries: int = 5,
+                    timeout: float = 60) -> list[tuple[float, float, float]]:
     """Свечи SUIUSDT: начало свечи (с), цена закрытия, объём в USDT."""
     out, t, step = [], int(start * 1000), minutes * 60_000
     while t < end * 1000:
         closed = t / 1000 + 1000 * minutes * 60 < time.time() - 86400   # закрытые куски кэшируем надолго
         rows = get_json(BINANCE, params={"symbol": "SUIUSDT", "interval": INTERVALS[minutes], "startTime": t,
-                                         "limit": 1000}, cache_ttl=30 * 86400 if closed else 600, min_interval=0.2)
+                                         "limit": 1000}, cache_ttl=30 * 86400 if closed else 600, min_interval=0.2,
+                        retries=retries, timeout=timeout)
         if not rows:
             break
         out += [(r[0] / 1000, float(r[4]), float(r[7])) for r in rows]
@@ -32,9 +34,12 @@ def binance_candles(start: float, end: float, minutes: int = 5) -> list[tuple[fl
     return [c for c in out if c[0] <= end]
 
 
-def trend_warmup(days: float, end: float) -> list[tuple[float, float]]:
-    """Часовые цены SUIUSDT за days (+1) дней до end — предыстория для средней фильтра тренда."""
-    return [(c[0], c[1]) for c in binance_candles(end - (days + 1) * 86400, end - 3600, 60)]
+def trend_warmup(days: float, end: float, retries: int = 5, timeout: float = 60) -> list[tuple[float, float]]:
+    """Часовые цены SUIUSDT за days (+1) дней до end — предыстория для средней фильтра тренда и фазы (только
+    закрытые часы). Начало — по целому часу: старые куски берутся из кэша. Бою — короткие retries и timeout:
+    недоступный Binance не должен надолго задерживать опрос пула."""
+    start = (end - (days + 1) * 86400) // 3600 * 3600
+    return [(c[0], c[1]) for c in binance_candles(start, end - 3600, 60, retries, timeout)]
 
 
 def daily_closes(days: int) -> list[tuple[float, float]]:

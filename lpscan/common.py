@@ -106,7 +106,7 @@ def _throttle(host: str, min_interval: float):
 
 
 def get_json(url: str, params: dict | None = None, headers: dict | None = None,
-             cache_ttl: float = 6 * 3600, min_interval: float = 0.15, retries: int = 5):
+             cache_ttl: float = 6 * 3600, min_interval: float = 0.15, retries: int = 5, timeout: float = 60):
     """GET с ретраями (экспоненциальная пауза), троттлингом по хосту и файловым кэшем."""
     key = hashlib.sha1(json.dumps([url, params], sort_keys=True).encode()).hexdigest()
     cpath = CACHE / f"{key}.json"
@@ -117,7 +117,7 @@ def get_json(url: str, params: dict | None = None, headers: dict | None = None,
     for attempt in range(retries):
         _throttle(host, min_interval)
         try:
-            r = _session.get(url, params=params, headers=headers, timeout=60)
+            r = _session.get(url, params=params, headers=headers, timeout=timeout)
             if r.status_code == 429 or r.status_code >= 500:
                 last_err = f"HTTP {r.status_code}"
                 time.sleep(2 ** attempt * (3 if "gecko" in host else 1))

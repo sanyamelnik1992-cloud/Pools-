@@ -15,10 +15,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from suibot import history, notify, report
-from suibot.book import Book, accrue_growth, check_stop, init_book, step, summary
+from suibot.book import Book, accrue_growth, carry, check_stop, init_book, step, summary
 from suibot.chain import read_pools, token_price
 from suibot.config import Config
-from suibot.rally import RallyWatch, watch_for
+from suibot.rally import Flash, RallyWatch, watch_for
 
 
 def log(*a):
@@ -54,20 +54,26 @@ class Paper:
         self.watches: dict[str, RallyWatch] = {}
         self.warm_try: dict[str, float] = {}
         self.warm_day: dict[str, int] = {}
-        self.recent: dict[str, list] = {}
+        self.flashes: dict[str, Flash] = {}
 
-    def watch(self, s) -> RallyWatch:
-        """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск)."""
+    def watch(self, s, st: dict | None = None) -> RallyWatch:
+        """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск). С ценой st — сначала
+        цена (закрытие дня), потом предыстория с Binance: при запуске и, пока не получилось, раз в час; каждый новый
+        день сети — закрытие вчерашнего дня для фазы с Binance, как в бою (пока его нет — раз в 10 мин)."""
         if s.name not in self.watches:
             self.watches[s.name] = watch_for(s, self.watch_state.get(s.name), min_step=60)
         w = self.watches[s.name]
-        day = int(time.time() // 86400)
-        daily = w.ph is not None and self.warm_day.get(s.name) != day and time.time() % 86400 >= 3600
+        if st is None:
+            return w
+        w.add(st["t"], st["sui"])
+        day = int(st["t"] // 86400)
+        daily = w.ph is not None and self.warm_day.get(s.name) != day
         if (w.need_warm() or daily) and time.time() - self.warm_try.get(s.name, 0) > (600 if daily else 3600):
-            self.warm_try[s.name] = time.time()       # средняя тренда и фаза: предыстория с Binance, при сбое — раз в час;
-            try:                                      # раз в день — закрытия дня для фазы с Binance, как в бою
-                w.warm(history.trend_warmup(w.warm_days(), time.time()))
-                self.warm_day[s.name] = day
+            self.warm_try[s.name] = time.time()
+            try:
+                done = w.warm(history.trend_warmup(w.warm_days(), time.time(), retries=2, timeout=10))
+                if done is not None and done >= day - 1:
+                    self.warm_day[s.name] = day
             except Exception as e:  # noqa: BLE001 — без предыстории фильтр и фаза ждут, пока накопится своя
                 log(f"[{s.name}] нет предыстории для средней тренда и фазы: {e}")
         return w
@@ -98,11 +104,8 @@ class Paper:
         for k, dt in gaps.items():
             log(f"пул {k}: перерыв {dt / 60:.0f} мин — начисление за это время приблизительное")
         flash = {}
-        for k, st in snap.items():                    # вспышка (цена за 5 минут больше чем на 10%) — без решений, как в бою
-            rec = [x for x in self.recent.get(k, []) if st["t"] - x[0] <= 900]
-            old = [p for t, p in rec if 240 <= st["t"] - t <= 600]
-            flash[k] = bool(old) and abs(st["sui"] / old[-1] - 1) > 0.10
-            self.recent[k] = rec + [(st["t"], st["sui"])]
+        for k, st in snap.items():                    # вспышка (rally.Flash) — без решений, как в бою и на истории
+            flash[k] = self.flashes.setdefault(k, Flash()).check(st["t"], st["sui"])
         for s in cfg.strategies:
             st = snap[s.pool]
 
@@ -112,7 +115,7 @@ class Paper:
             book = self.books.get(s.name)
             if book is None:
                 book = self.books[s.name] = init_book(s, cfg.pools[s.pool], st, cfg.costs)
-                self.watch(s).add(st["t"], st["sui"])
+                self.watch(s, st)
                 lo, hi = book.range_usd
                 self.event(st["t"], s.name, "открыта", st["sui"],
                            f"{s.capital_sui:,.0f} SUI, диапазон {lo:.4f}–{hi:.4f}, SUI ${st['sui']:.4f}, "
@@ -123,7 +126,10 @@ class Paper:
                 if s.pool in gaps:
                     book.gap_s += gaps[s.pool]
                 accrue_growth(book, prev, st, price_of)
-            ev = None if flash.get(s.pool) else step(book, s, st, self.watch(s), cfg.costs)
+            if flash.get(s.pool):                     # фьючерс и стоп-лосс считаются и на вспышке
+                ev = carry(book, s, st, cfg.costs)
+            else:
+                ev = step(book, s, st, self.watch(s, st), cfg.costs)
             if ev:
                 self.event(st["t"], s.name, ev[0], st["sui"], ev[1])
             summ = summary(book, st, price_of)

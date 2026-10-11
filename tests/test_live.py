@@ -209,7 +209,7 @@ class Harness:
         notify.commands = lambda offset: ([], offset)
         live.exchange_price = lambda: None                                        # без Binance: сверка не мешает
         live.history.load = lambda *a, **k: ([], {})                              # без сети: история пустая
-        live.history.trend_warmup = lambda days, end: []                          # без сети: предыстории нет
+        live.history.trend_warmup = lambda days, end, **_: []                          # без сети: предыстории нет
         live.history.daily_closes = lambda days: []                               # без сети: дневных цен нет
         self.bot = live.Live(config(self.d, dry))
 
@@ -833,7 +833,7 @@ def test_trend_filter_live():
         with tempfile.TemporaryDirectory() as d:
             chain = FakeChain(sui=170, usdc=0)
             h = Harness(d, chain)
-            live.history.trend_warmup = lambda days, end, lv=level: [(end - (60 * 24 - i) * 3600, lv)
+            live.history.trend_warmup = lambda days, end, lv=level, **_: [(end - (60 * 24 - i) * 3600, lv)
                                                                     for i in range(60 * 24)]
             h.bot = live.Live(config(Path(d), extra=TREND, strategy="тест тренд"))
             h.t = 1.79e9                                                    # время как в сети (для предыстории)
@@ -847,7 +847,7 @@ def test_trend_filter_live():
             assert len(skipped) == (1 - exits) and (not skipped or "почему" in skipped[0])
             card = h.bot.report_card(h.chain.st)
             assert "тренд 50 дн." in card
-    live.history.trend_warmup = lambda days, end: []
+    live.history.trend_warmup = lambda days, end, **_: []
 
 
 def test_switch_to_trend_strategy_keeps_position():
@@ -861,12 +861,12 @@ def test_switch_to_trend_strategy_keeps_position():
         h.tick(1.20)
         txs = lambda: [c for c in chain.pools if c[0] != "status"]           # noqa: E731 — только транзакции
         pos, calls = h.bot.pos_id, len(txs())
-        live.history.trend_warmup = lambda days, end: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
+        live.history.trend_warmup = lambda days, end, **_: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
         h.bot = live.Live(config(Path(d), extra=TREND, strategy="тест тренд"))
         h.tick(1.20)
         assert h.bot.pos_id == pos and len(txs()) == calls and h.bot.watch.trend_ma() is not None
         assert h.bot.book.start and not h.bot.paused
-    live.history.trend_warmup = lambda days, end: []
+    live.history.trend_warmup = lambda days, end, **_: []
 
 
 PHASE = """
@@ -892,7 +892,7 @@ def test_phase_live():
     перезапуск; в отчёте — строка фазы, в сообщениях — «почему»."""
     day = 86400.0
 
-    def warm(days, end):                                  # 100 дней по $0.8, затем 20 дней по $1.2 — фаза роста
+    def warm(days, end, **_):                                  # 100 дней по $0.8, затем 20 дней по $1.2 — фаза роста
         return [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2) for i in range(120 * 24)]
     with tempfile.TemporaryDirectory() as d:
         chain = FakeChain(sui=100, usdc=60)
@@ -945,7 +945,7 @@ def test_phase_live():
         for _ in range(3):
             h.tick(0.70, dt=day)
         assert h.bot.book.mode == "lp" and h.bot.book.L > 0
-    live.history.trend_warmup = lambda days, end: []
+    live.history.trend_warmup = lambda days, end, **_: []
 
 
 def test_switch_running_bot_to_phase_strategy():
@@ -955,12 +955,12 @@ def test_switch_running_bot_to_phase_strategy():
         chain = FakeChain(sui=170, usdc=0)
         h = Harness(d, chain)
         h.t = time.time() - 3600
-        live.history.trend_warmup = lambda days, end: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
+        live.history.trend_warmup = lambda days, end, **_: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
         h.bot = live.Live(config(Path(d), extra=TREND + PHASE, strategy="тест тренд"))
         h.tick(1.20)
         assert h.bot.pos_id and chain.pos and h.bot.book.mode == "lp"
         n = len([c for c in chain.pools if c[0] != "status"])
-        live.history.trend_warmup = lambda days, end: [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2)
+        live.history.trend_warmup = lambda days, end, **_: [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2)
                                                        for i in range(120 * 24)]
         h.bot = live.Live(config(Path(d), extra=TREND + PHASE, strategy="тест фаза"))
         h.tick(1.20, dt=600)
@@ -983,7 +983,7 @@ def test_switch_running_bot_to_phase_strategy():
         h.bot.started -= 4 * 3600                                          # предыстории нет 3+ часа — старт без фазы
         h.tick(1.20)
         assert h.bot.book and h.bot.pos_id
-    live.history.trend_warmup = lambda days, end: []
+    live.history.trend_warmup = lambda days, end, **_: []
 
 
 def test_paper_only_strategy_and_analysis():
@@ -1026,7 +1026,7 @@ def test_ladder_live():
     сообщений «вне диапазона»; лесенка выкуплена и цена 3 ч ниже — обычный пул; в отчёте — строка лесенки."""
     day = 86400.0
 
-    def warm(days, end):
+    def warm(days, end, **_):
         return [(end - (120 * 24 - i) * 3600, 0.8 if i < 100 * 24 else 1.2) for i in range(120 * 24)]
     with tempfile.TemporaryDirectory() as d:
         chain = FakeChain(sui=100, usdc=60)
@@ -1062,13 +1062,66 @@ def test_ladder_live():
         assert lo < 0.38 < hi and len(chain.pos) == 1 and b.mode == "lp" and not b.crashes   # без выхода в USDC
         h.tick(0.38, dt=3600)
         assert b.mode == "lp" and not b.crashes                                # падение отработано лесенкой
-    live.history.trend_warmup = lambda days, end: []
+    live.history.trend_warmup = lambda days, end, **_: []
+
+
+def test_phase_waits_for_binance_close():
+    """Новый день сети: закрытие вчерашнего дня — с Binance (цена пула в конце дня — не в счёт, если Binance
+    говорит другое); Binance недоступен — смена фазы ждёт его до 3 ч UTC, потом — по цене пула."""
+    day = 86400.0
+    for case in ("binance_differs", "binance_down", "binance_late"):
+        with tempfile.TemporaryDirectory() as d:
+            chain = FakeChain(sui=100, usdc=60)
+            h = Harness(d, chain)
+            d0 = time.time() // day * day
+            h.t = d0 + 21.5 * 3600                                         # первый опрос — 22:30 UTC
+            truth = {}                                                    # день → цена Binance (иначе — по графику)
+            down = [False]
+
+            def price(t):
+                k = int(t // day)
+                return truth.get(k, 0.8 if k < d0 / day - 20 else 1.2)
+
+            def warm(days, end, **_):
+                if down[0]:
+                    raise RuntimeError("binance недоступен")
+                last = int((h.t - 3600) // 3600) * 3600
+                return [(t, price(t)) for t in range(int(last - 130 * day), last + 1, 3600)]
+            live.history.trend_warmup = warm
+            h.bot = live.Live(config(Path(d), extra=PHASE, strategy="тест фаза"))
+            h.tick(1.20)
+            bot, b = h.bot, h.bot.book
+            assert b.mode == "up"
+            truth[int(d0 / day)] = 0.70
+            h.tick(0.70, dt=3600)                                         # 23:30: закрытие дня 0 — 0.70 (первое)
+            truth[int(d0 / day) + 1] = 0.70 if case != "binance_differs" else 1.20
+            h.tick(0.70, dt=day)                                          # 23:30 следующего дня: пул — 0.70
+            assert b.mode == "up"
+            down[0] = case != "binance_differs"
+            bot.trend_try = 0.0
+            h.tick(0.70, dt=35 * 60)                                      # 00:05: день закрыт
+            if case == "binance_differs":                                 # Binance: 1.20 — фаза не меняется
+                assert b.mode == "up" and bot.watch.phase() == "up" and bot.warm_day == int(h.t // day)
+                continue
+            assert bot.watch.phase() == "down" and b.mode == "up"          # по цене пула — ждёт Binance
+            if case == "binance_late":
+                down[0] = False
+                bot.trend_try = 0.0
+                h.tick(0.70, dt=600)                                      # 00:15: Binance ответил — подтвердил
+                assert b.mode == "lp" and chain.pos
+                continue
+            h.tick(0.70, dt=3600)
+            assert b.mode == "up"                                         # 01:05 — ещё ждёт
+            h.tick(0.70, dt=2 * 3600)                                     # 03:05 — по цене пула
+            assert b.mode == "lp" and chain.pos and b.phases[-1][1] == "down"
+    live.history.trend_warmup = lambda days, end, **_: []
 
 
 def test_urgent_exit_safety():
-    """Выход при обвале: сбои повторяются через минуту и дольше не встают на паузу; расхождение с Binance держит выход
-    не дольше 10 минут; на паузе после ошибок — без отметок «жив» и с напоминаниями; из Telegram /close — только с
-    подтверждением."""
+    """Выход при обвале: сбои повторяются через минуту, затем раз в 10 мин, на паузу не встают (без отметок «жив»,
+    с напоминанием раз в час); ручная команда выполняется и во время повторов, и на паузе после ошибок;
+    расхождение с Binance держит выход не дольше 10 минут (отсчёт — у этого решения); из Telegram /close — только
+    с подтверждением."""
     with tempfile.TemporaryDirectory() as d:
         chain = FakeChain(sui=170, usdc=0)
         h = Harness(d, chain)
@@ -1083,36 +1136,78 @@ def test_urgent_exit_safety():
         for _ in range(4):
             h.tick(1.00, dt=60)
         assert bot.errors >= 4 and not bot.paused                         # обычное действие уже было бы на паузе
-        n = len(pings)
-        for _ in range(10):
-            h.tick(1.00, dt=600)
-        assert bot.paused and bot.error_paused() and len(pings) == n      # пауза после ошибок — «жив» не шлётся
-        assert any("Бот на паузе после ошибок" in x for x in h.sent)
-        k = sum("Бот на паузе после ошибок" in x for x in h.sent)
+        n, calls = len(pings), len(chain.calls)
+        for _ in range(30):
+            h.tick(1.00, dt=300)
+        assert not bot.paused and not bot.error_paused() and bot.stuck() and len(pings) == n
+        tries = sum(c[0] == "close" for c in chain.calls[calls:])
+        assert 12 <= tries <= 20                                          # раз в 10 мин, не на каждом опросе
+        assert sum("выход не удаётся" in x for x in h.sent) == 1          # одно сообщение, дальше — напоминания
+        k = sum("Выход не удаётся" in x for x in h.sent)
         bot.last_pause_alert -= 3601
         h.tick(1.00, dt=60)
-        assert sum("Бот на паузе после ошибок" in x for x in h.sent) == k + 1   # напоминание раз в час
+        assert sum("Выход не удаётся" in x for x in h.sent) == k + 1       # напоминание раз в час
         chain.fail.clear()
-        h.cmd("resume")
+        h.tick(1.00, dt=600)
+        assert bot.book.mode == "usdc" and not chain.pos and bot.urgent is None and bot.errors == 0
+    with tempfile.TemporaryDirectory() as d:                               # команда во время повторов выхода
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        chain.fail.add("swap")                                            # позиция снимается, обмен в USDC — нет
         h.tick(1.00)
-        assert not bot.paused and bot.book.mode == "usdc" and not chain.pos and bot.urgent is None
+        for _ in range(6):
+            h.tick(1.00, dt=120)
+        assert h.bot.errors >= 4 and h.bot.urgent
+        chain.fail.clear()
+        h.cmd("close")
+        h.tick(1.00, dt=30)
+        assert not chain.pos and h.bot.paused and not h.bot.manual and h.bot.book.mode == "hold"
+    with tempfile.TemporaryDirectory() as d:                               # пауза после ошибок: команда — выполняется
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        pings = []
+        h.bot.ping = lambda: pings.append(1)
+        h.tick(1.20)
+        chain.abort.add("swap")
+        h.cmd("usdc")
+        for _ in range(5):
+            h.tick(1.20, dt=1800)
+        bot = h.bot
+        assert bot.error_paused() and not bot.manual                      # команда не выполнена — отправить снова
+        assert any("команда /usdc не выполнена" in x for x in h.sent)
+        n, k = len(pings), sum("Бот на паузе после ошибок" in x for x in h.sent)
+        bot.last_pause_alert -= 3601
+        h.tick(1.20, dt=60)
+        assert sum("Бот на паузе после ошибок" in x for x in h.sent) == k + 1 and len(pings) == n
+        chain.abort.clear()
+        h.cmd("usdc")
+        h.tick(1.20, dt=30)
+        assert not bot.error_paused() and bot.paused and chain.w["usdc"] > 190e6 and bot.book.mode == "hold"
     with tempfile.TemporaryDirectory() as d:                               # расхождение с Binance на обвале
         chain = FakeChain(sui=170, usdc=0)
         h = Harness(d, chain)
         h.tick(1.20)
+        h.bot.price_bad_since, h.bot.price_bad_last = time.time() - 7200, time.time() - 3600   # старое расхождение
         live.exchange_price = lambda: 1.20                                 # биржа «не видит» падения
         h.tick(1.00)
-        assert h.bot.book.mode == "lp" and chain.pos and h.bot.price_bad_since
+        assert h.bot.book.mode == "lp" and chain.pos and time.time() - h.bot.price_bad_since < 60   # отсчёт заново
         h.bot.price_bad_since -= 601                                       # расхождение держится 10 мин
+        chain.fail.add("close")
+        h.tick(1.00, dt=60)
+        assert h.bot.errors == 1 and h.bot.urgent == "crash"
+        h.tick(1.00, dt=60)                                                # повтор — без нового ожидания
+        assert h.bot.errors == 2
+        chain.fail.clear()
         h.tick(1.00, dt=60)
         assert h.bot.book.mode == "usdc" and not chain.pos
-        assert any("выход больше не ждёт" in x for x in h.sent)
+        assert sum("выход больше не ждёт" in x for x in h.sent) == 1
         live.exchange_price = lambda: None
     with tempfile.TemporaryDirectory() as d:                               # /close из Telegram — с подтверждением
         chain = FakeChain(sui=170, usdc=0)
         h = Harness(d, chain)
         h.tick(1.20)
-        inbox = [["close"]]
+        inbox = [["!close"]]                                               # «!» из Telegram не обходит подтверждение
         notify.commands = lambda offset: (inbox.pop() if inbox else [], offset)
         h.tick(1.20, dt=60)
         assert chain.pos and not h.bot.manual and any("Подтвердите" in x for x in h.sent)
@@ -1123,8 +1218,9 @@ def test_urgent_exit_safety():
 
 
 def test_flash_does_not_trigger_exit():
-    """Вспышка (цена за минуты −60% и обратно) не продаёт на дне: выход ждёт, пока цена 4+ минуты без скачков;
-    настоящее падение выходит через несколько минут."""
+    """Вспышка (цена за минуты −60% и обратно) не продаёт на дне; одна ошибочная цена — одно сообщение; настоящее
+    падение сразу после вспышки выходит не позже чем через 15 минут; затяжной обвал (−3.5% в минуту) не
+    блокирует выход."""
     with tempfile.TemporaryDirectory() as d:
         chain = FakeChain(sui=170, usdc=0)
         h = Harness(d, chain)
@@ -1133,15 +1229,29 @@ def test_flash_does_not_trigger_exit():
             h.tick(1.20, dt=60)
         h.tick(0.45, dt=60)                                                # вспышка: −62% за минуту
         b = h.bot.book
-        assert b.mode == "lp" and chain.pos and any("Вспышка цены" in x for x in h.sent)
+        assert b.mode == "lp" and chain.pos and sum("Вспышка цены" in x for x in h.sent) == 1
         h.tick(1.18, dt=60)                                                # вернулась — выхода нет
         assert b.mode == "lp" and not b.crashes
-        for _ in range(3):
-            h.tick(1.00, dt=60)                                            # настоящее падение −17%: пока ждёт
+        for _ in range(8):
+            h.tick(1.19, dt=60)                                            # ошибочная цена — в окне 4–10 мин назад
+        assert sum("Вспышка цены" in x for x in h.sent) == 1               # медиана: второй «вспышки» нет
+        h.tick(1.00, dt=60)                                                # настоящее падение −17%: пока ждёт
         assert b.mode == "lp"
-        for _ in range(3):
-            h.tick(1.00, dt=60)                                            # цена 4+ минуты спокойна — выход
-        assert b.mode == "usdc" and not chain.pos and len(b.crashes) == 1
+        for _ in range(8):
+            h.tick(1.00, dt=60)
+        assert b.mode == "usdc" and not chain.pos and len(b.crashes) == 1   # не дольше 15 мин от начала вспышки
+    with tempfile.TemporaryDirectory() as d:                               # затяжной обвал −3.5% в минуту
+        chain = FakeChain(sui=170, usdc=0)
+        h = Harness(d, chain)
+        h.tick(1.20)
+        for _ in range(10):
+            h.tick(1.20, dt=60)
+        p, n = 1.20, 0
+        while h.bot.book.mode == "lp" and n < 40:
+            p *= 0.965
+            h.tick(p, dt=60)
+            n += 1
+        assert h.bot.book.mode == "usdc" and n <= 25 and sum("Вспышка цены" in x for x in h.sent) == 1
 
 
 def test_trend_scales():

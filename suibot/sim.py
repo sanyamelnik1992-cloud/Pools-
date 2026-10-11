@@ -1,13 +1,11 @@
 """Прогон одной стратегии по ряду цен и дохода — общий для проверки на истории и сценариев."""
 from __future__ import annotations
 
-from suibot.book import Book, Costs, accrue_usd, check_stop, init_book, step, summary
+from suibot.book import Book, Costs, accrue_usd, carry, check_stop, init_book, step, summary
 from suibot.chain import PoolCfg, state_from_price
-from suibot.rally import watch_for
+from suibot.rally import Flash, watch_for
 from suibot.strategy import Strategy
 
-
-JUMP = 0.10          # 10% за одну свечу до 15 мин — вспышка: по такой цене не исполнить
 
 
 def no_price(_t):
@@ -16,15 +14,15 @@ def no_price(_t):
 
 def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], yields: list[float],
              costs: Costs, spacing: int, scale: float = 1.0, warm: list | None = None,
-             events: list | None = None, curve: list | None = None, jump: float | None = JUMP) -> dict:
+             events: list | None = None, curve: list | None = None, flash: bool = True) -> dict:
     """yields[j] — доход единицы ликвидности за свечу j (доля стоимости полнодиапазонной позиции).
     Доход зачисляется, пока цена в диапазоне (по ценам начала и конца свечи); возвращает итог summary().
     warm — часовые цены перед началом ряда для средней фильтра тренда (trend_ma_days) и фазы рынка (phase_ma_days);
     их время сдвигается вплотную к началу ряда (сценарии начинаются с t = 0), для фазы — на целое число суток,
     чтобы дневные закрытия остались закрытиями. events — сюда пишутся действия: (время, событие, цена);
-    curve — раз в час (время, стоимость $, «держать SUI» $). jump — свеча, на которой цена сдвинулась больше чем на
-    столько от прошлой (вспышка), не исполняется: решение — на следующей свече (в бою так же: сверка с Binance и
-    исполнение занимают время)."""
+    curve — раз в час (время, стоимость $, «держать SUI» $). flash — по ценам вспышки (rally.Flash: больше 10% от
+    цены 4–10 мин назад, не дольше 15 мин) решения не принимаются, как в бою; стейкинг, плата и стоп-лосс фьючерса
+    (carry) считаются и на них."""
     def state(t, p):
         return dict(state_from_price(p, pc.a_is_sui), t=t, spacing=spacing)
 
@@ -39,12 +37,18 @@ def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], 
             day = off // 86400 * 86400
             watch.ph.warm([(t + day, p) for t, p in warm])
     watch.add(times[0], prices[0])
+    fl = Flash() if flash else None
+    if fl:
+        fl.check(times[0], prices[0])
     for t, p, y in zip(times[1:], prices[1:], yields[1:]):
         st = state(t, p)
         k = (book.in_range(prev["sq"]) + book.in_range(st["sq"])) / 2
         usd = k * y * (st["ua"] / st["sq"] + st["ub"] * st["sq"]) * book.L if k and y else 0.0
         accrue_usd(book, k, usd, st, t - prev["t"])
-        if jump and t - prev["t"] <= 900 and abs(p / prev["sui"] - 1) > jump:   # вспышка на 5-мин свече
+        if fl and fl.check(t, p):                       # вспышка: без решений, но фьючерс и стоп-лосс — по ней
+            ev = carry(book, s, st, costs)
+            if ev and events is not None:
+                events.append((t, ev[0], p))
             prev = st
             continue
         ev = step(book, s, st, watch, costs)
