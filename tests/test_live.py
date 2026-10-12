@@ -833,7 +833,8 @@ def test_trend_filter_live():
         with tempfile.TemporaryDirectory() as d:
             chain = FakeChain(sui=170, usdc=0)
             h = Harness(d, chain)
-            live.history.trend_warmup = lambda days, end, lv=level, **_: [(end - (60 * 24 - i) * 3600, lv)
+            anchor = 1.79e9                                                 # то же время, что у харнесса ниже
+            live.history.trend_warmup = lambda days, end, lv=level, **_: [(anchor - (60 * 24 - i) * 3600, lv)
                                                                     for i in range(60 * 24)]
             h.bot = live.Live(config(Path(d), extra=TREND, strategy="тест тренд"))
             h.t = 1.79e9                                                    # время как в сети (для предыстории)
@@ -861,7 +862,7 @@ def test_switch_to_trend_strategy_keeps_position():
         h.tick(1.20)
         txs = lambda: [c for c in chain.pools if c[0] != "status"]           # noqa: E731 — только транзакции
         pos, calls = h.bot.pos_id, len(txs())
-        live.history.trend_warmup = lambda days, end, **_: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
+        live.history.trend_warmup = lambda days, end, **_: [(1.79e9 - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
         h.bot = live.Live(config(Path(d), extra=TREND, strategy="тест тренд"))
         h.tick(1.20)
         assert h.bot.pos_id == pos and len(txs()) == calls and h.bot.watch.trend_ma() is not None
@@ -955,7 +956,7 @@ def test_switch_running_bot_to_phase_strategy():
         chain = FakeChain(sui=170, usdc=0)
         h = Harness(d, chain)
         h.t = time.time() - 3600
-        live.history.trend_warmup = lambda days, end, **_: [(end - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
+        live.history.trend_warmup = lambda days, end, **_: [(h.t - (60 * 24 - i) * 3600, 1.0) for i in range(60 * 24)]
         h.bot = live.Live(config(Path(d), extra=TREND + PHASE, strategy="тест тренд"))
         h.tick(1.20)
         assert h.bot.pos_id and chain.pos and h.bot.book.mode == "lp"

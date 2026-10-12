@@ -8,6 +8,7 @@ from pathlib import Path
 from lpscan.common import ROOT
 from suibot.book import Costs
 from suibot.chain import PoolCfg
+from suibot.perp_shadow import PerpCfg
 from suibot.strategy import Strategy
 
 
@@ -48,6 +49,7 @@ class Config:
     state_dir: Path = ROOT / "data" / "private" / "bot"
     live: LiveCfg | None = None
     path: Path | None = None            # файл настроек (для запуска анализа отдельным процессом)
+    perp: PerpCfg | None = None         # тень фьючерса (только бумажный режим, денег не трогает)
 
     def pools_used(self) -> dict[str, PoolCfg]:
         return {s.pool: self.pools[s.pool] for s in self.strategies}
@@ -59,6 +61,9 @@ def load(path: str | Path) -> Config:
     strategies = [Strategy(**s) for s in raw.pop("strategy")]
     costs = Costs(**raw.pop("costs", {}))
     live = LiveCfg(**raw.pop("live")) if "live" in raw else None
+    perp = PerpCfg(**raw.pop("perp_shadow")) if "perp_shadow" in raw else None
+    if perp and perp.enabled and perp.pool not in {s.pool for s in strategies}:
+        raise SystemExit(f"[perp_shadow] pool: пул {perp.pool} должен читаться хотя бы одной стратегией")
     names = [s.name for s in strategies]
     if len(set(names)) != len(names):
         raise SystemExit("названия стратегий должны быть разными")
@@ -72,4 +77,4 @@ def load(path: str | Path) -> Config:
         raw["state_dir"] = sd if sd.is_absolute() else ROOT / sd
     if live and live.strategy not in names:
         raise SystemExit(f"[live] strategy: нет стратегии «{live.strategy}» в списке [[strategy]]")
-    return Config(pools=pools, strategies=strategies, costs=costs, live=live, path=Path(path).resolve(), **raw)
+    return Config(pools=pools, strategies=strategies, costs=costs, live=live, perp=perp, path=Path(path).resolve(), **raw)

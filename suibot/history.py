@@ -42,6 +42,18 @@ def trend_warmup(days: float, end: float, retries: int = 5, timeout: float = 60)
     return [(c[0], c[1]) for c in binance_candles(start, end - 3600, 60, retries, timeout)]
 
 
+def daily_ohlc(days: int = 60) -> list[tuple[int, float, float, float, float]]:
+    """Дневные свечи SUIUSDT за последние дни (только закрытые дни UTC): (индекс дня, открытие, максимум, минимум,
+    закрытие). Нужны тени фьючерса для прогрева: пробой и ATR считаются по максимумам и минимумам дней."""
+    end = time.time()
+    rows = get_json(BINANCE, params={"symbol": "SUIUSDT", "interval": "1d",
+                                     "startTime": int((end - (days + 2) * 86400) * 1000), "limit": 1000},
+                    cache_ttl=600, min_interval=0.2)
+    today = int(end // 86400)
+    out = [(int(r[0] // 86400000), float(r[1]), float(r[2]), float(r[3]), float(r[4])) for r in rows]
+    return [x for x in out if x[0] < today]
+
+
 def daily_closes(days: int) -> list[tuple[float, float]]:
     """Дневные цены закрытия SUIUSDT за последние days дней: [(начало дня, цена)]."""
     end = time.time()

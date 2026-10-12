@@ -10,6 +10,7 @@ from __future__ import annotations
 import csv
 import json
 import time
+import traceback
 from dataclasses import asdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,7 +19,11 @@ from suibot import history, notify, report
 from suibot.book import Book, accrue_growth, carry, check_stop, init_book, step, summary
 from suibot.chain import read_pools, token_price
 from suibot.config import Config
+from suibot.perp_shadow import PerpShadow
 from suibot.rally import Flash, RallyWatch, watch_for
+
+
+PERP_NAME = "🧪 фьючерс (тень): пробой 20 дн., весь капитал"
 
 
 def log(*a):
@@ -55,6 +60,9 @@ class Paper:
         self.warm_try: dict[str, float] = {}
         self.warm_day: dict[str, int] = {}
         self.flashes: dict[str, Flash] = {}
+        pc = cfg.perp if cfg.perp and cfg.perp.enabled else None
+        self.perp = PerpShadow(pc, st.get("perp")) if pc else None      # тень фьючерса (деньги не трогает)
+        self.perp_warm_try = 0.0
 
     def watch(self, s, st: dict | None = None) -> RallyWatch:
         """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск). С ценой st — сначала
@@ -82,7 +90,8 @@ class Paper:
         tmp = self.path.with_suffix(".tmp")
         tmp.write_text(json.dumps({"books": {n: asdict(b) for n, b in self.books.items()}, "prev": self.prev,
                                    "last_snapshot": self.last_snapshot, "last_report_day": self.last_report_day,
-                                   "watch": {**self.watch_state, **{n: w.dump() for n, w in self.watches.items()}}},
+                                   "watch": {**self.watch_state, **{n: w.dump() for n, w in self.watches.items()}},
+                                   "perp": self.perp.to_dict() if self.perp else None},
                                   ensure_ascii=False))
         tmp.replace(self.path)
 
@@ -99,6 +108,20 @@ class Paper:
 
     def tick(self, snap: dict):
         cfg = self.cfg
+        if self.perp and cfg.perp.pool in snap:               # тень фьючерса: только бумага, ошибка не останавливает
+            st = snap[cfg.perp.pool]
+            if self.perp.need_warm() and time.time() - self.perp_warm_try > 3600:
+                self.perp_warm_try = time.time()              # дневная история с Binance, раз в час пока не получится
+                try:
+                    n = self.perp.warm(history.daily_ohlc(60))
+                    log(f"тень фьючерса: дневная история прогрета, добавлено дней: {n}")
+                except Exception as e:  # noqa: BLE001
+                    log(f"тень фьючерса: нет дневной истории ({e}), повтор через час")
+            try:
+                for kind, text in self.perp.on_price(st["t"], st["sui"]):
+                    self.event(st["t"], PERP_NAME, kind, st["sui"], text)
+            except Exception:  # noqa: BLE001
+                log(traceback.format_exc())
         gaps = {k: st["t"] - self.prev[k]["t"] for k, st in snap.items()
                 if k in self.prev and st["t"] - self.prev[k]["t"] > 5 * cfg.poll_seconds}
         for k, dt in gaps.items():
@@ -150,7 +173,8 @@ class Paper:
         day = datetime.now(timezone.utc)
         if day.hour == cfg.report_hour_utc and self.last_report_day != day.strftime("%Y-%m-%d"):
             self.last_report_day = day.strftime("%Y-%m-%d")
-            notify.send("Отчёт бумажного бота\n" + report.short(self.rows(snap)))
+            extra = ("\n" + self.perp.line()) if self.perp else ""
+            notify.send("Отчёт бумажного бота\n" + report.short(self.rows(snap)) + extra)
         self.save()
 
     def run(self, ticks: int | None = None):

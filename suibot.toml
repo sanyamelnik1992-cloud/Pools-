@@ -228,3 +228,17 @@ resume_drop_pct = 0.10
 crash_exit = [[72, 0.15]]
 resume_rise_pct = 0.10
 trend_ma_days = 50
+
+# Тень фьючерса «пробой 20 дн., весь капитал» (только бумажный режим: деньги и ключ не трогает).
+# Правила — docs/TRADING_SCHEME.md, раздел 9; риск 100% капитала на стопе, номинал не больше 1×.
+[perp_shadow]
+pool = "cetus_005"
+capital_usd = 200.0
+risk = 1.0
+max_lev = 1.0
+stop_atr = 2.0
+tp1_r = 2.0
+tp1_frac = 0.5
+trail_atr = 3.0
+donch = 20
+enabled = true
