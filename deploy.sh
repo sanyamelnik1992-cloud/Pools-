@@ -21,6 +21,7 @@ fi
 echo "▸ проверки на Mac"
 python3 tests/test_suibot.py | tail -1
 python3 tests/test_live.py 2>/dev/null | tail -1
+python3 tests/test_perp_shadow.py 2>/dev/null | tail -1
 python3 - <<'PY'   # боевая стратегия должна быть исполнимой: иначе бот на сервере не запустится
 import sys
 from suibot.config import load
@@ -50,6 +51,7 @@ fi
 cd "$DIR"
 sudo -u suibot python3 tests/test_suibot.py | tail -1
 sudo -u suibot env PATH=/opt/node/bin:/usr/bin:/bin python3 tests/test_live.py 2>/dev/null | tail -1
+sudo -u suibot python3 tests/test_perp_shadow.py 2>/dev/null | tail -1
 if [ "$RESTART" = 1 ] && systemctl is-enabled --quiet suibot 2>/dev/null; then
   if systemctl is-enabled --quiet suibot-paper 2>/dev/null; then   # сначала «тень»: новый код без денег
     systemctl restart suibot-paper
