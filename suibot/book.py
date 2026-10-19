@@ -48,6 +48,7 @@ class Book:
     resumes: list = field(default_factory=list)
     crashes: list = field(default_factory=list)   # выходы в USDC на падении
     phases: list = field(default_factory=list)    # смены фазы рынка: [время, "up" | "down"]
+    greed_flat: bool = False        # тень: в фазе роста SUI продан из-за жадности (индекс ≥ greed_hi)
     # только «тень» и история: стейкинг и лонг на фьючерсах в фазе роста
     perp_sui: float = 0.0           # объём лонга, SUI
     perp_entry: float = 0.0         # цена входа
@@ -233,6 +234,7 @@ def enter_up(book: Book, st: dict, costs: Costs, s: Strategy | None = None) -> f
     (только «тень») — ещё лонг на фьючерсах."""
     cost = 0.0 if book.mode == "sui" and not book.L else close_to_idle(book, st, costs, "sui")
     book.mode = "up"
+    book.greed_flat = False
     book.phases.append([st["t"], "up"])
     book.perp_stopped = False
     book.ladder_t = None
@@ -323,6 +325,21 @@ def carry(book: Book, s: Strategy, st: dict, costs: Costs | None = None) -> tupl
     return None
 
 
+def greed_signal(book: Book, s: Strategy, t: float, watch) -> tuple[str, str] | None:
+    """Тень: в фазе роста выход из SUI, когда индекс страха и жадности за вчера ≥ greed_hi, и возврат, когда он
+    ниже greed_lo. Без данных индекса ничего не делает (бот сохраняет прежнее состояние)."""
+    if s.greed_hi is None or s.greed_lo is None or not hasattr(watch, "greed_yesterday"):
+        return None
+    g = watch.greed_yesterday(t)
+    if g is None:
+        return None
+    if not book.greed_flat and g >= s.greed_hi:
+        return "greed_out", f"индекс страха и жадности {g} за вчера ≥ {s.greed_hi:g} — жадность, SUI в USDC"
+    if book.greed_flat and g < s.greed_lo:
+        return "greed_in", f"индекс страха и жадности {g} за вчера < {s.greed_lo:g} — жадность спала, снова SUI"
+    return None
+
+
 def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
     """Решение по правилам стратегии (без исполнения): ("exit" | "crash" | "resume" | "rebalance", причина) или None;
     ("skip_exit" | "skip_crash", причина) — выход пропущен фильтром тренда (сообщить, но ничего не делать);
@@ -334,7 +351,9 @@ def decide(book: Book, s: Strategy, st: dict, watch) -> tuple[str, str] | None:
     if book.mode == "up":
         if not s.phase_ma_days:                    # стратегию сменили на вариант без фаз — снова в пул
             return "bear", "в стратегии нет фазы рынка (phase_ma_days) — бот снова в пуле"
-        return ("bear", phase_text(watch, "down")) if phase == "down" else None
+        if phase == "down":
+            return "bear", phase_text(watch, "down")
+        return greed_signal(book, s, t, watch)
     if phase == "up" and book.mode in ("lp", "sui", "usdc"):
         return "bull", phase_text(watch, "up")
     if book.mode == "sui":
@@ -392,6 +411,15 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
         return None
     kind, why = d
     p, t = st["sui"], st["t"]
+    if kind == "greed_out":
+        cost = close_to_idle(book, st, costs, "usdc")
+        book.greed_flat = True
+        return "жадность: SUI в USDC", f"{why}: фаза роста сохраняется, издержки ${cost:.2f}"
+    if kind == "greed_in":
+        cost = close_to_idle(book, st, costs, "sui")
+        book.greed_flat = False
+        sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
+        return "жадность: снова SUI", f"{why}: всё в SUI — {sui:,.0f} SUI, издержки ${cost:.2f}"
     if kind == "bull":
         cost = enter_up(book, st, costs, s)
         sui = (book.idle_a if book.a_is_sui else book.idle_b) / 1e9
@@ -402,6 +430,7 @@ def step(book: Book, s: Strategy, st: dict, watch, costs: Costs) -> tuple[str, s
         a, b = book.holdings(st)
         cost = open_position(book, st, *bear_range(s, p), a, b, costs)
         book.phases.append([t, "down"])
+        book.greed_flat = False
         book.ladder_t = t if s.bear_ladder else None
         watch.reset()
         lo, hi = book.range_usd

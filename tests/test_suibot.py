@@ -437,6 +437,57 @@ def test_ladder_after_growth():
     assert decide(b2, s, st(1.02, t=30 * D), RallyWatch(None))[0] == "rebalance"
 
 
+class _Ph:
+    """Заглушка фазы для текста причины (phase_text): закрытие 0.9 против средней 1.0, фаза держится."""
+    days, up, down, confirm, since = 60, 0.05, 0.05, 2, None
+    run = [2, 2]
+    def last(self):
+        return (0, 0.9)
+    def ma(self):
+        return 1.0
+
+
+class _GreedWatch:
+    """Наблюдатель для проверки жадности: фаза «рост», индекс страха и жадности по дням."""
+    def __init__(self, greed, phase="up"):
+        self.g, self._phase, self.ph = greed, phase, _Ph()
+    def phase(self):
+        return self._phase
+    def add(self, t, p):
+        pass
+    def reset(self):
+        pass
+    def greed_yesterday(self, t):
+        return self.g.get(int(t // 86400) - 1)
+
+
+def test_greed_exit_and_return_in_growth_phase():
+    """Тень «жадность»: в фазе роста SUI уходит в USDC, когда индекс страха и жадности за вчера ≥ 80, и возвращается,
+    когда он ниже 70; без данных индекса ничего не происходит; конец фазы — обычный пул, флаг сбрасывается."""
+    D = 86400.0
+    pc = PoolCfg("p", "0x0")
+    s = Strategy("t", "p", 1000, 0.05, 0.05, phase_ma_days=60, greed_hi=80.0, greed_lo=70.0)
+    assert "greed_hi" in s.paper_only()
+    book = init_book(s, pc, st(1.0, t=0.0), NOCOST)
+    enter_up(book, st(1.0, t=0.0), NOCOST, s)
+    assert book.mode == "up" and not book.greed_flat and book.idle_b > 0
+    w = _GreedWatch({1: 85})                                  # вчера (день 1) — жадность 85
+    assert step(book, s, st(1.0, t=2 * D + 10), w, NOCOST)[0] == "жадность: SUI в USDC"
+    assert book.greed_flat and book.idle_b < 1e-6 and book.idle_a > 0 and book.mode == "up"
+    w.g[2] = 75                                              # между порогами — ничего не меняем
+    assert step(book, s, st(1.0, t=3 * D + 10), w, NOCOST) is None and book.greed_flat
+    w.g[3] = 65                                              # ниже 70 — снова SUI
+    assert step(book, s, st(1.0, t=4 * D + 10), w, NOCOST)[0] == "жадность: снова SUI"
+    assert not book.greed_flat and book.idle_b > 0 and book.idle_a < 1e-6
+    w.g[4] = 90                                              # ещё раз жадность — и снова на вход в USDC
+    assert step(book, s, st(1.0, t=5 * D + 10), w, NOCOST)[0] == "жадность: SUI в USDC"
+    w2 = _GreedWatch({})                                     # нет данных индекса — тень ничего не делает
+    assert step(book, s, st(1.0, t=6 * D + 10), w2, NOCOST) is None and book.greed_flat
+    w3 = _GreedWatch({5: 90}, phase="down")                  # фаза кончилась — снова пул, флаг сброшен
+    ev = step(book, s, st(1.0, t=6 * D + 10), w3, NOCOST)
+    assert ev and not book.greed_flat and book.mode == "lp"
+
+
 def test_strategy_fields_live_or_shadow():
     """Каждая настройка стратегии либо исполняется боевым ботом, либо помечена «только для тени» — тогда боевой
     бот с ней не запустится (иначе модель и бой разошлись бы молча)."""
@@ -445,8 +496,8 @@ def test_strategy_fields_live_or_shadow():
                "cooldown_minutes", "max_per_day", "rally_exit", "resume_drop_pct", "crash_exit", "resume_rise_pct",
                "phase_ma_days", "phase_up", "phase_down", "phase_confirm", "phase_kind", "trend_ma_days",
                "bear_ladder", "ladder_top", "ladder_days"}
-    shadow = {"stake_apy": 0.01, "up_leverage": 1.5, "stop_vs_split_pct": 10.0}
-    tied = {"perp_leverage", "funding_apy", "perp_stop", "perp_trail", "perp_reenter"}   # действуют только с плечом
+    shadow = {"stake_apy": 0.01, "up_leverage": 1.5, "stop_vs_split_pct": 10.0, "greed_hi": 80.0}
+    tied = {"perp_leverage", "funding_apy", "perp_stop", "perp_trail", "perp_reenter", "greed_lo"}   # с плечом / с порогом
     names = {f.name for f in dataclasses.fields(Strategy)}
     assert names == live_ok | set(shadow) | tied, names ^ (live_ok | set(shadow) | tied)
     for k, v in shadow.items():

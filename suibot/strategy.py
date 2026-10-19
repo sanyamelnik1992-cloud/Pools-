@@ -44,6 +44,8 @@ class Strategy:
     stake_apy: float = 0.0             # стейкинг SUI в фазе роста: столько SUI в год к лежащим SUI бота
     up_leverage: float = 1.0           # в фазе роста держать SUI на столько × капитала: 1.5 — ещё полкапитала
                                        # лонгом на фьючерсах (Bluefin) с залогом в USDC
+    greed_hi: float | None = None      # в фазе роста: индекс страха и жадности за вчера ≥ этого — выход SUI в USDC
+    greed_lo: float | None = None      # и возврат в SUI, когда индекс снова ниже этого (тень; см. docs/ANALYSIS_2026-10.md)
     perp_leverage: float = 3.0         # плечо самого фьючерса: залог = объём / perp_leverage
     funding_apy: float = 0.10          # плата за удержание лонга (финансирование), доля объёма в год
     perp_stop: float | None = None     # стоп-лосс лонга: закрыть, если цена упала на столько (0.2 — на 20%)
@@ -54,7 +56,8 @@ class Strategy:
     def paper_only(self) -> list[str]:
         """Настройки, которые боевой режим пока не исполняет (только «тень» и история)."""
         return [n for n, on in (("stake_apy", self.stake_apy), ("up_leverage", self.up_leverage != 1.0),
-                                ("stop_vs_split_pct", self.stop_vs_split_pct is not None)) if on]
+                                ("stop_vs_split_pct", self.stop_vs_split_pct is not None),
+                                ("greed_hi", self.greed_hi is not None)) if on]
 
     def ladder_range(self, price: float) -> tuple[float, float]:
         """Лесенка конца роста (только USDC): от −ladder_top до −bear_ladder от цены."""

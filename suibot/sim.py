@@ -14,7 +14,8 @@ def no_price(_t):
 
 def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], yields: list[float],
              costs: Costs, spacing: int, scale: float = 1.0, warm: list | None = None,
-             events: list | None = None, curve: list | None = None, flash: bool = True) -> dict:
+             events: list | None = None, curve: list | None = None, flash: bool = True,
+             greed: dict | None = None) -> dict:
     """yields[j] — доход единицы ликвидности за свечу j (доля стоимости полнодиапазонной позиции).
     Доход зачисляется, пока цена в диапазоне (по ценам начала и конца свечи); возвращает итог summary().
     warm — часовые цены перед началом ряда для средней фильтра тренда (trend_ma_days) и фазы рынка (phase_ma_days);
@@ -30,6 +31,8 @@ def simulate(s: Strategy, pc: PoolCfg, times: list[float], prices: list[float], 
     book: Book = init_book(s, pc, prev, costs, scale)
     stop = s.stop_vs_split_pct is not None
     watch = watch_for(s)
+    if greed:
+        watch.set_greed(greed)                                   # индекс страха и жадности (тень с greed_hi)
     if warm:
         off = times[0] - 3600 - warm[-1][0]
         watch.warm_trend([(t + off, p) for t, p in warm])

@@ -77,7 +77,12 @@ def prepare(cfg: Config, pool: str):
     share = [v / vol[int(t // 86400)] if vol[int(t // 86400)] else 1 / 288 for t, v in zip(T, V)]
     Y = {"равн.": [y if y is not None else k_eq * var.get(int(t // 86400), 0.0) / 8 * s for t, y, s in zip(T, ys, share)],
          "мед.": [y if y is not None else med * s for y, s in zip(ys, share)]}
-    D.update(T=T, P=P, Y=Y, pc=pc, sp=read_pools({pool: pc})[pool]["spacing"], costs=cfg.costs, real_from=day_t[0],
+    try:
+        greed = history.fear_greed()                            # индекс страха и жадности — для вариантов с greed_hi
+    except Exception:  # noqa: BLE001 — без индекса варианты с жадностью просто не действуют
+        greed = {}
+    D.update(T=T, P=P, Y=Y, pc=pc, greed=greed, sp=read_pools({pool: pc})[pool]["spacing"], costs=cfg.costs,
+             real_from=day_t[0],
              k_eq=k_eq)
 
 
@@ -105,7 +110,7 @@ def run(job):
     ev = []
     curve = [] if (yk == "равн." and cm == 1.0 and i1 == len(T)) else None   # просадки — по окну до сейчас
     r = simulate(dataclasses.replace(s, capital_sui=CAP / P[i0]), D["pc"], [t - sh for t in T[i0:i1]], P[i0:i1],
-                 D["Y"][yk][i0:i1], costs, D["sp"], warm=warm, events=ev, curve=curve)
+                 D["Y"][yk][i0:i1], costs, D["sp"], warm=warm, events=ev, curve=curve, greed=D.get("greed"))
     return (s.name, *job[1:]), (r["value"] / (CAP / P[i0] * P[i1 - 1]) - 1, [(t + sh, k, p) for t, k, p in ev],
                                 drawdowns(curve) if curve else None)
 

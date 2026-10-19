@@ -63,6 +63,7 @@ class Paper:
         pc = cfg.perp if cfg.perp and cfg.perp.enabled else None
         self.perp = PerpShadow(pc, st.get("perp")) if pc else None      # тень фьючерса (деньги не трогает)
         self.perp_warm_try = 0.0
+        self.greed_day: dict[str, int] = {}                 # тени с жадностью: индекс загружен за этот день
 
     def watch(self, s, st: dict | None = None) -> RallyWatch:
         """Наблюдатель роста стратегии (цены не чаще раза в минуту, переживает перезапуск). С ценой st — сначала
@@ -71,6 +72,14 @@ class Paper:
         if s.name not in self.watches:
             self.watches[s.name] = watch_for(s, self.watch_state.get(s.name), min_step=60)
         w = self.watches[s.name]
+        if s.greed_hi is not None and st is not None:
+            today = int(st["t"] // 86400)
+            if self.greed_day.get(s.name) != today:          # индекс страха и жадности — раз в день (кэш на 12 ч)
+                try:
+                    w.set_greed(history.fear_greed())
+                    self.greed_day[s.name] = today
+                except Exception as e:  # noqa: BLE001 — без индекса тень жадности ничего не делает
+                    log(f"[{s.name}] нет индекса страха и жадности: {e}")
         if st is None:
             return w
         w.add(st["t"], st["sui"])

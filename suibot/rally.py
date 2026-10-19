@@ -143,6 +143,7 @@ class RallyWatch:
         self.min_step = min_step          # не чаще раза в min_step секунд (бумажный режим опрашивает часто)
         self.last_t = max((q[-1][0] for q in self.q + self.dq if q), default=0.0)
         self.trend_days = float(trend_days or 0.0)
+        self.greed: dict[int, int] = {}                  # индекс страха и жадности по дням UTC (не сохраняется)
         self.tq = deque(tuple(x) for x in state.get("trend") or []) if self.trend_days else deque()
         self.tsum = sum(p for _, p in self.tq)
         old = state.get("phase") or {}
@@ -150,6 +151,14 @@ class RallyWatch:
         if self.ph and (old.get("days"), old.get("kind"), old.get("up"), old.get("down"), old.get("confirm", 1)) != (
                 self.ph.days, self.ph.kind, self.ph.up, self.ph.down, self.ph.confirm):
             self.ph.recompute()           # настройки фазы поменяли — фаза пересчитывается по сохранённым закрытиям
+
+    def set_greed(self, values: dict[int, int]):
+        """Индекс страха и жадности по дням UTC: {индекс дня: значение}. Нужен тени с greed_hi."""
+        self.greed = dict(values)
+
+    def greed_yesterday(self, t: float) -> int | None:
+        """Индекс за предыдущий день UTC — известен до решений текущего дня (без заглядывания вперёд)."""
+        return self.greed.get(int(t // 86400) - 1)
 
     def phase(self) -> str | None:
         """Фаза рынка: "up" — рост, "down" — падение/боковик, None — фазы нет (не задана или мало истории)."""

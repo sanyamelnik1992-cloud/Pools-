@@ -42,6 +42,12 @@ def trend_warmup(days: float, end: float, retries: int = 5, timeout: float = 60)
     return [(c[0], c[1]) for c in binance_candles(start, end - 3600, 60, retries, timeout)]
 
 
+def fear_greed() -> dict[int, int]:
+    """Индекс страха и жадности (alternative.me) за всю историю: {индекс дня UTC: значение 0–100}."""
+    rows = get_json("https://api.alternative.me/fng/?limit=0&format=json", cache_ttl=12 * 3600)["data"]
+    return {int(x["timestamp"]) // 86400: int(x["value"]) for x in rows}
+
+
 def daily_ohlc(days: int = 60) -> list[tuple[int, float, float, float, float]]:
     """Дневные свечи SUIUSDT за последние дни (только закрытые дни UTC): (индекс дня, открытие, максимум, минимум,
     закрытие). Нужны тени фьючерса для прогрева: пробой и ATR считаются по максимумам и минимумам дней."""
